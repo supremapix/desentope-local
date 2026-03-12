@@ -87,15 +87,18 @@ const ServicoPage = () => {
             </div>
           )}
 
-          <h2 className="text-xl font-bold mb-4">Perguntas Frequentes</h2>
-          <Accordion type="single" collapsible className="bg-card rounded-xl border p-4 mb-8">
-            {faqServico.map((item, i) => (
-              <AccordionItem key={i} value={`faq-${i}`}>
-                <AccordionTrigger className="text-left">{item.pergunta}</AccordionTrigger>
-                <AccordionContent>{item.resposta}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          {/* Dicas */}
+          {dicas.length > 0 && <DicasRapidas dicas={dicas} />}
+
+          {/* FAQ Premium */}
+          <FaqPremium
+            perguntas={faqServico}
+            titulo="Perguntas Frequentes"
+            subtitulo={`${faqServico.length} perguntas sobre ${servico.nome.toLowerCase()} em Curitiba`}
+            mostrarBusca={faqServico.length > 5}
+            mostrarAbas={!!faqData}
+            limitePorCategoria={5}
+          />
         </div>
       </div>
     </div>
