@@ -32,7 +32,7 @@ const EmpresaPage = () => {
 
   const handleWhatsApp = (e: React.FormEvent) => {
     e.preventDefault();
-    const msg = `Olá! Vi o cadastro da ${empresa.nome} no Serviços no Bairro.\n\nPreciso de: ${formData.problema || 'serviço de desentupimento/encanamento'}\nBairro: ${formData.bairro}\nMeu nome: ${formData.nome}\n${formData.descricao ? `Descrição: ${formData.descricao}` : ''}\nUrgência: ${formData.urgencia}`;
+    const msg = `Olá! Vi o cadastro da ${empresa.nome} no Serviços no Bairro.\n\nPreciso de: ${formData.problema || 'serviço de desentupimento/encanamento'}\nBairro: ${formData.bairro}\nMeu nome: ${formData.nome}\n${formData.descricao ? `Descrição: ${formData.descricao}` : ''}\nUrgência: ${formData.urgencia}\n[via formulário perfil - servicosnobairro.com.br]`;
     window.open(`https://wa.me/${empresa.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
