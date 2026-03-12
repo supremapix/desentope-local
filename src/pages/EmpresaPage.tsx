@@ -256,7 +256,7 @@ const EmpresaPage = () => {
             {/* Contact Form */}
             <Card>
               <CardContent className="p-5">
-                <h3 className="font-bold mb-4 flex items-center gap-2">📩 Solicitar Orçamento</h3>
+                <h3 className="font-bold mb-4 flex items-center gap-2"><Send className="h-5 w-5 text-primary" /> Solicitar Orçamento</h3>
                 <form onSubmit={handleWhatsApp} className="space-y-3">
                   <input
                     type="text"
