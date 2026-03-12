@@ -96,7 +96,7 @@ const EmpresaPage = () => {
                   href={`tel:${empresa.telefone.replace(/\D/g, '')}`}
                   className="inline-flex items-center gap-2 h-12 px-6 rounded-lg border-2 border-destructive text-destructive font-bold hover:bg-destructive hover:text-destructive-foreground transition-colors"
                 >
-                  <Phone className="h-5 w-5" /> 🚨 LIGAR EMERGÊNCIA
+                  <Phone className="h-5 w-5" /> <AlertTriangle className="h-4 w-4" /> LIGAR EMERGÊNCIA
                 </a>
                 {empresa.email && (
                   <a
