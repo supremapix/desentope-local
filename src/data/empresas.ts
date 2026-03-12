@@ -1,334 +1,282 @@
-import { Empresa } from '@/types';
+import { Empresa, Bairro } from '@/types';
+import { todosBairros } from '@/data/bairros';
+import { cidadesRMC } from '@/data/cidades-rmc';
 
 const WHATSAPP = '5541985171966';
 const TELEFONE = '(41) 3345-1194';
 const EMAIL = 'adpencanadores@gmail.com';
+const LOGO = 'https://img.supremamidia.com/suprema-img.png';
 
-export const empresas: Empresa[] = [
+function toSlug(nome: string): string {
+  return nome.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+}
+
+function capitalize(s: string): string {
+  return s.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+}
+
+// Coordenadas dos bairros principais
+const coordenadas: Record<string, { lat: number; lng: number }> = {
+  'centro': { lat: -25.4284, lng: -49.2733 },
+  'agua-verde': { lat: -25.4489, lng: -49.2812 },
+  'batel': { lat: -25.4411, lng: -49.2904 },
+  'bigorrilho': { lat: -25.4356, lng: -49.3012 },
+  'boqueirao': { lat: -25.5012, lng: -49.2589 },
+  'bacacheri': { lat: -25.3889, lng: -49.2456 },
+  'boa-vista': { lat: -25.3756, lng: -49.2634 },
+  'cajuru': { lat: -25.4289, lng: -49.2134 },
+  'campo-comprido': { lat: -25.4512, lng: -49.3345 },
+  'capao-raso': { lat: -25.5089, lng: -49.3012 },
+  'cidade-industrial': { lat: -25.4812, lng: -49.3567 },
+  'fazendinha': { lat: -25.5134, lng: -49.3289 },
+  'hauer': { lat: -25.4823, lng: -49.2534 },
+  'merces': { lat: -25.4267, lng: -49.3012 },
+  'novo-mundo': { lat: -25.5034, lng: -49.3145 },
+  'pilarzinho': { lat: -25.3912, lng: -49.3145 },
+  'pinheirinho': { lat: -25.5234, lng: -49.3234 },
+  'portao': { lat: -25.4823, lng: -49.3012 },
+  'reboucas': { lat: -25.4445, lng: -49.2634 },
+  'santa-candida': { lat: -25.3556, lng: -49.2534 },
+  'santa-felicidade': { lat: -25.3989, lng: -49.3456 },
+  'sitio-cercado': { lat: -25.5312, lng: -49.2789 },
+  'tatuquara': { lat: -25.5412, lng: -49.3312 },
+  'uberaba': { lat: -25.4712, lng: -49.2234 },
+  'xaxim': { lat: -25.5023, lng: -49.3089 },
+  'sao-jose-dos-pinhais': { lat: -25.5355, lng: -49.2067 },
+  'colombo': { lat: -25.2912, lng: -49.2234 },
+  'araucaria': { lat: -25.5923, lng: -49.4012 },
+  'pinhais': { lat: -25.4423, lng: -49.1867 },
+  'campo-largo': { lat: -25.4590, lng: -49.5280 },
+  'almirante-tamandare': { lat: -25.3234, lng: -49.3123 },
+  'piraquara': { lat: -25.4401, lng: -49.0623 },
+  'fazenda-rio-grande': { lat: -25.6612, lng: -49.3089 },
+};
+
+export function getCoordenadasBairro(slug: string) {
+  return coordenadas[slug] || { lat: -25.4284, lng: -49.2733 };
+}
+
+// Templates de empresa por localidade
+interface EmpresaTemplate {
+  prefixo: string;
+  sufixo: string;
+  tipoServico: ('desentupimento' | 'encanamento')[];
+  servicosOferecidos: string[];
+  categoria: string;
+  badges: string[];
+  notaMedia: number;
+  totalAvaliacoes: number;
+  anosExperiencia: number;
+  atende24h: boolean;
+  atendeEmergencia: boolean;
+  destaque: boolean;
+  verificada: boolean;
+}
+
+const templates: EmpresaTemplate[] = [
   {
-    slug: 'desentupidora-curitiba-24h',
-    nome: 'Desentupidora Curitiba 24h',
-    descricao: 'Atendimento 24 horas em toda Curitiba. Profissionais experientes e equipamentos modernos.',
-    descricaoLonga: 'A Desentupidora Curitiba 24h é referência em serviços de desentupimento na capital paranaense desde 2008. Com uma equipe de mais de 15 profissionais qualificados e frota própria, atendemos emergências a qualquer hora do dia ou da noite. Nossos equipamentos incluem máquinas rotativas de última geração, hidrojateadoras industriais e câmeras de inspeção para diagnóstico preciso. Trabalhamos com transparência, oferecendo orçamento antes do serviço e garantia em todos os trabalhos realizados.',
-    whatsapp: WHATSAPP,
-    telefone: TELEFONE,
-    email: EMAIL,
-    cnpj: '12.345.678/0001-01',
-    anosExperiencia: 16,
-    verificada: true,
-    destaque: true,
-    atende24h: true,
-    atendeEmergencia: true,
+    prefixo: 'DesentupRápido',
+    sufixo: '24h',
     tipoServico: ['desentupimento'],
-    servicosOferecidos: ['desentupimento-vaso-sanitario', 'desentupimento-esgoto-residencial', 'desentupimento-esgoto-comercial', 'hidrojateamento', 'camera-inspecao-esgoto', 'limpa-fossa', 'desentupimento-ralo', 'emergencia-24h'],
-    bairrosAtendidos: ['centro', 'batel', 'agua-verde', 'bigorrilho', 'reboucas', 'merces', 'juveve', 'cabral', 'alto-da-gloria', 'centro-civico', 'portao', 'novo-mundo'],
-    cidadesAtendidas: ['curitiba'],
-    formasPagamento: ['PIX', 'Dinheiro', 'Cartão de Crédito', 'Cartão de Débito', 'Boleto'],
-    fotos: ['/placeholder.svg', '/placeholder.svg', '/placeholder.svg'],
-    horarios: [
-      { dia: 'Segunda a Sexta', abertura: '00:00', fechamento: '23:59' },
-      { dia: 'Sábado', abertura: '00:00', fechamento: '23:59' },
-      { dia: 'Domingo e Feriados', abertura: '00:00', fechamento: '23:59' },
-    ],
-    avaliacoes: [
-      { id: '1', nomeCliente: 'Carlos M.', nota: 5, data: '2024-12-15', servicoRealizado: 'Desentupimento de esgoto', texto: 'Excelente atendimento! Vieram em menos de 30 minutos e resolveram tudo rapidamente.', respostaEmpresa: 'Obrigado Carlos! Ficamos felizes em ajudar.' },
-      { id: '2', nomeCliente: 'Ana Paula S.', nota: 5, data: '2024-12-10', servicoRealizado: 'Desentupimento de vaso', texto: 'Muito profissionais, preço justo e trabalho bem feito. Recomendo!' },
-      { id: '3', nomeCliente: 'Roberto L.', nota: 4, data: '2024-11-28', servicoRealizado: 'Hidrojateamento', texto: 'Bom serviço, só demorou um pouco mais do que o esperado.' },
-    ],
-    notaMedia: 4.8,
-    totalAvaliacoes: 127,
-    redesSociais: { instagram: 'https://instagram.com/desentupidoracwb24h', facebook: 'https://facebook.com/desentupidoracwb24h' },
-  },
-  {
-    slug: 'hidraulica-parana-express',
-    nome: 'Hidráulica Paraná Express',
-    descricao: 'Especialistas em encanamento e hidráulica em São José dos Pinhais e região.',
-    descricaoLonga: 'A Hidráulica Paraná Express atua desde 2012 em São José dos Pinhais e região metropolitana. Somos especialistas em serviços de encanamento residencial e comercial, com foco em qualidade e agilidade. Nossa equipe é formada por encanadores certificados e utilizamos materiais de primeira linha em todos os serviços.',
-    whatsapp: WHATSAPP,
-    telefone: TELEFONE,
-    email: EMAIL,
-    cnpj: '23.456.789/0001-02',
-    anosExperiencia: 12,
-    verificada: true,
-    destaque: false,
-    atende24h: false,
-    atendeEmergencia: true,
-    tipoServico: ['encanamento'],
-    servicosOferecidos: ['encanador-residencial', 'encanador-comercial', 'conserto-vazamento', 'instalacao-hidraulica', 'troca-tubulacao', 'conserto-torneira-chuveiro', 'instalacao-aquecedor'],
-    bairrosAtendidos: ['centro', 'agua-verde', 'portao'],
-    cidadesAtendidas: ['sao-jose-dos-pinhais', 'curitiba'],
-    formasPagamento: ['PIX', 'Dinheiro', 'Cartão de Crédito'],
-    fotos: ['/placeholder.svg', '/placeholder.svg'],
-    horarios: [
-      { dia: 'Segunda a Sexta', abertura: '07:00', fechamento: '18:00' },
-      { dia: 'Sábado', abertura: '08:00', fechamento: '14:00' },
-      { dia: 'Domingo', abertura: '', fechamento: '', fechado: true },
-    ],
-    avaliacoes: [
-      { id: '4', nomeCliente: 'Fernanda K.', nota: 5, data: '2024-12-12', servicoRealizado: 'Conserto de vazamento', texto: 'Encontraram o vazamento rapidamente e consertaram com qualidade. Super recomendo!' },
-      { id: '5', nomeCliente: 'Pedro H.', nota: 4, data: '2024-11-20', servicoRealizado: 'Instalação hidráulica', texto: 'Trabalho bem feito, profissionais educados.' },
-    ],
-    notaMedia: 4.6,
-    totalAvaliacoes: 89,
-    redesSociais: { instagram: 'https://instagram.com/hidraulicaprexpress' },
-  },
-  {
-    slug: 'desentupidora-colombo',
-    nome: 'Desentupidora do Colombo',
-    descricao: 'Referência em desentupimento em Colombo e norte de Curitiba.',
-    descricaoLonga: 'Atuamos há mais de 10 anos na região de Colombo e bairros do norte de Curitiba. Equipamentos modernos, preços justos e atendimento rápido são nossos diferenciais.',
-    whatsapp: WHATSAPP,
-    telefone: TELEFONE,
-    email: EMAIL,
-    anosExperiencia: 10,
-    verificada: true,
-    destaque: false,
-    atende24h: true,
-    atendeEmergencia: true,
-    tipoServico: ['desentupimento'],
-    servicosOferecidos: ['desentupimento-vaso-sanitario', 'desentupimento-esgoto-residencial', 'desentupimento-caixa-gordura', 'limpa-fossa', 'desentupimento-ralo', 'emergencia-24h'],
-    bairrosAtendidos: ['boa-vista', 'bacacheri', 'pilarzinho', 'santa-candida', 'atuba', 'bairro-alto', 'abranches', 'tingui'],
-    cidadesAtendidas: ['colombo', 'curitiba'],
-    formasPagamento: ['PIX', 'Dinheiro', 'Cartão de Débito'],
-    fotos: ['/placeholder.svg'],
-    horarios: [
-      { dia: 'Segunda a Domingo', abertura: '00:00', fechamento: '23:59' },
-    ],
-    avaliacoes: [
-      { id: '6', nomeCliente: 'Marcos T.', nota: 5, data: '2024-12-08', servicoRealizado: 'Limpa fossa', texto: 'Serviço rápido e limpo. Equipe muito profissional.' },
-    ],
-    notaMedia: 4.5,
-    totalAvaliacoes: 64,
-  },
-  {
-    slug: 'encanador-master-cic',
-    nome: 'Encanador Master CIC',
-    descricao: 'Encanamento e desentupimento na CIC, Portão e Fazendinha.',
-    descricaoLonga: 'O Encanador Master CIC oferece serviços completos de encanamento e desentupimento para a região da Cidade Industrial, Portão e arredores. Profissionais com mais de 20 anos de experiência no mercado.',
-    whatsapp: WHATSAPP,
-    telefone: TELEFONE,
-    email: EMAIL,
-    cnpj: '45.678.901/0001-04',
-    anosExperiencia: 20,
-    verificada: true,
-    destaque: true,
-    atende24h: false,
-    atendeEmergencia: false,
-    tipoServico: ['desentupimento', 'encanamento'],
-    servicosOferecidos: ['desentupimento-vaso-sanitario', 'desentupimento-pia-cozinha', 'encanador-residencial', 'conserto-vazamento', 'troca-tubulacao', 'instalacao-caixa-dagua', 'reforma-banheiro-hidraulica'],
-    bairrosAtendidos: ['cidade-industrial', 'portao', 'fazendinha', 'novo-mundo', 'capao-raso', 'xaxim', 'sitio-cercado', 'pinheirinho'],
-    cidadesAtendidas: ['curitiba', 'araucaria'],
-    formasPagamento: ['PIX', 'Dinheiro', 'Cartão de Crédito', 'Cartão de Débito'],
-    fotos: ['/placeholder.svg', '/placeholder.svg', '/placeholder.svg', '/placeholder.svg'],
-    horarios: [
-      { dia: 'Segunda a Sexta', abertura: '07:30', fechamento: '18:30' },
-      { dia: 'Sábado', abertura: '08:00', fechamento: '13:00' },
-      { dia: 'Domingo', abertura: '', fechamento: '', fechado: true },
-    ],
-    avaliacoes: [
-      { id: '7', nomeCliente: 'Juliana R.', nota: 5, data: '2024-12-14', servicoRealizado: 'Reforma de banheiro', texto: 'Trabalho impecável! Fizeram toda a parte hidráulica da reforma do meu banheiro. Muito competentes.' },
-      { id: '8', nomeCliente: 'Lucas A.', nota: 5, data: '2024-12-01', servicoRealizado: 'Troca de tubulação', texto: 'Profissionais experientes, resolveram um problema que outras empresas não conseguiram.' },
-    ],
+    servicosOferecidos: ['desentupimento-vaso-sanitario', 'desentupimento-esgoto-residencial', 'desentupimento-pia-cozinha', 'hidrojateamento', 'camera-inspecao-esgoto', 'limpa-fossa', 'desentupimento-ralo', 'emergencia-24h'],
+    categoria: 'Desentupidora',
+    badges: ['VERIFICADO', '24H', 'EMERGÊNCIA'],
     notaMedia: 4.9,
-    totalAvaliacoes: 156,
-    redesSociais: { instagram: 'https://instagram.com/encanadormastercic', youtube: 'https://youtube.com/@encanadormastercic' },
+    totalAvaliacoes: 127,
+    anosExperiencia: 12,
+    atende24h: true,
+    atendeEmergencia: true,
+    destaque: false,
+    verificada: true,
   },
   {
-    slug: 'desentupidora-boa-vista',
-    nome: 'Desentupidora Boa Vista',
-    descricao: 'Especialistas em desentupimento na regional Boa Vista.',
-    descricaoLonga: 'Desentupidora Boa Vista é referência nos bairros do norte de Curitiba. Atendimento rápido, preços acessíveis e garantia no serviço.',
-    whatsapp: WHATSAPP,
-    telefone: TELEFONE,
-    email: EMAIL,
-    anosExperiencia: 8,
-    verificada: false,
-    destaque: false,
+    prefixo: 'Encanador Master',
+    sufixo: '— Hidráulica',
+    tipoServico: ['encanamento'],
+    servicosOferecidos: ['encanador-residencial', 'encanador-comercial', 'conserto-vazamento', 'instalacao-hidraulica', 'troca-tubulacao', 'conserto-torneira-chuveiro', 'instalacao-aquecedor', 'instalacao-caixa-dagua'],
+    categoria: 'Encanador / Hidráulica',
+    badges: ['VERIFICADO', 'ESPECIALISTA', 'RÁPIDO'],
+    notaMedia: 4.8,
+    totalAvaliacoes: 98,
+    anosExperiencia: 15,
     atende24h: false,
     atendeEmergencia: true,
-    tipoServico: ['desentupimento'],
-    servicosOferecidos: ['desentupimento-vaso-sanitario', 'desentupimento-pia-cozinha', 'desentupimento-pia-banheiro', 'desentupimento-ralo', 'desentupimento-caixa-gordura'],
-    bairrosAtendidos: ['boa-vista', 'bacacheri', 'pilarzinho', 'ahu', 'cabral', 'juveve', 'vista-alegre'],
-    cidadesAtendidas: ['curitiba'],
-    formasPagamento: ['PIX', 'Dinheiro'],
-    fotos: ['/placeholder.svg'],
-    horarios: [
-      { dia: 'Segunda a Sexta', abertura: '08:00', fechamento: '18:00' },
-      { dia: 'Sábado', abertura: '08:00', fechamento: '12:00' },
-      { dia: 'Domingo', abertura: '', fechamento: '', fechado: true },
-    ],
-    avaliacoes: [
-      { id: '9', nomeCliente: 'Camila F.', nota: 4, data: '2024-12-05', servicoRealizado: 'Desentupimento de pia', texto: 'Resolveram o problema rapidamente. Preço bom.' },
-    ],
-    notaMedia: 4.3,
-    totalAvaliacoes: 42,
+    destaque: false,
+    verificada: true,
   },
   {
-    slug: 'hidro-jet-curitiba',
-    nome: 'Hidro Jet Curitiba',
-    descricao: 'Especialistas em hidrojateamento e câmera de inspeção.',
-    descricaoLonga: 'A Hidro Jet Curitiba é especializada em serviços de hidrojateamento e inspeção por câmera. Equipamentos de ponta importados para resolver os problemas mais complexos de tubulação.',
-    whatsapp: WHATSAPP,
-    telefone: TELEFONE,
-    email: EMAIL,
-    cnpj: '56.789.012/0001-06',
-    anosExperiencia: 6,
-    verificada: true,
-    destaque: false,
-    atende24h: true,
-    atendeEmergencia: true,
+    prefixo: 'Hidráulica Express',
+    sufixo: '— Industrial',
     tipoServico: ['desentupimento'],
-    servicosOferecidos: ['hidrojateamento', 'camera-inspecao-esgoto', 'desentupimento-esgoto-residencial', 'desentupimento-esgoto-comercial', 'desentupimento-industrial', 'emergencia-24h'],
-    bairrosAtendidos: ['centro', 'batel', 'agua-verde', 'reboucas', 'boqueirão', 'cajuru', 'uberaba', 'hauer', 'xaxim'],
-    cidadesAtendidas: ['curitiba', 'sao-jose-dos-pinhais', 'pinhais'],
-    formasPagamento: ['PIX', 'Cartão de Crédito', 'Boleto'],
-    fotos: ['/placeholder.svg', '/placeholder.svg'],
-    horarios: [
-      { dia: 'Segunda a Domingo', abertura: '00:00', fechamento: '23:59' },
-    ],
-    avaliacoes: [
-      { id: '10', nomeCliente: 'Ricardo B.', nota: 5, data: '2024-12-11', servicoRealizado: 'Hidrojateamento', texto: 'Equipamento de primeira! Resolveram um entupimento que já tinha meses.' },
-    ],
+    servicosOferecidos: ['desentupimento-industrial', 'hidrojateamento', 'desentupimento-caixa-gordura', 'camera-inspecao-esgoto', 'desentupimento-esgoto-comercial', 'instalacao-caixa-dagua'],
+    categoria: 'Desentupidora Industrial',
+    badges: ['VERIFICADO', 'INDUSTRIAL', 'CNPJ'],
     notaMedia: 4.7,
-    totalAvaliacoes: 73,
+    totalAvaliacoes: 74,
+    anosExperiencia: 20,
+    atende24h: false,
+    atendeEmergencia: true,
+    destaque: false,
+    verificada: true,
   },
   {
-    slug: 'rapido-desentupimentos',
-    nome: 'Rápido Desentupimentos',
-    descricao: 'Atendimento rápido em toda Curitiba. Orçamento grátis.',
-    descricaoLonga: 'O Rápido Desentupimentos garante atendimento em até 40 minutos em qualquer bairro de Curitiba. Orçamento grátis e sem compromisso. Pagamento facilitado.',
-    whatsapp: WHATSAPP,
-    telefone: TELEFONE,
-    email: EMAIL,
-    anosExperiencia: 5,
-    verificada: false,
-    destaque: false,
+    prefixo: 'SupremaHidro',
+    sufixo: '— Desentupimento e Hidráulica',
+    tipoServico: ['desentupimento', 'encanamento'],
+    servicosOferecidos: ['desentupimento-vaso-sanitario', 'desentupimento-esgoto-residencial', 'desentupimento-pia-cozinha', 'hidrojateamento', 'camera-inspecao-esgoto', 'limpa-fossa', 'desentupimento-ralo', 'emergencia-24h', 'encanador-residencial', 'encanador-comercial', 'conserto-vazamento', 'instalacao-hidraulica', 'troca-tubulacao', 'deteccao-vazamento-oculto', 'instalacao-aquecedor', 'reforma-banheiro-hidraulica'],
+    categoria: 'Serviços Hidráulicos Completos',
+    badges: ['VERIFICADO', 'COMPLETO', '24H', 'DESTAQUE'],
+    notaMedia: 5.0,
+    totalAvaliacoes: 203,
+    anosExperiencia: 18,
     atende24h: true,
     atendeEmergencia: true,
-    tipoServico: ['desentupimento'],
-    servicosOferecidos: ['desentupimento-vaso-sanitario', 'desentupimento-pia-cozinha', 'desentupimento-esgoto-residencial', 'desentupimento-ralo', 'emergencia-24h'],
-    bairrosAtendidos: ['centro', 'agua-verde', 'portao', 'boqueirão', 'cajuru', 'pinheirinho', 'sitio-cercado', 'novo-mundo', 'xaxim', 'hauer', 'capao-raso'],
-    cidadesAtendidas: ['curitiba'],
-    formasPagamento: ['PIX', 'Dinheiro'],
-    fotos: ['/placeholder.svg'],
-    horarios: [
-      { dia: 'Todos os dias', abertura: '00:00', fechamento: '23:59' },
-    ],
-    avaliacoes: [],
-    notaMedia: 4.1,
-    totalAvaliacoes: 28,
+    destaque: true,
+    verificada: true,
   },
   {
-    slug: 'esgotecnica-curitiba',
-    nome: 'Esgotécnica Curitiba',
-    descricao: 'Soluções completas em esgoto, fossa e hidrojateamento.',
-    descricaoLonga: 'A Esgotécnica Curitiba oferece soluções completas para problemas de esgoto. Realizamos limpeza de fossa, hidrojateamento e desentupimento de redes de esgoto residenciais e comerciais.',
-    whatsapp: WHATSAPP,
-    telefone: TELEFONE,
-    email: EMAIL,
-    cnpj: '78.901.234/0001-08',
-    anosExperiencia: 14,
-    verificada: true,
-    destaque: false,
+    prefixo: 'LimpaFossa',
+    sufixo: '— Fossas e Reservatórios',
+    tipoServico: ['desentupimento'],
+    servicosOferecidos: ['limpa-fossa', 'instalacao-caixa-dagua', 'desentupimento-caixa-gordura', 'desentupimento-esgoto-residencial'],
+    categoria: 'Limpeza de Fossas e Reservatórios',
+    badges: ['VERIFICADO', 'ESPECIALISTA', 'LICENCIADO'],
+    notaMedia: 4.8,
+    totalAvaliacoes: 56,
+    anosExperiencia: 10,
     atende24h: false,
     atendeEmergencia: false,
-    tipoServico: ['desentupimento'],
-    servicosOferecidos: ['desentupimento-esgoto-residencial', 'desentupimento-esgoto-comercial', 'limpa-fossa', 'hidrojateamento', 'camera-inspecao-esgoto', 'desentupimento-caixa-gordura'],
-    bairrosAtendidos: ['santa-felicidade', 'campina-do-siqueira', 'bigorrilho', 'merces', 'seminario', 'campo-comprido', 'mossungue', 'orleans'],
-    cidadesAtendidas: ['curitiba', 'campo-largo'],
-    formasPagamento: ['PIX', 'Dinheiro', 'Cartão de Crédito', 'Cartão de Débito', 'Boleto'],
-    fotos: ['/placeholder.svg', '/placeholder.svg', '/placeholder.svg'],
-    horarios: [
-      { dia: 'Segunda a Sexta', abertura: '07:00', fechamento: '19:00' },
-      { dia: 'Sábado', abertura: '07:00', fechamento: '15:00' },
-      { dia: 'Domingo', abertura: '', fechamento: '', fechado: true },
-    ],
-    avaliacoes: [
-      { id: '11', nomeCliente: 'Patrícia G.', nota: 5, data: '2024-11-30', servicoRealizado: 'Limpa fossa', texto: 'Equipe pontual e muito profissional. Limparam tudo sem sujeira.' },
-    ],
-    notaMedia: 4.4,
-    totalAvaliacoes: 51,
-  },
-  {
-    slug: 'aqua-solucoes-hidraulicas',
-    nome: 'Aqua Soluções Hidráulicas',
-    descricao: 'Encanamento e detecção de vazamentos com tecnologia de ponta.',
-    descricaoLonga: 'A Aqua Soluções Hidráulicas é especializada em detecção de vazamentos ocultos, instalações hidráulicas completas e reformas. Utilizamos equipamentos de detecção eletrônica e geofone para localizar vazamentos sem quebrar paredes.',
-    whatsapp: WHATSAPP,
-    telefone: TELEFONE,
-    email: EMAIL,
-    cnpj: '89.012.345/0001-09',
-    anosExperiencia: 9,
-    verificada: true,
-    destaque: true,
-    atende24h: false,
-    atendeEmergencia: true,
-    tipoServico: ['encanamento'],
-    servicosOferecidos: ['encanador-residencial', 'encanador-comercial', 'conserto-vazamento', 'deteccao-vazamento-oculto', 'instalacao-hidraulica', 'troca-tubulacao', 'instalacao-caixa-dagua', 'conserto-torneira-chuveiro', 'instalacao-aquecedor', 'reforma-banheiro-hidraulica'],
-    bairrosAtendidos: ['batel', 'agua-verde', 'bigorrilho', 'centro', 'reboucas', 'jardim-botanico', 'cristo-rei', 'alto-da-rua-xv', 'cabral', 'juveve', 'merces', 'hugo-lange'],
-    cidadesAtendidas: ['curitiba'],
-    formasPagamento: ['PIX', 'Cartão de Crédito', 'Cartão de Débito', 'Boleto'],
-    fotos: ['/placeholder.svg', '/placeholder.svg', '/placeholder.svg', '/placeholder.svg', '/placeholder.svg'],
-    horarios: [
-      { dia: 'Segunda a Sexta', abertura: '08:00', fechamento: '18:00' },
-      { dia: 'Sábado', abertura: '08:00', fechamento: '13:00' },
-      { dia: 'Domingo', abertura: '', fechamento: '', fechado: true },
-    ],
-    avaliacoes: [
-      { id: '12', nomeCliente: 'Mariana D.', nota: 5, data: '2024-12-13', servicoRealizado: 'Detecção de vazamento', texto: 'Encontraram o vazamento sem precisar quebrar nada! Tecnologia incrível. Super recomendo.' },
-      { id: '13', nomeCliente: 'Gustavo P.', nota: 5, data: '2024-12-09', servicoRealizado: 'Instalação de aquecedor', texto: 'Instalação perfeita, profissionais muito competentes e pontuais.' },
-      { id: '14', nomeCliente: 'Beatriz M.', nota: 4, data: '2024-11-25', servicoRealizado: 'Reforma hidráulica', texto: 'Ótimo trabalho na reforma do banheiro. Pontualidade poderia melhorar.' },
-    ],
-    notaMedia: 4.8,
-    totalAvaliacoes: 112,
-    redesSociais: { instagram: 'https://instagram.com/aquasolucoes', facebook: 'https://facebook.com/aquasolucoes', youtube: 'https://youtube.com/@aquasolucoes' },
-  },
-  {
-    slug: 'desentupidora-araucaria',
-    nome: 'Desentupidora Araucária',
-    descricao: 'Atendimento em Araucária, Fazenda Rio Grande e sul de Curitiba.',
-    descricaoLonga: 'A Desentupidora Araucária atende toda a região sul da Grande Curitiba. Especialistas em desentupimento residencial e comercial com mais de 7 anos de experiência na região.',
-    whatsapp: WHATSAPP,
-    telefone: TELEFONE,
-    email: EMAIL,
-    anosExperiencia: 7,
-    verificada: false,
     destaque: false,
-    atende24h: true,
-    atendeEmergencia: true,
-    tipoServico: ['desentupimento', 'encanamento'],
-    servicosOferecidos: ['desentupimento-vaso-sanitario', 'desentupimento-esgoto-residencial', 'desentupimento-caixa-gordura', 'limpa-fossa', 'encanador-residencial', 'conserto-vazamento'],
-    bairrosAtendidos: ['pinheirinho', 'capao-raso', 'sitio-cercado', 'tatuquara', 'umbara', 'ganchinho'],
-    cidadesAtendidas: ['araucaria', 'fazenda-rio-grande', 'curitiba'],
-    formasPagamento: ['PIX', 'Dinheiro'],
-    fotos: ['/placeholder.svg'],
-    horarios: [
-      { dia: 'Todos os dias', abertura: '00:00', fechamento: '23:59' },
-    ],
-    avaliacoes: [
-      { id: '15', nomeCliente: 'Jorge S.', nota: 4, data: '2024-12-02', servicoRealizado: 'Desentupimento de esgoto', texto: 'Bom atendimento, preço justo. Recomendo para a região de Araucária.' },
-    ],
-    notaMedia: 4.2,
-    totalAvaliacoes: 35,
+    verificada: true,
   },
 ];
 
-export function getEmpresaBySlug(slug: string): Empresa | undefined {
-  return empresas.find(e => e.slug === slug);
+const avaliacoesModelo = [
+  { nomeCliente: 'Carlos M.', nota: 5, servicoRealizado: 'Desentupimento de esgoto', texto: 'Excelente atendimento! Vieram rápido e resolveram tudo com profissionalismo.' },
+  { nomeCliente: 'Ana Paula S.', nota: 5, servicoRealizado: 'Conserto de vazamento', texto: 'Muito profissionais, preço justo e trabalho bem feito. Recomendo!' },
+  { nomeCliente: 'Roberto L.', nota: 4, servicoRealizado: 'Hidrojateamento', texto: 'Bom serviço, equipe pontual e educada.' },
+  { nomeCliente: 'Fernanda K.', nota: 5, servicoRealizado: 'Desentupimento de vaso', texto: 'Resolveram o problema rapidamente. Super recomendo!' },
+  { nomeCliente: 'Marcos T.', nota: 5, servicoRealizado: 'Limpa fossa', texto: 'Serviço rápido e limpo. Equipe muito profissional.' },
+];
+
+function gerarEmpresasPorLocalidade(localNome: string, localSlug: string, cidade: string = 'Curitiba'): Empresa[] {
+  return templates.map((tpl, idx) => {
+    const nome = `${tpl.prefixo} ${localNome} ${tpl.sufixo}`.trim();
+    const slug = toSlug(`${tpl.prefixo}-${localNome}`);
+    const avaliacoes = avaliacoesModelo.slice(0, Math.min(3, idx + 2)).map((a, i) => ({
+      ...a,
+      id: `${slug}-${i}`,
+      data: `2024-12-${String(15 - i).padStart(2, '0')}`,
+    }));
+
+    return {
+      slug,
+      nome,
+      logo: LOGO,
+      fotos: ['/placeholder.svg'],
+      descricao: `${tpl.categoria} referência em ${localNome}, ${cidade}. Atendimento ${tpl.atende24h ? '24 horas' : 'rápido'} com profissionais qualificados.`,
+      descricaoLonga: `A ${nome} é referência em ${tpl.categoria.toLowerCase()} em ${localNome}, ${cidade}. Com mais de ${tpl.anosExperiencia} anos de experiência, atendemos residências, condomínios e comércios com rapidez e qualidade. ${tpl.atende24h ? 'Disponíveis 24 horas por dia, inclusive feriados.' : 'Horário comercial estendido.'} Equipe treinada, equipamentos modernos e preço justo. Solicite orçamento agora pelo WhatsApp ou ligue para emergências.`,
+      whatsapp: WHATSAPP,
+      telefone: TELEFONE,
+      email: EMAIL,
+      cnpj: idx < 4 ? `${10 + idx}.${100 + idx}.${200 + idx}/0001-0${idx + 1}` : undefined,
+      anosExperiencia: tpl.anosExperiencia,
+      verificada: tpl.verificada,
+      destaque: tpl.destaque,
+      atende24h: tpl.atende24h,
+      atendeEmergencia: tpl.atendeEmergencia,
+      tipoServico: tpl.tipoServico,
+      servicosOferecidos: tpl.servicosOferecidos,
+      bairrosAtendidos: [localSlug],
+      cidadesAtendidas: [toSlug(cidade)],
+      formasPagamento: ['PIX', 'Dinheiro', 'Cartão de Crédito', 'Cartão de Débito', 'Boleto'],
+      horarios: tpl.atende24h
+        ? [{ dia: 'Segunda a Domingo', abertura: '00:00', fechamento: '23:59' }]
+        : [
+            { dia: 'Segunda a Sexta', abertura: '07:30', fechamento: '18:30' },
+            { dia: 'Sábado', abertura: '08:00', fechamento: '13:00' },
+            { dia: 'Domingo', abertura: '', fechamento: '', fechado: true },
+          ],
+      avaliacoes,
+      notaMedia: tpl.notaMedia,
+      totalAvaliacoes: tpl.totalAvaliacoes,
+    };
+  });
 }
 
+// Cache para empresas geradas
+const empresaCache = new Map<string, Empresa[]>();
+
 export function getEmpresasPorBairro(bairroSlug: string): Empresa[] {
-  return empresas.filter(e => e.bairrosAtendidos.includes(bairroSlug));
+  if (empresaCache.has(`bairro-${bairroSlug}`)) {
+    return empresaCache.get(`bairro-${bairroSlug}`)!;
+  }
+  const bairro = todosBairros.find(b => b.slug === bairroSlug);
+  if (!bairro) return [];
+  const empresas = gerarEmpresasPorLocalidade(bairro.nome, bairroSlug, 'Curitiba');
+  empresaCache.set(`bairro-${bairroSlug}`, empresas);
+  return empresas;
+}
+
+export function getEmpresasPorCidade(cidadeSlug: string): Empresa[] {
+  if (empresaCache.has(`cidade-${cidadeSlug}`)) {
+    return empresaCache.get(`cidade-${cidadeSlug}`)!;
+  }
+  const cidade = cidadesRMC.find(c => c.slug === cidadeSlug);
+  if (!cidade) return [];
+  const empresas = gerarEmpresasPorLocalidade(cidade.nome, cidadeSlug, cidade.nome);
+  empresaCache.set(`cidade-${cidadeSlug}`, empresas);
+  return empresas;
+}
+
+export function getEmpresaBySlug(slug: string): Empresa | undefined {
+  // Search all caches
+  for (const empresas of empresaCache.values()) {
+    const found = empresas.find(e => e.slug === slug);
+    if (found) return found;
+  }
+  // Try to generate from slug pattern
+  for (const bairro of todosBairros) {
+    const empresas = getEmpresasPorBairro(bairro.slug);
+    const found = empresas.find(e => e.slug === slug);
+    if (found) return found;
+  }
+  return undefined;
 }
 
 export function getEmpresasPorServico(servicoSlug: string): Empresa[] {
-  return empresas.filter(e => e.servicosOferecidos.includes(servicoSlug));
+  // Return empresas from popular bairros that offer this service
+  const popularBairros = ['centro', 'batel', 'agua-verde', 'boqueirao', 'portao'];
+  const result: Empresa[] = [];
+  for (const bSlug of popularBairros) {
+    const empresas = getEmpresasPorBairro(bSlug);
+    result.push(...empresas.filter(e => e.servicosOferecidos.includes(servicoSlug)));
+  }
+  // Deduplicate by template prefix
+  const seen = new Set<string>();
+  return result.filter(e => {
+    const key = e.nome.split(' ').slice(0, 2).join(' ');
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
 }
 
 export function getEmpresasDestaque(): Empresa[] {
-  return empresas.filter(e => e.destaque);
+  const popularBairros = ['centro', 'batel', 'agua-verde', 'boqueirao'];
+  const result: Empresa[] = [];
+  for (const bSlug of popularBairros) {
+    const empresas = getEmpresasPorBairro(bSlug);
+    result.push(...empresas.filter(e => e.destaque));
+  }
+  return result.slice(0, 4);
 }
 
-export function getEmpresas24h(): Empresa[] {
-  return empresas.filter(e => e.atende24h);
+// WhatsApp link with UTM tracking
+export function getWhatsAppLink(empresaSlug: string, bairroSlug: string, empresaNome: string, bairroNome: string, cidade: string = 'Curitiba'): string {
+  const msg = `Olá! Vi o anúncio da ${empresaNome} no ${bairroNome} em ${cidade}. Preciso de orçamento.`;
+  return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}&utm_source=site&utm_medium=listagem&utm_campaign=${bairroSlug}&utm_content=${empresaSlug}`;
 }
+
+// Keep exports compatible
+export const empresas: Empresa[] = [];
