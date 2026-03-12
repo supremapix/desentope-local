@@ -87,16 +87,24 @@ const EmpresaPage = () => {
               <div className="flex flex-wrap gap-2 mt-4">
                 <WhatsAppButton
                   whatsapp={empresa.whatsapp}
-                  mensagem={`Olá! Vi o perfil da ${empresa.nome} no Serviços no Bairro e gostaria de solicitar um orçamento.`}
+                  mensagem={`Olá! Vi o perfil da ${empresa.nome} no Serviços no Bairro e gostaria de solicitar um orçamento. [via perfil - servicosnobairro.com.br]`}
                   size="lg"
                   label="CHAMAR NO WHATSAPP"
                 />
                 <a
                   href={`tel:${empresa.telefone.replace(/\D/g, '')}`}
-                  className="inline-flex items-center gap-2 h-12 px-6 rounded-lg border-2 border-primary text-primary font-bold hover:bg-primary hover:text-primary-foreground transition-colors"
+                  className="inline-flex items-center gap-2 h-12 px-6 rounded-lg border-2 border-destructive text-destructive font-bold hover:bg-destructive hover:text-destructive-foreground transition-colors"
                 >
-                  <Phone className="h-5 w-5" /> LIGAR AGORA
+                  <Phone className="h-5 w-5" /> 🚨 LIGAR EMERGÊNCIA
                 </a>
+                {empresa.email && (
+                  <a
+                    href={`mailto:${empresa.email}`}
+                    className="inline-flex items-center gap-2 h-12 px-6 rounded-lg border-2 border-primary text-primary font-bold hover:bg-primary hover:text-primary-foreground transition-colors"
+                  >
+                    <Mail className="h-5 w-5" /> EMAIL
+                  </a>
+                )}
               </div>
             </div>
 
