@@ -346,7 +346,6 @@ const empresasReais: Empresa[] = [
     notaMedia: 4.9,
     totalAvaliacoes: 203,
   },
-  },
   {
     slug: 'encanador-24h-palladium',
     nome: 'Encanador 24h Palladium',
