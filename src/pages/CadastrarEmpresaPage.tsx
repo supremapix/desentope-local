@@ -38,7 +38,7 @@ const CadastrarEmpresaPage = () => {
                 <ul className="text-sm text-muted-foreground space-y-1.5 text-left">
                   {plan.features.map(f => (
                     <li key={f} className="flex items-center gap-2">
-                      <span className="text-accent">✓</span> {f}
+                      <Check className="h-4 w-4 text-accent flex-shrink-0" /> {f}
                     </li>
                   ))}
                 </ul>
