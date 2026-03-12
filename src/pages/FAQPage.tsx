@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { faqCategorias } from '@/data/faq';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Search } from 'lucide-react';
+import { ServiceIcon } from '@/components/ServiceIcon';
 import { useEffect } from 'react';
 
 const FAQPage = () => {
