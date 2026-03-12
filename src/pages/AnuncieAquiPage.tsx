@@ -99,7 +99,7 @@ const AnuncieAquiPage = () => {
                   ))}
                 </ul>
                 <a
-                  href={`https://wa.me/5541985171966?text=${encodeURIComponent(`Olá! Quero anunciar minha empresa no plano ${plan.nome} do Serviços no Bairro.`)}`}
+                  href={`https://wa.me/5541992721004?text=${encodeURIComponent(`Olá! Quero anunciar minha empresa no plano ${plan.nome} do Serviços no Bairro.`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`w-full h-11 rounded-lg font-bold flex items-center justify-center gap-2 transition-colors text-sm ${plan.destaque ? 'bg-secondary text-secondary-foreground hover:bg-secondary/90' : 'bg-primary text-primary-foreground hover:bg-primary/90'}`}
@@ -140,13 +140,17 @@ const AnuncieAquiPage = () => {
             Entre em contato agora pelo WhatsApp e comece a aparecer para quem precisa dos seus serviços.
           </p>
           <a
-            href="https://wa.me/5541985171966?text=Olá! Quero anunciar minha empresa de desentupimento/encanamento no Serviços no Bairro. Como funciona?"
+            href="https://wa.me/5541992721004?text=Olá! Quero anunciar minha empresa de desentupimento/encanamento no Serviços no Bairro. Como funciona?"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center h-14 px-10 rounded-xl bg-accent text-accent-foreground font-bold text-lg hover:bg-accent/90 transition-all hover:scale-105 gap-2"
           >
             <MessageCircle className="h-6 w-6" /> Falar com Consultor
           </a>
+          <div className="mt-6 flex flex-wrap justify-center gap-6 text-sm text-primary-foreground/70">
+            <a href="tel:5541987001004" className="hover:text-primary-foreground transition-colors">📞 (41) 98700-1004</a>
+            <a href="mailto:sac@aloanuncio.com.br" className="hover:text-primary-foreground transition-colors">✉️ sac@aloanuncio.com.br</a>
+          </div>
         </div>
       </section>
     </div>
