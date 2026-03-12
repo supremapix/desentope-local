@@ -5,7 +5,7 @@ import { cidadesRMC } from '@/data/cidades-rmc';
 const WHATSAPP = '5541985171966';
 const TELEFONE = '(41) 3345-1194';
 const EMAIL = 'adpencanadores@gmail.com';
-const LOGO = 'https://img.supremamidia.com/suprema-img.png';
+const LOGO = '/favicon.png';
 
 function toSlug(nome: string): string {
   return nome.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
