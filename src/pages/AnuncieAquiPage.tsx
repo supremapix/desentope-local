@@ -99,7 +99,7 @@ const AnuncieAquiPage = () => {
                   ))}
                 </ul>
                 <a
-                  href={`https://wa.me/5541985171966?text=${encodeURIComponent(`Olá! Quero anunciar minha empresa no plano ${plan.nome} do Serviços no Bairro.`)}`}
+                  href={`https://wa.me/5541992721004?text=${encodeURIComponent(`Olá! Quero anunciar minha empresa no plano ${plan.nome} do Serviços no Bairro.`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`w-full h-11 rounded-lg font-bold flex items-center justify-center gap-2 transition-colors text-sm ${plan.destaque ? 'bg-secondary text-secondary-foreground hover:bg-secondary/90' : 'bg-primary text-primary-foreground hover:bg-primary/90'}`}
