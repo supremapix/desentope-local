@@ -146,7 +146,7 @@ const EmpresaPage = () => {
                       to={`/servicos/${s.slug}`}
                       className="flex items-center gap-3 p-3 rounded-lg border hover:border-primary transition-colors"
                     >
-                      <span className="text-2xl">{s.icone}</span>
+                      <ServiceIcon name={s.icone} className="h-6 w-6 text-primary" />
                       <div>
                         <div className="font-medium text-sm">{s.nome}</div>
                         {s.precoMedio && <div className="text-xs text-muted-foreground">{s.precoMedio}</div>}
