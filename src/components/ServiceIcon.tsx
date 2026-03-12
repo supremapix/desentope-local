@@ -6,7 +6,6 @@ import {
 } from 'lucide-react';
 
 const iconMap: Record<string, LucideIcon> = {
-  // Serviços de desentupimento
   bath: Bath,
   'shower-head': ShowerHead,
   home: Home,
@@ -18,17 +17,14 @@ const iconMap: Record<string, LucideIcon> = {
   'circle-dot': CircleDot,
   factory: Factory,
   'alert-triangle': AlertTriangle,
-  // Serviços de encanamento
   wrench: Wrench,
   store: Store,
   droplet: Droplet,
   'hard-hat': HardHat,
   cog: Cog,
   'glass-water': GlassWater,
-  'shower-head-2': ShowerHead,
   flame: Flame,
   search: Search,
-  // FAQ categorias
   shield: Shield,
   'dollar-sign': DollarSign,
   scale: Scale,
@@ -46,7 +42,7 @@ interface ServiceIconProps {
 }
 
 export function ServiceIcon({ name, className = 'h-5 w-5', size }: ServiceIconProps) {
-  const Icon = iconMap[name] || Wr  ench;
+  const Icon = iconMap[name] || Wrench;
   return <Icon className={className} size={size} />;
 }
 
