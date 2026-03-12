@@ -307,7 +307,7 @@ const EmpresaPage = () => {
                   <input type="tel" placeholder="Telefone" value={formData.telefone} onChange={e => setFormData(prev => ({ ...prev, telefone: e.target.value }))} className="w-full h-10 px-3 rounded-md border bg-background text-sm" />
                   <select value={formData.problema} onChange={e => setFormData(prev => ({ ...prev, problema: e.target.value }))} className="w-full h-10 px-3 rounded-md border bg-background text-sm">
                     <option value="">Tipo de problema</option>
-                    {servicosDetalhes.map(s => s && <option key={s.slug} value={s.nome}>{s.nome}</option>)}
+                    {servicosComDetalhes.map(s => s && <option key={s.slug} value={s.nome}>{s.nome}</option>)}
                   </select>
                   <input type="text" placeholder="Endereço/Bairro" value={formData.bairro} onChange={e => setFormData(prev => ({ ...prev, bairro: e.target.value }))} className="w-full h-10 px-3 rounded-md border bg-background text-sm" />
                   <textarea placeholder="Descreva o problema" value={formData.descricao} onChange={e => setFormData(prev => ({ ...prev, descricao: e.target.value }))} className="w-full h-20 px-3 py-2 rounded-md border bg-background text-sm resize-none" />
