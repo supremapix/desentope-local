@@ -131,7 +131,7 @@ export function Footer() {
           <div className="flex justify-center">
             <a href="https://supremasite.com.br" target="_blank" rel="noopener noreferrer">
               <img
-                src="/suprema-img.png"
+                src="/favicon.png"
                 alt="Suprema Sites Express — Desenvolvimento Web"
                 className="h-10 opacity-60 hover:opacity-100 transition-all hover:scale-105"
                 loading="lazy"
