@@ -1,20 +1,22 @@
 import { useEffect } from 'react';
 
-const SITE_URL = 'https://servicosnobairro.com.br';
+const SITE_URL = 'https://www.servicosnobairro.com.br';
 const SITE_NAME = 'Serviços no Bairro';
+const OG_IMAGE = 'https://www.servicosnobairro.com.br/favicon.png';
 const GEO_COORDS = { lat: -25.4284, lng: -49.2733 };
 
 interface SEOProps {
   title: string;
   description: string;
   canonical?: string;
-  type?: 'website' | 'article';
+  type?: 'website' | 'article' | 'business.business';
+  ogImage?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   geoPosition?: { lat: number; lng: number };
   geoPlacename?: string;
 }
 
-export function useSEO({ title, description, canonical, type = 'website', jsonLd, geoPosition, geoPlacename }: SEOProps) {
+export function useSEO({ title, description, canonical, type = 'website', ogImage, jsonLd, geoPosition, geoPlacename }: SEOProps) {
   useEffect(() => {
     document.title = title;
 
@@ -29,13 +31,21 @@ export function useSEO({ title, description, canonical, type = 'website', jsonLd
       el.content = content;
     };
 
+    const image = ogImage || OG_IMAGE;
+
     setMeta('description', description);
     setMeta('og:title', title, true);
     setMeta('og:description', description, true);
     setMeta('og:type', type, true);
     setMeta('og:site_name', SITE_NAME, true);
+    setMeta('og:locale', 'pt_BR', true);
+    setMeta('og:image', image, true);
+    setMeta('og:image:width', '1200', true);
+    setMeta('og:image:height', '630', true);
+    setMeta('twitter:card', 'summary_large_image');
     setMeta('twitter:title', title);
     setMeta('twitter:description', description);
+    setMeta('twitter:image', image);
 
     if (canonical) {
       setMeta('og:url', `${SITE_URL}${canonical}`, true);
@@ -74,7 +84,7 @@ export function useSEO({ title, description, canonical, type = 'website', jsonLd
       const scripts = document.querySelectorAll('script[data-seo-jsonld]');
       scripts.forEach(el => el.remove());
     };
-  }, [title, description, canonical, type, jsonLd, geoPosition, geoPlacename]);
+  }, [title, description, canonical, type, ogImage, jsonLd, geoPosition, geoPlacename]);
 }
 
 // JSON-LD builders
