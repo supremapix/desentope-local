@@ -50,6 +50,7 @@ export interface Empresa {
   descricaoLonga: string;
   whatsapp: string;
   telefone: string;
+  email?: string;
   cnpj?: string;
   anosExperiencia: number;
   verificada: boolean;
