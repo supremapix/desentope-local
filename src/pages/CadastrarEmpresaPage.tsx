@@ -50,10 +50,10 @@ const CadastrarEmpresaPage = () => {
             <h2 className="text-xl font-bold mb-2">Interessado?</h2>
             <p className="text-primary-foreground/80 mb-4">Entre em contato pelo WhatsApp para iniciar seu cadastro.</p>
             <a
-              href="https://wa.me/5541999001001?text=Olá! Gostaria de cadastrar minha empresa no Serviços no Bairro."
+              href="https://wa.me/5541992721004?text=Olá! Gostaria de cadastrar minha empresa no Serviços no Bairro."
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center h-12 px-8 rounded-lg bg-accent text-accent-foreground font-bold hover:bg-accent/90 transition-colors"
+              className="inline-flex items-center gap-2 h-12 px-8 rounded-lg bg-accent text-accent-foreground font-bold hover:bg-accent/90 transition-colors"
             >
               <MessageCircle className="h-5 w-5" /> Cadastrar via WhatsApp
             </a>
