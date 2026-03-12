@@ -1,6 +1,9 @@
 import { Empresa, Bairro } from '@/types';
-import { todosBairros, allCicSlugs } from '@/data/bairros';
+import { todosBairros, allCicSlugs, bairros, bairrosPopularesData } from '@/data/bairros';
 import { cidadesRMC } from '@/data/cidades-rmc';
+
+// All Curitiba bairro slugs (official + popular)
+const allCuritibaSlugs = todosBairros.map(b => b.slug);
 
 const WHATSAPP = '5541985171966';
 const TELEFONE = '(41) 3345-1194';
