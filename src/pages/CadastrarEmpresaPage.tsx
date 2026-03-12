@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
+import { Check, MessageCircle } from 'lucide-react';
 
 const CadastrarEmpresaPage = () => {
   useEffect(() => {
