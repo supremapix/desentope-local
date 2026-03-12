@@ -33,11 +33,19 @@ const BairroPage = () => {
 
   const coords = getCoordenadasBairro(bairro || '');
 
-  const faqItems = [
-    { pergunta: `Quanto custa um desentupimento ${isCidade ? 'em' : 'no'} ${localNome}?`, resposta: `O preço médio de desentupimento ${isCidade ? 'em' : 'no'} ${localNome} varia de R$ 150 a R$ 500, dependendo do tipo de serviço. Solicite orçamentos gratuitos pelo WhatsApp das empresas listadas acima.` },
-    { pergunta: `Tem desentupidora 24h ${isCidade ? 'em' : 'no'} ${localNome}?`, resposta: `Sim! Diversas empresas oferecem atendimento 24 horas ${isCidade ? 'em' : 'no'} ${localNome}. Confira as empresas listadas nesta página.` },
-    { pergunta: `Como escolher uma desentupidora ${isCidade ? 'em' : 'no'} ${localNome}?`, resposta: 'Verifique as avaliações, se a empresa é verificada, formas de pagamento aceitas e se oferece garantia. No Serviços no Bairro, todas as informações estão disponíveis para facilitar sua escolha.' },
-    { pergunta: `Encanador ${isCidade ? 'em' : 'no'} ${localNome} aceita cartão?`, resposta: 'Muitos encanadores e desentupidoras aceitam cartão de crédito e débito. Verifique as formas de pagamento no perfil de cada empresa.' },
+  const faqDataBairro = bairroData ? getFaqBairro(bairro || '') : [];
+  const faqDataCidade = cidadeData ? getFaqCidade(bairro || '') : [];
+  const faqItems = (faqDataBairro.length > 0 ? faqDataBairro : faqDataCidade).map(f => ({
+    pergunta: f.pergunta,
+    resposta: f.resposta,
+    categoria: f.categoria,
+  }));
+
+  const dicas = [
+    { icone: '💡', titulo: 'Orçamento grátis', texto: `Solicite orçamento gratuito pelo WhatsApp para serviços ${isCidade ? 'em' : 'no'} ${localNome}`, tipo: 'dica' as const },
+    { icone: '⚠️', titulo: 'Não use soda cáustica', texto: 'Soda cáustica corrói tubulações de PVC e pode causar queimaduras graves', tipo: 'alerta' as const },
+    { icone: '✅', titulo: 'Profissional verificado', texto: 'Confira o selo de verificação e as avaliações reais no perfil da empresa', tipo: 'ok' as const },
+    { icone: '🕐', titulo: 'Preventivo é mais barato', texto: 'Manutenção preventiva custa 3x menos que chamado de emergência', tipo: 'tempo' as const },
   ];
 
   const pageTitle = isCidade
