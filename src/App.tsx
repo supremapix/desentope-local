@@ -9,15 +9,15 @@ import { EmergencyBanner } from "@/components/EmergencyBanner";
 import { WhatsAppFloating } from "@/components/WhatsAppButton";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { PageTransition } from "@/components/PageTransition";
-import Index from "./pages/Index.tsx";
-import BairroPage from "./pages/BairroPage.tsx";
-import EmpresaPage from "./pages/EmpresaPage.tsx";
-import ServicoPage from "./pages/ServicoPage.tsx";
-import FAQPage from "./pages/FAQPage.tsx";
-import BuscaPage from "./pages/BuscaPage.tsx";
-import CadastrarEmpresaPage from "./pages/CadastrarEmpresaPage.tsx";
-import AnuncieAquiPage from "./pages/AnuncieAquiPage.tsx";
-import NotFound from "./pages/NotFound.tsx";
+import Index from "./pages/Index";
+import BairroPage from "./pages/BairroPage";
+import EmpresaPage from "./pages/EmpresaPage";
+import ServicoPage from "./pages/ServicoPage";
+import FAQPage from "./pages/FAQPage";
+import BuscaPage from "./pages/BuscaPage";
+import CadastrarEmpresaPage from "./pages/CadastrarEmpresaPage";
+import AnuncieAquiPage from "./pages/AnuncieAquiPage";
+import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +34,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/curitiba/:bairro" element={<BairroPage />} />
+            <Route path="/rmc/:bairro" element={<BairroPage />} />
             <Route path="/empresa/:slug" element={<EmpresaPage />} />
             <Route path="/servicos/:slug" element={<ServicoPage />} />
             <Route path="/faq" element={<FAQPage />} />
