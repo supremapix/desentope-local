@@ -4,7 +4,10 @@ import { cidadesRMC } from '@/data/cidades-rmc';
 import { getEmpresasPorBairro, getEmpresasPorCidade, getCoordenadasBairro } from '@/data/empresas';
 import { CompanyCard } from '@/components/CompanyCard';
 import { SearchBar } from '@/components/SearchBar';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { FaqPremium } from '@/components/FaqPremium';
+import { DicasRapidas } from '@/components/DicasRapidas';
+import { getFaqBairro } from '@/data/faq-bairros';
+import { getFaqCidade } from '@/data/faq-cidades';
 import { useSEO, buildBreadcrumbSchema, buildFAQSchema } from '@/hooks/useSEO';
 
 function toSlug(nome: string): string {
@@ -30,11 +33,19 @@ const BairroPage = () => {
 
   const coords = getCoordenadasBairro(bairro || '');
 
-  const faqItems = [
-    { pergunta: `Quanto custa um desentupimento ${isCidade ? 'em' : 'no'} ${localNome}?`, resposta: `O preço médio de desentupimento ${isCidade ? 'em' : 'no'} ${localNome} varia de R$ 150 a R$ 500, dependendo do tipo de serviço. Solicite orçamentos gratuitos pelo WhatsApp das empresas listadas acima.` },
-    { pergunta: `Tem desentupidora 24h ${isCidade ? 'em' : 'no'} ${localNome}?`, resposta: `Sim! Diversas empresas oferecem atendimento 24 horas ${isCidade ? 'em' : 'no'} ${localNome}. Confira as empresas listadas nesta página.` },
-    { pergunta: `Como escolher uma desentupidora ${isCidade ? 'em' : 'no'} ${localNome}?`, resposta: 'Verifique as avaliações, se a empresa é verificada, formas de pagamento aceitas e se oferece garantia. No Serviços no Bairro, todas as informações estão disponíveis para facilitar sua escolha.' },
-    { pergunta: `Encanador ${isCidade ? 'em' : 'no'} ${localNome} aceita cartão?`, resposta: 'Muitos encanadores e desentupidoras aceitam cartão de crédito e débito. Verifique as formas de pagamento no perfil de cada empresa.' },
+  const faqDataBairro = bairroData ? getFaqBairro(bairro || '') : [];
+  const faqDataCidade = cidadeData ? getFaqCidade(bairro || '') : [];
+  const faqItems = (faqDataBairro.length > 0 ? faqDataBairro : faqDataCidade).map(f => ({
+    pergunta: f.pergunta,
+    resposta: f.resposta,
+    categoria: f.categoria,
+  }));
+
+  const dicas = [
+    { icone: '💡', titulo: 'Orçamento grátis', texto: `Solicite orçamento gratuito pelo WhatsApp para serviços ${isCidade ? 'em' : 'no'} ${localNome}`, tipo: 'dica' as const },
+    { icone: '⚠️', titulo: 'Não use soda cáustica', texto: 'Soda cáustica corrói tubulações de PVC e pode causar queimaduras graves', tipo: 'alerta' as const },
+    { icone: '✅', titulo: 'Profissional verificado', texto: 'Confira o selo de verificação e as avaliações reais no perfil da empresa', tipo: 'ok' as const },
+    { icone: '🕐', titulo: 'Preventivo é mais barato', texto: 'Manutenção preventiva custa 3x menos que chamado de emergência', tipo: 'tempo' as const },
   ];
 
   const pageTitle = isCidade
@@ -128,17 +139,19 @@ const BairroPage = () => {
           </div>
         )}
 
-        {/* FAQ */}
+        {/* Dicas */}
+        <DicasRapidas dicas={dicas} />
+
+        {/* FAQ Premium */}
         <div className="mb-12">
-          <h2 className="text-xl font-bold mb-4">Perguntas Frequentes — {localNome}</h2>
-          <Accordion type="single" collapsible className="bg-card rounded-xl border p-4">
-            {faqItems.map((item, i) => (
-              <AccordionItem key={i} value={`faq-${i}`}>
-                <AccordionTrigger className="text-left">{item.pergunta}</AccordionTrigger>
-                <AccordionContent>{item.resposta}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          <FaqPremium
+            perguntas={faqItems}
+            titulo={`Perguntas Frequentes — ${localNome}`}
+            subtitulo={`${faqItems.length} perguntas respondidas sobre desentupimento e encanamento ${isCidade ? 'em' : 'no'} ${localNome}`}
+            mostrarBusca={true}
+            mostrarAbas={true}
+            limitePorCategoria={5}
+          />
         </div>
 
         {/* Bairros vizinhos */}

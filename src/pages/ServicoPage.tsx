@@ -3,7 +3,9 @@ import { getServicoBySlug } from '@/data/servicos';
 import { getEmpresasPorServico } from '@/data/empresas';
 import { CompanyCard } from '@/components/CompanyCard';
 import { ServiceIcon } from '@/components/ServiceIcon';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { FaqPremium } from '@/components/FaqPremium';
+import { DicasRapidas } from '@/components/DicasRapidas';
+import { getAllFaqServico, getDicasServico, getFaqServico } from '@/data/faq-servicos';
 import { DollarSign } from 'lucide-react';
 import { useSEO, buildServiceSchema, buildBreadcrumbSchema, buildFAQSchema } from '@/hooks/useSEO';
 
@@ -12,11 +14,17 @@ const ServicoPage = () => {
   const servico = getServicoBySlug(slug || '');
   const empresas = getEmpresasPorServico(slug || '');
 
-  const faqServico = servico ? [
-    { pergunta: `Quanto custa ${servico.nome.toLowerCase()} em Curitiba?`, resposta: `O preço médio para ${servico.nome.toLowerCase()} em Curitiba é ${servico.precoMedio || 'sob consulta'}. Valores variam conforme a gravidade do problema e o profissional contratado.` },
-    { pergunta: `${servico.nome} tem atendimento 24 horas?`, resposta: `Sim! Diversas empresas oferecem ${servico.nome.toLowerCase()} com atendimento 24 horas em Curitiba. Confira as empresas listadas abaixo e filtre por disponibilidade.` },
-    { pergunta: `Como funciona o serviço de ${servico.nome.toLowerCase()}?`, resposta: servico.descricao },
-  ] : [];
+  const faqData = getFaqServico(slug || '');
+  const allFaqItems = getAllFaqServico(slug || '');
+  const dicas = getDicasServico(slug || '');
+
+  const faqServico = allFaqItems.length > 0
+    ? allFaqItems.map(f => ({ pergunta: f.pergunta, resposta: f.resposta, categoria: f.categoria }))
+    : servico ? [
+      { pergunta: `Quanto custa ${servico.nome.toLowerCase()} em Curitiba?`, resposta: `O preço médio para ${servico.nome.toLowerCase()} em Curitiba é ${servico.precoMedio || 'sob consulta'}.`, categoria: 'precos' },
+      { pergunta: `${servico.nome} tem atendimento 24 horas?`, resposta: `Sim! Diversas empresas oferecem ${servico.nome.toLowerCase()} com atendimento 24 horas em Curitiba.`, categoria: 'emergencia' },
+      { pergunta: `Como funciona o serviço de ${servico.nome.toLowerCase()}?`, resposta: servico.descricao, categoria: 'tecnico' },
+    ] : [];
 
   useSEO({
     title: servico ? `${servico.nome} em Curitiba — Preços, Empresas e 24h | Serviços no Bairro` : 'Serviço não encontrado',
@@ -79,15 +87,18 @@ const ServicoPage = () => {
             </div>
           )}
 
-          <h2 className="text-xl font-bold mb-4">Perguntas Frequentes</h2>
-          <Accordion type="single" collapsible className="bg-card rounded-xl border p-4 mb-8">
-            {faqServico.map((item, i) => (
-              <AccordionItem key={i} value={`faq-${i}`}>
-                <AccordionTrigger className="text-left">{item.pergunta}</AccordionTrigger>
-                <AccordionContent>{item.resposta}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          {/* Dicas */}
+          {dicas.length > 0 && <DicasRapidas dicas={dicas} />}
+
+          {/* FAQ Premium */}
+          <FaqPremium
+            perguntas={faqServico}
+            titulo="Perguntas Frequentes"
+            subtitulo={`${faqServico.length} perguntas sobre ${servico.nome.toLowerCase()} em Curitiba`}
+            mostrarBusca={faqServico.length > 5}
+            mostrarAbas={!!faqData}
+            limitePorCategoria={5}
+          />
         </div>
       </div>
     </div>
