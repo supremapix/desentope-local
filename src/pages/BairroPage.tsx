@@ -139,17 +139,19 @@ const BairroPage = () => {
           </div>
         )}
 
-        {/* FAQ */}
+        {/* Dicas */}
+        <DicasRapidas dicas={dicas} />
+
+        {/* FAQ Premium */}
         <div className="mb-12">
-          <h2 className="text-xl font-bold mb-4">Perguntas Frequentes — {localNome}</h2>
-          <Accordion type="single" collapsible className="bg-card rounded-xl border p-4">
-            {faqItems.map((item, i) => (
-              <AccordionItem key={i} value={`faq-${i}`}>
-                <AccordionTrigger className="text-left">{item.pergunta}</AccordionTrigger>
-                <AccordionContent>{item.resposta}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          <FaqPremium
+            perguntas={faqItems}
+            titulo={`Perguntas Frequentes — ${localNome}`}
+            subtitulo={`${faqItems.length} perguntas respondidas sobre desentupimento e encanamento ${isCidade ? 'em' : 'no'} ${localNome}`}
+            mostrarBusca={true}
+            mostrarAbas={true}
+            limitePorCategoria={5}
+          />
         </div>
 
         {/* Bairros vizinhos */}
