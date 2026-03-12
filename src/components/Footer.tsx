@@ -24,14 +24,14 @@ export function Footer() {
               O maior diretório de desentupidoras e encanadores de Curitiba e Região Metropolitana.
             </p>
             <div className="space-y-2 text-sm text-background/70">
-              <a href="https://wa.me/5541985171966?text=Olá! Vim pelo site servicosnobairro.com.br (rodapé)" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-background transition-all hover:translate-x-1">
-                <MessageCircle className="h-4 w-4" /> (41) 98517-1966
+              <a href="https://wa.me/5541992721004?text=Olá! Vim pelo site servicosnobairro.com.br (rodapé)" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-background transition-all hover:translate-x-1">
+                <MessageCircle className="h-4 w-4" /> (41) 99272-1004
               </a>
-              <a href="tel:4133451194" className="flex items-center gap-2 hover:text-background transition-all hover:translate-x-1">
-                <Phone className="h-4 w-4" /> (41) 3345-1194
+              <a href="tel:5541987001004" className="flex items-center gap-2 hover:text-background transition-all hover:translate-x-1">
+                <Phone className="h-4 w-4" /> (41) 98700-1004
               </a>
-              <a href="mailto:adpencanadores@gmail.com" className="flex items-center gap-2 hover:text-background transition-all hover:translate-x-1">
-                <Mail className="h-4 w-4" /> adpencanadores@gmail.com
+              <a href="mailto:sac@aloanuncio.com.br" className="flex items-center gap-2 hover:text-background transition-all hover:translate-x-1">
+                <Mail className="h-4 w-4" /> sac@aloanuncio.com.br
               </a>
             </div>
           </div>
