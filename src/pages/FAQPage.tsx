@@ -1,24 +1,14 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { faqCategorias } from '@/data/faq';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Search } from 'lucide-react';
+import { FaqPremium } from '@/components/FaqPremium';
 import { ServiceIcon } from '@/components/ServiceIcon';
 import { useSEO, buildFAQSchema, buildBreadcrumbSchema } from '@/hooks/useSEO';
 
 const FAQPage = () => {
-  const [busca, setBusca] = useState('');
-
-  const filteredCategorias = faqCategorias.map(cat => ({
-    ...cat,
-    perguntas: cat.perguntas.filter(p =>
-      busca === '' ||
-      p.pergunta.toLowerCase().includes(busca.toLowerCase()) ||
-      p.resposta.toLowerCase().includes(busca.toLowerCase())
-    ),
-  })).filter(cat => cat.perguntas.length > 0);
-
-  const allQuestions = faqCategorias.flatMap(c => c.perguntas);
+  const allQuestions = faqCategorias.flatMap(c =>
+    c.perguntas.map(p => ({ ...p, categoria: c.slug }))
+  );
 
   useSEO({
     title: 'Perguntas Frequentes — Desentupimento e Encanamento em Curitiba | Serviços no Bairro',
@@ -45,44 +35,28 @@ const FAQPage = () => {
 
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-3xl mx-auto">
-          <h1 className="text-2xl md:text-3xl font-black text-center mb-2">Perguntas Frequentes</h1>
-          <p className="text-center text-muted-foreground mb-8">Tudo que você precisa saber sobre desentupimento e encanamento em Curitiba</p>
+          <h1 className="text-2xl md:text-3xl font-black text-center mb-2">Central de Dúvidas</h1>
+          <p className="text-center text-muted-foreground mb-8">
+            {allQuestions.length}+ perguntas respondidas sobre desentupimento e encanamento em Curitiba
+          </p>
 
-          <div className="relative mb-8">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-            <input
-              type="text"
-              value={busca}
-              onChange={e => setBusca(e.target.value)}
-              placeholder="Buscar pergunta..."
-              className="w-full h-12 pl-12 pr-4 rounded-xl border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-            />
-          </div>
-
-          <div className="space-y-8">
-            {filteredCategorias.map(cat => (
-              <div key={cat.slug}>
-                <h2 className="text-lg font-bold flex items-center gap-2 mb-3">
-                  <ServiceIcon name={cat.icone} className="h-6 w-6 text-primary" />
-                  {cat.nome}
-                </h2>
-                <Accordion type="single" collapsible className="bg-card rounded-xl border p-4">
-                  {cat.perguntas.map((p, i) => (
-                    <AccordionItem key={i} value={`${cat.slug}-${i}`}>
-                      <AccordionTrigger className="text-left text-sm">{p.pergunta}</AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground">{p.resposta}</AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
+          {/* Category grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
+            {faqCategorias.map(cat => (
+              <div key={cat.slug} className="bg-card border rounded-xl p-4 text-center hover:border-primary transition-colors cursor-pointer">
+                <ServiceIcon name={cat.icone} className="h-8 w-8 text-primary mx-auto mb-2" />
+                <div className="text-sm font-bold">{cat.nome}</div>
+                <div className="text-xs text-muted-foreground">{cat.perguntas.length} perguntas</div>
               </div>
             ))}
           </div>
 
-          {filteredCategorias.length === 0 && (
-            <div className="text-center py-12 text-muted-foreground">
-              <p>Nenhuma pergunta encontrada para "{busca}"</p>
-            </div>
-          )}
+          <FaqPremium
+            perguntas={allQuestions}
+            mostrarBusca={true}
+            mostrarAbas={true}
+            limitePorCategoria={5}
+          />
         </div>
       </div>
     </div>
