@@ -4,7 +4,10 @@ import { cidadesRMC } from '@/data/cidades-rmc';
 import { getEmpresasPorBairro, getEmpresasPorCidade, getCoordenadasBairro } from '@/data/empresas';
 import { CompanyCard } from '@/components/CompanyCard';
 import { SearchBar } from '@/components/SearchBar';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { FaqPremium } from '@/components/FaqPremium';
+import { DicasRapidas } from '@/components/DicasRapidas';
+import { getFaqBairro } from '@/data/faq-bairros';
+import { getFaqCidade } from '@/data/faq-cidades';
 import { useSEO, buildBreadcrumbSchema, buildFAQSchema } from '@/hooks/useSEO';
 
 function toSlug(nome: string): string {
