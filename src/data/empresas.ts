@@ -214,6 +214,12 @@ export function getEmpresasPorBairro(bairroSlug: string): Empresa[] {
   const bairro = todosBairros.find(b => b.slug === bairroSlug);
   if (!bairro) return [];
   const empresas = gerarEmpresasPorLocalidade(bairro.nome, bairroSlug, 'Curitiba');
+  // Inject real companies that serve this bairro
+  for (const emp of empresasReais) {
+    if (emp.bairrosAtendidos.includes(bairroSlug) && !empresas.find(e => e.slug === emp.slug)) {
+      empresas.unshift(emp);
+    }
+  }
   empresaCache.set(`bairro-${bairroSlug}`, empresas);
   return empresas;
 }
