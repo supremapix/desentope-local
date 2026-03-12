@@ -146,11 +146,60 @@ const EmpresaPage = () => {
               </div>
             </div>
 
+            {/* YouTube Video CTA */}
+            {empresa.youtubeVideoId && (
+              <Card className="border-secondary border-2 overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="aspect-video w-full">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${empresa.youtubeVideoId}?rel=0&modestbranding=1`}
+                      title={`Vídeo - ${empresa.nome}`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="p-5 bg-gradient-to-r from-secondary/10 to-primary/10">
+                    <h2 className="text-lg font-black mb-2">🎬 Conheça nosso trabalho em ação!</h2>
+                    <p className="text-sm text-muted-foreground mb-3">Veja como resolvemos problemas hidráulicos com rapidez e profissionalismo.</p>
+                    <div className="flex flex-wrap gap-2">
+                      <a
+                        href={`tel:${empresa.telefone.replace(/\D/g, '')}`}
+                        className="inline-flex items-center gap-2 h-11 px-6 rounded-lg bg-destructive text-destructive-foreground font-bold hover:bg-destructive/90 transition-colors"
+                      >
+                        <Phone className="h-5 w-5" /> LIGUE AGORA {empresa.telefone}
+                      </a>
+                      <WhatsAppButton
+                        whatsapp={empresa.whatsapp}
+                        mensagem={`Olá! Vi o vídeo da ${empresa.nome} e quero solicitar um orçamento. [via vídeo - servicosnobairro.com.br]`}
+                        size="lg"
+                        label="WHATSAPP (41) 98517-1966"
+                      />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
             {/* Sobre */}
             <Card>
               <CardContent className="p-6">
                 <h2 className="text-xl font-bold mb-3">Sobre a Empresa</h2>
                 <p className="text-muted-foreground leading-relaxed">{empresa.descricaoLonga}</p>
+                {empresa.endereco && (
+                  <div className="flex items-center gap-2 mt-4 text-sm text-muted-foreground">
+                    <MapPin className="h-4 w-4 text-primary" />
+                    <span>{empresa.endereco}</span>
+                  </div>
+                )}
+                {empresa.site && (
+                  <div className="mt-2">
+                    <a href={empresa.site} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline font-medium">
+                      🌐 {empresa.site}
+                    </a>
+                  </div>
+                )}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6">
                   <div className="text-center p-3 bg-muted rounded-lg">
                     <div className="text-2xl font-black text-primary">{empresa.anosExperiencia}</div>
