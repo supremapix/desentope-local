@@ -18,8 +18,8 @@ export function CompanyCard({ empresa }: CompanyCardProps) {
     <Card className={`overflow-hidden transition-shadow hover:shadow-md ${isPremium ? 'border-secondary border-2 relative' : ''}`}>
       {isPremium && (
         <div className="absolute top-3 right-3 z-10">
-          <Badge className="bg-secondary text-secondary-foreground font-bold">
-            ⭐ DESTAQUE
+          <Badge className="bg-secondary text-secondary-foreground font-bold gap-1">
+            <Star className="h-3 w-3" /> DESTAQUE
           </Badge>
         </div>
       )}
