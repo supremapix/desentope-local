@@ -71,7 +71,7 @@ const EmpresaPage = () => {
     window.open(`https://wa.me/${empresa.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
-  const servicosDetalhes = empresa.servicosOferecidos.map(slug => servicos.find(s => s.slug === slug)).filter(Boolean);
+  const servicosComDetalhes = empresa.servicosOferecidos.map(slug => servicos.find(s => s.slug === slug)).filter(Boolean);
 
   return (
     <div className="min-h-screen">
