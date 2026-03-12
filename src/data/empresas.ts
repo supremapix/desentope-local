@@ -1,6 +1,9 @@
 import { Empresa, Bairro } from '@/types';
-import { todosBairros, allCicSlugs } from '@/data/bairros';
+import { todosBairros, allCicSlugs, bairros, bairrosPopularesData } from '@/data/bairros';
 import { cidadesRMC } from '@/data/cidades-rmc';
+
+// All Curitiba bairro slugs (official + popular)
+const allCuritibaSlugs = todosBairros.map(b => b.slug);
 
 const WHATSAPP = '5541985171966';
 const TELEFONE = '(41) 3345-1194';
@@ -342,6 +345,56 @@ const empresasReais: Empresa[] = [
     ],
     notaMedia: 4.9,
     totalAvaliacoes: 203,
+  },
+  {
+    slug: 'encanador-24h-palladium',
+    nome: 'Encanador 24h Palladium',
+    logo: '/favicon.png',
+    fotos: ['/favicon.png'],
+    descricao: 'Encanador 24h em Curitiba e região. Atendimento de emergência para desentupimentos, vazamentos e reparos hidráulicos em todos os bairros.',
+    descricaoLonga: 'A Encanador 24h Palladium oferece atendimento emergencial e programado em toda Curitiba, incluindo CIC e região metropolitana. Equipe especializada em desentupimentos, caça vazamentos, hidrojateamento, conserto de torneiras, chuveiros e instalações hidráulicas. Atendimento rápido 24 horas por dia, 7 dias por semana, com profissionais qualificados e equipamentos modernos. Solicite seu orçamento sem compromisso.',
+    whatsapp: '5541985171966',
+    telefone: '(41) 3345-1194',
+    email: 'contato@encanador24hpalladium.com.br',
+    cnpj: undefined,
+    anosExperiencia: 10,
+    verificada: true,
+    destaque: true,
+    atende24h: true,
+    atendeEmergencia: true,
+    tipoServico: ['desentupimento', 'encanamento'],
+    servicosOferecidos: [
+      'desentupimento-vaso-sanitario',
+      'desentupimento-pia-cozinha',
+      'desentupimento-esgoto-residencial',
+      'hidrojateamento',
+      'conserto-vazamento',
+      'deteccao-vazamento-oculto',
+      'instalacao-caixa-dagua',
+      'limpa-fossa',
+      'conserto-torneira-chuveiro',
+      'encanador-residencial',
+      'encanador-comercial',
+      'instalacao-hidraulica',
+      'troca-tubulacao',
+      'camera-inspecao-esgoto',
+      'desentupimento-ralo',
+      'emergencia-24h',
+    ],
+    bairrosAtendidos: [...allCuritibaSlugs],
+    cidadesAtendidas: ['curitiba'],
+    formasPagamento: ['PIX', 'Dinheiro', 'Cartão de Crédito', 'Cartão de Débito'],
+    horarios: [
+      { dia: 'Segunda a Domingo', abertura: '00:00', fechamento: '23:59' },
+    ],
+    avaliacoes: [
+      { id: 'palladium-1', nomeCliente: 'Lucas R.', nota: 5, data: '2026-01-15', servicoRealizado: 'Desentupimento de esgoto', texto: 'Atendimento rápido, resolveram o problema em menos de 40 minutos!' },
+      { id: 'palladium-2', nomeCliente: 'Patrícia M.', nota: 5, data: '2026-02-03', servicoRealizado: 'Caça vazamento', texto: 'Profissionais excelentes. Encontraram o vazamento oculto rapidinho.' },
+      { id: 'palladium-3', nomeCliente: 'Eduardo S.', nota: 5, data: '2026-02-20', servicoRealizado: 'Conserto de torneira', texto: 'Preço justo e serviço de qualidade. Recomendo!' },
+      { id: 'palladium-4', nomeCliente: 'Juliana F.', nota: 4, data: '2026-03-01', servicoRealizado: 'Hidrojateamento', texto: 'Bom serviço, equipe educada e pontual.' },
+    ],
+    notaMedia: 4.8,
+    totalAvaliacoes: 156,
   },
 ];
 
