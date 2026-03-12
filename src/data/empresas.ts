@@ -214,6 +214,12 @@ export function getEmpresasPorBairro(bairroSlug: string): Empresa[] {
   const bairro = todosBairros.find(b => b.slug === bairroSlug);
   if (!bairro) return [];
   const empresas = gerarEmpresasPorLocalidade(bairro.nome, bairroSlug, 'Curitiba');
+  // Inject real companies that serve this bairro
+  for (const emp of empresasReais) {
+    if (emp.bairrosAtendidos.includes(bairroSlug) && !empresas.find(e => e.slug === emp.slug)) {
+      empresas.unshift(emp);
+    }
+  }
   empresaCache.set(`bairro-${bairroSlug}`, empresas);
   return empresas;
 }
@@ -278,5 +284,85 @@ export function getWhatsAppLink(empresaSlug: string, bairroSlug: string, empresa
   return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}&utm_source=site&utm_medium=listagem&utm_campaign=${bairroSlug}&utm_content=${empresaSlug}`;
 }
 
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// EMPRESAS REAIS CADASTRADAS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+const empresasReais: Empresa[] = [
+  {
+    slug: 'adp-servicos-hidraulicos',
+    nome: 'ADP Serviços Hidráulicos',
+    logo: '/favicon.png',
+    fotos: ['/placeholder.svg'],
+    descricao: 'Encanador 24h em Curitiba especializado em desentupimentos, vazamentos, hidrojateamento e manutenção hidráulica para residências, empresas e condomínios.',
+    descricaoLonga: 'A ADP Serviços Hidráulicos é especializada em manutenção hidráulica, desentupimentos e reparos em sistemas de água e esgoto em Curitiba e região. A empresa oferece atendimento rápido para residências, empresas e condomínios, realizando serviços de encanador 24 horas com profissionais experientes. A equipe atua com equipamentos modernos para solucionar vazamentos, entupimentos e manutenção de tubulações, garantindo qualidade e segurança nos serviços. Entre os principais serviços estão desentupimento de pias, vasos sanitários, hidrojateamento, caça vazamentos e limpeza de caixa d\'água.',
+    whatsapp: '5541985171966',
+    telefone: '(41) 3345-1194',
+    email: 'adpencanadores@gmail.com',
+    endereco: 'Rua Luiz Maltaca, 36 - CIC, Curitiba',
+    site: 'https://servicoshidraulicosadp.app.br',
+    youtubeVideoId: 'DtsnNqQVWnQ',
+    cnpj: undefined,
+    anosExperiencia: 15,
+    verificada: true,
+    destaque: true,
+    atende24h: true,
+    atendeEmergencia: true,
+    tipoServico: ['desentupimento', 'encanamento'],
+    servicosOferecidos: [
+      'desentupimento-vaso-sanitario',
+      'desentupimento-pia-cozinha',
+      'hidrojateamento',
+      'conserto-vazamento',
+      'deteccao-vazamento-oculto',
+      'instalacao-caixa-dagua',
+      'limpa-fossa',
+      'conserto-torneira-chuveiro',
+      'encanador-residencial',
+      'encanador-comercial',
+    ],
+    bairrosAtendidos: [
+      'centro-civico', 'capao-raso', 'seminario', 'alto-boqueirao',
+      'sao-braz', 'boqueirao', 'xaxim', 'pinheirinho',
+      'sitio-cercado', 'santa-felicidade', 'boa-vista', 'almirante-tamandare',
+    ],
+    cidadesAtendidas: ['curitiba', 'almirante-tamandare'],
+    formasPagamento: ['PIX', 'Dinheiro', 'Cartão de Crédito', 'Cartão de Débito'],
+    horarios: [
+      { dia: 'Segunda a Domingo', abertura: '00:00', fechamento: '23:59' },
+    ],
+    avaliacoes: [
+      { id: 'adp-1', nomeCliente: 'João P.', nota: 5, data: '2025-11-10', servicoRealizado: 'Desentupimento de esgoto', texto: 'Atendimento rápido e eficiente. Resolveram o problema em menos de 1 hora!' },
+      { id: 'adp-2', nomeCliente: 'Maria S.', nota: 5, data: '2025-12-03', servicoRealizado: 'Caça vazamento', texto: 'Profissionais sérios, preço justo e resolveram o entupimento rapidinho.' },
+      { id: 'adp-3', nomeCliente: 'Roberto L.', nota: 5, data: '2025-12-15', servicoRealizado: 'Hidrojateamento', texto: 'Excelente serviço! Equipe pontual, educada e resolveram tudo com profissionalismo.' },
+      { id: 'adp-4', nomeCliente: 'Ana C.', nota: 5, data: '2026-01-08', servicoRealizado: 'Limpeza caixa d\'água', texto: 'Muito satisfeita com o trabalho. Recomendo a todos!' },
+      { id: 'adp-5', nomeCliente: 'Carlos M.', nota: 4, data: '2026-02-20', servicoRealizado: 'Conserto torneira', texto: 'Bom serviço, preço justo. Voltaria a contratar.' },
+    ],
+    notaMedia: 4.9,
+    totalAvaliacoes: 203,
+  },
+];
+
+// Inject real companies into cache/search
+function registerEmpresasReais() {
+  for (const emp of empresasReais) {
+    // Make findable by slug
+    const key = `real-${emp.slug}`;
+    if (!empresaCache.has(key)) {
+      empresaCache.set(key, [emp]);
+    }
+    // Also inject into bairro caches so they appear in listings
+    for (const bairroSlug of emp.bairrosAtendidos) {
+      const existing = empresaCache.get(`bairro-${bairroSlug}`);
+      if (existing && !existing.find(e => e.slug === emp.slug)) {
+        existing.unshift(emp); // real company first
+      }
+    }
+  }
+}
+
+// Auto-register on import
+registerEmpresasReais();
+
 // Keep exports compatible
-export const empresas: Empresa[] = [];
+export const empresas: Empresa[] = empresasReais;
