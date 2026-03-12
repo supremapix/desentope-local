@@ -4,7 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { RatingStars } from './RatingStars';
 import { WhatsAppButton } from './WhatsAppButton';
 import { Empresa } from '@/types';
-import { MapPin, Wrench, CreditCard, Clock, ShieldCheck, Zap, Phone, Mail } from 'lucide-react';
+import { MapPin, Wrench, CreditCard, Clock, ShieldCheck, Zap, Phone, Mail, Star } from 'lucide-react';
 
 interface CompanyCardProps {
   empresa: Empresa;

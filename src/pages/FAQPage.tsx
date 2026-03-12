@@ -54,7 +54,7 @@ const FAQPage = () => {
             {filteredCategorias.map(cat => (
               <div key={cat.slug}>
                 <h2 className="text-lg font-bold flex items-center gap-2 mb-3">
-                  <span className="text-2xl">{cat.icone}</span>
+                  <ServiceIcon name={cat.icone} className="h-6 w-6 text-primary" />
                   {cat.nome}
                 </h2>
                 <Accordion type="single" collapsible className="bg-card rounded-xl border p-4">

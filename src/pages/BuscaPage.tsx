@@ -117,7 +117,7 @@ const BuscaPage = () => {
                 <div className="text-sm font-medium mb-2">Verificação</div>
                 <label className="flex items-center gap-2 text-sm cursor-pointer">
                   <input type="checkbox" checked={filtroVerificada} onChange={e => setFiltroVerificada(e.target.checked)} />
-                  Empresa verificada ✓
+                  Empresa verificada
                 </label>
               </div>
 

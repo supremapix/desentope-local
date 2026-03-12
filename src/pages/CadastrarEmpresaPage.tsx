@@ -55,7 +55,7 @@ const CadastrarEmpresaPage = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center h-12 px-8 rounded-lg bg-accent text-accent-foreground font-bold hover:bg-accent/90 transition-colors"
             >
-              💬 Cadastrar via WhatsApp
+              <MessageCircle className="h-5 w-5" /> Cadastrar via WhatsApp
             </a>
           </div>
         </div>

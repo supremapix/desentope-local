@@ -5,7 +5,8 @@ import { regionais } from '@/data/bairros';
 import { cidadesRMC } from '@/data/cidades-rmc';
 import { categoriasRapidas } from '@/data/servicos';
 import { getEmpresasDestaque } from '@/data/empresas';
-import { Shield, Clock, Star, Zap } from 'lucide-react';
+import { Shield, Clock, Star, Zap, AlertTriangle } from 'lucide-react';
+import { ServiceIcon } from '@/components/ServiceIcon';
 
 function toSlug(nome: string): string {
   return nome.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
@@ -48,7 +49,7 @@ const Index = () => {
                 to={`/servicos/${s.slug}`}
                 className="flex flex-col items-center gap-2 p-4 rounded-xl bg-card border hover:border-primary hover:shadow-md transition-all text-center group"
               >
-                <span className="text-3xl">{s.icone}</span>
+                <ServiceIcon name={s.icone} className="h-8 w-8 text-primary group-hover:scale-110 transition-transform" />
                 <span className="text-xs font-medium text-foreground group-hover:text-primary leading-tight">{s.nome}</span>
               </Link>
             ))}
@@ -130,7 +131,9 @@ const Index = () => {
       {/* CTA Emergência */}
       <section className="py-16 bg-destructive text-destructive-foreground">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-black mb-4">🚨 Emergência Agora?</h2>
+          <h2 className="text-2xl md:text-3xl font-black mb-4 flex items-center justify-center gap-2">
+            <AlertTriangle className="h-8 w-8" /> Emergência Agora?
+          </h2>
           <p className="text-lg mb-6 text-destructive-foreground/80">Esgoto voltando? Vaso transbordando? Encontre atendimento 24h imediato.</p>
           <Link
             to="/busca?24h=true"

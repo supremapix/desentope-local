@@ -317,7 +317,7 @@ const EmpresaPage = () => {
                     type="submit"
                     className="w-full h-11 rounded-lg bg-accent text-accent-foreground font-bold flex items-center justify-center gap-2 hover:bg-accent/90 transition-colors"
                   >
-                    💬 ENVIAR VIA WHATSAPP
+                    <MessageCircle className="h-5 w-5" /> ENVIAR VIA WHATSAPP
                   </button>
                 </form>
               </CardContent>

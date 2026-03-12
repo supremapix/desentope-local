@@ -1,12 +1,12 @@
 import { FAQCategoria } from '@/types';
 
-const CTA_FOOTER = '\n\n📞 Precisa de ajuda agora? Ligue (41) 3345-1194 ou chame no WhatsApp (41) 98517-1966. Atendimento 24h em Curitiba e Região!';
+const CTA_FOOTER = '\n\nPrecisa de ajuda agora? Ligue (41) 3345-1194 ou chame no WhatsApp (41) 98517-1966. Atendimento 24h em Curitiba e Região!';
 
 export const faqCategorias: FAQCategoria[] = [
   {
     slug: 'emergencias',
     nome: 'Emergências e Urgências',
-    icone: '🚨',
+    icone: 'alert-triangle',
     perguntas: [
       { pergunta: 'O que fazer quando o vaso sanitário entupa e está transbordando?', resposta: 'Primeiro, feche o registro de água do vaso (geralmente atrás ou embaixo do vaso). Não tente dar descarga novamente, pois isso pode piorar a situação e causar transbordamento. Se a água estiver subindo, use baldes para remover o excesso e evitar danos ao piso. Em seguida, entre em contato com uma desentupidora profissional em Curitiba. Evite usar produtos químicos caseiros como soda cáustica, pois podem danificar a tubulação de PVC e causar queimaduras. A maioria das desentupidoras em Curitiba atende emergências 24 horas e chega em até 30 minutos.' + CTA_FOOTER },
       { pergunta: 'O esgoto está voltando pela pia — é perigoso?', resposta: 'Sim, o retorno de esgoto pela pia é uma situação que exige atenção imediata. Isso indica um entupimento grave na rede de esgoto da sua residência ou do condomínio. A água de esgoto contém bactérias, vírus e parasitas que podem causar doenças como hepatite, leptospirose e gastroenterite. Não utilize a pia ou o ralo afetado até que um profissional resolva o problema. Ventile o ambiente abrindo janelas. Em Curitiba, desentupidoras profissionais utilizam equipamentos como hidrojateamento e câmera de inspeção para resolver esse tipo de problema de forma rápida e definitiva.' + CTA_FOOTER },
@@ -38,7 +38,7 @@ export const faqCategorias: FAQCategoria[] = [
   {
     slug: 'precos-orcamentos',
     nome: 'Preços e Orçamentos',
-    icone: '💰',
+    icone: 'dollar-sign',
     perguntas: [
       { pergunta: 'Quanto custa desentupir um vaso sanitário em Curitiba?', resposta: 'O preço médio para desentupir um vaso sanitário em Curitiba varia de R$ 150 a R$ 350, dependendo da gravidade do entupimento, do método utilizado e do horário do atendimento. Entupimentos simples (papel, resíduos orgânicos) custam menos. Obstruções por objetos sólidos ou problemas na rede de esgoto podem custar mais. Serviços noturnos e em feriados geralmente têm acréscimo de 20% a 50%. Sempre solicite orçamento antes do serviço e compare pelo menos 3 propostas.' + CTA_FOOTER },
       { pergunta: 'Qual o preço médio de desentupimento de esgoto residencial?', resposta: 'O desentupimento de esgoto residencial em Curitiba custa em média R$ 200 a R$ 600, variando conforme a extensão da rede, profundidade do entupimento e método necessário. Desentupimento com máquina rotativa: R$ 200-400. Hidrojateamento: R$ 350-800. Câmera de inspeção (diagnóstico): R$ 200-500 adicional. O preço é afetado pela acessibilidade da rede — redes enterradas ou em locais de difícil acesso custam mais.' + CTA_FOOTER },
@@ -60,7 +60,7 @@ export const faqCategorias: FAQCategoria[] = [
   {
     slug: 'tecnicas-desentupimento',
     nome: 'Desentupimento — Técnicas e Serviços',
-    icone: '🔧',
+    icone: 'wrench',
     perguntas: [
       { pergunta: 'Como funciona o processo de desentupimento profissional?', resposta: 'O desentupimento profissional em Curitiba segue etapas: 1) Diagnóstico — o técnico avalia o tipo e gravidade do entupimento, podendo usar câmera de inspeção. 2) Escolha do método — máquina rotativa para obstruções sólidas, hidrojateamento para gordura e raízes, ou sucção a vácuo para fossas. 3) Execução — o técnico realiza o serviço com equipamentos específicos. 4) Verificação — testa o escoamento e, se necessário, faz inspeção por câmera para confirmar a desobstrução. 5) Orientação — dicas de prevenção para evitar recorrência.' + CTA_FOOTER },
       { pergunta: 'O que é hidrojateamento e quando usar?', resposta: 'Hidrojateamento é a técnica de limpeza de tubulações com jato de água em alta pressão (1.500 a 4.000 PSI). A água é projetada por bicos especiais que cortam e removem obstruções como gordura, raízes, sedimentos e incrustações. É indicado para: entupimentos graves e recorrentes, tubulações com acúmulo de gordura (cozinhas, restaurantes), remoção de raízes de árvores, limpeza preventiva de redes de esgoto antigas, e desentupimento de tubulações de grande diâmetro. É mais eficaz e duradouro que métodos manuais.' + CTA_FOOTER },
@@ -77,7 +77,7 @@ export const faqCategorias: FAQCategoria[] = [
   {
     slug: 'encanamento-hidraulica',
     nome: 'Encanamento e Hidráulica',
-    icone: '🔩',
+    icone: 'cog',
     perguntas: [
       { pergunta: 'Diferença entre desentupidora e encanador?', resposta: 'Desentupidora é especializada em desobstruir tubulações entupidas — vasos sanitários, pias, ralos, esgoto, fossas. Usa equipamentos como máquina rotativa, hidrojateamento e câmera de inspeção. Encanador trabalha com instalação, manutenção e reparo de sistemas hidráulicos — canos, torneiras, registros, chuveiros, caixas d\'água, aquecedores. Em Curitiba, muitas empresas oferecem ambos os serviços. A dica é: se o problema é obstrução, chame desentupidora. Se é vazamento, instalação ou manutenção, chame encanador.' + CTA_FOOTER },
       { pergunta: 'O que faz um encanador?', resposta: 'O encanador é o profissional responsável por instalar, manter e reparar sistemas hidráulicos. Seus serviços incluem: instalação de tubulação de água fria e quente, conserto de vazamentos, troca de torneiras e registros, instalação de chuveiros e aquecedores, montagem de caixas d\'água, reforma hidráulica de banheiros e cozinhas, detecção de vazamentos ocultos, e instalação de sistemas de reuso de água. É um dos profissionais mais requisitados em Curitiba, tanto para construção quanto para manutenção.' + CTA_FOOTER },
@@ -85,7 +85,7 @@ export const faqCategorias: FAQCategoria[] = [
       { pergunta: 'Tipos de tubulações usadas em obras residenciais?', resposta: 'As tubulações mais comuns em residências no Brasil são: PVC (cloreto de polivinila) — mais usado para água fria e esgoto, leve e resistente à corrosão. CPVC — versão do PVC resistente a altas temperaturas, usado para água quente. PPR (polipropileno) — fusível (soldado por termofusão), muito usado para água quente e fria. Cobre — tradicional, excelente condução, usado em água quente e gás. PEX — tubulação flexível, fácil instalação, menos juntas. Ferro galvanizado — usado em imóveis antigos, sujeito a ferrugem e entupimento.' + CTA_FOOTER },
       { pergunta: 'Quando trocar toda a tubulação da casa?', resposta: 'A troca completa é recomendada quando: a tubulação é de ferro galvanizado (comum em casas anteriores aos anos 90) e apresenta ferrugem/entupimento recorrente, há vazamentos frequentes em múltiplos pontos, a água sai amarelada ou com partículas, durante uma reforma geral do imóvel, ou quando a tubulação tem mais de 40 anos. A troca por PVC ou PPR elimina problemas de corrosão e melhora a pressão da água. O investimento vale a pena pela durabilidade (vida útil de 50+ anos) e economia com reparos.' + CTA_FOOTER },
       { pergunta: 'O que é manutenção preventiva hidráulica?', resposta: 'Manutenção preventiva hidráulica é o conjunto de verificações e serviços periódicos para manter o sistema hidráulico em perfeito funcionamento e evitar problemas futuros. Inclui: verificação de vazamentos em torneiras e registros, limpeza de caixa d\'água (a cada 6 meses), limpeza de caixa de gordura (a cada 3 meses), verificação de pressão da água, teste de registro geral, inspeção de válvulas de descarga, e verificação de estado de tubulação exposta. Em condomínios, recomenda-se inspeção profissional anual.' + CTA_FOOTER },
-      { pergunta: 'Como resolver problema de torneira pingando?', resposta: 'Uma torneira pingando geralmente indica desgaste do vedante interno (borracha, cerâmica ou disco). Para torneiras de rosca: desligue o registro, desmonte o cabeçote, substitua a borracha de vedação (courinho). Para torneiras de ¼ de volta: substitua o disco cerâmico interno. Para misturadores monocomando: troque o cartucho interno. Em todos os casos, é recomendável usar peças originais. Se não tem experiência, chame um encanador — o reparo é rápido e barato (R$ 80-150 em Curitiba).' + CTA_FOOTER },
+      { pergunta: 'Como resolver problema de torneira pingando?', resposta: 'Uma torneira pingando geralmente indica desgaste do vedante interno (borracha, cerâmica ou disco). Para torneiras de rosca: desligue o registro, desmonte o cabeçote, substitua a borracha de vedação (courinho). Para torneiras de 1/4 de volta: substitua o disco cerâmico interno. Para misturadores monocomando: troque o cartucho interno. Em todos os casos, é recomendável usar peças originais. Se não tem experiência, chame um encanador — o reparo é rápido e barato (R$ 80-150 em Curitiba).' + CTA_FOOTER },
       { pergunta: 'O que causa barulho na tubulação de água?', resposta: 'Barulhos na tubulação (batidas, zumbidos, assobios) podem ter diversas causas: golpe de aríete — batida forte quando uma torneira ou válvula fecha bruscamente, pressão excessiva de água — causa vibração e zumbido, tubulação mal fixada — vibra com o fluxo de água, registro parcialmente aberto — causa assobio, ar na tubulação — causa borbulhamento e batidas irregulares. Soluções incluem: instalar válvula de alívio de pressão, fixar melhor a tubulação, purgar o ar da rede, e instalar amortecedor de golpe de aríete.' + CTA_FOOTER },
       { pergunta: 'Como aumentar a pressão da água em casa?', resposta: 'Para aumentar a pressão da água em residências em Curitiba: verifique se há vazamentos (reduzem a pressão), limpe ou troque filtros e aeradores de torneiras entupidos, verifique se registros estão totalmente abertos, aumente a altura da caixa d\'água (quanto mais alta, maior a pressão), instale bomba pressurizadora (mais eficaz para casas térreas), verifique o diâmetro da tubulação (tubos muito finos reduzem pressão), e em condomínios, verifique a bomba de recalque. Um encanador pode diagnosticar e resolver.' + CTA_FOOTER },
       { pergunta: 'Como funciona aquecedor a gás?', resposta: 'O aquecedor a gás aquece a água no momento do uso (passagem) ou armazena em um reservatório (acumulação). Aquecedor de passagem: a água fria entra, passa por uma serpentina aquecida pela chama do gás, e sai quente. Aquecedor de acumulação (boiler): mantém um reservatório de água aquecida permanentemente. Tipos de gás: GLP (botijão) ou gás natural (canalizado). Instalação requer encanador e gasista qualificados. Em Curitiba, é obrigatório ter exaustão adequada e ventilação no local do aquecedor.' + CTA_FOOTER },
@@ -94,7 +94,7 @@ export const faqCategorias: FAQCategoria[] = [
   {
     slug: 'prevencao-manutencao',
     nome: 'Prevenção e Manutenção',
-    icone: '🛡️',
+    icone: 'shield',
     perguntas: [
       { pergunta: 'Como evitar entupimentos na pia da cozinha?', resposta: 'Para prevenir entupimentos na pia da cozinha: nunca descarte óleo de cozinha na pia (use recipiente e descarte em ponto de coleta), use ralo com filtro/tela para reter resíduos sólidos, após lavar louça com gordura, jogue água quente com detergente na pia, limpe a caixa de gordura a cada 3 meses, não jogue restos de comida no ralo, e periodicamente jogue água fervente com bicarbonato de sódio para dissolver gordura acumulada. Essas medidas simples evitam a maioria dos entupimentos de cozinha.' + CTA_FOOTER },
       { pergunta: 'O que não pode ser jogado no vaso sanitário?', resposta: 'NUNCA jogue no vaso sanitário: absorventes e fraldas descartáveis, lenços umedecidos (mesmo os que dizem "descartáveis"), cotonetes, preservativos, fio dental, cabelo, algodão, pontas de cigarro, restos de comida, óleo de cozinha, medicamentos, tinta, solventes, areia higiênica de gato. O vaso sanitário é projetado apenas para dejetos humanos e papel higiênico. Todos os outros itens causam entupimentos que custam caro para resolver e podem danificar a rede de esgoto do condomínio ou da cidade.' + CTA_FOOTER },
@@ -111,7 +111,7 @@ export const faqCategorias: FAQCategoria[] = [
   {
     slug: 'condominios-comercial',
     nome: 'Condomínios e Comercial',
-    icone: '🏢',
+    icone: 'building-2',
     perguntas: [
       { pergunta: 'Quem é responsável por desentupimento em condomínio?', resposta: 'A responsabilidade depende da localização do entupimento. Rede individual (dentro do apartamento): responsabilidade do morador. Coluna principal de esgoto: responsabilidade do condomínio (rateio entre condôminos). Rede horizontal no subsolo/áreas comuns: responsabilidade do condomínio. Caixa de gordura individual: responsabilidade do morador. Caixa de gordura coletiva: responsabilidade do condomínio. O regimento interno pode ter regras específicas. Em caso de dúvida, um laudo técnico pode identificar a origem e o responsável pelo entupimento.' + CTA_FOOTER },
       { pergunta: 'Entupimento na coluna do prédio — condomínio ou morador?', resposta: 'Entupimento na coluna principal do prédio é responsabilidade do condomínio, com custo rateado entre todos os condôminos. Porém, se o entupimento foi causado por ação comprovada de um morador específico (por exemplo, jogar fraldas ou objetos inadequados no vaso), o condomínio pode cobrar o custo daquele morador. O síndico deve contratar uma desentupidora que emita laudo técnico identificando a causa e localização do entupimento para definir responsabilidades.' + CTA_FOOTER },
@@ -126,7 +126,7 @@ export const faqCategorias: FAQCategoria[] = [
   {
     slug: 'como-escolher',
     nome: 'Como Escolher Profissional',
-    icone: '📋',
+    icone: 'clipboard-list',
     perguntas: [
       { pergunta: 'Como verificar se desentupidora é confiável?', resposta: 'Para verificar a confiabilidade de uma desentupidora em Curitiba: 1) Consulte o CNPJ na Receita Federal (cnpj.info). 2) Verifique avaliações em Google Maps, Reclame Aqui e no Serviços no Bairro. 3) Confirme tempo de mercado (empresas com mais de 5 anos são mais seguras). 4) Pergunte se emite nota fiscal. 5) Verifique se oferece garantia do serviço por escrito. 6) Pesquise se tem endereço fixo (não apenas celular). 7) Desconfie de preços muito abaixo do mercado. 8) Peça referências de clientes anteriores.' + CTA_FOOTER },
       { pergunta: 'O que verificar antes de contratar encanador?', resposta: 'Antes de contratar um encanador em Curitiba, verifique: experiência comprovada (peça fotos de trabalhos anteriores), se possui ferramentas adequadas (encanador profissional tem equipamento próprio), se emite nota fiscal ou recibo, se oferece garantia do serviço, se usa materiais de qualidade (pergunte marcas), avaliações de clientes anteriores, se cobra taxa de visita/orçamento, e se é pontual e educado no contato inicial. Para obras maiores (reforma hidráulica), exija ART assinada por engenheiro responsável.' + CTA_FOOTER },
@@ -140,7 +140,7 @@ export const faqCategorias: FAQCategoria[] = [
   {
     slug: 'por-localidade',
     nome: 'Por Bairro e Cidade',
-    icone: '🌍',
+    icone: 'map-pin',
     perguntas: [
       { pergunta: 'Melhores desentupidoras no Centro de Curitiba?', resposta: 'O Centro de Curitiba é atendido por diversas desentupidoras profissionais com atendimento 24h. No Serviços no Bairro, você encontra empresas verificadas que atendem o Centro com avaliações de clientes, serviços oferecidos e contato direto via WhatsApp. O tempo médio de chegada para o Centro é de 15 a 30 minutos. Filtre por "24h" para encontrar atendimento imediato.' + CTA_FOOTER },
       { pergunta: 'Desentupidora no Batel que aceita cartão?', resposta: 'Sim, várias desentupidoras que atendem o Batel aceitam cartão de crédito e débito, além de PIX e boleto. O Batel é uma das regiões com melhor cobertura de atendimento em Curitiba, com tempo de chegada médio de 20 minutos. No Serviços no Bairro, verifique as formas de pagamento no perfil de cada empresa.' + CTA_FOOTER },
@@ -155,7 +155,7 @@ export const faqCategorias: FAQCategoria[] = [
   {
     slug: 'legislacao-normas',
     nome: 'Legislação e Normas',
-    icone: '⚖️',
+    icone: 'scale',
     perguntas: [
       { pergunta: 'Existe lei sobre manutenção de esgoto doméstico?', resposta: 'Sim. No Brasil, a Lei do Saneamento Básico (11.445/2007) regulamenta os serviços de esgoto. O proprietário do imóvel é responsável pela rede interna de esgoto (do muro para dentro). A companhia de saneamento (Sanepar no Paraná) é responsável pela rede pública. Em Curitiba, o Código de Obras municipal exige que imóveis tenham sistema de esgoto adequado (fossa séptica ou ligação à rede pública). Não manter o esgoto em bom estado pode resultar em multa e até interdição do imóvel.' + CTA_FOOTER },
       { pergunta: 'ANVISA exige limpeza de caixa d\'água anual?', resposta: 'A legislação brasileira (Portaria do Ministério da Saúde 2.914/2011 e RDC 216 da ANVISA) exige limpeza e desinfecção de caixas d\'água a cada 6 meses. Essa obrigação vale para residências, condomínios, comércios e indústrias. O não cumprimento pode resultar em: multa da vigilância sanitária (em estabelecimentos comerciais), risco de doenças transmitidas pela água, e responsabilidade civil em caso de contaminação. Em condomínios, a limpeza deve ser registrada e o laudo deve ficar disponível.' + CTA_FOOTER },
@@ -168,7 +168,7 @@ export const faqCategorias: FAQCategoria[] = [
   {
     slug: 'sustentabilidade',
     nome: 'Sustentabilidade e Meio Ambiente',
-    icone: '🌱',
+    icone: 'leaf',
     perguntas: [
       { pergunta: 'Descarte correto de resíduos de fossa séptica?', resposta: 'Os resíduos de fossa séptica (lodo de esgoto) devem ser descartados em estação de tratamento de esgoto ou aterro sanitário licenciado. Nunca em rios, terrenos baldios ou galerias pluviais. A empresa de limpa-fossa deve ter licença ambiental para transporte e possuir contrato com estação de tratamento. Peça o certificado de destinação final do resíduo — isso comprova o descarte correto e protege você de responsabilidade ambiental. Em Curitiba, o descarte irregular é crime ambiental com multa de R$ 5.000 a R$ 50 milhões.' + CTA_FOOTER },
       { pergunta: 'Reuso de água cinza — o que é e como implementar?', resposta: 'Água cinza é a água usada em pias, chuveiros e máquina de lavar (não inclui vaso sanitário). Pode ser reutilizada para: descarga de vasos sanitários, irrigação de jardim, lavagem de pisos e calçadas. O sistema de reuso inclui: coleta separada (tubulação dupla), tratamento (filtro + cloração), e reservatório dedicado. Em Curitiba, a instalação de sistema de reuso é incentivada pela prefeitura. Um encanador especializado pode fazer a adaptação hidráulica. O investimento se paga em 2-5 anos pela economia na conta de água.' + CTA_FOOTER },
@@ -180,7 +180,7 @@ export const faqCategorias: FAQCategoria[] = [
   {
     slug: 'tecnologia-inovacao',
     nome: 'Tecnologia e Inovação',
-    icone: '🤖',
+    icone: 'cpu',
     perguntas: [
       { pergunta: 'O que é câmera robótica para inspeção de esgoto?', resposta: 'A câmera robótica de inspeção é um equipamento motorizado (com rodas ou esteiras) que percorre tubulações de grande diâmetro autonomamente, captando vídeo de alta resolução do interior dos canos. Diferente da câmera de inspeção manual (cabo flexível), a robótica pode percorrer centenas de metros, girar 360°, e gerar relatórios automatizados. É usada em redes de esgoto municipais, condomínios grandes e indústrias. Em Curitiba, empresas especializadas oferecem esse serviço para diagnóstico preciso de redes complexas.' + CTA_FOOTER },
       { pergunta: 'Como funciona detecção acústica de vazamentos?', resposta: 'A detecção acústica usa geofone (ou correlacionador acústico) para "ouvir" o som da água vazando dentro da tubulação. O equipamento amplifica o som do vazamento, permitindo ao técnico localizar o ponto exato da fuga sem quebrar paredes ou pisos. O correlacionador usa dois sensores em pontos diferentes da tubulação e calcula matematicamente a posição do vazamento. É o método mais usado em Curitiba para detectar vazamentos ocultos em água (não funciona para esgoto, que não tem pressão).' + CTA_FOOTER },
@@ -192,7 +192,7 @@ export const faqCategorias: FAQCategoria[] = [
   {
     slug: 'duvidas-especificas',
     nome: 'Dúvidas Específicas',
-    icone: '❓',
+    icone: 'help-circle',
     perguntas: [
       { pergunta: 'Desentupimento Curitiba bairro Água Verde 24h?', resposta: 'Sim! O bairro Água Verde em Curitiba tem excelente cobertura de desentupidoras 24 horas. No Serviços no Bairro, acesse a página do Água Verde para encontrar empresas verificadas com atendimento imediato. O tempo médio de chegada para o Água Verde é de 15-25 minutos. Todas as empresas oferecem orçamento gratuito via WhatsApp.' + CTA_FOOTER },
       { pergunta: 'Encanador barato em São José dos Pinhais?', resposta: 'Em São José dos Pinhais, encanadores residenciais cobram a partir de R$ 100 para serviços simples (troca de torneira, conserto de descarga). Para encontrar profissionais com bom custo-benefício, compare orçamentos de pelo menos 3 empresas. No Serviços no Bairro, você encontra encanadores verificados em SJP com avaliações de clientes e preços transparentes.' + CTA_FOOTER },
