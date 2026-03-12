@@ -177,7 +177,7 @@ const EmpresaPage = () => {
               <CardContent className="p-6">
                 <h2 className="text-xl font-bold mb-4">Serviços Oferecidos</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {servicosDetalhes.map(s => s && (
+                  {servicosComDetalhes.map(s => s && (
                     <Link
                       key={s.slug}
                       to={`/servicos/${s.slug}`}
