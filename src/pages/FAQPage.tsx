@@ -4,14 +4,10 @@ import { faqCategorias } from '@/data/faq';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Search } from 'lucide-react';
 import { ServiceIcon } from '@/components/ServiceIcon';
-import { useEffect } from 'react';
+import { useSEO, buildFAQSchema, buildBreadcrumbSchema } from '@/hooks/useSEO';
 
 const FAQPage = () => {
   const [busca, setBusca] = useState('');
-
-  useEffect(() => {
-    document.title = 'Perguntas Frequentes — Desentupidoras Curitiba | Serviços no Bairro';
-  }, []);
 
   const filteredCategorias = faqCategorias.map(cat => ({
     ...cat,
@@ -21,6 +17,21 @@ const FAQPage = () => {
       p.resposta.toLowerCase().includes(busca.toLowerCase())
     ),
   })).filter(cat => cat.perguntas.length > 0);
+
+  const allQuestions = faqCategorias.flatMap(c => c.perguntas);
+
+  useSEO({
+    title: 'Perguntas Frequentes — Desentupimento e Encanamento em Curitiba | Serviços no Bairro',
+    description: `${allQuestions.length}+ perguntas respondidas sobre desentupimento, encanamento, preços, emergências e manutenção em Curitiba. Guia completo para resolver seu problema hidráulico.`,
+    canonical: '/faq',
+    jsonLd: [
+      buildFAQSchema(allQuestions.slice(0, 20)),
+      buildBreadcrumbSchema([
+        { name: 'Início', url: '/' },
+        { name: 'FAQ', url: '/faq' },
+      ]),
+    ],
+  });
 
   return (
     <div className="min-h-screen">
@@ -37,7 +48,6 @@ const FAQPage = () => {
           <h1 className="text-2xl md:text-3xl font-black text-center mb-2">Perguntas Frequentes</h1>
           <p className="text-center text-muted-foreground mb-8">Tudo que você precisa saber sobre desentupimento e encanamento em Curitiba</p>
 
-          {/* Search */}
           <div className="relative mb-8">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
             <input
@@ -49,7 +59,6 @@ const FAQPage = () => {
             />
           </div>
 
-          {/* Categories */}
           <div className="space-y-8">
             {filteredCategorias.map(cat => (
               <div key={cat.slug}>

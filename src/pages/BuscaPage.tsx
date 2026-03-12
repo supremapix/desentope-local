@@ -1,13 +1,15 @@
 import { useState, useMemo } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import { empresas } from '@/data/empresas';
+import { getEmpresasPorBairro } from '@/data/empresas';
 import { servicos } from '@/data/servicos';
 import { todosBairros } from '@/data/bairros';
 import { CompanyCard } from '@/components/CompanyCard';
 import { SearchBar } from '@/components/SearchBar';
 import { Empresa } from '@/types';
 import { SlidersHorizontal, X } from 'lucide-react';
-import { useEffect } from 'react';
+import { useSEO, buildBreadcrumbSchema } from '@/hooks/useSEO';
+
+const POPULAR_BAIRROS = ['centro', 'batel', 'agua-verde', 'boqueirao', 'portao', 'cajuru', 'boa-vista', 'santa-felicidade', 'bacacheri', 'pinheirinho'];
 
 const BuscaPage = () => {
   const [searchParams] = useSearchParams();
@@ -18,14 +20,36 @@ const BuscaPage = () => {
   const [filtroServico, setFiltroServico] = useState(searchParams.get('servico') || '');
   const [ordenar, setOrdenar] = useState('relevante');
 
-  useEffect(() => {
-    document.title = 'Buscar Desentupidoras e Encanadores — Curitiba | Serviços no Bairro';
-  }, []);
-
   const localParam = searchParams.get('local') || '';
 
+  useSEO({
+    title: 'Buscar Desentupidoras e Encanadores — Curitiba | Serviços no Bairro',
+    description: 'Busque e compare desentupidoras e encanadores em Curitiba e Região Metropolitana. Filtros por bairro, tipo, disponibilidade 24h e avaliação.',
+    canonical: '/busca',
+    jsonLd: buildBreadcrumbSchema([
+      { name: 'Início', url: '/' },
+      { name: 'Buscar', url: '/busca' },
+    ]),
+  });
+
+  // Generate empresas from popular bairros
+  const todasEmpresas = useMemo(() => {
+    const map = new Map<string, Empresa>();
+    for (const bSlug of POPULAR_BAIRROS) {
+      const empresas = getEmpresasPorBairro(bSlug);
+      for (const e of empresas) {
+        // Use template prefix as dedup key
+        const key = e.nome.split(' ').slice(0, 2).join(' ');
+        if (!map.has(key)) {
+          map.set(key, e);
+        }
+      }
+    }
+    return Array.from(map.values());
+  }, []);
+
   const resultado = useMemo(() => {
-    let filtered = [...empresas];
+    let filtered = [...todasEmpresas];
 
     if (filtroTipo) {
       filtered = filtered.filter(e => e.tipoServico.includes(filtroTipo as any));
@@ -59,7 +83,7 @@ const BuscaPage = () => {
     }
 
     return filtered;
-  }, [filtroTipo, filtro24h, filtroVerificada, filtroServico, localParam, ordenar]);
+  }, [todasEmpresas, filtroTipo, filtro24h, filtroVerificada, filtroServico, localParam, ordenar]);
 
   return (
     <div className="min-h-screen">

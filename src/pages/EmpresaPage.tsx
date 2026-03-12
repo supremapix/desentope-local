@@ -1,32 +1,54 @@
 import { useParams, Link } from 'react-router-dom';
-import { getEmpresaBySlug, empresas } from '@/data/empresas';
+import { getEmpresaBySlug, getEmpresasPorBairro } from '@/data/empresas';
+import { getCoordenadasBairro } from '@/data/empresas';
 import { servicos } from '@/data/servicos';
 import { RatingStars } from '@/components/RatingStars';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { CompanyCard } from '@/components/CompanyCard';
-import { ShieldCheck, Clock, Zap, Phone, MapPin, CreditCard, Calendar, Star, Wrench, Mail, AlertTriangle, MessageCircle, Send } from 'lucide-react';
+import { ShieldCheck, Clock, Zap, Phone, MapPin, CreditCard, Star, Wrench, Mail, AlertTriangle, MessageCircle, Send } from 'lucide-react';
 import { ServiceIcon } from '@/components/ServiceIcon';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
+import { useSEO, buildLocalBusinessSchema, buildBreadcrumbSchema } from '@/hooks/useSEO';
 
 const EmpresaPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const empresa = getEmpresaBySlug(slug || '');
   const [formData, setFormData] = useState({ nome: '', telefone: '', problema: '', bairro: '', descricao: '', urgencia: 'normal' });
 
-  useEffect(() => {
-    if (empresa) {
-      document.title = `${empresa.nome} — Desentupidora em Curitiba | Serviços no Bairro`;
-    }
-  }, [empresa]);
+  const bairroSlug = empresa?.bairrosAtendidos[0] || 'centro';
+  const coords = getCoordenadasBairro(bairroSlug);
+  const bairroNome = bairroSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+
+  const similares = useMemo(() => {
+    if (!empresa) return [];
+    const bairroEmpresas = getEmpresasPorBairro(bairroSlug);
+    return bairroEmpresas.filter(e => e.slug !== empresa.slug).slice(0, 3);
+  }, [empresa, bairroSlug]);
+
+  useSEO({
+    title: empresa ? `${empresa.nome} — Desentupidora em ${bairroNome}, Curitiba | Serviços no Bairro` : 'Empresa não encontrada',
+    description: empresa ? `${empresa.descricao} Atendimento ${empresa.atende24h ? '24h' : 'rápido'} em ${bairroNome}. Nota ${empresa.notaMedia}/5 com ${empresa.totalAvaliacoes} avaliações. Orçamento grátis via WhatsApp.` : '',
+    canonical: empresa ? `/empresa/${empresa.slug}` : undefined,
+    geoPosition: coords,
+    geoPlacename: `${bairroNome}, Curitiba, PR`,
+    jsonLd: empresa ? [
+      buildLocalBusinessSchema(empresa, coords, bairroNome),
+      buildBreadcrumbSchema([
+        { name: 'Início', url: '/' },
+        { name: bairroNome, url: `/curitiba/${bairroSlug}` },
+        { name: empresa.nome, url: `/empresa/${empresa.slug}` },
+      ]),
+    ] : undefined,
+  });
 
   if (!empresa) {
     return (
       <div className="container mx-auto px-4 py-16 text-center">
         <h1 className="text-2xl font-bold mb-4">Empresa não encontrada</h1>
-        <Link to="/" className="text-primary hover:underline">Voltar ao início</Link>
+        <p className="text-muted-foreground mb-4">A empresa que você procura não está cadastrada ou o link pode estar incorreto.</p>
+        <Link to="/busca" className="text-primary hover:underline font-bold">Buscar empresas →</Link>
       </div>
     );
   }
@@ -38,7 +60,6 @@ const EmpresaPage = () => {
   };
 
   const servicosDetalhes = empresa.servicosOferecidos.map(slug => servicos.find(s => s.slug === slug)).filter(Boolean);
-  const similares = empresas.filter(e => e.slug !== empresa.slug && e.bairrosAtendidos.some(b => empresa.bairrosAtendidos.includes(b))).slice(0, 3);
 
   return (
     <div className="min-h-screen">
@@ -47,7 +68,7 @@ const EmpresaPage = () => {
         <div className="container mx-auto px-4 py-3 text-sm text-muted-foreground">
           <Link to="/" className="hover:text-primary">Início</Link>
           <span className="mx-2">›</span>
-          <Link to="/busca" className="hover:text-primary">Empresas</Link>
+          <Link to={`/curitiba/${bairroSlug}`} className="hover:text-primary">{bairroNome}</Link>
           <span className="mx-2">›</span>
           <span className="text-foreground font-medium">{empresa.nome}</span>
         </div>
@@ -60,8 +81,12 @@ const EmpresaPage = () => {
             {/* Header */}
             <div>
               <div className="flex items-start gap-4">
-                <div className="w-20 h-20 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <span className="text-3xl font-black text-primary">{empresa.nome.charAt(0)}</span>
+                <div className="w-20 h-20 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 overflow-hidden">
+                  {empresa.logo ? (
+                    <img src={empresa.logo} alt={empresa.nome} className="w-full h-full object-cover" />
+                  ) : (
+                    <span className="text-3xl font-black text-primary">{empresa.nome.charAt(0)}</span>
+                  )}
                 </div>
                 <div>
                   <div className="flex items-center gap-2 flex-wrap">
@@ -241,6 +266,14 @@ const EmpresaPage = () => {
                     <div className="text-xs text-muted-foreground">{empresa.formasPagamento.join(' • ')}</div>
                   </div>
                 </div>
+                <div className="flex items-start gap-2">
+                  <Phone className="h-4 w-4 mt-0.5 text-muted-foreground" />
+                  <div>
+                    <div className="font-medium text-sm">Contatos</div>
+                    <div className="text-xs text-muted-foreground">{empresa.telefone}</div>
+                    {empresa.email && <div className="text-xs text-muted-foreground">{empresa.email}</div>}
+                  </div>
+                </div>
                 {empresa.cnpj && (
                   <div className="flex items-start gap-2">
                     <Wrench className="h-4 w-4 mt-0.5 text-muted-foreground" />
@@ -258,65 +291,26 @@ const EmpresaPage = () => {
               <CardContent className="p-5">
                 <h3 className="font-bold mb-4 flex items-center gap-2"><Send className="h-5 w-5 text-primary" /> Solicitar Orçamento</h3>
                 <form onSubmit={handleWhatsApp} className="space-y-3">
-                  <input
-                    type="text"
-                    placeholder="Seu nome"
-                    value={formData.nome}
-                    onChange={e => setFormData(prev => ({ ...prev, nome: e.target.value }))}
-                    className="w-full h-10 px-3 rounded-md border bg-background text-sm"
-                    required
-                  />
-                  <input
-                    type="tel"
-                    placeholder="Telefone"
-                    value={formData.telefone}
-                    onChange={e => setFormData(prev => ({ ...prev, telefone: e.target.value }))}
-                    className="w-full h-10 px-3 rounded-md border bg-background text-sm"
-                  />
-                  <select
-                    value={formData.problema}
-                    onChange={e => setFormData(prev => ({ ...prev, problema: e.target.value }))}
-                    className="w-full h-10 px-3 rounded-md border bg-background text-sm"
-                  >
+                  <input type="text" placeholder="Seu nome" value={formData.nome} onChange={e => setFormData(prev => ({ ...prev, nome: e.target.value }))} className="w-full h-10 px-3 rounded-md border bg-background text-sm" required />
+                  <input type="tel" placeholder="Telefone" value={formData.telefone} onChange={e => setFormData(prev => ({ ...prev, telefone: e.target.value }))} className="w-full h-10 px-3 rounded-md border bg-background text-sm" />
+                  <select value={formData.problema} onChange={e => setFormData(prev => ({ ...prev, problema: e.target.value }))} className="w-full h-10 px-3 rounded-md border bg-background text-sm">
                     <option value="">Tipo de problema</option>
-                    {servicosDetalhes.map(s => s && (
-                      <option key={s.slug} value={s.nome}>{s.nome}</option>
-                    ))}
+                    {servicosDetalhes.map(s => s && <option key={s.slug} value={s.nome}>{s.nome}</option>)}
                   </select>
-                  <input
-                    type="text"
-                    placeholder="Endereço/Bairro"
-                    value={formData.bairro}
-                    onChange={e => setFormData(prev => ({ ...prev, bairro: e.target.value }))}
-                    className="w-full h-10 px-3 rounded-md border bg-background text-sm"
-                  />
-                  <textarea
-                    placeholder="Descreva o problema"
-                    value={formData.descricao}
-                    onChange={e => setFormData(prev => ({ ...prev, descricao: e.target.value }))}
-                    className="w-full h-20 px-3 py-2 rounded-md border bg-background text-sm resize-none"
-                  />
+                  <input type="text" placeholder="Endereço/Bairro" value={formData.bairro} onChange={e => setFormData(prev => ({ ...prev, bairro: e.target.value }))} className="w-full h-10 px-3 rounded-md border bg-background text-sm" />
+                  <textarea placeholder="Descreva o problema" value={formData.descricao} onChange={e => setFormData(prev => ({ ...prev, descricao: e.target.value }))} className="w-full h-20 px-3 py-2 rounded-md border bg-background text-sm resize-none" />
                   <div className="space-y-1">
                     <div className="text-sm font-medium">Urgência:</div>
                     <div className="flex gap-3 text-sm">
                       {['normal', 'urgente', 'emergencia'].map(u => (
                         <label key={u} className="flex items-center gap-1 cursor-pointer">
-                          <input
-                            type="radio"
-                            name="urgencia"
-                            value={u}
-                            checked={formData.urgencia === u}
-                            onChange={e => setFormData(prev => ({ ...prev, urgencia: e.target.value }))}
-                          />
+                          <input type="radio" name="urgencia" value={u} checked={formData.urgencia === u} onChange={e => setFormData(prev => ({ ...prev, urgencia: e.target.value }))} />
                           {u === 'normal' ? 'Normal' : u === 'urgente' ? 'Urgente' : 'Emergência'}
                         </label>
                       ))}
                     </div>
                   </div>
-                  <button
-                    type="submit"
-                    className="w-full h-11 rounded-lg bg-accent text-accent-foreground font-bold flex items-center justify-center gap-2 hover:bg-accent/90 transition-colors"
-                  >
+                  <button type="submit" className="w-full h-11 rounded-lg bg-accent text-accent-foreground font-bold flex items-center justify-center gap-2 hover:bg-accent/90 transition-colors">
                     <MessageCircle className="h-5 w-5" /> ENVIAR VIA WHATSAPP
                   </button>
                 </form>
@@ -328,7 +322,7 @@ const EmpresaPage = () => {
         {/* Similares */}
         {similares.length > 0 && (
           <div className="mt-12">
-            <h2 className="text-xl font-bold mb-4">Empresas Similares na Região</h2>
+            <h2 className="text-xl font-bold mb-4">Empresas Similares em {bairroNome}</h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {similares.map(e => (
                 <CompanyCard key={e.slug} empresa={e} />

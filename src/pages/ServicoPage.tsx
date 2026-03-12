@@ -5,18 +5,33 @@ import { CompanyCard } from '@/components/CompanyCard';
 import { ServiceIcon } from '@/components/ServiceIcon';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { DollarSign } from 'lucide-react';
-import { useEffect } from 'react';
+import { useSEO, buildServiceSchema, buildBreadcrumbSchema, buildFAQSchema } from '@/hooks/useSEO';
 
 const ServicoPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const servico = getServicoBySlug(slug || '');
   const empresas = getEmpresasPorServico(slug || '');
 
-  useEffect(() => {
-    if (servico) {
-      document.title = `${servico.nome} em Curitiba | Serviços no Bairro`;
-    }
-  }, [servico]);
+  const faqServico = servico ? [
+    { pergunta: `Quanto custa ${servico.nome.toLowerCase()} em Curitiba?`, resposta: `O preço médio para ${servico.nome.toLowerCase()} em Curitiba é ${servico.precoMedio || 'sob consulta'}. Valores variam conforme a gravidade do problema e o profissional contratado.` },
+    { pergunta: `${servico.nome} tem atendimento 24 horas?`, resposta: `Sim! Diversas empresas oferecem ${servico.nome.toLowerCase()} com atendimento 24 horas em Curitiba. Confira as empresas listadas abaixo e filtre por disponibilidade.` },
+    { pergunta: `Como funciona o serviço de ${servico.nome.toLowerCase()}?`, resposta: servico.descricao },
+  ] : [];
+
+  useSEO({
+    title: servico ? `${servico.nome} em Curitiba — Preços, Empresas e 24h | Serviços no Bairro` : 'Serviço não encontrado',
+    description: servico ? `${servico.descricao} Preço médio: ${servico.precoMedio || 'sob consulta'}. ${empresas.length} empresas disponíveis em Curitiba. Orçamento grátis.` : '',
+    canonical: servico ? `/servicos/${servico.slug}` : undefined,
+    jsonLd: servico ? [
+      buildServiceSchema(servico.nome, servico.descricao, servico.precoMedio),
+      buildBreadcrumbSchema([
+        { name: 'Início', url: '/' },
+        { name: 'Serviços', url: '/busca' },
+        { name: servico.nome, url: `/servicos/${servico.slug}` },
+      ]),
+      buildFAQSchema(faqServico),
+    ] : undefined,
+  });
 
   if (!servico) {
     return (
@@ -26,12 +41,6 @@ const ServicoPage = () => {
       </div>
     );
   }
-
-  const faqServico = [
-    { q: `Quanto custa ${servico.nome.toLowerCase()} em Curitiba?`, a: `O preço médio para ${servico.nome.toLowerCase()} em Curitiba é ${servico.precoMedio || 'sob consulta'}. Valores variam conforme a gravidade do problema e o profissional contratado.` },
-    { q: `${servico.nome} tem atendimento 24 horas?`, a: `Sim! Diversas empresas oferecem ${servico.nome.toLowerCase()} com atendimento 24 horas em Curitiba. Confira as empresas listadas abaixo e filtre por disponibilidade.` },
-    { q: `Como funciona o serviço de ${servico.nome.toLowerCase()}?`, a: servico.descricao },
-  ];
 
   return (
     <div className="min-h-screen">
@@ -56,7 +65,6 @@ const ServicoPage = () => {
             </div>
           )}
 
-          {/* Empresas */}
           <h2 className="text-xl font-bold mb-4 mt-8">
             Empresas que oferecem {servico.nome} ({empresas.length})
           </h2>
@@ -71,13 +79,12 @@ const ServicoPage = () => {
             </div>
           )}
 
-          {/* FAQ */}
           <h2 className="text-xl font-bold mb-4">Perguntas Frequentes</h2>
           <Accordion type="single" collapsible className="bg-card rounded-xl border p-4 mb-8">
             {faqServico.map((item, i) => (
               <AccordionItem key={i} value={`faq-${i}`}>
-                <AccordionTrigger className="text-left">{item.q}</AccordionTrigger>
-                <AccordionContent>{item.a}</AccordionContent>
+                <AccordionTrigger className="text-left">{item.pergunta}</AccordionTrigger>
+                <AccordionContent>{item.resposta}</AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
