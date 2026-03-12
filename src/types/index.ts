@@ -52,6 +52,9 @@ export interface Empresa {
   telefone: string;
   email?: string;
   cnpj?: string;
+  endereco?: string;
+  site?: string;
+  youtubeVideoId?: string;
   anosExperiencia: number;
   verificada: boolean;
   destaque: boolean;
