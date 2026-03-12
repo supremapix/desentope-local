@@ -292,8 +292,8 @@ const empresasReais: Empresa[] = [
   {
     slug: 'adp-servicos-hidraulicos',
     nome: 'ADP Serviços Hidráulicos',
-    logo: '/favicon.png',
-    fotos: ['/placeholder.svg'],
+    logo: '/logos/logo-adp.png',
+    fotos: ['/logos/logo-adp.png'],
     descricao: 'Encanador 24h em Curitiba especializado em desentupimentos, vazamentos, hidrojateamento e manutenção hidráulica para residências, empresas e condomínios.',
     descricaoLonga: 'A ADP Serviços Hidráulicos é especializada em manutenção hidráulica, desentupimentos e reparos em sistemas de água e esgoto em Curitiba e região. A empresa oferece atendimento rápido para residências, empresas e condomínios, realizando serviços de encanador 24 horas com profissionais experientes. A equipe atua com equipamentos modernos para solucionar vazamentos, entupimentos e manutenção de tubulações, garantindo qualidade e segurança nos serviços. Entre os principais serviços estão desentupimento de pias, vasos sanitários, hidrojateamento, caça vazamentos e limpeza de caixa d\'água.',
     whatsapp: '5541985171966',
