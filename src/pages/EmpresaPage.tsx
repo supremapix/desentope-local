@@ -10,7 +10,7 @@ import { CompanyCard } from '@/components/CompanyCard';
 import { ShieldCheck, Clock, Zap, Phone, MapPin, CreditCard, Star, Wrench, Mail, AlertTriangle, MessageCircle, Send } from 'lucide-react';
 import { ServiceIcon } from '@/components/ServiceIcon';
 import { useEffect, useState, useMemo } from 'react';
-import { useSEO, buildLocalBusinessSchema, buildBreadcrumbSchema } from '@/hooks/useSEO';
+import { useSEO, buildLocalBusinessSchema, buildBreadcrumbSchema, buildFAQSchema } from '@/hooks/useSEO';
 
 const EmpresaPage = () => {
   const { slug } = useParams<{ slug: string }>();
