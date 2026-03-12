@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { CompanyCard } from '@/components/CompanyCard';
-import { ShieldCheck, Clock, Zap, Phone, MapPin, CreditCard, Calendar, Star, Wrench } from 'lucide-react';
+import { ShieldCheck, Clock, Zap, Phone, MapPin, CreditCard, Calendar, Star, Wrench, Mail } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 const EmpresaPage = () => {

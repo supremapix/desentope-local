@@ -4,7 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { RatingStars } from './RatingStars';
 import { WhatsAppButton } from './WhatsAppButton';
 import { Empresa } from '@/types';
-import { MapPin, Wrench, CreditCard, Clock, ShieldCheck, Zap } from 'lucide-react';
+import { MapPin, Wrench, CreditCard, Clock, ShieldCheck, Zap, Phone, Mail } from 'lucide-react';
 
 interface CompanyCardProps {
   empresa: Empresa;
@@ -12,6 +12,7 @@ interface CompanyCardProps {
 
 export function CompanyCard({ empresa }: CompanyCardProps) {
   const isPremium = empresa.destaque;
+  const whatsappSource = `card-${empresa.slug}`;
 
   return (
     <Card className={`overflow-hidden transition-shadow hover:shadow-md ${isPremium ? 'border-secondary border-2 relative' : ''}`}>
@@ -78,7 +79,7 @@ export function CompanyCard({ empresa }: CompanyCardProps) {
               </div>
             </div>
 
-            <div className="mt-3 flex items-center gap-2">
+            <div className="mt-3 flex flex-wrap items-center gap-2">
               <Link
                 to={`/empresa/${empresa.slug}`}
                 className="inline-flex items-center justify-center h-9 px-4 rounded-md border border-input bg-background text-sm font-medium hover:bg-muted transition-colors"
@@ -87,9 +88,23 @@ export function CompanyCard({ empresa }: CompanyCardProps) {
               </Link>
               <WhatsAppButton
                 whatsapp={empresa.whatsapp}
-                mensagem={`Olá! Vi o perfil da ${empresa.nome} no Serviços no Bairro e gostaria de solicitar um orçamento.`}
+                mensagem={`Olá! Vi o perfil da ${empresa.nome} no Serviços no Bairro e gostaria de solicitar um orçamento. [via ${whatsappSource}]`}
                 size="sm"
               />
+              <a
+                href={`tel:${empresa.telefone.replace(/\D/g, '')}`}
+                className="inline-flex items-center justify-center gap-1 h-9 px-3 rounded-md border border-destructive text-destructive text-sm font-medium hover:bg-destructive hover:text-destructive-foreground transition-colors"
+              >
+                <Phone className="h-3.5 w-3.5" /> Ligar
+              </a>
+              {empresa.email && (
+                <a
+                  href={`mailto:${empresa.email}`}
+                  className="inline-flex items-center justify-center gap-1 h-9 px-3 rounded-md border border-input text-sm font-medium hover:bg-muted transition-colors"
+                >
+                  <Mail className="h-3.5 w-3.5" /> Email
+                </a>
+              )}
             </div>
           </div>
         </div>
