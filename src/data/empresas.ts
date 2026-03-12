@@ -1,5 +1,5 @@
 import { Empresa, Bairro } from '@/types';
-import { todosBairros } from '@/data/bairros';
+import { todosBairros, allCicSlugs } from '@/data/bairros';
 import { cidadesRMC } from '@/data/cidades-rmc';
 
 const WHATSAPP = '5541985171966';
