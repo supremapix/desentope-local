@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://desentupa-agora-pr.lovable.app/sitemap.xml
+Sitemap: https://www.servicosnobairro.com.br/sitemap.xml
