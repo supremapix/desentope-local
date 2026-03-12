@@ -1,5 +1,5 @@
 import { Empresa, Bairro } from '@/types';
-import { todosBairros } from '@/data/bairros';
+import { todosBairros, allCicSlugs } from '@/data/bairros';
 import { cidadesRMC } from '@/data/cidades-rmc';
 
 const WHATSAPP = '5541985171966';
@@ -325,7 +325,9 @@ const empresasReais: Empresa[] = [
       'centro-civico', 'capao-raso', 'seminario', 'alto-boqueirao',
       'sao-braz', 'boqueirao', 'xaxim', 'pinheirinho',
       'sitio-cercado', 'santa-felicidade', 'boa-vista', 'almirante-tamandare',
-    ],
+      // All CIC bairros and vilas
+      ...allCicSlugs,
+    ].filter((v, i, a) => a.indexOf(v) === i), // deduplicate
     cidadesAtendidas: ['curitiba', 'almirante-tamandare'],
     formasPagamento: ['PIX', 'Dinheiro', 'Cartão de Crédito', 'Cartão de Débito'],
     horarios: [
