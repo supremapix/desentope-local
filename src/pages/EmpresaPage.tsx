@@ -7,7 +7,8 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { CompanyCard } from '@/components/CompanyCard';
-import { ShieldCheck, Clock, Zap, Phone, MapPin, CreditCard, Calendar, Star, Wrench, Mail } from 'lucide-react';
+import { ShieldCheck, Clock, Zap, Phone, MapPin, CreditCard, Calendar, Star, Wrench, Mail, AlertTriangle, MessageCircle, Send } from 'lucide-react';
+import { ServiceIcon } from '@/components/ServiceIcon';
 import { useEffect, useState } from 'react';
 
 const EmpresaPage = () => {
@@ -95,7 +96,7 @@ const EmpresaPage = () => {
                   href={`tel:${empresa.telefone.replace(/\D/g, '')}`}
                   className="inline-flex items-center gap-2 h-12 px-6 rounded-lg border-2 border-destructive text-destructive font-bold hover:bg-destructive hover:text-destructive-foreground transition-colors"
                 >
-                  <Phone className="h-5 w-5" /> 🚨 LIGAR EMERGÊNCIA
+                  <Phone className="h-5 w-5" /> <AlertTriangle className="h-4 w-4" /> LIGAR EMERGÊNCIA
                 </a>
                 {empresa.email && (
                   <a
@@ -145,7 +146,7 @@ const EmpresaPage = () => {
                       to={`/servicos/${s.slug}`}
                       className="flex items-center gap-3 p-3 rounded-lg border hover:border-primary transition-colors"
                     >
-                      <span className="text-2xl">{s.icone}</span>
+                      <ServiceIcon name={s.icone} className="h-6 w-6 text-primary" />
                       <div>
                         <div className="font-medium text-sm">{s.nome}</div>
                         {s.precoMedio && <div className="text-xs text-muted-foreground">{s.precoMedio}</div>}
@@ -255,7 +256,7 @@ const EmpresaPage = () => {
             {/* Contact Form */}
             <Card>
               <CardContent className="p-5">
-                <h3 className="font-bold mb-4 flex items-center gap-2">📩 Solicitar Orçamento</h3>
+                <h3 className="font-bold mb-4 flex items-center gap-2"><Send className="h-5 w-5 text-primary" /> Solicitar Orçamento</h3>
                 <form onSubmit={handleWhatsApp} className="space-y-3">
                   <input
                     type="text"
@@ -316,7 +317,7 @@ const EmpresaPage = () => {
                     type="submit"
                     className="w-full h-11 rounded-lg bg-accent text-accent-foreground font-bold flex items-center justify-center gap-2 hover:bg-accent/90 transition-colors"
                   >
-                    💬 ENVIAR VIA WHATSAPP
+                    <MessageCircle className="h-5 w-5" /> ENVIAR VIA WHATSAPP
                   </button>
                 </form>
               </CardContent>

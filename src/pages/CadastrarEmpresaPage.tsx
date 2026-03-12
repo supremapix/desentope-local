@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
+import { Check, MessageCircle } from 'lucide-react';
 
 const CadastrarEmpresaPage = () => {
   useEffect(() => {
@@ -37,7 +38,7 @@ const CadastrarEmpresaPage = () => {
                 <ul className="text-sm text-muted-foreground space-y-1.5 text-left">
                   {plan.features.map(f => (
                     <li key={f} className="flex items-center gap-2">
-                      <span className="text-accent">✓</span> {f}
+                      <Check className="h-4 w-4 text-accent flex-shrink-0" /> {f}
                     </li>
                   ))}
                 </ul>
@@ -54,7 +55,7 @@ const CadastrarEmpresaPage = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center h-12 px-8 rounded-lg bg-accent text-accent-foreground font-bold hover:bg-accent/90 transition-colors"
             >
-              💬 Cadastrar via WhatsApp
+              <MessageCircle className="h-5 w-5" /> Cadastrar via WhatsApp
             </a>
           </div>
         </div>
