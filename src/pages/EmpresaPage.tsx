@@ -10,7 +10,7 @@ import { CompanyCard } from '@/components/CompanyCard';
 import { ShieldCheck, Clock, Zap, Phone, MapPin, CreditCard, Star, Wrench, Mail, AlertTriangle, MessageCircle, Send } from 'lucide-react';
 import { ServiceIcon } from '@/components/ServiceIcon';
 import { useEffect, useState, useMemo } from 'react';
-import { useSEO, buildLocalBusinessSchema, buildBreadcrumbSchema } from '@/hooks/useSEO';
+import { useSEO, buildLocalBusinessSchema, buildBreadcrumbSchema, buildFAQSchema } from '@/hooks/useSEO';
 
 const EmpresaPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -27,18 +27,30 @@ const EmpresaPage = () => {
     return bairroEmpresas.filter(e => e.slug !== empresa.slug).slice(0, 3);
   }, [empresa, bairroSlug]);
 
+  const servicosDetalhes = useMemo(() => {
+    if (!empresa) return [];
+    return empresa.servicosOferecidos.map(s => servicos.find(sv => sv.slug === s)).filter(Boolean) as { nome: string; precoMedio?: string }[];
+  }, [empresa]);
+
   useSEO({
     title: empresa ? `${empresa.nome} — Desentupidora em ${bairroNome}, Curitiba | Serviços no Bairro` : 'Empresa não encontrada',
     description: empresa ? `${empresa.descricao} Atendimento ${empresa.atende24h ? '24h' : 'rápido'} em ${bairroNome}. Nota ${empresa.notaMedia}/5 com ${empresa.totalAvaliacoes} avaliações. Orçamento grátis via WhatsApp.` : '',
     canonical: empresa ? `/empresa/${empresa.slug}` : undefined,
+    type: empresa ? 'business.business' : 'website',
     geoPosition: coords,
     geoPlacename: `${bairroNome}, Curitiba, PR`,
     jsonLd: empresa ? [
-      buildLocalBusinessSchema(empresa, coords, bairroNome),
+      buildLocalBusinessSchema(empresa, coords, bairroNome, servicosDetalhes),
       buildBreadcrumbSchema([
         { name: 'Início', url: '/' },
+        { name: 'Curitiba', url: `/curitiba/${bairroSlug}` },
         { name: bairroNome, url: `/curitiba/${bairroSlug}` },
         { name: empresa.nome, url: `/empresa/${empresa.slug}` },
+      ]),
+      buildFAQSchema([
+        { pergunta: `Quanto custa ${empresa.nome.split(' ')[0].toLowerCase()} no ${bairroNome}?`, resposta: `Os serviços da ${empresa.nome} variam de R$ 150 a R$ 800, dependendo do tipo de serviço. Solicite orçamento grátis pelo WhatsApp (41) 98517-1966.` },
+        { pergunta: `${empresa.nome} atende 24 horas?`, resposta: empresa.atende24h ? `Sim! A ${empresa.nome} oferece atendimento 24 horas, inclusive feriados e fins de semana.` : `A ${empresa.nome} atende em horário comercial estendido. Para emergências, ligue (41) 3345-1194.` },
+        { pergunta: `${empresa.nome} é uma empresa verificada?`, resposta: empresa.verificada ? `Sim! A ${empresa.nome} é verificada pelo Serviços no Bairro com nota ${empresa.notaMedia}/5 baseada em ${empresa.totalAvaliacoes} avaliações reais.` : `A ${empresa.nome} está em processo de verificação.` },
       ]),
     ] : undefined,
   });
@@ -59,7 +71,7 @@ const EmpresaPage = () => {
     window.open(`https://wa.me/${empresa.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
-  const servicosDetalhes = empresa.servicosOferecidos.map(slug => servicos.find(s => s.slug === slug)).filter(Boolean);
+  const servicosComDetalhes = empresa.servicosOferecidos.map(slug => servicos.find(s => s.slug === slug)).filter(Boolean);
 
   return (
     <div className="min-h-screen">
@@ -165,7 +177,7 @@ const EmpresaPage = () => {
               <CardContent className="p-6">
                 <h2 className="text-xl font-bold mb-4">Serviços Oferecidos</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {servicosDetalhes.map(s => s && (
+                  {servicosComDetalhes.map(s => s && (
                     <Link
                       key={s.slug}
                       to={`/servicos/${s.slug}`}
@@ -295,7 +307,7 @@ const EmpresaPage = () => {
                   <input type="tel" placeholder="Telefone" value={formData.telefone} onChange={e => setFormData(prev => ({ ...prev, telefone: e.target.value }))} className="w-full h-10 px-3 rounded-md border bg-background text-sm" />
                   <select value={formData.problema} onChange={e => setFormData(prev => ({ ...prev, problema: e.target.value }))} className="w-full h-10 px-3 rounded-md border bg-background text-sm">
                     <option value="">Tipo de problema</option>
-                    {servicosDetalhes.map(s => s && <option key={s.slug} value={s.nome}>{s.nome}</option>)}
+                    {servicosComDetalhes.map(s => s && <option key={s.slug} value={s.nome}>{s.nome}</option>)}
                   </select>
                   <input type="text" placeholder="Endereço/Bairro" value={formData.bairro} onChange={e => setFormData(prev => ({ ...prev, bairro: e.target.value }))} className="w-full h-10 px-3 rounded-md border bg-background text-sm" />
                   <textarea placeholder="Descreva o problema" value={formData.descricao} onChange={e => setFormData(prev => ({ ...prev, descricao: e.target.value }))} className="w-full h-20 px-3 py-2 rounded-md border bg-background text-sm resize-none" />

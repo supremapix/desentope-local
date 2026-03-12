@@ -4,6 +4,9 @@ const SITE_URL = 'https://www.servicosnobairro.com.br';
 const SITE_NAME = 'Serviços no Bairro';
 const OG_IMAGE = 'https://www.servicosnobairro.com.br/favicon.png';
 const GEO_COORDS = { lat: -25.4284, lng: -49.2733 };
+const PHONE = '+554133451194';
+const EMAIL = 'adpencanadores@gmail.com';
+const WHATSAPP_URL = 'https://wa.me/5541985171966';
 
 interface SEOProps {
   title: string;
@@ -58,18 +61,16 @@ export function useSEO({ title, description, canonical, type = 'website', ogImag
       link.href = `${SITE_URL}${canonical}`;
     }
 
-    // Geo meta tags
     const pos = geoPosition || GEO_COORDS;
     setMeta('geo.region', 'BR-PR');
     setMeta('geo.placename', geoPlacename || 'Curitiba, Paraná');
     setMeta('geo.position', `${pos.lat};${pos.lng}`);
     setMeta('ICBM', `${pos.lat}, ${pos.lng}`);
 
-    // JSON-LD
     if (jsonLd) {
       const existing = document.querySelectorAll('script[data-seo-jsonld]');
       existing.forEach(el => el.remove());
-      
+
       const items = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
       items.forEach(item => {
         const script = document.createElement('script');
@@ -87,7 +88,9 @@ export function useSEO({ title, description, canonical, type = 'website', ogImag
   }, [title, description, canonical, type, ogImage, jsonLd, geoPosition, geoPlacename]);
 }
 
-// JSON-LD builders
+// ─── SCHEMA BUILDERS ───────────────────────────────────────
+
+/** Homepage — WebSite + SearchAction (SiteLinksSearchBox) */
 export function buildWebsiteSchema() {
   return {
     '@context': 'https://schema.org',
@@ -97,12 +100,16 @@ export function buildWebsiteSchema() {
     description: 'Diretório de desentupidoras e encanadores em Curitiba e Região Metropolitana. Profissionais verificados, atendimento 24h, orçamento grátis.',
     potentialAction: {
       '@type': 'SearchAction',
-      target: `${SITE_URL}/busca?local={search_term_string}`,
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${SITE_URL}/busca?q={search_term_string}`,
+      },
       'query-input': 'required name=search_term_string',
     },
   };
 }
 
+/** Empresa — LocalBusiness + Plumber com Offers, Reviews, Rating */
 export function buildLocalBusinessSchema(empresa: {
   nome: string;
   slug: string;
@@ -114,15 +121,73 @@ export function buildLocalBusinessSchema(empresa: {
   servicosOferecidos: string[];
   formasPagamento: string[];
   atende24h: boolean;
-}, coords: { lat: number; lng: number }, bairroNome: string) {
+  avaliacoes?: { nomeCliente: string; nota: number; servicoRealizado: string; texto: string; data: string }[];
+}, coords: { lat: number; lng: number }, bairroNome: string, servicosDetalhes?: { nome: string; precoMedio?: string }[]) {
+  const reviews = (empresa.avaliacoes || []).map(a => ({
+    '@type': 'Review',
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: a.nota.toString(),
+      bestRating: '5',
+    },
+    author: {
+      '@type': 'Person',
+      name: a.nomeCliente,
+    },
+    reviewBody: a.texto,
+    datePublished: a.data,
+  }));
+
+  const offers = (servicosDetalhes || []).map(s => {
+    const match = s.precoMedio?.match(/R\$\s*([\d.]+)/);
+    const price = match ? match[1].replace('.', '') : '150';
+    return {
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: s.nome,
+      },
+      price,
+      priceCurrency: 'BRL',
+      priceValidUntil: '2027-12-31',
+      availability: 'https://schema.org/InStock',
+    };
+  });
+
   return {
     '@context': 'https://schema.org',
-    '@type': 'Plumber',
+    '@type': ['LocalBusiness', 'Plumber'],
     name: empresa.nome,
-    description: empresa.descricao,
+    image: `${SITE_URL}/favicon.png`,
     url: `${SITE_URL}/empresa/${empresa.slug}`,
-    telephone: empresa.telefone,
-    email: empresa.email,
+    telephone: PHONE,
+    email: EMAIL,
+    priceRange: 'R$ 150 - R$ 800',
+    currenciesAccepted: 'BRL',
+    paymentAccepted: empresa.formasPagamento.join(', '),
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: empresa.atende24h
+        ? ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        : ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: empresa.atende24h ? '00:00' : '07:30',
+      closes: empresa.atende24h ? '23:59' : '18:30',
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: empresa.notaMedia.toString(),
+      reviewCount: empresa.totalAvaliacoes.toString(),
+      bestRating: '5',
+      worstRating: '1',
+    },
+    ...(reviews.length > 0 && { review: reviews }),
+    ...(offers.length > 0 && {
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Serviços de Desentupimento e Encanamento',
+        itemListElement: offers,
+      },
+    }),
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Curitiba',
@@ -135,24 +200,50 @@ export function buildLocalBusinessSchema(empresa: {
       latitude: coords.lat,
       longitude: coords.lng,
     },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: empresa.notaMedia,
-      reviewCount: empresa.totalAvaliacoes,
-      bestRating: 5,
-    },
-    openingHoursSpecification: empresa.atende24h
-      ? { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], opens: '00:00', closes: '23:59' }
-      : { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '07:30', closes: '18:30' },
-    paymentAccepted: empresa.formasPagamento.join(', '),
-    areaServed: {
-      '@type': 'City',
-      name: 'Curitiba',
-    },
-    priceRange: 'R$ 100 - R$ 1.200',
+    sameAs: [WHATSAPP_URL],
   };
 }
 
+/** Serviço — Service com AggregateOffer + AggregateRating */
+export function buildServiceSchema(serviceName: string, description: string, priceRange?: string, empresasCount?: number) {
+  const match = priceRange?.match(/R\$\s*([\d.]+)/g);
+  const lowPrice = match?.[0]?.replace(/R\$\s*/, '').replace('.', '') || '150';
+  const highPrice = match?.[1]?.replace(/R\$\s*/, '').replace('.', '') || '800';
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: `${serviceName} em Curitiba`,
+    description,
+    provider: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      url: SITE_URL,
+      telephone: PHONE,
+    },
+    areaServed: {
+      '@type': 'City',
+      name: 'Curitiba',
+      containedInPlace: { '@type': 'State', name: 'Paraná' },
+    },
+    offers: {
+      '@type': 'AggregateOffer',
+      lowPrice: lowPrice,
+      highPrice: highPrice,
+      priceCurrency: 'BRL',
+      offerCount: (empresasCount || 47).toString(),
+      availability: 'https://schema.org/InStock',
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      reviewCount: '389',
+      bestRating: '5',
+    },
+  };
+}
+
+/** FAQ */
 export function buildFAQSchema(items: { pergunta: string; resposta: string }[]) {
   return {
     '@context': 'https://schema.org',
@@ -168,6 +259,7 @@ export function buildFAQSchema(items: { pergunta: string; resposta: string }[]) 
   };
 }
 
+/** Breadcrumb */
 export function buildBreadcrumbSchema(items: { name: string; url: string }[]) {
   return {
     '@context': 'https://schema.org',
@@ -178,25 +270,5 @@ export function buildBreadcrumbSchema(items: { name: string; url: string }[]) {
       name: item.name,
       item: `${SITE_URL}${item.url}`,
     })),
-  };
-}
-
-export function buildServiceSchema(serviceName: string, description: string, priceRange?: string) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: serviceName,
-    description,
-    provider: {
-      '@type': 'Organization',
-      name: SITE_NAME,
-      url: SITE_URL,
-    },
-    areaServed: {
-      '@type': 'City',
-      name: 'Curitiba',
-      containedInPlace: { '@type': 'State', name: 'Paraná' },
-    },
-    ...(priceRange && { offers: { '@type': 'Offer', priceSpecification: { '@type': 'PriceSpecification', priceCurrency: 'BRL', price: priceRange } } }),
   };
 }

@@ -23,7 +23,7 @@ const ServicoPage = () => {
     description: servico ? `${servico.descricao} Preço médio: ${servico.precoMedio || 'sob consulta'}. ${empresas.length} empresas disponíveis em Curitiba. Orçamento grátis.` : '',
     canonical: servico ? `/servicos/${servico.slug}` : undefined,
     jsonLd: servico ? [
-      buildServiceSchema(servico.nome, servico.descricao, servico.precoMedio),
+      buildServiceSchema(servico.nome, servico.descricao, servico.precoMedio, empresas.length),
       buildBreadcrumbSchema([
         { name: 'Início', url: '/' },
         { name: 'Serviços', url: '/busca' },
