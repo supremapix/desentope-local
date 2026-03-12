@@ -355,7 +355,7 @@ const empresasReais: Empresa[] = [
     descricaoLonga: 'A Encanador 24h Palladium oferece atendimento emergencial e programado em toda Curitiba, incluindo CIC e região metropolitana. Equipe especializada em desentupimentos, caça vazamentos, hidrojateamento, conserto de torneiras, chuveiros e instalações hidráulicas. Atendimento rápido 24 horas por dia, 7 dias por semana, com profissionais qualificados e equipamentos modernos. Solicite seu orçamento sem compromisso.',
     whatsapp: '5541985171966',
     telefone: '(41) 3345-1194',
-    email: 'contato@encanador24hpalladium.com.br',
+    email: 'sac@servicosnobairro.com.br',
     cnpj: undefined,
     anosExperiencia: 10,
     verificada: true,
