@@ -3,7 +3,9 @@ import { getServicoBySlug } from '@/data/servicos';
 import { getEmpresasPorServico } from '@/data/empresas';
 import { CompanyCard } from '@/components/CompanyCard';
 import { ServiceIcon } from '@/components/ServiceIcon';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { FaqPremium } from '@/components/FaqPremium';
+import { DicasRapidas } from '@/components/DicasRapidas';
+import { getAllFaqServico, getDicasServico, getFaqServico } from '@/data/faq-servicos';
 import { DollarSign } from 'lucide-react';
 import { useSEO, buildServiceSchema, buildBreadcrumbSchema, buildFAQSchema } from '@/hooks/useSEO';
 
