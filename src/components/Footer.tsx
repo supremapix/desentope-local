@@ -40,19 +40,37 @@ export function Footer() {
           <div>
             <h3 className="font-bold mb-3">Bairros Populares</h3>
             <ul className="space-y-1 text-sm text-background/70">
-              {['Centro', 'Batel', 'Água Verde', 'Boa Vista', 'Portão', 'CIC'].map(b => (
+              {['Centro', 'Batel', 'Água Verde', 'Boa Vista', 'Portão', 'CIC', 'Cajuru', 'Boqueirão', 'Santa Felicidade', 'Pinheirinho', 'Rebouças', 'Cabral', 'Juvevê', 'São Francisco', 'Hugo Lange', 'Jardim Botânico', 'Xaxim', 'Hauer', 'Uberaba', 'Campo Comprido'].map(b => (
                 <li key={b}><Link to={`/curitiba/${toSlug(b)}`} className="hover:text-background transition-all hover:translate-x-1 inline-block">{b}</Link></li>
               ))}
             </ul>
           </div>
 
-          {/* Serviços */}
+          {/* Cidades RMC */}
           <div>
-            <h3 className="font-bold mb-3">Serviços</h3>
+            <h3 className="font-bold mb-3">Cidades da RMC</h3>
             <ul className="space-y-1 text-sm text-background/70">
-              {mainServicos.map(s => (
-                <li key={s.slug}><Link to={`/servicos/${s.slug}`} className="hover:text-background transition-all hover:translate-x-1 inline-block">{s.nome}</Link></li>
+              {[
+                { nome: 'São José dos Pinhais', to: '/sao-jose-dos-pinhais' },
+                { nome: 'Colombo', to: '/colombo' },
+                { nome: 'Pinhais', to: '/pinhais' },
+                { nome: 'Araucária', to: '/rmc/araucaria' },
+                { nome: 'Fazenda Rio Grande', to: '/rmc/fazenda-rio-grande' },
+                { nome: 'Campo Largo', to: '/rmc/campo-largo' },
+                { nome: 'Almirante Tamandaré', to: '/rmc/almirante-tamandare' },
+              ].map(c => (
+                <li key={c.nome}><Link to={c.to} className="hover:text-background transition-all hover:translate-x-1 inline-block">{c.nome}</Link></li>
               ))}
+            </ul>
+
+            <h3 className="font-bold mb-3 mt-6">Serviços</h3>
+            <ul className="space-y-1 text-sm text-background/70">
+              <li><Link to="/servicos/desentupimento-curitiba" className="hover:text-background transition-all hover:translate-x-1 inline-block">Desentupimento de Esgoto Curitiba</Link></li>
+              <li><Link to="/servicos/encanador-curitiba" className="hover:text-background transition-all hover:translate-x-1 inline-block">Encanador 24h Curitiba</Link></li>
+              <li><Link to="/servicos/limpa-fossa-curitiba" className="hover:text-background transition-all hover:translate-x-1 inline-block">Limpa Fossa Curitiba</Link></li>
+              <li><Link to="/servicos/hidrojateamento-curitiba" className="hover:text-background transition-all hover:translate-x-1 inline-block">Hidrojateamento Curitiba</Link></li>
+              <li><Link to="/servicos/camera-inspecao-esgoto" className="hover:text-background transition-all hover:translate-x-1 inline-block">Câmera de Inspeção de Esgoto</Link></li>
+              <li><Link to="/servicos/desentupidora-24h-curitiba" className="hover:text-background transition-all hover:translate-x-1 inline-block">Emergência 24h</Link></li>
             </ul>
           </div>
 
@@ -112,6 +130,11 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-background/20 mt-8 pt-6 text-center space-y-3">
+          <div className="flex flex-wrap justify-center gap-4 text-sm text-background/50 mb-3">
+            <Link to="/privacidade" className="hover:text-background transition-colors">Política de Privacidade</Link>
+            <span>·</span>
+            <Link to="/termos" className="hover:text-background transition-colors">Termos de Uso</Link>
+          </div>
           <p className="text-sm text-background/50">
             © {new Date().getFullYear()} servicosnobairro.com.br — Todos os direitos reservados.
           </p>
