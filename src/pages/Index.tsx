@@ -7,7 +7,7 @@ import { categoriasRapidas } from '@/data/servicos';
 import { getEmpresasDestaque } from '@/data/empresas';
 import { Shield, Clock, Star, Zap, AlertTriangle } from 'lucide-react';
 import { ServiceIcon } from '@/components/ServiceIcon';
-import { useSEO, buildWebsiteSchema } from '@/hooks/useSEO';
+import { useSEO, buildWebsiteSchema, buildOrganizationSchema } from '@/hooks/useSEO';
 
 function toSlug(nome: string): string {
   return nome.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
@@ -20,7 +20,7 @@ const Index = () => {
     title: 'Desentupidoras e Encanadores em Curitiba e Região | Serviços no Bairro',
     description: 'Encontre desentupidoras e encanadores verificados em Curitiba. 75 bairros + 29 cidades da RMC. Emergência 24h, orçamento grátis via WhatsApp. Avaliações reais.',
     canonical: '/',
-    jsonLd: buildWebsiteSchema(),
+    jsonLd: [buildWebsiteSchema(), buildOrganizationSchema()],
   });
 
   return (
