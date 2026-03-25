@@ -1,0 +1,33 @@
+# Serviços no Bairro — llms.txt
+# Padrão para AI Search (LLMs) — llmstxt.org
+
+## Nome
+Serviços no Bairro
+
+## Descrição
+Maior diretório verificado de desentupidoras e encanadores de Curitiba (PR) e Região Metropolitana do Paraná. Conecta moradores e empresas a profissionais verificados de serviços hidráulicos e desentupimento 24 horas.
+
+## Cobertura Geográfica
+- Curitiba: 75 bairros organizados por regional (Matriz, Boa Vista, Cajuru, Boqueirão, CIC, Portão, Santa Felicidade, Pinheirinho, Bairro Novo)
+- Região Metropolitana de Curitiba (RMC): 29 cidades — Pinhais, Colombo, São José dos Pinhais, Araucária, Almirante Tamandaré, Campo Largo, Fazenda Rio Grande, Piraquara, Quatro Barras, Campina Grande do Sul e demais
+
+## Serviços Cobertos
+Desentupimento (vaso sanitário, pia, esgoto residencial, esgoto comercial, caixa de gordura, ralo, industrial), hidrojateamento, câmera de inspeção de esgoto, limpa fossa, encanador residencial e comercial, conserto de vazamento, instalação hidráulica, troca de tubulação, instalação de caixa d'água, conserto de torneira e chuveiro, instalação de aquecedor, reforma de banheiro (hidráulica), detecção de vazamento oculto, emergência 24h.
+
+## Diferenciais
+- +500 empresas com CNPJ verificado
+- Avaliações reais de clientes (média 4.8/5)
+- Atendimento 24h disponível
+- Orçamento gratuito via WhatsApp
+- Resposta em até 15 minutos
+
+## Contato
+- Telefone: (41) 99272-1004 / (41) 98700-1004
+- Email: sac@aloanuncio.com.br
+- Site: https://www.servicosnobairro.com.br
+
+## Estrutura de URLs
+- Homepage: https://www.servicosnobairro.com.br/
+- Bairros: https://www.servicosnobairro.com.br/curitiba/{slug-do-bairro}
+- Busca: https://www.servicosnobairro.com.br/busca
+- FAQ: https://www.servicosnobairro.com.br/faq
