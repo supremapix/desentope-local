@@ -17,6 +17,7 @@ import FAQPage from "./pages/FAQPage";
 import BuscaPage from "./pages/BuscaPage";
 import CadastrarEmpresaPage from "./pages/CadastrarEmpresaPage";
 import AnuncieAquiPage from "./pages/AnuncieAquiPage";
+import LandingPage from "./pages/LandingPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +37,14 @@ const App = () => (
             <Route path="/curitiba/:bairro" element={<BairroPage />} />
             <Route path="/rmc/:bairro" element={<BairroPage />} />
             <Route path="/empresa/:slug" element={<EmpresaPage />} />
+            <Route path="/servicos/desentupimento-curitiba" element={<LandingPage />} />
+            <Route path="/servicos/encanador-curitiba" element={<LandingPage />} />
+            <Route path="/servicos/desentupidora-24h-curitiba" element={<LandingPage />} />
+            <Route path="/servicos/limpa-fossa-curitiba" element={<LandingPage />} />
+            <Route path="/servicos/hidrojateamento-curitiba" element={<LandingPage />} />
+            <Route path="/sao-jose-dos-pinhais" element={<LandingPage />} />
+            <Route path="/colombo" element={<LandingPage />} />
+            <Route path="/pinhais" element={<LandingPage />} />
             <Route path="/servicos/:slug" element={<ServicoPage />} />
             <Route path="/faq" element={<FAQPage />} />
             <Route path="/busca" element={<BuscaPage />} />
