@@ -18,6 +18,8 @@ import BuscaPage from "./pages/BuscaPage";
 import CadastrarEmpresaPage from "./pages/CadastrarEmpresaPage";
 import AnuncieAquiPage from "./pages/AnuncieAquiPage";
 import LandingPage from "./pages/LandingPage";
+import PrivacidadePage from "./pages/PrivacidadePage";
+import TermosPage from "./pages/TermosPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -50,6 +52,8 @@ const App = () => (
             <Route path="/busca" element={<BuscaPage />} />
             <Route path="/cadastrar-empresa" element={<CadastrarEmpresaPage />} />
             <Route path="/anuncie-aqui" element={<AnuncieAquiPage />} />
+            <Route path="/privacidade" element={<PrivacidadePage />} />
+            <Route path="/termos" element={<TermosPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </PageTransition>
