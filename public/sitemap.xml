@@ -3,11 +3,27 @@
         xmlns:geo="http://www.google.com/geo/schemas/sitemap/1.0">
 
 <!-- Páginas estáticas -->
-<url><loc>https://www.servicosnobairro.com.br/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
-<url><loc>https://www.servicosnobairro.com.br/faq</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.servicosnobairro.com.br/busca</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-<url><loc>https://www.servicosnobairro.com.br/cadastrar-empresa</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-<url><loc>https://www.servicosnobairro.com.br/anuncie-aqui</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+<url><loc>https://www.servicosnobairro.com.br/</loc><lastmod>2026-03-25</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+<url><loc>https://www.servicosnobairro.com.br/faq</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.servicosnobairro.com.br/busca</loc><lastmod>2026-03-25</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+<url><loc>https://www.servicosnobairro.com.br/cadastrar-empresa</loc><lastmod>2026-03-25</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+<url><loc>https://www.servicosnobairro.com.br/anuncie-aqui</loc><lastmod>2026-03-25</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+<!-- Landing Pages de Serviço -->
+<url><loc>https://www.servicosnobairro.com.br/servicos/desentupimento-curitiba</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+<url><loc>https://www.servicosnobairro.com.br/servicos/encanador-curitiba</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+<url><loc>https://www.servicosnobairro.com.br/servicos/desentupidora-24h-curitiba</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+<url><loc>https://www.servicosnobairro.com.br/servicos/limpa-fossa-curitiba</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+<url><loc>https://www.servicosnobairro.com.br/servicos/hidrojateamento-curitiba</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+<!-- Landing Pages de Cidades RMC -->
+<url><loc>https://www.servicosnobairro.com.br/sao-jose-dos-pinhais</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+<url><loc>https://www.servicosnobairro.com.br/colombo</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+<url><loc>https://www.servicosnobairro.com.br/pinhais</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+<!-- Empresas reais -->
+<url><loc>https://www.servicosnobairro.com.br/empresa/adp-servicos-hidraulicos</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+<url><loc>https://www.servicosnobairro.com.br/empresa/encanador-24h-palladium</loc><lastmod>2026-03-25</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
 
 <!-- Bairros de Curitiba -->
 <url><loc>https://www.servicosnobairro.com.br/curitiba/centro</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
@@ -304,5 +320,12 @@
 <url><loc>https://www.servicosnobairro.com.br/empresa/hidraulica-express-campo-magro</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 <url><loc>https://www.servicosnobairro.com.br/empresa/supremahidro-campo-magro</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 <url><loc>https://www.servicosnobairro.com.br/empresa/limpafossa-campo-magro</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+
+<!-- Arquivo para AI Search -->
+<url>
+  <loc>https://www.servicosnobairro.com.br/llms.txt</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.3</priority>
+</url>
 
 </urlset>
