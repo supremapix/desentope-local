@@ -5,7 +5,7 @@ import { regionais } from '@/data/bairros';
 import { cidadesRMC } from '@/data/cidades-rmc';
 import { categoriasRapidas } from '@/data/servicos';
 import { getEmpresasDestaque } from '@/data/empresas';
-import { Shield, Clock, Star, Zap, AlertTriangle } from 'lucide-react';
+import { Shield, Clock, Star, Zap, AlertTriangle, Search, ShieldCheck, MessageCircle } from 'lucide-react';
 import { ServiceIcon } from '@/components/ServiceIcon';
 import { useSEO, buildWebsiteSchema, buildOrganizationSchema } from '@/hooks/useSEO';
 
@@ -116,6 +116,38 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Como Funciona */}
+      <section className="py-12 bg-background">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold text-center mb-2">Como Funciona o Serviços no Bairro</h2>
+          <p className="text-center text-muted-foreground mb-8">3 passos simples para resolver seu problema hidráulico</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="flex flex-col items-center text-center p-6 rounded-xl bg-card border hover:shadow-md transition-shadow">
+              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                <Search className="h-7 w-7 text-primary" />
+              </div>
+              <h3 className="font-bold text-lg mb-2">Busque seu Bairro</h3>
+              <p className="text-sm text-muted-foreground">Selecione o tipo de serviço e seu bairro ou cidade na Região Metropolitana de Curitiba</p>
+            </div>
+            <div className="flex flex-col items-center text-center p-6 rounded-xl bg-card border hover:shadow-md transition-shadow">
+              <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mb-4">
+                <ShieldCheck className="h-7 w-7 text-accent" />
+              </div>
+              <h3 className="font-bold text-lg mb-2">Veja Profissionais Verificados</h3>
+              <p className="text-sm text-muted-foreground">Todas as empresas têm CNPJ conferido, avaliações reais e histórico de atendimento</p>
+            </div>
+            <div className="flex flex-col items-center text-center p-6 rounded-xl bg-card border hover:shadow-md transition-shadow">
+              <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mb-4">
+                <MessageCircle className="h-7 w-7 text-accent" />
+              </div>
+              <h3 className="font-bold text-lg mb-2">Peça Orçamento Grátis</h3>
+              <p className="text-sm text-muted-foreground">Entre em contato pelo WhatsApp e receba resposta em até 15 minutos</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Empresas em Destaque */}
       <section className="py-12 bg-muted">
         <div className="container mx-auto px-4">
@@ -149,6 +181,26 @@ const Index = () => {
           >
             Ver Empresas Disponíveis Agora →
           </Link>
+        </div>
+      </section>
+      {/* Sobre o Serviços no Bairro */}
+      <section className="py-14 bg-background">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-2xl font-bold text-center mb-6">Sobre o Serviços no Bairro</h2>
+          <div className="prose prose-sm max-w-none text-muted-foreground space-y-4">
+            <p>
+              O Serviços no Bairro nasceu em Curitiba com um propósito claro: facilitar o encontro entre moradores e profissionais confiáveis de desentupimento e hidráulica. Sabemos que uma emergência hidráulica — esgoto voltando, vaso entupido, cano estourado — é uma situação de estresse. Por isso, criamos um diretório com critérios rigorosos de verificação.
+            </p>
+            <p>
+              Cada empresa listada passa por verificação de CNPJ ativo, conferência de documentação e análise de avaliações de clientes reais. Nosso selo "Verificado" significa que você pode contratar com segurança. Monitoramos continuamente a qualidade do atendimento e removemos empresas que não atendem aos nossos padrões.
+            </p>
+            <p>
+              Cobrimos os 75 bairros de Curitiba, organizados pelas 9 regionais da cidade, além de 29 cidades da Região Metropolitana de Curitiba (RMC) em até 40km do Centro. Oferecemos serviços completos: desentupimento de vaso sanitário, pia, esgoto residencial e comercial, caixa de gordura; hidrojateamento industrial; câmera de inspeção; limpa fossa; encanadores para instalação, conserto de vazamentos e manutenção hidráulica.
+            </p>
+            <p>
+              Para emergências, temos empresas parceiras disponíveis 24 horas por dia, 7 dias por semana, incluindo feriados, com tempo médio de chegada de 30 a 60 minutos. O orçamento é sempre gratuito e sem compromisso — você recebe pelo WhatsApp e decide com calma. Nosso objetivo é que cada morador de Curitiba e região tenha acesso rápido a um profissional qualificado, a preço justo, no momento em que mais precisa.
+            </p>
+          </div>
         </div>
       </section>
     </div>
