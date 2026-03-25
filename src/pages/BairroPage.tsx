@@ -8,7 +8,7 @@ import { FaqPremium } from '@/components/FaqPremium';
 import { DicasRapidas } from '@/components/DicasRapidas';
 import { getFaqBairro } from '@/data/faq-bairros';
 import { getFaqCidade } from '@/data/faq-cidades';
-import { useSEO, buildBreadcrumbSchema, buildFAQSchema } from '@/hooks/useSEO';
+import { useSEO, buildBreadcrumbSchema, buildFAQSchema, buildBairroServiceSchema } from '@/hooks/useSEO';
 
 function toSlug(nome: string): string {
   return nome.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
@@ -64,6 +64,7 @@ const BairroPage = () => {
         ...(isCidade ? [{ name: 'Região Metropolitana', url: '/busca' }] : [{ name: 'Curitiba', url: '/' }]),
         { name: localNome, url: isCidade ? `/rmc/${bairro}` : `/curitiba/${bairro}` },
       ]),
+      buildBairroServiceSchema(localNome, localRegional, empresas.length, isCidade),
       buildFAQSchema(faqItems),
     ],
   });
