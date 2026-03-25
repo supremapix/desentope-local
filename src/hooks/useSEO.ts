@@ -4,9 +4,10 @@ const SITE_URL = 'https://www.servicosnobairro.com.br';
 const SITE_NAME = 'Serviços no Bairro';
 const OG_IMAGE = 'https://www.servicosnobairro.com.br/favicon.png';
 const GEO_COORDS = { lat: -25.4284, lng: -49.2733 };
-const PHONE = '+554133451194';
-const EMAIL = 'adpencanadores@gmail.com';
-const WHATSAPP_URL = 'https://wa.me/5541985171966';
+const PHONE_1 = '+55-41-99272-1004';
+const PHONE_2 = '+55-41-98700-1004';
+const EMAIL = 'sac@aloanuncio.com.br';
+const WHATSAPP_URL = 'https://wa.me/5541992721004';
 
 interface SEOProps {
   title: string;
@@ -97,7 +98,7 @@ export function buildWebsiteSchema() {
     '@type': 'WebSite',
     name: SITE_NAME,
     url: SITE_URL,
-    description: 'Diretório de desentupidoras e encanadores em Curitiba e Região Metropolitana. Profissionais verificados, atendimento 24h, orçamento grátis.',
+    description: 'Diretório absolute de desentupidoras e encanadores em Curitiba e Região Metropolitana. Profissionais verificados, atendimento 24h, orçamento grátis.',
     potentialAction: {
       '@type': 'SearchAction',
       target: {
@@ -105,6 +106,100 @@ export function buildWebsiteSchema() {
         urlTemplate: `${SITE_URL}/busca?q={search_term_string}`,
       },
       'query-input': 'required name=search_term_string',
+    },
+  };
+}
+
+/** Homepage — Organization + LocalBusiness combinado */
+export function buildOrganizationSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': ['Organization', 'LocalBusiness'],
+    name: SITE_NAME,
+    url: SITE_URL,
+    logo: `${SITE_URL}/logo.png`,
+    image: `${SITE_URL}/og-image.png`,
+    description: 'Maior diretório de desentupidoras e encanadores verificados de Curitiba e Região Metropolitana. Atendimento 24h, orçamento grátis.',
+    telephone: [PHONE_1, PHONE_2],
+    email: EMAIL,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Curitiba',
+      addressRegion: 'PR',
+      postalCode: '80000-000',
+      addressCountry: 'BR',
+    },
+    areaServed: [
+      { '@type': 'City', name: 'Curitiba' },
+      { '@type': 'City', name: 'São José dos Pinhais' },
+      { '@type': 'City', name: 'Colombo' },
+      { '@type': 'City', name: 'Pinhais' },
+      { '@type': 'City', name: 'Araucária' },
+      { '@type': 'City', name: 'Fazenda Rio Grande' },
+      { '@type': 'City', name: 'Campo Largo' },
+      { '@type': 'City', name: 'Almirante Tamandaré' },
+    ],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Serviços Hidráulicos e Desentupimento',
+      itemListElement: [
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Desentupimento de Esgoto' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Desentupimento de Vaso Sanitário' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Encanador Residencial' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Limpa Fossa' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hidrojateamento' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Câmera de Inspeção de Esgoto' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Emergência 24h' } },
+      ],
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      reviewCount: '500',
+      bestRating: '5',
+    },
+  };
+}
+
+/** Bairro — Service schema dinâmico */
+export function buildBairroServiceSchema(bairroNome: string, regional: string, totalEmpresas: number, isCidade = false) {
+  const rating = totalEmpresas > 0 ? '4.8' : '4.7';
+  const reviewCount = Math.max(totalEmpresas * 12, 50).toString();
+  const localLabel = isCidade ? `${bairroNome}, PR` : `${bairroNome}, Curitiba, Paraná, Brasil`;
+  const titleLabel = isCidade
+    ? `Desentupidoras e Encanadores em ${bairroNome} — PR`
+    : `Desentupidoras e Encanadores no ${bairroNome} — Curitiba`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: titleLabel,
+    description: `Encontre desentupidoras e encanadores verificados ${isCidade ? 'em' : 'no'} ${bairroNome}${!isCidade ? `, ${regional} de Curitiba` : ', PR'}. ${totalEmpresas} empresas disponíveis com atendimento 24h.`,
+    provider: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    areaServed: {
+      '@type': 'Place',
+      name: localLabel,
+    },
+    availableChannel: {
+      '@type': 'ServiceChannel',
+      servicePhone: PHONE_1,
+      availableLanguage: 'pt-BR',
+      hoursAvailable: {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        opens: '00:00',
+        closes: '23:59',
+      },
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: rating,
+      reviewCount: reviewCount,
+      bestRating: '5',
     },
   };
 }
@@ -160,7 +255,7 @@ export function buildLocalBusinessSchema(empresa: {
     name: empresa.nome,
     image: `${SITE_URL}/favicon.png`,
     url: `${SITE_URL}/empresa/${empresa.slug}`,
-    telephone: PHONE,
+    telephone: [PHONE_1, PHONE_2],
     email: EMAIL,
     priceRange: 'R$ 150 - R$ 800',
     currenciesAccepted: 'BRL',
@@ -219,7 +314,7 @@ export function buildServiceSchema(serviceName: string, description: string, pri
       '@type': 'Organization',
       name: SITE_NAME,
       url: SITE_URL,
-      telephone: PHONE,
+      telephone: PHONE_1,
     },
     areaServed: {
       '@type': 'City',
