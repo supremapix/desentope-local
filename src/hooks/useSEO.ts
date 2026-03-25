@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 const SITE_URL = 'https://www.servicosnobairro.com.br';
 const SITE_NAME = 'Serviços no Bairro';
-const OG_IMAGE = 'https://www.servicosnobairro.com.br/favicon.png';
+const OG_IMAGE = 'https://www.servicosnobairro.com.br/og-image.png';
 const GEO_COORDS = { lat: -25.4284, lng: -49.2733 };
 const PHONE_1 = '+55-41-99272-1004';
 const PHONE_2 = '+55-41-98700-1004';
@@ -38,6 +38,7 @@ export function useSEO({ title, description, canonical, type = 'website', ogImag
     const image = ogImage || OG_IMAGE;
 
     setMeta('description', description);
+    setMeta('robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
     setMeta('og:title', title, true);
     setMeta('og:description', description, true);
     setMeta('og:type', type, true);
@@ -46,6 +47,8 @@ export function useSEO({ title, description, canonical, type = 'website', ogImag
     setMeta('og:image', image, true);
     setMeta('og:image:width', '1200', true);
     setMeta('og:image:height', '630', true);
+    setMeta('og:image:type', 'image/png', true);
+    setMeta('og:image:alt', `${title} — ${SITE_NAME}`, true);
     setMeta('twitter:card', 'summary_large_image');
     setMeta('twitter:title', title);
     setMeta('twitter:description', description);
