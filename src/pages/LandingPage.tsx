@@ -1,5 +1,5 @@
-import { useParams, Link } from 'react-router-dom';
-import { getLandingPageBySlug } from '@/data/landing-pages';
+import { useParams, Link, useLocation } from 'react-router-dom';
+import { getLandingPageBySlug, landingPages } from '@/data/landing-pages';
 import { CompanyCard } from '@/components/CompanyCard';
 import { SearchBar } from '@/components/SearchBar';
 import { Shield, Clock, Star, Zap, AlertTriangle, Phone } from 'lucide-react';
@@ -13,7 +13,10 @@ function toSlug(nome: string): string {
 
 const LandingPage = () => {
   const { slug } = useParams<{ slug: string }>();
-  const page = getLandingPageBySlug(slug || '');
+  const location = useLocation();
+  // For city pages like /colombo, extract slug from pathname
+  const resolvedSlug = slug || location.pathname.replace(/^\//, '').replace(/\/$/, '');
+  const page = getLandingPageBySlug(resolvedSlug);
 
   // Filter companies by service or city
   const filteredEmpresas = empresas.filter(e => {
