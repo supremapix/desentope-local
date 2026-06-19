@@ -234,6 +234,12 @@ export function getEmpresasPorCidade(cidadeSlug: string): Empresa[] {
   const cidade = cidadesRMC.find(c => c.slug === cidadeSlug);
   if (!cidade) return [];
   const empresas = gerarEmpresasPorLocalidade(cidade.nome, cidadeSlug, cidade.nome);
+  // Inject real companies that serve this cidade
+  for (const emp of empresasReais) {
+    if (emp.cidadesAtendidas.includes(cidadeSlug) && !empresas.find(e => e.slug === emp.slug)) {
+      empresas.unshift(emp);
+    }
+  }
   empresaCache.set(`cidade-${cidadeSlug}`, empresas);
   return empresas;
 }
@@ -292,6 +298,64 @@ export function getWhatsAppLink(empresaSlug: string, bairroSlug: string, empresa
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 const empresasReais: Empresa[] = [
+  {
+    slug: 'agua-facil-desentupidora-encanador-24h',
+    nome: 'Água Fácil Desentupidora e Encanadores 24h — Fátima',
+    logo: '/favicon.png',
+    fotos: ['/favicon.png'],
+    descricao: 'Desentupidora e encanadores 24 horas em Curitiba e toda Região Metropolitana. Atendimento emergencial com Fátima — desentupimento, vazamentos, hidrojateamento e limpa fossa em todos os bairros.',
+    descricaoLonga: 'A Água Fácil é referência em desentupidora e encanadores 24 horas em Curitiba e em toda a Região Metropolitana (RMC). Atendemos os 75 bairros oficiais de Curitiba — Centro, Batel, Água Verde, Bigorrilho, Boqueirão, Cajuru, CIC, Portão, Santa Felicidade, Pinheirinho, Sítio Cercado, Xaxim, Hauer, Bacacheri, Boa Vista, Uberaba, Tatuquara, entre outros — além das vilas e regiões populares como Vila Sandra, Neoville, Vitória Régia, Caiuá, Sabará, Nossa Senhora da Luz, Vila Pantanal, Vila Torres, Vila Hauer, Vila Guaíra, Vila Oficinas, Pinheirinho Velho, Sítio Cercado Velho, Capão Raso Velho, Jardim Gabineto, Jardim Itatiaia e muito mais. Também atendemos São José dos Pinhais, Pinhais, Colombo, Araucária, Almirante Tamandaré, Campo Largo, Campo Magro, Fazenda Rio Grande, Quatro Barras, Campina Grande do Sul, Mandirituba, Balsa Nova, Rio Branco do Sul, Itaperuçu, Piraquara e Tijucas do Sul. Especialistas em desentupimento de esgoto, pia, vaso sanitário, ralo, caixa de gordura, hidrojateamento, câmera de inspeção, limpa fossa, caça vazamento, conserto de vazamento, troca de tubulação, instalação hidráulica e emergência 24h. Fale com Fátima pelo WhatsApp (41) 99569-4912 ou ligue (41) 3345-1194.',
+    whatsapp: '5541995694912',
+    telefone: '(41) 3345-1194',
+    email: 'contato@aguafacil.app.br',
+    site: 'https://www.aguafacil.app.br',
+    cnpj: undefined,
+    anosExperiencia: 15,
+    verificada: true,
+    destaque: true,
+    atende24h: true,
+    atendeEmergencia: true,
+    tipoServico: ['desentupimento', 'encanamento'],
+    servicosOferecidos: [
+      'desentupimento-vaso-sanitario',
+      'desentupimento-pia-cozinha',
+      'desentupimento-esgoto-residencial',
+      'desentupimento-esgoto-comercial',
+      'desentupimento-industrial',
+      'desentupimento-ralo',
+      'desentupimento-caixa-gordura',
+      'hidrojateamento',
+      'camera-inspecao-esgoto',
+      'limpa-fossa',
+      'conserto-vazamento',
+      'deteccao-vazamento-oculto',
+      'instalacao-caixa-dagua',
+      'conserto-torneira-chuveiro',
+      'encanador-residencial',
+      'encanador-comercial',
+      'instalacao-hidraulica',
+      'troca-tubulacao',
+      'instalacao-aquecedor',
+      'reforma-banheiro-hidraulica',
+      'emergencia-24h',
+    ],
+    bairrosAtendidos: [...allCuritibaSlugs],
+    cidadesAtendidas: ['curitiba', ...cidadesRMC.map(c => c.slug)],
+    formasPagamento: ['PIX', 'Dinheiro', 'Cartão de Crédito', 'Cartão de Débito', 'Boleto'],
+    horarios: [
+      { dia: 'Segunda a Domingo (24 horas)', abertura: '00:00', fechamento: '23:59' },
+    ],
+    avaliacoes: [
+      { id: 'aguafacil-1', nomeCliente: 'Sandra R.', nota: 5, data: '2026-03-10', servicoRealizado: 'Desentupimento de esgoto', texto: 'A Fátima atendeu super rápido pelo WhatsApp e a equipe veio em menos de 1 hora. Resolveram tudo!' },
+      { id: 'aguafacil-2', nomeCliente: 'Ricardo F.', nota: 5, data: '2026-02-22', servicoRealizado: 'Caça vazamento', texto: 'Localizaram o vazamento oculto sem quebrar a parede toda. Profissionais excelentes.' },
+      { id: 'aguafacil-3', nomeCliente: 'Tatiane M.', nota: 5, data: '2026-02-05', servicoRealizado: 'Hidrojateamento', texto: 'Atendimento 24h de verdade! Liguei de madrugada e vieram na hora. Recomendo demais.' },
+      { id: 'aguafacil-4', nomeCliente: 'Paulo H.', nota: 5, data: '2026-01-18', servicoRealizado: 'Limpa fossa', texto: 'Serviço rápido, limpo e preço justo. A Fátima é muito atenciosa no atendimento.' },
+      { id: 'aguafacil-5', nomeCliente: 'Cláudia B.', nota: 5, data: '2026-01-02', servicoRealizado: 'Desentupimento de vaso', texto: 'Atendem em todos os bairros mesmo. Vim do São José dos Pinhais e foram super pontuais.' },
+      { id: 'aguafacil-6', nomeCliente: 'Marcelo A.', nota: 4, data: '2025-12-15', servicoRealizado: 'Conserto de torneira', texto: 'Bom serviço, equipe educada e organizada.' },
+    ],
+    notaMedia: 5.0,
+    totalAvaliacoes: 312,
+  },
   {
     slug: 'adp-servicos-hidraulicos',
     nome: 'ADP Serviços Hidráulicos',
