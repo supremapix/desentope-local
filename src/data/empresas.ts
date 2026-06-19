@@ -234,6 +234,12 @@ export function getEmpresasPorCidade(cidadeSlug: string): Empresa[] {
   const cidade = cidadesRMC.find(c => c.slug === cidadeSlug);
   if (!cidade) return [];
   const empresas = gerarEmpresasPorLocalidade(cidade.nome, cidadeSlug, cidade.nome);
+  // Inject real companies that serve this cidade
+  for (const emp of empresasReais) {
+    if (emp.cidadesAtendidas.includes(cidadeSlug) && !empresas.find(e => e.slug === emp.slug)) {
+      empresas.unshift(emp);
+    }
+  }
   empresaCache.set(`cidade-${cidadeSlug}`, empresas);
   return empresas;
 }
