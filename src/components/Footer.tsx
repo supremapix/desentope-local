@@ -138,6 +138,8 @@ export function Footer() {
             <Link to="/privacidade" className="hover:text-background transition-colors">Política de Privacidade</Link>
             <span>·</span>
             <Link to="/termos" className="hover:text-background transition-colors">Termos de Uso</Link>
+            <span>·</span>
+            <Link to="/politica-editorial" className="hover:text-background transition-colors">Política Editorial</Link>
           </div>
           <p className="text-sm text-background/50">
             © {new Date().getFullYear()} servicosnobairro.com.br — Todos os direitos reservados.
