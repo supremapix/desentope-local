@@ -1,67 +1,85 @@
 /**
- * Sitemap generator - run with: npx tsx scripts/generate-sitemap.ts
- * Also used as reference for the static sitemap.xml
+ * Sitemap generator — runs before `vite dev` and `vite build` (predev/prebuild).
+ * Writes public/sitemap.xml from the real application data so URLs never drift
+ * from the routes and content that actually exist.
+ *
+ * Run manually: bun scripts/generate-sitemap.ts
  */
 
-const DOMAIN = 'https://desentupa-agora-pr.lovable.app';
-const TODAY = new Date().toISOString().split('T')[0];
+import { writeFileSync } from 'fs';
+import { resolve } from 'path';
+import { todosBairros } from '../src/data/bairros';
+import { cidadesRMC } from '../src/data/cidades-rmc';
+import { servicos } from '../src/data/servicos';
+import { landingPages } from '../src/data/landing-pages';
+import { empresas } from '../src/data/empresas';
 
-// Bairros from regionais
-const regionais: Record<string, string[]> = {
-  'Matriz': ['Centro', 'Centro Cívico', 'Alto da Glória', 'Alto da Rua XV', 'Cabral', 'Cristo Rei', 'Hugo Lange', 'Jardim Botânico', 'Juvevê', 'Mercês', 'Prado Velho', 'Rebouças', 'São Francisco'],
-  'Boa Vista': ['Abranches', 'Ahú', 'Atuba', 'Bacacheri', 'Bairro Alto', 'Barreirinha', 'Boa Vista', 'Cachoeira', 'Pilarzinho', 'Santa Cândida', 'Taboão', 'Tingui', 'Vista Alegre'],
-  'Cajuru': ['Cajuru', 'Capão da Imbuia', 'Guabirotuba', 'Jardim das Américas', 'Uberaba'],
-  'Boqueirão': ['Alto Boqueirão', 'Boqueirão', 'Hauer', 'Xaxim'],
-  'CIC': ['Augusta', 'Cidade Industrial', 'Fazendinha', 'São Miguel', 'Riviera'],
-  'Portão': ['Água Verde', 'Batel', 'Bigorrilho', 'Campo Comprido', 'Fanny', 'Guaíra', 'Lindóia', 'Novo Mundo', 'Orleans', 'Parolin', 'Portão', 'Santa Quitéria', 'São Braz', 'Seminário', 'Vila Izabel'],
-  'Santa Felicidade': ['Butiatuvinha', 'Campina do Siqueira', 'Cascatinha', 'Lamenha Pequena', 'Mossunguê', 'Santa Felicidade', 'São João', 'São Lourenço', 'Tatuquara'],
-  'Pinheirinho': ['Capão Raso', 'Ganchinho', 'Pinheirinho', 'Umbará'],
-  'Bairro Novo': ['Caximba', 'Sítio Cercado'],
-};
+const BASE_URL = 'https://www.servicosnobairro.com.br';
 
-const bairrosPopulares = [
-  'Neo Ville', 'Vila Carmo', 'Vila Sandra', 'Bom Jesus', 'Parolinzinho', 'Igapó', 'Iapi', 'Barigui', 'Gramado', 'Colônia Arbeiter', 'Embracur'
-];
-
-const cidadesRMC = [
-  'pinhais', 'almirante-tamandare', 'colombo', 'campo-magro', 'sao-jose-dos-pinhais',
-  'piraquara', 'araucaria', 'fazenda-rio-grande', 'campo-largo', 'quatro-barras',
-  'campina-grande-do-sul', 'mandirituba', 'itaperucu', 'contenda', 'balsa-nova',
-  'bocaiuva-do-sul', 'rio-branco-do-sul', 'lapa', 'adrianopolis', 'agudos-do-sul',
-  'campo-do-tenente', 'cerro-azul', 'doutor-ulysses', 'pien', 'quitandinha',
-  'tijucas-do-sul', 'tunas-do-parana',
-  'palmeira', 'ponta-grossa', 'rio-negro', 'morretes', 'antonina', 'paranagua',
-];
-
-const servicos = [
-  'desentupimento-vaso-sanitario', 'desentupimento-pia-cozinha', 'desentupimento-pia-banheiro',
-  'desentupimento-esgoto-residencial', 'desentupimento-esgoto-comercial', 'desentupimento-caixa-gordura',
-  'hidrojateamento', 'camera-inspecao-esgoto', 'limpa-fossa', 'desentupimento-ralo',
-  'desentupimento-industrial', 'emergencia-24h', 'encanador-residencial', 'encanador-comercial',
-  'conserto-vazamento', 'instalacao-hidraulica', 'troca-tubulacao', 'instalacao-caixa-dagua',
-  'conserto-torneira-chuveiro', 'instalacao-aquecedor', 'reforma-banheiro-hidraulica', 'deteccao-vazamento-oculto',
-];
-
-const empresaPrefixos = ['desentuprapido', 'encanador-master', 'hidraulica-express', 'supremahidro', 'limpafossa'];
-
-function toSlug(nome: string): string {
-  return nome.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+interface SitemapEntry {
+  path: string;
+  changefreq?: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+  priority?: string;
 }
 
-console.log('Generating sitemap...');
+const staticPages: SitemapEntry[] = [
+  { path: '/', changefreq: 'daily', priority: '1.0' },
+  { path: '/busca', changefreq: 'daily', priority: '0.8' },
+  { path: '/faq', changefreq: 'weekly', priority: '0.7' },
+  { path: '/quem-somos', changefreq: 'monthly', priority: '0.6' },
+  { path: '/como-funciona', changefreq: 'monthly', priority: '0.6' },
+  { path: '/como-selecionamos-profissionais', changefreq: 'monthly', priority: '0.6' },
+  { path: '/politica-editorial', changefreq: 'yearly', priority: '0.4' },
+  { path: '/contato', changefreq: 'monthly', priority: '0.5' },
+  { path: '/cadastrar-empresa', changefreq: 'monthly', priority: '0.5' },
+  { path: '/anuncie-aqui', changefreq: 'monthly', priority: '0.6' },
+  { path: '/privacidade', changefreq: 'yearly', priority: '0.3' },
+  { path: '/termos', changefreq: 'yearly', priority: '0.3' },
+];
 
-const allBairros = Object.values(regionais).flat().concat(bairrosPopulares);
-const bairroSlugs = allBairros.map(toSlug);
+const entries: SitemapEntry[] = [
+  ...staticPages,
+  // Landing pages editoriais (serviço + cidade)
+  ...landingPages.map((p) => ({ path: p.route, changefreq: 'weekly' as const, priority: '0.9' })),
+  // Bairros de Curitiba
+  ...todosBairros.map((b) => ({
+    path: `/curitiba/${b.slug}`,
+    changefreq: 'weekly' as const,
+    priority: b.oficial ? '0.8' : '0.6',
+  })),
+  // Cidades da Região Metropolitana
+  ...cidadesRMC.map((c) => ({ path: `/rmc/${c.slug}`, changefreq: 'weekly' as const, priority: '0.7' })),
+  // Serviços
+  ...servicos.map((s) => ({ path: `/servicos/${s.slug}`, changefreq: 'weekly' as const, priority: '0.7' })),
+  // Empresas
+  ...empresas.map((e) => ({ path: `/empresa/${e.slug}`, changefreq: 'weekly' as const, priority: '0.6' })),
+];
 
-let totalUrls = 0;
+// Deduplicate by path — landing pages and service routes can overlap.
+const seen = new Set<string>();
+const unique = entries.filter((e) => (seen.has(e.path) ? false : (seen.add(e.path), true)));
 
-// Count
-const staticPages = ['', '/faq', '/busca', '/cadastrar-empresa', '/anuncie-aqui'];
-totalUrls += staticPages.length;
-totalUrls += bairroSlugs.length; // /curitiba/:bairro
-totalUrls += cidadesRMC.length; // /rmc/:cidade
-totalUrls += servicos.length; // /servicos/:slug
-totalUrls += bairroSlugs.length * empresaPrefixos.length; // /empresa/:slug per bairro
-totalUrls += cidadesRMC.length * empresaPrefixos.length; // /empresa/:slug per cidade
+function generateSitemap(list: SitemapEntry[]) {
+  const urls = list.map((e) =>
+    [
+      '  <url>',
+      `    <loc>${BASE_URL}${e.path}</loc>`,
+      e.changefreq ? `    <changefreq>${e.changefreq}</changefreq>` : null,
+      e.priority ? `    <priority>${e.priority}</priority>` : null,
+      '  </url>',
+    ]
+      .filter(Boolean)
+      .join('\n'),
+  );
 
-console.log(`Total URLs: ${totalUrls}`);
+  return [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ...urls,
+    '</urlset>',
+    '',
+  ].join('\n');
+}
+
+writeFileSync(resolve('public/sitemap.xml'), generateSitemap(unique));
+console.log(`sitemap.xml gerado (${unique.length} URLs)`);
