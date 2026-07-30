@@ -82,6 +82,10 @@ export function Footer() {
               <li><Link to="/faq" className="hover:text-background transition-all hover:translate-x-1 inline-block">Perguntas Frequentes</Link></li>
               <li><Link to="/anuncie-aqui" className="hover:text-background transition-all hover:translate-x-1 inline-block">Anuncie Aqui</Link></li>
               <li><Link to="/cadastrar-empresa" className="hover:text-background transition-all hover:translate-x-1 inline-block">Cadastrar Empresa</Link></li>
+              <li><Link to="/quem-somos" className="hover:text-background transition-all hover:translate-x-1 inline-block">Quem Somos</Link></li>
+              <li><Link to="/como-funciona" className="hover:text-background transition-all hover:translate-x-1 inline-block">Como Funciona</Link></li>
+              <li><Link to="/como-selecionamos-profissionais" className="hover:text-background transition-all hover:translate-x-1 inline-block">Como Selecionamos Profissionais</Link></li>
+              <li><Link to="/contato" className="hover:text-background transition-all hover:translate-x-1 inline-block">Contato</Link></li>
             </ul>
           </div>
         </div>
@@ -134,6 +138,8 @@ export function Footer() {
             <Link to="/privacidade" className="hover:text-background transition-colors">Política de Privacidade</Link>
             <span>·</span>
             <Link to="/termos" className="hover:text-background transition-colors">Termos de Uso</Link>
+            <span>·</span>
+            <Link to="/politica-editorial" className="hover:text-background transition-colors">Política Editorial</Link>
           </div>
           <p className="text-sm text-background/50">
             © {new Date().getFullYear()} servicosnobairro.com.br — Todos os direitos reservados.
