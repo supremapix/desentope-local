@@ -14,7 +14,7 @@ import { servicos } from '../src/data/servicos';
 import { landingPages } from '../src/data/landing-pages';
 import { empresas } from '../src/data/empresas';
 
-const BASE_URL = 'https://desentupa-agora-pr.lovable.app';
+const BASE_URL = 'https://www.servicosnobairro.com.br';
 
 interface SitemapEntry {
   path: string;
