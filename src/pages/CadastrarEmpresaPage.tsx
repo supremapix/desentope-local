@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
 import { Check, MessageCircle } from 'lucide-react';
+import { useSEO } from '@/hooks/useSEO';
 
 const CadastrarEmpresaPage = () => {
-  useEffect(() => {
-    document.title = 'Cadastrar Empresa — Serviços no Bairro';
-  }, []);
+  useSEO({
+    title: 'Cadastrar Empresa Grátis | Serviços no Bairro',
+    description: 'Cadastre sua empresa de desentupimento ou encanamento em Curitiba e RMC. Receba clientes pelo WhatsApp com cadastro rápido e plano gratuito.',
+    canonical: '/cadastrar-empresa',
+  });
 
   return (
     <div className="min-h-screen">
