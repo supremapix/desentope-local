@@ -97,7 +97,7 @@ const LandingPage = () => {
             </a>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-6 text-sm font-medium text-primary-foreground/70">
+          <div className="flex flex-wrap justify-center gap-6 text-sm font-medium text-primary-foreground/90">
             <span className="flex items-center gap-1.5"><Zap className="h-4 w-4 text-secondary" /> Resposta em até 15min</span>
             <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-accent" /> +500 empresas cadastradas</span>
             <span className="flex items-center gap-1.5"><Star className="h-4 w-4 text-secondary" /> Avaliações reais</span>
