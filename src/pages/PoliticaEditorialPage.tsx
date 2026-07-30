@@ -65,7 +65,7 @@ const PoliticaEditorialPage = () => {
       <section className="bg-primary text-primary-foreground py-14">
         <div className="container mx-auto px-4 max-w-3xl">
           <h1 className="text-3xl md:text-4xl font-black mb-4">Política Editorial</h1>
-          <p className="text-lg text-primary-foreground/80">
+          <p className="text-lg text-primary-foreground">
             Como o conteúdo do Serviços no Bairro é produzido, revisado, sinalizado e corrigido.
           </p>
         </div>

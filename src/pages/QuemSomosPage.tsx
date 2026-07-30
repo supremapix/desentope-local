@@ -29,7 +29,7 @@ const QuemSomosPage = () => {
       <section className="bg-primary text-primary-foreground py-14">
         <div className="container mx-auto px-4 max-w-3xl">
           <h1 className="text-3xl md:text-4xl font-black mb-4">Quem Somos</h1>
-          <p className="text-lg text-primary-foreground/80">
+          <p className="text-lg text-primary-foreground">
             O Serviços no Bairro é um diretório independente que conecta moradores e empresas de
             Curitiba e da Região Metropolitana a desentupidoras e encanadores verificados,
             organizados por bairro e por tipo de serviço.

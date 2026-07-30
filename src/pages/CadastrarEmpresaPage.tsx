@@ -50,7 +50,7 @@ const CadastrarEmpresaPage = () => {
 
           <div className="bg-primary text-primary-foreground rounded-xl p-8">
             <h2 className="text-xl font-bold mb-2">Interessado?</h2>
-            <p className="text-primary-foreground/80 mb-4">Entre em contato pelo WhatsApp para iniciar seu cadastro.</p>
+            <p className="text-primary-foreground mb-4">Entre em contato pelo WhatsApp para iniciar seu cadastro.</p>
             <a
               href="https://wa.me/5541992721004?text=Olá! Gostaria de cadastrar minha empresa no Serviços no Bairro."
               target="_blank"

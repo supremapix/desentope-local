@@ -68,7 +68,7 @@ const ComoSelecionamosPage = () => {
       <section className="bg-primary text-primary-foreground py-14">
         <div className="container mx-auto px-4 max-w-3xl">
           <h1 className="text-3xl md:text-4xl font-black mb-4">Como Selecionamos Profissionais</h1>
-          <p className="text-lg text-primary-foreground/80">
+          <p className="text-lg text-primary-foreground">
             Toda empresa listada passa por uma checagem documental e de contato antes de ser
             publicada. Abaixo estão exatamente os critérios que aplicamos — e os limites do que
             nossa verificação significa.
