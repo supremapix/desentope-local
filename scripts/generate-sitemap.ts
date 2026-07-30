@@ -33,6 +33,7 @@ const staticPages: SitemapEntry[] = [
   { path: '/contato', changefreq: 'monthly', priority: '0.5' },
   { path: '/cadastrar-empresa', changefreq: 'monthly', priority: '0.5' },
   { path: '/anuncie-aqui', changefreq: 'monthly', priority: '0.6' },
+  { path: '/servicos/guia-limpa-fossa', changefreq: 'monthly', priority: '0.8' },
   { path: '/privacidade', changefreq: 'yearly', priority: '0.3' },
   { path: '/termos', changefreq: 'yearly', priority: '0.3' },
 ];
