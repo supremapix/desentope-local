@@ -49,7 +49,9 @@ const App = () => (
         <EmergencyBanner />
         <Header />
         <PageTransition>
+          <main id="conteudo">
           <Suspense fallback={<RouteFallback />}>
+
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/curitiba/:bairro" element={<BairroPage />} />
