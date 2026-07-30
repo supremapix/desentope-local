@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
 import { Check, Star, Zap, BarChart3, MapPin, Shield, MessageCircle } from 'lucide-react';
+import { useSEO } from '@/hooks/useSEO';
 
 const AnuncieAquiPage = () => {
-  useEffect(() => {
-    document.title = 'Anuncie sua Empresa | Serviços no Bairro';
-  }, []);
+  useSEO({
+    title: 'Anuncie sua Empresa | Serviços no Bairro',
+    description: 'Divulgue sua desentupidora ou serviço de encanador em Curitiba e RMC. Planos a partir de R$ 0, leads no WhatsApp e selo de empresa verificada.',
+    canonical: '/anuncie-aqui',
+  });
 
   const planos = [
     {

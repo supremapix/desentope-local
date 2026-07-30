@@ -25,6 +25,7 @@ export function SearchBar() {
         {/* Service Select */}
         <div className="flex-1 relative border-b sm:border-b-0 sm:border-r">
           <select
+            aria-label="Filtrar por tipo de serviço"
             value={servico}
             onChange={e => setServico(e.target.value)}
             className="w-full h-12 sm:h-14 pl-10 pr-4 bg-transparent text-foreground text-sm appearance-none cursor-pointer focus:outline-none"
@@ -41,6 +42,7 @@ export function SearchBar() {
         <div className="flex-1 relative border-b sm:border-b-0 sm:border-r">
           <input
             type="text"
+            aria-label="Buscar por cidade ou bairro"
             value={local}
             onChange={e => setLocal(e.target.value)}
             placeholder="Cidade ou Bairro"
