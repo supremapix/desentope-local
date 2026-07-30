@@ -17,8 +17,8 @@ const Index = () => {
   const empresasDestaque = getEmpresasDestaque();
 
   useSEO({
-    title: 'Desentupidoras e Encanadores em Curitiba e Região | Serviços no Bairro',
-    description: 'Encontre desentupidoras e encanadores verificados em Curitiba. 75 bairros + 29 cidades da RMC. Emergência 24h, orçamento grátis via WhatsApp. Avaliações reais.',
+    title: 'Desentupidora e Encanador 24h em Curitiba e RMC',
+    description: 'Desentupidoras e encanadores verificados em Curitiba e RMC: 75 bairros, 29 cidades, emergência 24h e orçamento grátis no WhatsApp.',
     canonical: '/',
     jsonLd: [buildWebsiteSchema(), buildOrganizationSchema()],
   });
