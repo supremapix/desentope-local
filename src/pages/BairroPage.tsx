@@ -176,7 +176,7 @@ const BairroPage = () => {
         {/* CTA */}
         <div className="bg-primary text-primary-foreground rounded-xl p-8 text-center">
           <h2 className="text-xl font-bold mb-2">Não encontrou o que procura?</h2>
-          <p className="text-primary-foreground/80 mb-4">Solicite um orçamento e receba respostas em minutos.</p>
+          <p className="text-primary-foreground mb-4">Solicite um orçamento e receba respostas em minutos.</p>
           <a
             href="https://wa.me/5541985171966?text=Olá! Preciso de orçamento para desentupimento/encanamento. [via página bairro - servicosnobairro.com.br]"
             target="_blank"

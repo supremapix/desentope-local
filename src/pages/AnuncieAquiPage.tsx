@@ -56,10 +56,10 @@ const AnuncieAquiPage = () => {
           <h1 className="text-3xl md:text-5xl font-black mb-4 leading-tight">
             Seja Encontrado por Quem<br className="hidden md:block" /> Precisa de Você Agora
           </h1>
-          <p className="text-lg md:text-xl text-primary-foreground/80 mb-6 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-primary-foreground mb-6 max-w-2xl mx-auto">
             Milhares de pessoas buscam desentupidoras e encanadores em Curitiba todos os meses. Apareça para elas.
           </p>
-          <div className="flex flex-wrap justify-center gap-6 text-sm font-medium text-primary-foreground/70">
+          <div className="flex flex-wrap justify-center gap-6 text-sm font-medium text-primary-foreground/90">
             <span className="flex items-center gap-1.5"><BarChart3 className="h-4 w-4 text-secondary" /> +3.200 buscas/mês</span>
             <span className="flex items-center gap-1.5"><MapPin className="h-4 w-4 text-accent" /> 75 bairros cobertos</span>
             <span className="flex items-center gap-1.5"><Star className="h-4 w-4 text-secondary" /> Leads qualificados</span>
@@ -94,7 +94,7 @@ const AnuncieAquiPage = () => {
                     </li>
                   ))}
                   {plan.naoInclui.map(f => (
-                    <li key={f} className="flex items-start gap-2 text-muted-foreground/50 line-through">
+                    <li key={f} className="flex items-start gap-2 text-muted-foreground line-through">
                       <span className="w-4 h-4 mt-0.5 flex-shrink-0 text-center">—</span>
                       <span>{f}</span>
                     </li>
@@ -138,7 +138,7 @@ const AnuncieAquiPage = () => {
       <section className="py-16 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-2xl md:text-3xl font-black mb-4">Pronto para receber mais clientes?</h2>
-          <p className="text-primary-foreground/80 mb-6 max-w-xl mx-auto">
+          <p className="text-primary-foreground mb-6 max-w-xl mx-auto">
             Entre em contato agora pelo WhatsApp e comece a aparecer para quem precisa dos seus serviços.
           </p>
           <a
@@ -149,7 +149,7 @@ const AnuncieAquiPage = () => {
           >
             <MessageCircle className="h-6 w-6" /> Falar com Consultor
           </a>
-          <div className="mt-6 flex flex-wrap justify-center gap-6 text-sm text-primary-foreground/70">
+          <div className="mt-6 flex flex-wrap justify-center gap-6 text-sm text-primary-foreground/90">
             <a href="tel:5541987001004" className="hover:text-primary-foreground transition-colors">📞 (41) 98700-1004</a>
             <a href="mailto:sac@aloanuncio.com.br" className="hover:text-primary-foreground transition-colors">✉️ sac@aloanuncio.com.br</a>
           </div>

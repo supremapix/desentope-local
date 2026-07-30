@@ -83,7 +83,7 @@ const ComoFuncionaPage = () => {
       <section className="bg-primary text-primary-foreground py-14">
         <div className="container mx-auto px-4 max-w-3xl">
           <h1 className="text-3xl md:text-4xl font-black mb-4">Como Funciona</h1>
-          <p className="text-lg text-primary-foreground/80">
+          <p className="text-lg text-primary-foreground">
             Em cinco passos você encontra, compara e contrata uma desentupidora ou encanador
             verificado no seu bairro — de graça e sem intermediação.
           </p>

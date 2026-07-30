@@ -20,10 +20,10 @@ export function Footer() {
               <Droplets className="h-6 w-6 transition-transform duration-500 group-hover:rotate-12 animate-[pulse_3s_ease-in-out_infinite]" />
               <span className="transition-all duration-300 group-hover:tracking-wider">Serviços no Bairro</span>
             </Link>
-            <p className="text-sm text-background/70 mb-4">
+            <p className="text-sm text-background/90 mb-4">
               O maior diretório de desentupidoras e encanadores de Curitiba e Região Metropolitana.
             </p>
-            <div className="space-y-2 text-sm text-background/70">
+            <div className="space-y-2 text-sm text-background/90">
               <a href="https://wa.me/5541992721004?text=Olá! Vim pelo site servicosnobairro.com.br (rodapé)" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-background transition-all hover:translate-x-1">
                 <MessageCircle className="h-4 w-4" /> (41) 99272-1004
               </a>
@@ -39,7 +39,7 @@ export function Footer() {
           {/* Bairros */}
           <div>
             <h3 className="font-bold mb-3">Bairros Populares</h3>
-            <ul className="space-y-1 text-sm text-background/70">
+            <ul className="space-y-1 text-sm text-background/90">
               {['Centro', 'Batel', 'Água Verde', 'Boa Vista', 'Portão', 'CIC', 'Cajuru', 'Boqueirão', 'Santa Felicidade', 'Pinheirinho', 'Rebouças', 'Cabral', 'Juvevê', 'São Francisco', 'Hugo Lange', 'Jardim Botânico', 'Xaxim', 'Hauer', 'Uberaba', 'Campo Comprido'].map(b => (
                 <li key={b}><Link to={`/curitiba/${toSlug(b)}`} className="hover:text-background transition-all hover:translate-x-1 inline-block">{b}</Link></li>
               ))}
@@ -49,7 +49,7 @@ export function Footer() {
           {/* Cidades RMC */}
           <div>
             <h3 className="font-bold mb-3">Cidades da RMC</h3>
-            <ul className="space-y-1 text-sm text-background/70">
+            <ul className="space-y-1 text-sm text-background/90">
               {[
                 { nome: 'São José dos Pinhais', to: '/sao-jose-dos-pinhais' },
                 { nome: 'Colombo', to: '/colombo' },
@@ -64,7 +64,7 @@ export function Footer() {
             </ul>
 
             <h3 className="font-bold mb-3 mt-6">Serviços</h3>
-            <ul className="space-y-1 text-sm text-background/70">
+            <ul className="space-y-1 text-sm text-background/90">
               <li><Link to="/servicos/desentupimento-curitiba" className="hover:text-background transition-all hover:translate-x-1 inline-block">Desentupimento de Esgoto Curitiba</Link></li>
               <li><Link to="/servicos/encanador-curitiba" className="hover:text-background transition-all hover:translate-x-1 inline-block">Encanador 24h Curitiba</Link></li>
               <li><Link to="/servicos/limpa-fossa-curitiba" className="hover:text-background transition-all hover:translate-x-1 inline-block">Limpa Fossa Curitiba</Link></li>
@@ -77,7 +77,7 @@ export function Footer() {
           {/* Links */}
           <div>
             <h3 className="font-bold mb-3">Links</h3>
-            <ul className="space-y-1 text-sm text-background/70">
+            <ul className="space-y-1 text-sm text-background/90">
               <li><Link to="/busca" className="hover:text-background transition-all hover:translate-x-1 inline-block">Buscar Empresas</Link></li>
               <li><Link to="/faq" className="hover:text-background transition-all hover:translate-x-1 inline-block">Perguntas Frequentes</Link></li>
               <li><Link to="/anuncie-aqui" className="hover:text-background transition-all hover:translate-x-1 inline-block">Anuncie Aqui</Link></li>
@@ -99,7 +99,7 @@ export function Footer() {
               </div>
               <div>
                 <div className="font-bold text-sm">Empresa Verificada</div>
-                <div className="text-xs text-background/60">Dados e CNPJ conferidos</div>
+                <div className="text-xs text-background/90">Dados e CNPJ conferidos</div>
               </div>
             </div>
             <div className="flex items-center gap-3 bg-background/10 rounded-xl px-5 py-4 border border-background/20 hover:bg-background/15 transition-all hover:scale-[1.02] group">
@@ -108,7 +108,7 @@ export function Footer() {
               </div>
               <div>
                 <div className="font-bold text-sm">Selo de Confiança</div>
-                <div className="text-xs text-background/60">Profissionais qualificados</div>
+                <div className="text-xs text-background/90">Profissionais qualificados</div>
               </div>
             </div>
             <div className="flex items-center gap-3 bg-background/10 rounded-xl px-5 py-4 border border-background/20 hover:bg-background/15 transition-all hover:scale-[1.02] group">
@@ -117,7 +117,7 @@ export function Footer() {
               </div>
               <div>
                 <div className="font-bold text-sm">Zero Reclamações</div>
-                <div className="text-xs text-background/60">Reclame Aqui limpo</div>
+                <div className="text-xs text-background/90">Reclame Aqui limpo</div>
               </div>
             </div>
             <div className="flex items-center gap-3 bg-background/10 rounded-xl px-5 py-4 border border-background/20 hover:bg-background/15 transition-all hover:scale-[1.02] group">
@@ -126,7 +126,7 @@ export function Footer() {
               </div>
               <div>
                 <div className="font-bold text-sm">4.8+ Avaliação</div>
-                <div className="text-xs text-background/60">Média geral das empresas</div>
+                <div className="text-xs text-background/90">Média geral das empresas</div>
               </div>
             </div>
           </div>
@@ -152,7 +152,7 @@ export function Footer() {
               href="https://supremasite.com.br"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-bold text-background/70 hover:text-background transition-colors"
+              className="font-bold text-background/90 hover:text-background transition-colors"
             >
               Suprema Sites Express
             </a>

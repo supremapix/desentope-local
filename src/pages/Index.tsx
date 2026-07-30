@@ -31,14 +31,14 @@ const Index = () => {
           <h1 className="text-3xl md:text-5xl font-black mb-4 leading-tight">
             Desentupidoras e Encanadores<br className="hidden md:block" /> em Curitiba e Região
           </h1>
-          <p className="text-lg md:text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-primary-foreground mb-8 max-w-2xl mx-auto">
             Encontre profissionais verificados, disponíveis 24h, perto de você
           </p>
 
           <SearchBar />
 
           {/* Trust badges */}
-          <div className="flex flex-wrap justify-center gap-6 mt-8 text-sm font-medium text-primary-foreground/90">
+          <div className="flex flex-wrap justify-center gap-6 mt-8 text-sm font-medium text-primary-foreground">
             <span className="flex items-center gap-1.5"><Zap className="h-4 w-4 text-secondary" /> Resposta em até 15min</span>
             <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-accent" /> +500 empresas cadastradas</span>
             <span className="flex items-center gap-1.5"><Star className="h-4 w-4 text-secondary" /> Avaliações reais</span>
@@ -174,7 +174,7 @@ const Index = () => {
           <h2 className="text-2xl md:text-3xl font-black mb-4 flex items-center justify-center gap-2">
             <AlertTriangle className="h-8 w-8" /> Emergência Agora?
           </h2>
-          <p className="text-lg mb-6 text-destructive-foreground/80">Esgoto voltando? Vaso transbordando? Encontre atendimento 24h imediato.</p>
+          <p className="text-lg mb-6 text-destructive-foreground">Esgoto voltando? Vaso transbordando? Encontre atendimento 24h imediato.</p>
           <Link
             to="/busca?24h=true"
             className="inline-flex items-center justify-center h-12 px-8 rounded-lg bg-card text-foreground font-bold hover:bg-card/90 transition-colors text-lg"

@@ -50,7 +50,7 @@ const ContatoPage = () => {
       <section className="bg-primary text-primary-foreground py-14">
         <div className="container mx-auto px-4 max-w-3xl">
           <h1 className="text-3xl md:text-4xl font-black mb-4">Contato</h1>
-          <p className="text-lg text-primary-foreground/80">
+          <p className="text-lg text-primary-foreground">
             Fale com a equipe editorial do Serviços no Bairro. Para contratar um serviço, procure a
             empresa diretamente na página do seu bairro — o contato é direto, sem intermediação.
           </p>

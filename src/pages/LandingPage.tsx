@@ -76,7 +76,7 @@ const LandingPage = () => {
       <section className="bg-primary text-primary-foreground py-14 md:py-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-3xl md:text-5xl font-black mb-4 leading-tight">{page.h1}</h1>
-          <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-primary-foreground mb-8 max-w-3xl mx-auto">
             {page.heroSubtitle}
           </p>
 
@@ -97,7 +97,7 @@ const LandingPage = () => {
             </a>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-6 text-sm font-medium text-primary-foreground/70">
+          <div className="flex flex-wrap justify-center gap-6 text-sm font-medium text-primary-foreground/90">
             <span className="flex items-center gap-1.5"><Zap className="h-4 w-4 text-secondary" /> Resposta em até 15min</span>
             <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-accent" /> +500 empresas cadastradas</span>
             <span className="flex items-center gap-1.5"><Star className="h-4 w-4 text-secondary" /> Avaliações reais</span>
@@ -196,7 +196,7 @@ const LandingPage = () => {
           <h2 className="text-xl md:text-2xl font-bold mb-2 flex items-center justify-center gap-2">
             <AlertTriangle className="h-6 w-6" /> Precisa de Atendimento Agora?
           </h2>
-          <p className="text-primary-foreground/80 mb-6">
+          <p className="text-primary-foreground mb-6">
             Solicite um orçamento gratuito e receba resposta em até 15 minutos.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
