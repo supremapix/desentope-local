@@ -82,6 +82,10 @@ export function Footer() {
               <li><Link to="/faq" className="hover:text-background transition-all hover:translate-x-1 inline-block">Perguntas Frequentes</Link></li>
               <li><Link to="/anuncie-aqui" className="hover:text-background transition-all hover:translate-x-1 inline-block">Anuncie Aqui</Link></li>
               <li><Link to="/cadastrar-empresa" className="hover:text-background transition-all hover:translate-x-1 inline-block">Cadastrar Empresa</Link></li>
+              <li><Link to="/quem-somos" className="hover:text-background transition-all hover:translate-x-1 inline-block">Quem Somos</Link></li>
+              <li><Link to="/como-funciona" className="hover:text-background transition-all hover:translate-x-1 inline-block">Como Funciona</Link></li>
+              <li><Link to="/como-selecionamos-profissionais" className="hover:text-background transition-all hover:translate-x-1 inline-block">Como Selecionamos Profissionais</Link></li>
+              <li><Link to="/contato" className="hover:text-background transition-all hover:translate-x-1 inline-block">Contato</Link></li>
             </ul>
           </div>
         </div>
