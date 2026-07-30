@@ -1,0 +1,25 @@
+{
+  "name": "Serviços no Bairro — Desentupidora e Encanador 24h",
+  "short_name": "Serviços no Bairro",
+  "description": "Diretório de desentupidoras e encanadores verificados em Curitiba e Região Metropolitana.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0f4c81",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
