@@ -80,7 +80,9 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
+          </main>
         </PageTransition>
+
         <Footer />
         <WhatsAppFloating />
       </BrowserRouter>
