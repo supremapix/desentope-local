@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 
-const SITE_URL = 'https://www.servicosnobairro.com.br';
+const SITE_URL = 'https://desentupa-agora-pr.lovable.app';
 const SITE_NAME = 'Serviços no Bairro';
-const OG_IMAGE = 'https://www.servicosnobairro.com.br/og-image.png';
+const OG_IMAGE = 'https://desentupa-agora-pr.lovable.app/og-image.png';
 const GEO_COORDS = { lat: -25.4284, lng: -49.2733 };
 const PHONE_1 = '+55-41-99272-1004';
 const PHONE_2 = '+55-41-98700-1004';
