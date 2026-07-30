@@ -28,6 +28,7 @@ const ComoFuncionaPage = lazy(() => import("./pages/ComoFuncionaPage"));
 const ComoSelecionamosPage = lazy(() => import("./pages/ComoSelecionamosPage"));
 const PoliticaEditorialPage = lazy(() => import("./pages/PoliticaEditorialPage"));
 const ContatoPage = lazy(() => import("./pages/ContatoPage"));
+const GuiaLimpaFossaPage = lazy(() => import("./pages/GuiaLimpaFossaPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -57,6 +58,7 @@ const App = () => (
               <Route path="/curitiba/:bairro" element={<BairroPage />} />
               <Route path="/rmc/:bairro" element={<BairroPage />} />
               <Route path="/empresa/:slug" element={<EmpresaPage />} />
+              <Route path="/servicos/guia-limpa-fossa" element={<GuiaLimpaFossaPage />} />
               <Route path="/servicos/desentupimento-curitiba" element={<LandingPage />} />
               <Route path="/servicos/encanador-curitiba" element={<LandingPage />} />
               <Route path="/servicos/desentupidora-24h-curitiba" element={<LandingPage />} />

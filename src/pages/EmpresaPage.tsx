@@ -33,7 +33,7 @@ const EmpresaPage = () => {
   }, [empresa]);
 
   useSEO({
-    title: empresa ? `${empresa.nome} — Desentupidora em ${bairroNome}, Curitiba | Serviços no Bairro` : 'Empresa não encontrada',
+    title: empresa ? `${empresa.nome} — ${bairroNome}, Curitiba`.slice(0, 60) : 'Empresa não encontrada',
     description: empresa ? `${empresa.descricao} Atendimento ${empresa.atende24h ? '24h' : 'rápido'} em ${bairroNome}. Nota ${empresa.notaMedia}/5 com ${empresa.totalAvaliacoes} avaliações. Orçamento grátis via WhatsApp.` : '',
     canonical: empresa ? `/empresa/${empresa.slug}` : undefined,
     type: empresa ? 'business.business' : 'website',

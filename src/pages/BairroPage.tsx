@@ -49,8 +49,8 @@ const BairroPage = () => {
   ];
 
   const pageTitle = isCidade
-    ? `Desentupidoras em ${localNome} — PR | 24h | Serviços no Bairro`
-    : `Desentupidoras no ${localNome} — Curitiba | 24h | Serviços no Bairro`;
+    ? `Desentupidora em ${localNome} PR — 24h`
+    : `Desentupidora no ${localNome} — Curitiba 24h`;
 
   useSEO({
     title: pageTitle,
