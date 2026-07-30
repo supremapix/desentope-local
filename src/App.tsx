@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -10,19 +11,33 @@ import { WhatsAppFloating } from "@/components/WhatsAppButton";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { PageTransition } from "@/components/PageTransition";
 import Index from "./pages/Index";
-import BairroPage from "./pages/BairroPage";
-import EmpresaPage from "./pages/EmpresaPage";
-import ServicoPage from "./pages/ServicoPage";
-import FAQPage from "./pages/FAQPage";
-import BuscaPage from "./pages/BuscaPage";
-import CadastrarEmpresaPage from "./pages/CadastrarEmpresaPage";
-import AnuncieAquiPage from "./pages/AnuncieAquiPage";
-import LandingPage from "./pages/LandingPage";
-import PrivacidadePage from "./pages/PrivacidadePage";
-import TermosPage from "./pages/TermosPage";
-import NotFound from "./pages/NotFound";
+
+// Code splitting: só a home entra no bundle inicial (LCP mais rápido).
+const BairroPage = lazy(() => import("./pages/BairroPage"));
+const EmpresaPage = lazy(() => import("./pages/EmpresaPage"));
+const ServicoPage = lazy(() => import("./pages/ServicoPage"));
+const FAQPage = lazy(() => import("./pages/FAQPage"));
+const BuscaPage = lazy(() => import("./pages/BuscaPage"));
+const CadastrarEmpresaPage = lazy(() => import("./pages/CadastrarEmpresaPage"));
+const AnuncieAquiPage = lazy(() => import("./pages/AnuncieAquiPage"));
+const LandingPage = lazy(() => import("./pages/LandingPage"));
+const PrivacidadePage = lazy(() => import("./pages/PrivacidadePage"));
+const TermosPage = lazy(() => import("./pages/TermosPage"));
+const QuemSomosPage = lazy(() => import("./pages/QuemSomosPage"));
+const ComoFuncionaPage = lazy(() => import("./pages/ComoFuncionaPage"));
+const ComoSelecionamosPage = lazy(() => import("./pages/ComoSelecionamosPage"));
+const PoliticaEditorialPage = lazy(() => import("./pages/PoliticaEditorialPage"));
+const ContatoPage = lazy(() => import("./pages/ContatoPage"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
+
+const RouteFallback = () => (
+  <div className="min-h-[60vh] flex items-center justify-center" role="status" aria-live="polite">
+    <span className="sr-only">Carregando conteúdo</span>
+    <div className="h-8 w-8 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+  </div>
+);
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -34,28 +49,35 @@ const App = () => (
         <EmergencyBanner />
         <Header />
         <PageTransition>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/curitiba/:bairro" element={<BairroPage />} />
-            <Route path="/rmc/:bairro" element={<BairroPage />} />
-            <Route path="/empresa/:slug" element={<EmpresaPage />} />
-            <Route path="/servicos/desentupimento-curitiba" element={<LandingPage />} />
-            <Route path="/servicos/encanador-curitiba" element={<LandingPage />} />
-            <Route path="/servicos/desentupidora-24h-curitiba" element={<LandingPage />} />
-            <Route path="/servicos/limpa-fossa-curitiba" element={<LandingPage />} />
-            <Route path="/servicos/hidrojateamento-curitiba" element={<LandingPage />} />
-            <Route path="/sao-jose-dos-pinhais" element={<LandingPage />} />
-            <Route path="/colombo" element={<LandingPage />} />
-            <Route path="/pinhais" element={<LandingPage />} />
-            <Route path="/servicos/:slug" element={<ServicoPage />} />
-            <Route path="/faq" element={<FAQPage />} />
-            <Route path="/busca" element={<BuscaPage />} />
-            <Route path="/cadastrar-empresa" element={<CadastrarEmpresaPage />} />
-            <Route path="/anuncie-aqui" element={<AnuncieAquiPage />} />
-            <Route path="/privacidade" element={<PrivacidadePage />} />
-            <Route path="/termos" element={<TermosPage />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <Suspense fallback={<RouteFallback />}>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/curitiba/:bairro" element={<BairroPage />} />
+              <Route path="/rmc/:bairro" element={<BairroPage />} />
+              <Route path="/empresa/:slug" element={<EmpresaPage />} />
+              <Route path="/servicos/desentupimento-curitiba" element={<LandingPage />} />
+              <Route path="/servicos/encanador-curitiba" element={<LandingPage />} />
+              <Route path="/servicos/desentupidora-24h-curitiba" element={<LandingPage />} />
+              <Route path="/servicos/limpa-fossa-curitiba" element={<LandingPage />} />
+              <Route path="/servicos/hidrojateamento-curitiba" element={<LandingPage />} />
+              <Route path="/sao-jose-dos-pinhais" element={<LandingPage />} />
+              <Route path="/colombo" element={<LandingPage />} />
+              <Route path="/pinhais" element={<LandingPage />} />
+              <Route path="/servicos/:slug" element={<ServicoPage />} />
+              <Route path="/faq" element={<FAQPage />} />
+              <Route path="/busca" element={<BuscaPage />} />
+              <Route path="/cadastrar-empresa" element={<CadastrarEmpresaPage />} />
+              <Route path="/anuncie-aqui" element={<AnuncieAquiPage />} />
+              <Route path="/quem-somos" element={<QuemSomosPage />} />
+              <Route path="/como-funciona" element={<ComoFuncionaPage />} />
+              <Route path="/como-selecionamos-profissionais" element={<ComoSelecionamosPage />} />
+              <Route path="/politica-editorial" element={<PoliticaEditorialPage />} />
+              <Route path="/contato" element={<ContatoPage />} />
+              <Route path="/privacidade" element={<PrivacidadePage />} />
+              <Route path="/termos" element={<TermosPage />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
         </PageTransition>
         <Footer />
         <WhatsAppFloating />
