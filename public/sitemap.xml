@@ -51,6 +51,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://desentupa-agora-pr.lovable.app/servicos/guia-limpa-fossa</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://desentupa-agora-pr.lovable.app/privacidade</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
