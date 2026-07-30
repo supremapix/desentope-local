@@ -92,7 +92,19 @@
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Pré-pintura do herói: permite o LCP acontecer antes do bundle JS carregar.
+           O React substitui este conteúdo na hidratação. -->
+      <section style="background:hsl(224 82% 47%);color:#fff;padding:4rem 1rem;text-align:center;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif">
+        <h1 style="margin:0 auto 1rem;max-width:48rem;font-size:1.875rem;line-height:1.15;font-weight:900">
+          Desentupidoras e Encanadores em Curitiba e Região
+        </h1>
+        <p style="margin:0 auto;max-width:42rem;font-size:1.125rem;line-height:1.5">
+          Encontre profissionais verificados, disponíveis 24h, perto de você
+        </p>
+      </section>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
+
