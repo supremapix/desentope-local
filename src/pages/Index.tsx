@@ -17,8 +17,8 @@ const Index = () => {
   const empresasDestaque = getEmpresasDestaque();
 
   useSEO({
-    title: 'Desentupidoras e Encanadores em Curitiba e Região | Serviços no Bairro',
-    description: 'Encontre desentupidoras e encanadores verificados em Curitiba. 75 bairros + 29 cidades da RMC. Emergência 24h, orçamento grátis via WhatsApp. Avaliações reais.',
+    title: 'Desentupidora e Encanador 24h em Curitiba e RMC',
+    description: 'Desentupidoras e encanadores verificados em Curitiba e RMC: 75 bairros, 29 cidades, emergência 24h e orçamento grátis no WhatsApp.',
     canonical: '/',
     jsonLd: [buildWebsiteSchema(), buildOrganizationSchema()],
   });
@@ -31,14 +31,14 @@ const Index = () => {
           <h1 className="text-3xl md:text-5xl font-black mb-4 leading-tight">
             Desentupidoras e Encanadores<br className="hidden md:block" /> em Curitiba e Região
           </h1>
-          <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
             Encontre profissionais verificados, disponíveis 24h, perto de você
           </p>
 
           <SearchBar />
 
           {/* Trust badges */}
-          <div className="flex flex-wrap justify-center gap-6 mt-8 text-sm font-medium text-primary-foreground/70">
+          <div className="flex flex-wrap justify-center gap-6 mt-8 text-sm font-medium text-primary-foreground/90">
             <span className="flex items-center gap-1.5"><Zap className="h-4 w-4 text-secondary" /> Resposta em até 15min</span>
             <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-accent" /> +500 empresas cadastradas</span>
             <span className="flex items-center gap-1.5"><Star className="h-4 w-4 text-secondary" /> Avaliações reais</span>

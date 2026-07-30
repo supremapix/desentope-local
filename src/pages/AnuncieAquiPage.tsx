@@ -4,7 +4,7 @@ import { Check, Star, Zap, BarChart3, MapPin, Shield, MessageCircle } from 'luci
 
 const AnuncieAquiPage = () => {
   useEffect(() => {
-    document.title = 'Anuncie Aqui — Seja Encontrado por Quem Precisa | Serviços no Bairro';
+    document.title = 'Anuncie sua Empresa | Serviços no Bairro';
   }, []);
 
   const planos = [
