@@ -58,6 +58,7 @@ const App = () => (
               <Route path="/curitiba/:bairro" element={<BairroPage />} />
               <Route path="/rmc/:bairro" element={<BairroPage />} />
               <Route path="/empresa/:slug" element={<EmpresaPage />} />
+              <Route path="/servicos/guia-limpa-fossa" element={<GuiaLimpaFossaPage />} />
               <Route path="/servicos/desentupimento-curitiba" element={<LandingPage />} />
               <Route path="/servicos/encanador-curitiba" element={<LandingPage />} />
               <Route path="/servicos/desentupidora-24h-curitiba" element={<LandingPage />} />
