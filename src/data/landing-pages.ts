@@ -460,5 +460,6 @@ export const landingPages: LandingPageData[] = [
 
 /** Get a landing page by its slug */
 export function getLandingPageBySlug(slug: string): LandingPageData | undefined {
-  return landingPages.find(p => p.slug === slug);
+  const normalized = `/${slug.replace(/^\/+/, '').replace(/\/+$/, '')}`;
+  return landingPages.find(p => p.slug === slug || p.route === normalized);
 }
