@@ -3,7 +3,9 @@ import { getLandingPageBySlug, landingPages } from '@/data/landing-pages';
 import { CompanyCard } from '@/components/CompanyCard';
 import { SearchBar } from '@/components/SearchBar';
 import { Shield, Clock, Star, Zap, AlertTriangle, Phone } from 'lucide-react';
-import { useSEO, buildBreadcrumbSchema, buildServiceSchema } from '@/hooks/useSEO';
+import { useSEO, buildBreadcrumbSchema, buildServiceSchema, buildFAQSchema } from '@/hooks/useSEO';
+import { FaqPremium } from '@/components/FaqPremium';
+import { RelatedLinks } from '@/components/RelatedLinks';
 import { empresas } from '@/data/empresas';
 import { regionais } from '@/data/bairros';
 
@@ -42,6 +44,7 @@ const LandingPage = () => {
         undefined,
         filteredEmpresas.length || 47
       ),
+      ...(page.faq?.length ? [buildFAQSchema(page.faq)] : []),
     ] : undefined,
   });
 
@@ -112,6 +115,16 @@ const LandingPage = () => {
           <SearchBar />
         </div>
 
+        {/* Resposta direta — bloco AEO/GEO */}
+        {page.respostaDireta && (
+          <section aria-labelledby="resposta-rapida" className="mb-10">
+            <div className="rounded-xl border-l-4 border-primary bg-muted p-6">
+              <h2 id="resposta-rapida" className="text-lg font-bold mb-2">Resumo rápido</h2>
+              <p className="text-base leading-relaxed">{page.respostaDireta}</p>
+            </div>
+          </section>
+        )}
+
         {/* Companies */}
         {filteredEmpresas.length > 0 && (
           <section className="mb-14">
@@ -143,6 +156,14 @@ const LandingPage = () => {
               <p key={j} className="text-muted-foreground leading-relaxed mb-4">{p}</p>
             ))}
 
+            {block.type === 'list' && block.listItems && (
+              <ul className="grid gap-2 sm:grid-cols-2 mt-2">
+                {block.listItems.map((item, k) => (
+                  <li key={k} className="rounded-lg border bg-card px-4 py-3 text-sm leading-relaxed">{item}</li>
+                ))}
+              </ul>
+            )}
+
             {block.type === 'table' && block.tableData && (
               <div className="overflow-x-auto mt-4">
                 <table className="w-full border-collapse bg-card rounded-xl overflow-hidden border">
@@ -165,6 +186,23 @@ const LandingPage = () => {
             )}
           </section>
         ))}
+
+        {/* FAQ */}
+        {page.faq && page.faq.length > 0 && (
+          <div className="mb-14">
+            <FaqPremium
+              perguntas={page.faq}
+              titulo="Perguntas Frequentes"
+              subtitulo={`${page.faq.length} dúvidas comuns sobre ${page.h1.split(' em ')[0].toLowerCase()} em ${page.cidade}`}
+              mostrarBusca={false}
+            />
+          </div>
+        )}
+
+        {/* Links relacionados */}
+        {page.relatedLinks && page.relatedLinks.length > 0 && (
+          <RelatedLinks links={page.relatedLinks} />
+        )}
 
         {/* Bairros linking (only for Curitiba pages) */}
         {page.cidade === 'Curitiba' && (
