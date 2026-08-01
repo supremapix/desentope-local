@@ -73,6 +73,9 @@ const App = () => (
               <Route path="/servicos/:slug" element={<ServicoPage />} />
               <Route path="/faq" element={<FAQPage />} />
               <Route path="/busca" element={<BuscaPage />} />
+              <Route path="/blog" element={<BlogIndexPage />} />
+              <Route path="/blog/categoria/:categoria" element={<BlogCategoriaPage />} />
+              <Route path="/blog/:slug" element={<BlogArtigoPage />} />
               <Route path="/cadastrar-empresa" element={<CadastrarEmpresaPage />} />
               <Route path="/anuncie-aqui" element={<AnuncieAquiPage />} />
               <Route path="/quem-somos" element={<QuemSomosPage />} />
