@@ -8,6 +8,9 @@ import { FaqPremium } from '@/components/FaqPremium';
 import { DicasRapidas } from '@/components/DicasRapidas';
 import { getFaqBairro } from '@/data/faq-bairros';
 import { getFaqCidade } from '@/data/faq-cidades';
+import { PerfilLocalSection } from '@/components/PerfilLocalSection';
+import { RelatedLinks } from '@/components/RelatedLinks';
+import { getPerfilBairro, getPerfilCidade } from '@/data/perfis-locais';
 import { useSEO, buildBreadcrumbSchema, buildFAQSchema, buildBairroServiceSchema } from '@/hooks/useSEO';
 
 function toSlug(nome: string): string {
@@ -48,13 +51,23 @@ const BairroPage = () => {
     { icone: '🕐', titulo: 'Preventivo é mais barato', texto: 'Manutenção preventiva custa 3x menos que chamado de emergência', tipo: 'tempo' as const },
   ];
 
+  const perfil = bairroData
+    ? getPerfilBairro(bairroData.slug, bairroData.nome, bairroData.regional)
+    : cidadeData
+      ? getPerfilCidade(cidadeData.slug, cidadeData.nome, cidadeData.distanciaKm)
+      : null;
+
   const pageTitle = isCidade
     ? `Desentupidora em ${localNome} PR — 24h`
     : `Desentupidora no ${localNome} — Curitiba 24h`;
 
+  const metaDescription = perfil
+    ? `Desentupidora e encanador 24h ${isCidade ? 'em' : 'no'} ${localNome}: ${perfil.problemas[0].titulo.toLowerCase()}, ${perfil.problemas[1].titulo.toLowerCase()} e mais. ${empresas.length} empresas verificadas, orçamento grátis.`.slice(0, 158)
+    : `Desentupidoras e encanadores ${isCidade ? 'em' : 'no'} ${localNome} com atendimento 24h e orçamento grátis.`;
+
   useSEO({
     title: pageTitle,
-    description: `Encontre desentupidoras e encanadores ${isCidade ? 'em' : 'no'} ${localNome}${!isCidade ? ', Curitiba' : ', PR'}. ${empresas.length} empresas verificadas com atendimento 24h. Orçamento grátis via WhatsApp.`,
+    description: metaDescription,
     canonical: isCidade ? `/rmc/${bairro}` : `/curitiba/${bairro}`,
     geoPosition: coords,
     geoPlacename: isCidade ? `${localNome}, PR` : `${localNome}, Curitiba, PR`,
@@ -83,6 +96,21 @@ const BairroPage = () => {
     const found = Object.values(regionais).flat().find(n => toSlug(n) === slug);
     return found ? { nome: found, slug } : null;
   }).filter(Boolean) || [];
+
+  // Cidades da RMC mais próximas (por distância de Curitiba) para malha interna.
+  const cidadesProximas = cidadeData
+    ? cidadesRMC
+        .filter(c => c.slug !== cidadeData.slug)
+        .sort(
+          (a, b) =>
+            Math.abs(a.distanciaKm - cidadeData.distanciaKm) -
+            Math.abs(b.distanciaKm - cidadeData.distanciaKm),
+        )
+        .slice(0, 4)
+        .map(c => ({ label: `Desentupidora em ${c.nome}`, to: `/rmc/${c.slug}` }))
+    : [];
+
+
 
   return (
     <div className="min-h-screen">
@@ -123,6 +151,12 @@ const BairroPage = () => {
         <div className="mb-8">
           <SearchBar />
         </div>
+
+        {perfil && (
+          <PerfilLocalSection perfil={perfil} localNome={localNome} isCidade={isCidade} />
+        )}
+
+
 
         {/* Empresas */}
         {empresas.length > 0 ? (
@@ -172,6 +206,20 @@ const BairroPage = () => {
             </div>
           </div>
         )}
+
+        {/* Malha interna: cidades próximas e páginas de referência */}
+        <RelatedLinks
+          title={isCidade ? 'Cidades e serviços próximos' : 'Continue navegando'}
+          links={[
+            ...(isCidade ? cidadesProximas : []),
+            { label: 'Desentupimento em Curitiba', to: '/servicos/desentupimento-curitiba' },
+            { label: 'Encanador em Curitiba', to: '/servicos/encanador-curitiba' },
+            { label: 'Guia completo de limpa fossa', to: '/servicos/guia-limpa-fossa' },
+            { label: 'Perguntas frequentes', to: '/faq' },
+          ]}
+        />
+
+
 
         {/* CTA */}
         <div className="bg-primary text-primary-foreground rounded-xl p-8 text-center">
