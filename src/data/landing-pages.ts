@@ -9,13 +9,18 @@ export interface LandingPageData {
   breadcrumb: { name: string; url: string }[];
   heroSubtitle: string;
   buscaQuery: string;
+  /** Bloco AEO/GEO de resposta direta (40-60 palavras) */
+  respostaDireta?: string;
   /** Unique SEO content blocks — at least 600 words per page */
   contentBlocks: {
     heading: string;
     content: string;
-    type?: 'text' | 'table';
+    type?: 'text' | 'table' | 'list';
     tableData?: { servico: string; preco: string }[];
+    listItems?: string[];
   }[];
+  faq?: { pergunta: string; resposta: string }[];
+  relatedLinks?: { label: string; to: string; hint?: string }[];
 }
 
 export const landingPages: LandingPageData[] = [
