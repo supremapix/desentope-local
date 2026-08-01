@@ -29,6 +29,9 @@ const ComoSelecionamosPage = lazy(() => import("./pages/ComoSelecionamosPage"));
 const PoliticaEditorialPage = lazy(() => import("./pages/PoliticaEditorialPage"));
 const ContatoPage = lazy(() => import("./pages/ContatoPage"));
 const GuiaLimpaFossaPage = lazy(() => import("./pages/GuiaLimpaFossaPage"));
+const BlogIndexPage = lazy(() => import("./pages/BlogIndexPage"));
+const BlogCategoriaPage = lazy(() => import("./pages/BlogCategoriaPage"));
+const BlogArtigoPage = lazy(() => import("./pages/BlogArtigoPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -70,6 +73,9 @@ const App = () => (
               <Route path="/servicos/:slug" element={<ServicoPage />} />
               <Route path="/faq" element={<FAQPage />} />
               <Route path="/busca" element={<BuscaPage />} />
+              <Route path="/blog" element={<BlogIndexPage />} />
+              <Route path="/blog/categoria/:categoria" element={<BlogCategoriaPage />} />
+              <Route path="/blog/:slug" element={<BlogArtigoPage />} />
               <Route path="/cadastrar-empresa" element={<CadastrarEmpresaPage />} />
               <Route path="/anuncie-aqui" element={<AnuncieAquiPage />} />
               <Route path="/quem-somos" element={<QuemSomosPage />} />
