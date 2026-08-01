@@ -80,6 +80,7 @@ export function Footer() {
             <ul className="space-y-1 text-sm text-background/90">
               <li><Link to="/busca" className="hover:text-background transition-all hover:translate-x-1 inline-block">Buscar Empresas</Link></li>
               <li><Link to="/faq" className="hover:text-background transition-all hover:translate-x-1 inline-block">Perguntas Frequentes</Link></li>
+              <li><Link to="/blog" className="hover:text-background transition-all hover:translate-x-1 inline-block">Blog</Link></li>
               <li><Link to="/anuncie-aqui" className="hover:text-background transition-all hover:translate-x-1 inline-block">Anuncie Aqui</Link></li>
               <li><Link to="/cadastrar-empresa" className="hover:text-background transition-all hover:translate-x-1 inline-block">Cadastrar Empresa</Link></li>
               <li><Link to="/quem-somos" className="hover:text-background transition-all hover:translate-x-1 inline-block">Quem Somos</Link></li>
