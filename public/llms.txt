@@ -54,3 +54,13 @@ Desentupimento (vaso sanitário, pia, esgoto residencial, esgoto comercial, caix
 - Faixas de preço publicadas são médias de mercado em Curitiba, não tabela oficial; o valor final depende do diagnóstico no local.
 - Avaliações publicadas são de clientes reais, com serviço e data identificados.
 - Sitemap completo: https://www.servicosnobairro.com.br/sitemap.xml
+
+## Blog (guias técnicos citáveis)
+- /blog — índice de guias sobre desentupimento, encanamento e manutenção preventiva
+- /blog/quanto-custa-desentupimento-curitiba — tabela de preços 2026 em Curitiba e RMC
+- /blog/como-desentupir-vaso-sanitario — passo a passo seguro
+- /blog/esgoto-voltando-pelo-ralo — causas, riscos e responsabilidade (imóvel x Sanepar)
+- /blog/como-encontrar-vazamento-de-agua — teste do hidrômetro e custo de caça-vazamento
+- /blog/quando-trocar-tubulacao-antiga — vida útil por material e custos
+- /blog/limpeza-caixa-de-gordura — frequência por tipo de imóvel e preços
+- /blog/manutencao-preventiva-predial-hidraulica — calendário anual para condomínios
