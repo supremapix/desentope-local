@@ -599,7 +599,7 @@ export const blogArtigos: BlogArtigo[] = [
           'Se a obstrução está na prumada ou em área comum, o custo é do condomínio. Se está no ramal interno da unidade, é do morador.',
       },
     ],
-    servicos: ['hidrojateamento', 'camera-inspecao-esgoto', 'desentupimento-esgoto-comercial', 'limpeza-caixa-dagua'],
+    servicos: ['hidrojateamento', 'camera-inspecao-esgoto', 'desentupimento-esgoto-comercial', 'instalacao-caixa-dagua'],
   },
 ];
 
