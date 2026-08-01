@@ -56,6 +56,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://desentupa-agora-pr.lovable.app/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://desentupa-agora-pr.lovable.app/privacidade</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
@@ -64,6 +69,56 @@
     <loc>https://desentupa-agora-pr.lovable.app/termos</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/blog/categoria/desentupimento</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/blog/categoria/encanamento</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/blog/categoria/manutencao-preventiva</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/blog/quanto-custa-desentupimento-curitiba</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/blog/como-desentupir-vaso-sanitario</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/blog/esgoto-voltando-pelo-ralo</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/blog/como-encontrar-vazamento-de-agua</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/blog/quando-trocar-tubulacao-antiga</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/blog/limpeza-caixa-de-gordura</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/blog/manutencao-preventiva-predial-hidraulica</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://desentupa-agora-pr.lovable.app/servicos/desentupimento-curitiba</loc>
