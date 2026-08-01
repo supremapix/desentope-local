@@ -208,8 +208,8 @@ export const landingPages: LandingPageData[] = [
   {
     slug: 'hidrojateamento-curitiba',
     route: '/servicos/hidrojateamento-curitiba',
-    title: 'Hidrojateamento em Curitiba | Desentupimento Industrial | Serviços no Bairro',
-    metaDescription: 'Hidrojateamento em Curitiba para residências, comércios e indústrias. Limpeza de tubulações com alta pressão. Orçamento gratuito.',
+    title: 'Hidrojateamento em Curitiba — Preços e Empresas 24h',
+    metaDescription: 'Hidrojateamento em Curitiba: preços de R$ 350 a R$ 3.000, quando indicar, como é feito e empresas verificadas com caminhão de alta pressão. Orçamento grátis.',
     h1: 'Hidrojateamento em Curitiba — Limpeza de Tubulações',
     cidade: 'Curitiba',
     servicoSlug: 'hidrojateamento',
@@ -220,10 +220,27 @@ export const landingPages: LandingPageData[] = [
     ],
     heroSubtitle: 'Hidrojateamento de alta pressão para desentupimento de tubulações, limpeza de esgoto industrial e manutenção preventiva. Equipamentos profissionais e equipe técnica especializada.',
     buscaQuery: '/busca?servico=hidrojateamento&cidade=curitiba',
+    respostaDireta:
+      'Hidrojateamento em Curitiba custa entre R$ 350 e R$ 800 em residências, R$ 500 a R$ 1.500 em comércios e R$ 800 a R$ 3.000 em indústrias. O serviço usa jato de água de 150 a 500 bar para remover gordura, raízes e incrustações, dura de 2 a 4 horas e tem atendimento 24 horas.',
     contentBlocks: [
       {
         heading: 'O que é hidrojateamento e como funciona?',
         content: `O hidrojateamento é uma técnica avançada de desentupimento e limpeza de tubulações que utiliza jatos de água em altíssima pressão — geralmente entre 150 e 500 bar — para remover obstruções, incrustações e resíduos aderidos às paredes internas dos canos.\n\nDiferente do desentupimento convencional com máquina rotativa, o hidrojateamento limpa toda a superfície interna da tubulação, removendo gordura acumulada, raízes que invadiram o encanamento, depósitos calcários e outros materiais que reduzem o fluxo de água.\n\nEm Curitiba, o hidrojateamento é especialmente indicado para imóveis antigos no Centro, Batel e Rebouças, onde as tubulações de ferro fundido acumulam décadas de incrustações. Também é muito utilizado em condomínios, restaurantes, indústrias da CIC e estabelecimentos comerciais que precisam de limpeza preventiva periódica.\n\nO procedimento é realizado com um caminhão equipado com bomba de alta pressão, tanque de água e mangueira especial com bico rotativo. O processo não danifica as tubulações e é ecologicamente correto, já que utiliza apenas água — sem produtos químicos.`,
+      },
+      {
+        heading: 'Quando o hidrojateamento é indicado (e quando não é)',
+        content: `O hidrojateamento é a escolha certa quando o entupimento é recorrente, quando a tubulação tem diâmetro acima de 75 mm ou quando o problema é acúmulo em toda a extensão do cano — e não um objeto pontual. Já em tubulações muito antigas, trincadas ou de barro, o jato pode agravar rupturas: nesses casos a inspeção por câmera vem primeiro.`,
+        type: 'list',
+        listItems: [
+          'Indicado: rede coletora de condomínio com refluxo repetido a cada poucos meses.',
+          'Indicado: caixa de gordura e ramal de restaurante, padaria ou lanchonete com gordura solidificada.',
+          'Indicado: raízes finas invadindo o ramal externo (combinado com câmera de inspeção).',
+          'Indicado: manutenção preventiva anual de galerias, garagens e ralos de subsolo.',
+          'Indicado: tubulação industrial com incrustação química ou lodo.',
+          'Não indicado: tubo de barro ou cimento antigo já trincado — risco de colapso.',
+          'Não indicado: obstrução por objeto sólido (pano, brinquedo) — melhor rotosonda ou remoção manual.',
+          'Não indicado: tubulação de 40 mm de pia com sifão entupido — resolve-se com desentupimento simples.',
+        ],
       },
       {
         heading: 'Quanto custa hidrojateamento em Curitiba?',
@@ -235,16 +252,79 @@ export const landingPages: LandingPageData[] = [
           { servico: 'Hidrojateamento industrial', preco: 'R$ 800 a R$ 3.000' },
           { servico: 'Limpeza preventiva de rede (condomínio)', preco: 'R$ 1.000 a R$ 4.000' },
           { servico: 'Hidrojateamento + câmera de inspeção', preco: 'R$ 600 a R$ 1.800' },
+          { servico: 'Adicional noturno, fim de semana ou feriado', preco: '+30% a +50%' },
         ],
       },
       {
-        heading: 'Vantagens do hidrojateamento sobre métodos convencionais',
-        content: `O hidrojateamento oferece diversas vantagens em comparação com o desentupimento convencional com máquina rotativa. Primeiro, a limpeza é completa — enquanto a máquina rotativa apenas perfura a obstrução criando um canal para passagem da água, o hidrojateamento remove todo o material aderido às paredes do tubo, restaurando o diâmetro original da tubulação.\n\nSegundo, o resultado é mais duradouro. Após um hidrojateamento bem feito, a tubulação pode ficar 2 a 3 anos sem entupir, enquanto o desentupimento convencional resolve o problema imediato mas não previne recorrências.\n\nTerceiro, é mais seguro para as tubulações. O jato de água, apesar da alta pressão, é controlado por profissionais treinados e não causa desgaste nos canos. Diferente de arames ou máquinas rotativas, não há risco de perfurar a tubulação.\n\nQuarto, permite diagnóstico completo. Muitas empresas de Curitiba combinam o hidrojateamento com câmera de inspeção, permitindo visualizar o interior da tubulação antes e depois do serviço — você vê exatamente o que foi feito.`,
+        heading: 'Como é feito o serviço, passo a passo',
+        content: `Um hidrojateamento bem executado em Curitiba leva de 2 a 4 horas em imóvel residencial e pode passar de um turno inteiro em indústria ou condomínio de grande porte. A sequência abaixo é o padrão adotado pelas empresas verificadas do diretório.`,
+        type: 'list',
+        listItems: [
+          '1. Vistoria inicial: identificação das caixas de inspeção, do sentido do fluxo e do diâmetro da tubulação.',
+          '2. Diagnóstico por câmera (quando contratado): localização exata da obstrução em metros a partir da caixa.',
+          '3. Isolamento da área: proteção de pisos, ralos e mobiliário próximos ao ponto de trabalho.',
+          '4. Aplicação do jato: mangueira com bico rotativo introduzida na tubulação, com pressão ajustada ao material do cano.',
+          '5. Remoção dos resíduos: sucção do material desprendido para o tanque do caminhão.',
+          '6. Teste de escoamento: descarga contínua acompanhada pelo cliente e nova filmagem de conferência.',
+          '7. Entrega técnica: comprovante com serviço executado, pressão utilizada, metragem limpa e prazo de garantia.',
+        ],
+      },
+      {
+        heading: 'Hidrojateamento x rotosonda x desentupimento químico',
+        content: `A rotosonda (máquina rotativa) usa uma haste flexível com ponteira cortante e é ideal para furar obstruções pontuais em tubos de pequeno diâmetro; custa menos e resolve rápido, mas não limpa a parede do cano. O hidrojateamento limpa toda a circunferência interna e restaura o diâmetro útil, com resultado que costuma durar de 2 a 3 anos.\n\nJá o desentupimento químico com soda cáustica é o método que mais gera prejuízo em Curitiba: ataca tubos de PVC, gera calor dentro da rede, provoca queimaduras no morador e frequentemente apenas empurra o bloqueio para um ponto mais profundo. Nenhuma empresa séria do diretório trabalha com soda cáustica como solução principal.\n\nA combinação mais eficiente para imóveis com histórico de entupimento é hidrojateamento seguido de câmera de inspeção: você limpa e, na sequência, descobre se existe trecho colapsado, contraflecha ou invasão de raiz que exigirá troca de tubulação.`,
       },
       {
         heading: 'Bairros e regiões atendidas em Curitiba',
-        content: `O serviço de hidrojateamento está disponível em todos os bairros de Curitiba através do nosso diretório. As regiões com maior demanda são a CIC (Cidade Industrial), onde indústrias e galpões necessitam de limpeza periódica, e os bairros centrais com edificações antigas — Centro, São Francisco, Rebouças, Batel e Alto da Rua XV.\n\nCondomínios em bairros como Ecoville, Champagnat, Campo Comprido e Mossunguê também são clientes frequentes de hidrojateamento preventivo, contratando o serviço anualmente para manter a rede de esgoto do edifício em perfeito funcionamento.`,
+        content: `O serviço de hidrojateamento está disponível em todos os bairros de Curitiba através do nosso diretório. As regiões com maior demanda são a CIC (Cidade Industrial), onde indústrias e galpões necessitam de limpeza periódica, e os bairros centrais com edificações antigas — Centro, São Francisco, Rebouças, Batel e Alto da Rua XV.\n\nCondomínios em bairros como Ecoville, Champagnat, Campo Comprido e Mossunguê também são clientes frequentes de hidrojateamento preventivo, contratando o serviço anualmente para manter a rede de esgoto do edifício em perfeito funcionamento.\n\nNa Região Metropolitana, o hidrojateamento é bastante contratado em São José dos Pinhais (polo industrial e automotivo), Araucária (refinaria e indústrias), Pinhais e Colombo (condomínios e comércios). Há taxa de deslocamento em algumas cidades mais distantes, sempre informada antes da visita.`,
       },
+      {
+        heading: 'Como contratar com segurança',
+        content: `Antes de fechar o serviço, peça o CNPJ da empresa, confirme a pressão do equipamento (bombas abaixo de 150 bar não fazem hidrojateamento de verdade) e exija o valor fechado por escrito, incluindo deslocamento e eventual adicional noturno. Desconfie de orçamentos por telefone muito abaixo da faixa de mercado: é comum o preço subir no local.\n\nAs empresas listadas aqui passam por checagem de CNPJ ativo, endereço, canais de atendimento e histórico de avaliações. As faixas de preço publicadas são médias observadas em Curitiba e Região Metropolitana, não uma tabela oficial — o valor final depende do diagnóstico no local, do diâmetro da tubulação e do horário do chamado.`,
+      },
+    ],
+    faq: [
+      {
+        pergunta: 'Quanto custa um hidrojateamento em Curitiba?',
+        resposta: 'Em Curitiba, o hidrojateamento residencial custa entre R$ 350 e R$ 800, o comercial entre R$ 500 e R$ 1.500 e o industrial entre R$ 800 e R$ 3.000. Limpeza preventiva de rede de condomínio fica entre R$ 1.000 e R$ 4.000. Atendimento noturno, fim de semana e feriado costuma somar 30% a 50%.',
+      },
+      {
+        pergunta: 'Quanto tempo demora o serviço?',
+        resposta: 'Um hidrojateamento residencial leva de 2 a 4 horas. Em comércios com gordura acumulada, de 3 a 6 horas. Em condomínios e indústrias, o serviço pode ocupar um turno inteiro ou ser dividido em etapas para não interromper o funcionamento do imóvel.',
+      },
+      {
+        pergunta: 'O hidrojateamento pode danificar a tubulação?',
+        resposta: 'Em tubulações de PVC e ferro fundido em bom estado, não: a pressão é ajustada ao material e ao diâmetro do cano. O risco existe em tubos de barro, cimento antigo ou já trincados. Por isso, em imóveis com mais de 40 anos, o recomendado é fazer inspeção por câmera antes de aplicar o jato.',
+      },
+      {
+        pergunta: 'Quanto tempo dura o resultado?',
+        resposta: 'Como o hidrojateamento remove o material aderido à parede do tubo e restaura o diâmetro útil, o efeito costuma durar de 2 a 3 anos em uso residencial. Em restaurantes e lanchonetes, o intervalo recomendado cai para 6 a 12 meses por causa do volume de gordura.',
+      },
+      {
+        pergunta: 'Preciso desocupar o imóvel durante o hidrojateamento?',
+        resposta: 'Não. A área de trabalho é isolada e apenas os pontos hidráulicos ligados ao trecho em limpeza ficam sem uso durante o serviço. Em condomínios, o síndico costuma avisar os moradores para evitar descargas na coluna que está sendo limpa.',
+      },
+      {
+        pergunta: 'Hidrojateamento resolve entupimento por raiz de árvore?',
+        resposta: 'Resolve quando as raízes ainda são finas: o bico rotativo corta e arrasta o material. Se a raiz já rompeu o tubo ou a inspeção mostrar trecho colapsado, o jato dá alívio temporário e a solução definitiva é a troca do trecho danificado.',
+      },
+      {
+        pergunta: 'Tem hidrojateamento 24 horas em Curitiba?',
+        resposta: 'Sim. Empresas do diretório mantêm caminhão de hidrojateamento de plantão 24 horas, inclusive em madrugadas, fins de semana e feriados, com prioridade para refluxo de esgoto em garagens, subsolos e comércios.',
+      },
+      {
+        pergunta: 'Vale a pena contratar hidrojateamento preventivo em condomínio?',
+        resposta: 'Sim. Um hidrojateamento preventivo da rede coletora de um prédio de médio porte custa entre R$ 1.200 e R$ 3.000 a cada 12 a 24 meses, enquanto uma emergência de refluxo com garagem inundada e reparo civil passa facilmente de R$ 6.000.',
+      },
+    ],
+    relatedLinks: [
+      { label: 'Câmera de inspeção de esgoto', to: '/servicos/camera-inspecao-esgoto', hint: 'Diagnóstico antes e depois do jato' },
+      { label: 'Desentupimento de esgoto residencial', to: '/servicos/desentupimento-esgoto-residencial', hint: 'Quando o problema é pontual' },
+      { label: 'Limpeza de caixa de gordura', to: '/servicos/desentupimento-caixa-gordura', hint: 'Manutenção de cozinhas e comércios' },
+      { label: 'Troca de tubulação', to: '/servicos/troca-tubulacao', hint: 'Para tubos colapsados ou com raiz' },
+      { label: 'Desentupidora 24h em Curitiba', to: '/servicos/desentupidora-24h-curitiba', hint: 'Emergência a qualquer hora' },
+      { label: 'Quanto custa desentupimento em Curitiba', to: '/blog/quanto-custa-desentupimento-curitiba', hint: 'Tabela de preços 2026' },
+      { label: 'Manutenção preventiva predial', to: '/blog/manutencao-preventiva-predial-hidraulica', hint: 'Calendário anual para condomínios' },
+      { label: 'Como selecionamos profissionais', to: '/como-selecionamos-profissionais', hint: 'Critérios de verificação' },
     ],
   },
 
