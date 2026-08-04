@@ -14,6 +14,7 @@ import { servicos } from '../src/data/servicos';
 import { landingPages } from '../src/data/landing-pages';
 import { empresas } from '../src/data/empresas';
 import { blogArtigos, blogCategorias } from '../src/data/blog';
+import { locaisInspecao } from '../src/data/camera-inspecao';
 
 const BASE_URL = 'https://desentupa-agora-pr.lovable.app';
 
@@ -35,6 +36,7 @@ const staticPages: SitemapEntry[] = [
   { path: '/cadastrar-empresa', changefreq: 'monthly', priority: '0.5' },
   { path: '/anuncie-aqui', changefreq: 'monthly', priority: '0.6' },
   { path: '/servicos/guia-limpa-fossa', changefreq: 'monthly', priority: '0.8' },
+  { path: '/servicos/camera-inspecao-esgoto-curitiba', changefreq: 'weekly', priority: '0.9' },
   { path: '/blog', changefreq: 'weekly', priority: '0.8' },
   { path: '/privacidade', changefreq: 'yearly', priority: '0.3' },
   { path: '/termos', changefreq: 'yearly', priority: '0.3' },
@@ -42,6 +44,10 @@ const staticPages: SitemapEntry[] = [
 
 const entries: SitemapEntry[] = [
   ...staticPages,
+  // Silo de câmera de inspeção de esgoto (páginas locais)
+  ...locaisInspecao
+    .filter((l) => l.slug !== 'curitiba')
+    .map((l) => ({ path: `/camera-inspecao-esgoto/${l.slug}`, changefreq: 'monthly' as const, priority: '0.7' })),
   // Blog — categorias e artigos
   ...blogCategorias.map((c) => ({ path: `/blog/categoria/${c.slug}`, changefreq: 'weekly' as const, priority: '0.6' })),
   ...blogArtigos.map((a) => ({ path: `/blog/${a.slug}`, changefreq: 'monthly' as const, priority: '0.8' })),

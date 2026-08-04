@@ -56,6 +56,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://desentupa-agora-pr.lovable.app/servicos/camera-inspecao-esgoto-curitiba</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://desentupa-agora-pr.lovable.app/blog</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -69,6 +74,151 @@
     <loc>https://desentupa-agora-pr.lovable.app/termos</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/cic</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/batel</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/piraquara</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/pinhais</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/almirante-tamandare</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/colombo</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/campo-magro</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/sao-jose-dos-pinhais</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/araucaria</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/fazenda-rio-grande</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/campo-largo</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/quatro-barras</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/campina-grande-do-sul</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/mandirituba</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/itaperucu</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/contenda</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/balsa-nova</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/bocaiuva-do-sul</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/rio-branco-do-sul</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/lapa</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/adrianopolis</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/agudos-do-sul</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/campo-do-tenente</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/cerro-azul</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/doutor-ulysses</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/pien</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/quitandinha</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/tijucas-do-sul</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/tunas-do-parana</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://desentupa-agora-pr.lovable.app/blog/categoria/desentupimento</loc>
@@ -117,6 +267,16 @@
   </url>
   <url>
     <loc>https://desentupa-agora-pr.lovable.app/blog/manutencao-preventiva-predial-hidraulica</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/blog/como-funciona-camera-de-inspecao-de-esgoto</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://desentupa-agora-pr.lovable.app/blog/video-inspecao-ou-hidrojateamento</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

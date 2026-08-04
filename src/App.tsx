@@ -29,6 +29,7 @@ const ComoSelecionamosPage = lazy(() => import("./pages/ComoSelecionamosPage"));
 const PoliticaEditorialPage = lazy(() => import("./pages/PoliticaEditorialPage"));
 const ContatoPage = lazy(() => import("./pages/ContatoPage"));
 const GuiaLimpaFossaPage = lazy(() => import("./pages/GuiaLimpaFossaPage"));
+const CameraInspecaoPage = lazy(() => import("./pages/CameraInspecaoPage"));
 const BlogIndexPage = lazy(() => import("./pages/BlogIndexPage"));
 const BlogCategoriaPage = lazy(() => import("./pages/BlogCategoriaPage"));
 const BlogArtigoPage = lazy(() => import("./pages/BlogArtigoPage"));
@@ -62,6 +63,8 @@ const App = () => (
               <Route path="/rmc/:bairro" element={<BairroPage />} />
               <Route path="/empresa/:slug" element={<EmpresaPage />} />
               <Route path="/servicos/guia-limpa-fossa" element={<GuiaLimpaFossaPage />} />
+              <Route path="/servicos/camera-inspecao-esgoto-curitiba" element={<CameraInspecaoPage />} />
+              <Route path="/camera-inspecao-esgoto/:local" element={<CameraInspecaoPage />} />
               <Route path="/servicos/desentupimento-curitiba" element={<LandingPage />} />
               <Route path="/servicos/encanador-curitiba" element={<LandingPage />} />
               <Route path="/servicos/desentupidora-24h-curitiba" element={<LandingPage />} />

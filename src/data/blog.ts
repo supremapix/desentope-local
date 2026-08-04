@@ -601,6 +601,143 @@ export const blogArtigos: BlogArtigo[] = [
     ],
     servicos: ['hidrojateamento', 'camera-inspecao-esgoto', 'desentupimento-esgoto-comercial', 'instalacao-caixa-dagua'],
   },
+  {
+    slug: 'como-funciona-camera-de-inspecao-de-esgoto',
+    categoria: 'desentupimento',
+    titulo: 'Como Funciona a Câmera de Inspeção de Esgoto',
+    h1: 'Como funciona a câmera de inspeção de esgoto (vídeo inspeção)',
+    descricao:
+      'Como funciona a vídeo inspeção de tubulação: equipamento, etapas, o que a imagem revela, quanto custa em Curitiba e quando vale a pena inspecionar antes de quebrar.',
+    respostaDireta:
+      'A câmera de inspeção é uma sonda de vídeo em haste flexível introduzida na tubulação por um ponto de acesso já existente. Ela percorre o cano gravando o interior em alta definição e um transmissor marca na superfície a posição e a profundidade do defeito, permitindo diagnóstico completo sem quebrar piso ou parede.',
+    atualizadoEm: '2026-08-04',
+    leituraMin: 8,
+    secoes: [
+      {
+        h2: 'O que é a vídeo inspeção de tubulação',
+        paragrafos: [
+          'A vídeo inspeção, também chamada de inspeção por câmera ou câmera de esgoto, é um exame de imagem do interior da tubulação. Em vez de abrir o piso para procurar onde está o problema, o técnico envia uma câmera pelo próprio cano e observa a rede por dentro.',
+          'O equipamento é composto por um cabeçote de vídeo com iluminação LED, uma haste de fibra de vidro enrolada em carretel, um monitor com gravador e um transmissor de sinal (normalmente 512 Hz) captado por um receptor na superfície.',
+          'É o mesmo princípio usado por concessionárias de saneamento para inspecionar coletores públicos, adaptado a diâmetros residenciais e prediais a partir de 40 mm.',
+        ],
+      },
+      {
+        h2: 'Passo a passo da inspeção',
+        lista: [
+          'Escolha do ponto de acesso: caixa de inspeção, caixa de gordura, ralo, tubo de queda ou vaso removido.',
+          'Introdução do cabeçote e avanço da haste acompanhando curvas e conexões.',
+          'Gravação contínua do percurso com contador de metragem sobreposto à imagem.',
+          'Identificação do defeito: gordura, raiz, trinca, junta deslocada, contra-caimento ou esmagamento.',
+          'Localização eletrônica: o receptor marca no piso a posição e a profundidade exatas.',
+          'Entrega do vídeo e do relatório técnico com a solução recomendada.',
+        ],
+      },
+      {
+        h2: 'O que a imagem consegue revelar',
+        paragrafos: [
+          'A câmera diferencia dois tipos de achado. O primeiro é o depósito removível — gordura solidificada, incrustação, areia, papel e objetos — que se resolve com hidrojateamento ou rotosonda.',
+          'O segundo é o dano estrutural: trinca longitudinal, manilha de barro quebrada, tubo ovalizado, junta aberta com entrada de raiz, afundamento com água parada e colapso do cano. Esse grupo exige reparo localizado, e é justamente aqui que a marcação do ponto evita quebrar metros de piso à toa.',
+        ],
+      },
+      {
+        h2: 'Quanto custa em Curitiba',
+        tabela: {
+          colunas: ['Tipo de inspeção', 'Preço médio 2026'],
+          linhas: [
+            ['Ramal residencial até 30 m', 'R$ 200 a R$ 400'],
+            ['Ramal estendido de 30 a 60 m', 'R$ 350 a R$ 600'],
+            ['Prumada ou coluna de condomínio', 'R$ 500 a R$ 1.200'],
+            ['Inspeção com relatório técnico completo', 'R$ 350 a R$ 800'],
+            ['Inspeção combinada com hidrojateamento', 'R$ 600 a R$ 1.500'],
+          ],
+        },
+        destaque:
+          'Uma quebra exploratória de piso mal localizada custa, entre demolição, material e reassentamento, mais do que a inspeção que teria evitado o erro.',
+      },
+      {
+        h2: 'Quando vale a pena inspecionar antes de quebrar',
+        lista: [
+          'Entupimento que volta poucas semanas depois de desentupido.',
+          'Mancha de umidade, piso frio ou afundamento sobre a linha de esgoto.',
+          'Imóvel com mais de 20 anos antes de reforma ou compra.',
+          'Condomínio que precisa justificar orçamento de manutenção em assembleia.',
+          'Discussão com construtora, seguradora ou vizinho sobre origem do dano.',
+        ],
+      },
+    ],
+    faq: [
+      { pergunta: 'A inspeção resolve o entupimento?', resposta: 'Não. Ela diagnostica. A desobstrução é feita depois por hidrojateamento, rotosonda ou reparo localizado, conforme o defeito encontrado.' },
+      { pergunta: 'Precisa quebrar alguma coisa?', resposta: 'Não. O acesso é feito por caixas, ralos e tubos já existentes. A quebra, se necessária, ocorre só no ponto marcado pela sonda.' },
+      { pergunta: 'Qual o alcance da câmera?', resposta: 'De 30 a 60 metros em equipamentos de haste e mais de 100 metros em sistemas robotizados com carretel motorizado.' },
+      { pergunta: 'Recebo o vídeo?', resposta: 'Sim. Peça o arquivo digital completo, e não apenas capturas de tela, além do relatório com metragem e recomendação.' },
+    ],
+    servicos: ['camera-inspecao-esgoto', 'hidrojateamento', 'desentupimento-esgoto-residencial'],
+  },
+  {
+    slug: 'video-inspecao-ou-hidrojateamento',
+    categoria: 'desentupimento',
+    titulo: 'Vídeo Inspeção ou Hidrojateamento: Qual Contratar',
+    h1: 'Vídeo inspeção ou hidrojateamento: qual serviço contratar primeiro',
+    descricao:
+      'Diferença entre vídeo inspeção e hidrojateamento: um diagnostica, o outro trata. Veja quando contratar cada um, quanto custa em Curitiba e quando fazer os dois juntos.',
+    respostaDireta:
+      'Vídeo inspeção e hidrojateamento não competem: um diagnostica e o outro trata. A câmera mostra o que existe dentro do cano; o jato de água a alta pressão remove gordura e incrustação. Em entupimento recorrente, o caminho mais econômico costuma ser inspecionar, jatear e reinspecionar para confirmar o resultado.',
+    atualizadoEm: '2026-08-04',
+    leituraMin: 7,
+    secoes: [
+      {
+        h2: 'A diferença essencial',
+        paragrafos: [
+          'A vídeo inspeção é um serviço de diagnóstico. Ela não remove nada: entrega imagem, metragem e localização do defeito.',
+          'O hidrojateamento é um serviço de tratamento. Um jato de água entre 200 e 500 bar desprende gordura, incrustação, areia e raiz fina das paredes internas do tubo, devolvendo o diâmetro original.',
+          'Contratar apenas o hidrojateamento resolve o sintoma quando a causa é acúmulo. Se a causa for estrutural — tubo rompido, afundado ou esmagado — o jato limpa e o problema volta, porque o defeito continua lá.',
+        ],
+      },
+      {
+        h2: 'Qual contratar em cada situação',
+        tabela: {
+          colunas: ['Situação', 'Serviço indicado'],
+          linhas: [
+            ['Primeiro entupimento, escoamento lento na cozinha', 'Desentupimento ou hidrojateamento'],
+            ['Entupimento que volta em semanas', 'Vídeo inspeção primeiro'],
+            ['Mau cheiro e umidade sem causa aparente', 'Vídeo inspeção'],
+            ['Piso ou calçada afundando', 'Vídeo inspeção com localização'],
+            ['Manutenção anual de restaurante', 'Hidrojateamento + inspeção final'],
+            ['Prédio com refluxo em andares baixos', 'Inspeção da prumada e depois hidrojateamento'],
+          ],
+        },
+      },
+      {
+        h2: 'Custos comparados em Curitiba',
+        tabela: {
+          colunas: ['Serviço', 'Preço médio 2026'],
+          linhas: [
+            ['Vídeo inspeção residencial', 'R$ 200 a R$ 600'],
+            ['Hidrojateamento residencial', 'R$ 350 a R$ 800'],
+            ['Hidrojateamento predial/comercial', 'R$ 800 a R$ 2.500'],
+            ['Pacote inspeção + hidrojateamento', 'R$ 600 a R$ 1.500'],
+          ],
+        },
+        destaque:
+          'Peça o pacote combinado: muitas empresas abatem o valor da inspeção quando o hidrojateamento é contratado na sequência.',
+      },
+      {
+        h2: 'A sequência ideal em casos recorrentes',
+        lista: [
+          'Inspecionar para identificar causa e material da tubulação.',
+          'Jatear apenas o trecho que realmente precisa, com pressão compatível com o tubo.',
+          'Reinspecionar após a limpeza para comprovar o resultado.',
+          'Definir um plano preventivo com base no que foi encontrado.',
+        ],
+      },
+    ],
+    faq: [
+      { pergunta: 'Hidrojateamento pode danificar tubo antigo?', resposta: 'Pode, se a pressão for incompatível com manilha de barro ou cimento amianto já deteriorado. Por isso a inspeção prévia importa: ela revela o material e o estado do tubo.' },
+      { pergunta: 'Dá para fazer só a inspeção?', resposta: 'Dá, e é comum antes de compra de imóvel, reforma ou laudo. O relatório vale por si só como documento técnico.' },
+      { pergunta: 'A inspeção depois do jateamento é necessária?', resposta: 'É a melhor forma de comprovar que o serviço entregou o resultado prometido e que não há dano estrutural escondido sob a incrustação.' },
+    ],
+    servicos: ['hidrojateamento', 'camera-inspecao-esgoto', 'desentupimento-caixa-gordura'],
+  },
 ];
 
 export function getCategoriaBySlug(slug: string): BlogCategoria | undefined {
