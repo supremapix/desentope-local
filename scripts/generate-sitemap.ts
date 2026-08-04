@@ -45,6 +45,11 @@ const staticPages: SitemapEntry[] = [
 const entries: SitemapEntry[] = [
   ...staticPages,
   // Blog — categorias e artigos
+  // Silo de câmera de inspeção de esgoto (páginas locais)
+  ...locaisInspecao
+    .filter((l) => l.slug !== 'curitiba')
+    .map((l) => ({ path: `/camera-inspecao-esgoto/${l.slug}`, changefreq: 'monthly' as const, priority: '0.7' })),
+  // Blog — categorias e artigos
   ...blogCategorias.map((c) => ({ path: `/blog/categoria/${c.slug}`, changefreq: 'weekly' as const, priority: '0.6' })),
   ...blogArtigos.map((a) => ({ path: `/blog/${a.slug}`, changefreq: 'monthly' as const, priority: '0.8' })),
   // Landing pages editoriais (serviço + cidade)
