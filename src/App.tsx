@@ -29,6 +29,7 @@ const ComoSelecionamosPage = lazy(() => import("./pages/ComoSelecionamosPage"));
 const PoliticaEditorialPage = lazy(() => import("./pages/PoliticaEditorialPage"));
 const ContatoPage = lazy(() => import("./pages/ContatoPage"));
 const GuiaLimpaFossaPage = lazy(() => import("./pages/GuiaLimpaFossaPage"));
+const CameraInspecaoPage = lazy(() => import("./pages/CameraInspecaoPage"));
 const BlogIndexPage = lazy(() => import("./pages/BlogIndexPage"));
 const BlogCategoriaPage = lazy(() => import("./pages/BlogCategoriaPage"));
 const BlogArtigoPage = lazy(() => import("./pages/BlogArtigoPage"));
