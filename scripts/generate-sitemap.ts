@@ -14,6 +14,7 @@ import { servicos } from '../src/data/servicos';
 import { landingPages } from '../src/data/landing-pages';
 import { empresas } from '../src/data/empresas';
 import { blogArtigos, blogCategorias } from '../src/data/blog';
+import { locaisInspecao } from '../src/data/camera-inspecao';
 
 const BASE_URL = 'https://desentupa-agora-pr.lovable.app';
 
