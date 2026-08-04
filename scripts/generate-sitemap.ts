@@ -44,7 +44,6 @@ const staticPages: SitemapEntry[] = [
 
 const entries: SitemapEntry[] = [
   ...staticPages,
-  // Blog — categorias e artigos
   // Silo de câmera de inspeção de esgoto (páginas locais)
   ...locaisInspecao
     .filter((l) => l.slug !== 'curitiba')
