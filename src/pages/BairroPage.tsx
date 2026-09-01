@@ -74,7 +74,7 @@ const BairroPage = () => {
     jsonLd: [
       buildBreadcrumbSchema([
         { name: 'Início', url: '/' },
-        ...(isCidade ? [{ name: 'Região Metropolitana', url: '/busca' }] : [{ name: 'Curitiba', url: '/' }]),
+        ...(isCidade ? [{ name: 'Região Metropolitana', url: '/busca' }] : [{ name: 'Curitiba', url: '/curitiba' }]),
         { name: localNome, url: isCidade ? `/rmc/${bairro}` : `/curitiba/${bairro}` },
       ]),
       buildBairroServiceSchema(localNome, localRegional, empresas.length, isCidade),
@@ -129,7 +129,7 @@ const BairroPage = () => {
             <>
               <span>Paraná</span>
               <span className="mx-2">›</span>
-              <Link to="/" className="hover:text-primary">Curitiba</Link>
+              <Link to="/curitiba" className="hover:text-primary">Curitiba</Link>
               <span className="mx-2">›</span>
               <span className="text-foreground font-medium">{localNome}</span>
             </>

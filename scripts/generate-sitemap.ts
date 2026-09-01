@@ -16,7 +16,7 @@ import { empresas } from '../src/data/empresas';
 import { blogArtigos, blogCategorias } from '../src/data/blog';
 import { locaisInspecao } from '../src/data/camera-inspecao';
 
-const BASE_URL = 'https://desentupa-agora-pr.lovable.app';
+const BASE_URL = 'https://www.servicosnobairro.com.br';
 
 interface SitemapEntry {
   path: string;
@@ -26,6 +26,7 @@ interface SitemapEntry {
 
 const staticPages: SitemapEntry[] = [
   { path: '/', changefreq: 'daily', priority: '1.0' },
+  { path: '/curitiba', changefreq: 'weekly', priority: '0.9' },
   { path: '/busca', changefreq: 'daily', priority: '0.8' },
   { path: '/faq', changefreq: 'weekly', priority: '0.7' },
   { path: '/quem-somos', changefreq: 'monthly', priority: '0.6' },
@@ -51,8 +52,12 @@ const entries: SitemapEntry[] = [
   // Blog — categorias e artigos
   ...blogCategorias.map((c) => ({ path: `/blog/categoria/${c.slug}`, changefreq: 'weekly' as const, priority: '0.6' })),
   ...blogArtigos.map((a) => ({ path: `/blog/${a.slug}`, changefreq: 'monthly' as const, priority: '0.8' })),
-  // Landing pages editoriais (serviço + cidade)
-  ...landingPages.map((p) => ({ path: p.route, changefreq: 'weekly' as const, priority: '0.9' })),
+  // Landing pages editoriais (serviço + cidade).
+  // As que apontam canonical para outra URL (consolidação de canibalização)
+  // ficam fora do sitemap — o sitemap só lista URLs canônicas.
+  ...landingPages
+    .filter((p) => !p.canonical || p.canonical === p.route)
+    .map((p) => ({ path: p.route, changefreq: 'weekly' as const, priority: '0.9' })),
   // Bairros de Curitiba
   ...todosBairros.map((b) => ({
     path: `/curitiba/${b.slug}`,

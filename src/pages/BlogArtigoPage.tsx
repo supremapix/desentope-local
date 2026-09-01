@@ -5,7 +5,7 @@ import { getArtigoBySlug, getArtigosRelacionados, getCategoriaBySlug } from '@/d
 import { servicos } from '@/data/servicos';
 import { RelatedLinks } from '@/components/RelatedLinks';
 
-const SITE_URL = 'https://desentupa-agora-pr.lovable.app';
+const SITE_URL = 'https://www.servicosnobairro.com.br';
 
 const BlogArtigoPage = () => {
   const { slug } = useParams<{ slug: string }>();

@@ -35,7 +35,7 @@ const LandingPage = () => {
   useSEO({
     title: page?.title || 'Serviços no Bairro',
     description: page?.metaDescription || '',
-    canonical: page?.route,
+    canonical: page?.canonical ?? page?.route,
     jsonLd: page ? [
       buildBreadcrumbSchema(page.breadcrumb),
       buildServiceSchema(

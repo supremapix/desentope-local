@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -14,6 +14,7 @@ import Index from "./pages/Index";
 
 // Code splitting: só a home entra no bundle inicial (LCP mais rápido).
 const BairroPage = lazy(() => import("./pages/BairroPage"));
+const CuritibaHubPage = lazy(() => import("./pages/CuritibaHubPage"));
 const EmpresaPage = lazy(() => import("./pages/EmpresaPage"));
 const ServicoPage = lazy(() => import("./pages/ServicoPage"));
 const FAQPage = lazy(() => import("./pages/FAQPage"));
@@ -59,6 +60,10 @@ const App = () => (
 
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/curitiba" element={<CuritibaHubPage />} />
+              {/* "cic" nao e slug de bairro: o bairro oficial e Cidade Industrial.
+                  Redirect tambem existe como 301 no vercel.json. */}
+              <Route path="/curitiba/cic" element={<Navigate to="/curitiba/cidade-industrial" replace />} />
               <Route path="/curitiba/:bairro" element={<BairroPage />} />
               <Route path="/rmc/:bairro" element={<BairroPage />} />
               <Route path="/empresa/:slug" element={<EmpresaPage />} />

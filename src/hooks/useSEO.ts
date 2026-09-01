@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 
-const SITE_URL = 'https://desentupa-agora-pr.lovable.app';
+const SITE_URL = 'https://www.servicosnobairro.com.br';
 const SITE_NAME = 'Serviços no Bairro';
-const OG_IMAGE = 'https://desentupa-agora-pr.lovable.app/og-image.png';
+const OG_IMAGE = 'https://www.servicosnobairro.com.br/og-image.png';
 const GEO_COORDS = { lat: -25.4284, lng: -49.2733 };
 const PHONE_1 = '+55-41-99272-1004';
 const PHONE_2 = '+55-41-98700-1004';
@@ -18,9 +18,11 @@ interface SEOProps {
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   geoPosition?: { lat: number; lng: number };
   geoPlacename?: string;
+  /** Marca a página como noindex (ex.: 404, resultados de busca). */
+  noindex?: boolean;
 }
 
-export function useSEO({ title, description, canonical, type = 'website', ogImage, jsonLd, geoPosition, geoPlacename }: SEOProps) {
+export function useSEO({ title, description, canonical, type = 'website', ogImage, jsonLd, geoPosition, geoPlacename, noindex = false }: SEOProps) {
   useEffect(() => {
     document.title = title;
 
@@ -38,7 +40,12 @@ export function useSEO({ title, description, canonical, type = 'website', ogImag
     const image = ogImage || OG_IMAGE;
 
     setMeta('description', description);
-    setMeta('robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
+    setMeta(
+      'robots',
+      noindex
+        ? 'noindex, follow'
+        : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+    );
     setMeta('og:title', title, true);
     setMeta('og:description', description, true);
     setMeta('og:type', type, true);
@@ -54,15 +61,18 @@ export function useSEO({ title, description, canonical, type = 'website', ogImag
     setMeta('twitter:description', description);
     setMeta('twitter:image', image);
 
+    // SPA: o canonical precisa ser reescrito OU removido a cada rota, senão a
+    // página herda o canonical da rota anterior.
+    const existingCanonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
     if (canonical) {
       setMeta('og:url', `${SITE_URL}${canonical}`, true);
-      let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-      if (!link) {
-        link = document.createElement('link');
-        link.rel = 'canonical';
-        document.head.appendChild(link);
-      }
+      const link = existingCanonical ?? document.createElement('link');
+      link.rel = 'canonical';
       link.href = `${SITE_URL}${canonical}`;
+      if (!existingCanonical) document.head.appendChild(link);
+    } else {
+      existingCanonical?.remove();
+      document.querySelector('meta[property="og:url"]')?.remove();
     }
 
     const pos = geoPosition || GEO_COORDS;
@@ -89,7 +99,7 @@ export function useSEO({ title, description, canonical, type = 'website', ogImag
       const scripts = document.querySelectorAll('script[data-seo-jsonld]');
       scripts.forEach(el => el.remove());
     };
-  }, [title, description, canonical, type, ogImage, jsonLd, geoPosition, geoPlacename]);
+  }, [title, description, canonical, type, ogImage, jsonLd, geoPosition, geoPlacename, noindex]);
 }
 
 // ─── SCHEMA BUILDERS ───────────────────────────────────────
@@ -99,6 +109,7 @@ export function buildWebsiteSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
+    '@id': `${SITE_URL}/#website`,
     name: SITE_NAME,
     url: SITE_URL,
     description: 'Diretório absolute de desentupidoras e encanadores em Curitiba e Região Metropolitana. Profissionais verificados, atendimento 24h, orçamento grátis.',
@@ -118,6 +129,7 @@ export function buildOrganizationSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': ['Organization', 'LocalBusiness'],
+    '@id': `${SITE_URL}/#organization`,
     name: SITE_NAME,
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
@@ -337,6 +349,44 @@ export function buildServiceSchema(serviceName: string, description: string, pri
       ratingValue: '4.8',
       reviewCount: '389',
       bestRating: '5',
+    },
+  };
+}
+
+/** Hub de localidade/categoria — CollectionPage + ItemList.
+ *  Sem aggregateRating: um hub nao e um produto avaliado. */
+export function buildCollectionPageSchema({
+  name,
+  description,
+  url,
+  about,
+  items,
+}: {
+  name: string;
+  description: string;
+  url: string;
+  about?: Record<string, unknown>;
+  items: { name: string; url: string }[];
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': `${SITE_URL}${url}#webpage`,
+    name,
+    description,
+    url: `${SITE_URL}${url}`,
+    inLanguage: 'pt-BR',
+    isPartOf: { '@id': `${SITE_URL}/#website` },
+    ...(about && { about }),
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: items.length,
+      itemListElement: items.map((item, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: item.name,
+        url: `${SITE_URL}${item.url}`,
+      })),
     },
   };
 }

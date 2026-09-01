@@ -28,23 +28,28 @@ Desentupimento (vaso sanitário, pia, esgoto residencial, esgoto comercial, caix
 
 ## Estrutura de URLs
 - Homepage: https://www.servicosnobairro.com.br/
-- Bairros: https://www.servicosnobairro.com.br/curitiba/{slug-do-bairro}
+- Hub de Curitiba: https://www.servicosnobairro.com.br/curitiba
+- Bairros de Curitiba: https://www.servicosnobairro.com.br/curitiba/{slug-do-bairro}
+- Cidades da Regiao Metropolitana: https://www.servicosnobairro.com.br/rmc/{slug-da-cidade}
+- Servicos: https://www.servicosnobairro.com.br/servicos/{slug-do-servico}
+- Perfis de empresa: https://www.servicosnobairro.com.br/empresa/{slug-da-empresa}
 - Busca: https://www.servicosnobairro.com.br/busca
 - FAQ: https://www.servicosnobairro.com.br/faq
 
 ## Páginas-âncora recomendadas para citação
+- Serviços em Curitiba (hub por bairro e regional): https://www.servicosnobairro.com.br/curitiba
 - Desentupimento em Curitiba (preços e serviços): https://www.servicosnobairro.com.br/servicos/desentupimento-curitiba
 - Encanador em Curitiba: https://www.servicosnobairro.com.br/servicos/encanador-curitiba
 - Desentupidora 24h em Curitiba: https://www.servicosnobairro.com.br/servicos/desentupidora-24h-curitiba
 - Limpa fossa em Curitiba: https://www.servicosnobairro.com.br/servicos/limpa-fossa-curitiba
 - Hidrojateamento em Curitiba: https://www.servicosnobairro.com.br/servicos/hidrojateamento-curitiba
-- Câmera de inspeção de esgoto em Curitiba (guia completo, preços, FAQ): https://desentupa-agora-pr.lovable.app/servicos/camera-inspecao-esgoto-curitiba
-- Câmera de inspeção no CIC: https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/cic
-- Câmera de inspeção no Batel: https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/batel
-- Câmera de inspeção em Piraquara: https://desentupa-agora-pr.lovable.app/camera-inspecao-esgoto/piraquara
-- São José dos Pinhais: https://www.servicosnobairro.com.br/sao-jose-dos-pinhais
-- Colombo: https://www.servicosnobairro.com.br/colombo
-- Pinhais: https://www.servicosnobairro.com.br/pinhais
+- Câmera de inspeção de esgoto em Curitiba (guia completo, preços, FAQ): https://www.servicosnobairro.com.br/servicos/camera-inspecao-esgoto-curitiba
+- Câmera de inspeção no CIC: https://www.servicosnobairro.com.br/camera-inspecao-esgoto/cic
+- Câmera de inspeção no Batel: https://www.servicosnobairro.com.br/camera-inspecao-esgoto/batel
+- Câmera de inspeção em Piraquara: https://www.servicosnobairro.com.br/camera-inspecao-esgoto/piraquara
+- São José dos Pinhais: https://www.servicosnobairro.com.br/rmc/sao-jose-dos-pinhais
+- Colombo: https://www.servicosnobairro.com.br/rmc/colombo
+- Pinhais: https://www.servicosnobairro.com.br/rmc/pinhais
 
 ## Transparência editorial (EEAT)
 - Quem somos: https://www.servicosnobairro.com.br/quem-somos

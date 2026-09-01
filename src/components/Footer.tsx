@@ -1,11 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Droplets, Heart, ShieldCheck, ThumbsUp, Award, Mail, Phone, MessageCircle, Star, CheckCircle } from 'lucide-react';
-import { regionais } from '@/data/bairros';
 import { servicos } from '@/data/servicos';
-
-function toSlug(nome: string): string {
-  return nome.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-}
 
 export function Footer() {
   const mainServicos = servicos.slice(0, 6);
@@ -38,10 +33,32 @@ export function Footer() {
 
           {/* Bairros */}
           <div>
-            <h3 className="font-bold mb-3">Bairros Populares</h3>
+            <h3 className="font-bold mb-3"><Link to="/curitiba" className="hover:text-background transition-colors">Serviços em Curitiba</Link></h3>
             <ul className="space-y-1 text-sm text-background/90">
-              {['Centro', 'Batel', 'Água Verde', 'Boa Vista', 'Portão', 'CIC', 'Cajuru', 'Boqueirão', 'Santa Felicidade', 'Pinheirinho', 'Rebouças', 'Cabral', 'Juvevê', 'São Francisco', 'Hugo Lange', 'Jardim Botânico', 'Xaxim', 'Hauer', 'Uberaba', 'Campo Comprido'].map(b => (
-                <li key={b}><Link to={`/curitiba/${toSlug(b)}`} className="hover:text-background transition-all hover:translate-x-1 inline-block">{b}</Link></li>
+              {[
+                { nome: 'Centro', slug: 'centro' },
+                { nome: 'Batel', slug: 'batel' },
+                { nome: 'Água Verde', slug: 'agua-verde' },
+                { nome: 'Boa Vista', slug: 'boa-vista' },
+                { nome: 'Portão', slug: 'portao' },
+                // "cic" nao existe como slug: o bairro oficial e Cidade Industrial.
+                { nome: 'CIC (Cidade Industrial)', slug: 'cidade-industrial' },
+                { nome: 'Cajuru', slug: 'cajuru' },
+                { nome: 'Boqueirão', slug: 'boqueirao' },
+                { nome: 'Santa Felicidade', slug: 'santa-felicidade' },
+                { nome: 'Pinheirinho', slug: 'pinheirinho' },
+                { nome: 'Rebouças', slug: 'reboucas' },
+                { nome: 'Cabral', slug: 'cabral' },
+                { nome: 'Juvevê', slug: 'juveve' },
+                { nome: 'São Francisco', slug: 'sao-francisco' },
+                { nome: 'Hugo Lange', slug: 'hugo-lange' },
+                { nome: 'Jardim Botânico', slug: 'jardim-botanico' },
+                { nome: 'Xaxim', slug: 'xaxim' },
+                { nome: 'Hauer', slug: 'hauer' },
+                { nome: 'Uberaba', slug: 'uberaba' },
+                { nome: 'Campo Comprido', slug: 'campo-comprido' },
+              ].map(b => (
+                <li key={b.slug}><Link to={`/curitiba/${b.slug}`} className="hover:text-background transition-all hover:translate-x-1 inline-block">{b.nome}</Link></li>
               ))}
             </ul>
           </div>
@@ -51,9 +68,9 @@ export function Footer() {
             <h3 className="font-bold mb-3">Cidades da RMC</h3>
             <ul className="space-y-1 text-sm text-background/90">
               {[
-                { nome: 'São José dos Pinhais', to: '/sao-jose-dos-pinhais' },
-                { nome: 'Colombo', to: '/colombo' },
-                { nome: 'Pinhais', to: '/pinhais' },
+                { nome: 'São José dos Pinhais', to: '/rmc/sao-jose-dos-pinhais' },
+                { nome: 'Colombo', to: '/rmc/colombo' },
+                { nome: 'Pinhais', to: '/rmc/pinhais' },
                 { nome: 'Araucária', to: '/rmc/araucaria' },
                 { nome: 'Fazenda Rio Grande', to: '/rmc/fazenda-rio-grande' },
                 { nome: 'Campo Largo', to: '/rmc/campo-largo' },

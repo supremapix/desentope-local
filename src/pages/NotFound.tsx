@@ -6,7 +6,7 @@ const NotFound = () => {
   useSEO({
     title: 'Página não encontrada | Serviços no Bairro',
     description: 'A página que você procura não existe. Encontre desentupidoras e encanadores em Curitiba e região.',
-    canonical: '/404',
+    noindex: true,
   });
 
   return (

@@ -29,7 +29,7 @@ const BlogCategoriaPage = () => {
               '@type': 'BlogPosting',
               headline: a.h1,
               description: a.descricao,
-              url: `https://desentupa-agora-pr.lovable.app/blog/${a.slug}`,
+              url: `https://www.servicosnobairro.com.br/blog/${a.slug}`,
             })),
           },
         ]

@@ -27,7 +27,7 @@ const BlogIndexPage = () => {
           description: a.descricao,
           datePublished: a.atualizadoEm,
           dateModified: a.atualizadoEm,
-          url: `https://desentupa-agora-pr.lovable.app/blog/${a.slug}`,
+          url: `https://www.servicosnobairro.com.br/blog/${a.slug}`,
         })),
       },
     ],

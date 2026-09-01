@@ -1,6 +1,9 @@
 export interface LandingPageData {
   slug: string;
   route: string;
+  /** Canonical alternativo — usado quando outra URL e a versao principal
+   *  daquela intencao (consolidacao de canibalizacao). */
+  canonical?: string;
   title: string;
   metaDescription: string;
   h1: string;
@@ -332,6 +335,7 @@ export const landingPages: LandingPageData[] = [
   {
     slug: 'sao-jose-dos-pinhais',
     route: '/sao-jose-dos-pinhais',
+    canonical: '/rmc/sao-jose-dos-pinhais',
     title: 'Desentupidoras em São José dos Pinhais — 24h | Serviços no Bairro',
     metaDescription: 'Encontre desentupidoras e encanadores em São José dos Pinhais. Profissionais verificados, atendimento 24h, orçamento grátis via WhatsApp.',
     h1: 'Desentupidoras e Encanadores em São José dos Pinhais — 24h',
@@ -375,6 +379,7 @@ export const landingPages: LandingPageData[] = [
   {
     slug: 'colombo',
     route: '/colombo',
+    canonical: '/rmc/colombo',
     title: 'Desentupidoras em Colombo — PR | 24h | Serviços no Bairro',
     metaDescription: 'Desentupidoras e encanadores em Colombo, PR. Emergência 24h, profissionais verificados, orçamento grátis. Atendimento rápido.',
     h1: 'Desentupidoras e Encanadores em Colombo — PR',
@@ -418,6 +423,7 @@ export const landingPages: LandingPageData[] = [
   {
     slug: 'pinhais',
     route: '/pinhais',
+    canonical: '/rmc/pinhais',
     title: 'Desentupidoras em Pinhais — 24h | Serviços no Bairro',
     metaDescription: 'Desentupidoras e encanadores em Pinhais (PR). Emergência 24h, verificados, orçamento grátis. 8km de Curitiba.',
     h1: 'Desentupidoras e Encanadores em Pinhais — PR',
