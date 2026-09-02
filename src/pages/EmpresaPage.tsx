@@ -222,6 +222,7 @@ const EmpresaPage = () => {
             </Card>
 
             {/* Serviços */}
+            {servicosComDetalhes.length > 0 && (
             <Card>
               <CardContent className="p-6">
                 <h2 className="text-xl font-bold mb-4">Serviços Oferecidos</h2>
