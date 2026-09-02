@@ -3,6 +3,7 @@ import { SearchBar } from '@/components/SearchBar';
 import { CompanyCard } from '@/components/CompanyCard';
 import { regionais } from '@/data/bairros';
 import { cidadesRMC } from '@/data/cidades-rmc';
+import { bairrosSaoPaulo, cidadesSaoPauloRegiao } from '@/data/bairros-sp';
 import { categoriasRapidas } from '@/data/servicos';
 import { getEmpresasDestaque } from '@/data/empresas';
 import { Shield, Clock, Star, Zap, AlertTriangle, Search, ShieldCheck, MessageCircle } from 'lucide-react';
@@ -17,8 +18,8 @@ const Index = () => {
   const empresasDestaque = getEmpresasDestaque();
 
   useSEO({
-    title: 'Empresas e Profissionais Verificados no Bairro em Curitiba e RMC',
-    description: 'Diretório de empresas e profissionais verificados que prestam serviços no bairro em Curitiba e na RMC: desentupimento, hidráulica, motofrete e mais. Orçamento grátis no WhatsApp.',
+    title: 'Serviços no Bairro | Empresas Verificadas em Todo o Brasil',
+    description: 'Diretório de empresas e profissionais verificados que prestam serviços no seu bairro, em cidades de todo o Brasil: desentupimento, hidráulica, motofrete e mais. Cobertura completa em Curitiba, RMC e São Paulo. Orçamento grátis no WhatsApp.',
     canonical: '/',
     jsonLd: [buildWebsiteSchema(), buildOrganizationSchema()],
   });
@@ -29,13 +30,14 @@ const Index = () => {
       <section className="bg-primary text-primary-foreground py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-3xl md:text-5xl font-black mb-4 leading-tight">
-            Empresas no Bairro que Prestam Serviços<br className="hidden md:block" /> em Curitiba e Região
+            Empresas que Prestam Serviços no Seu Bairro<br className="hidden md:block" /> em Cidades de Todo o Brasil
           </h1>
-          <p className="text-lg md:text-xl text-primary-foreground mb-8 max-w-2xl mx-auto">
-            Diretório de empresas e profissionais verificados que prestam serviços perto de você: desentupimento, hidráulica, motofrete e outros, com atendimento 24h e orçamento grátis no WhatsApp
+          <p className="text-lg md:text-xl text-primary-foreground mb-8 max-w-3xl mx-auto">
+            O Serviços no Bairro conecta você a empresas e profissionais verificados de qualquer segmento perto de você — desentupimento, hidráulica, motofrete e entregas e muito mais. Cobertura hiperlocal bairro a bairro em Curitiba e Região Metropolitana, em São Paulo capital e Grande São Paulo, e em expansão para todas as cidades do Brasil, com atendimento 24h e orçamento grátis pelo WhatsApp.
           </p>
 
           <SearchBar />
+
 
           {/* Trust badges */}
           <div className="flex flex-wrap justify-center gap-6 mt-8 text-sm font-medium text-primary-foreground">
@@ -115,6 +117,39 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* São Paulo — bairros e região */}
+      <section className="py-12 bg-muted">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold text-center mb-2">Bairros de São Paulo e Grande SP</h2>
+          <p className="text-center text-muted-foreground mb-8">
+            Motofrete e entregas com coleta no Centro de São Paulo e região, em um raio de até 60 km — e viagens
+            frequentes São Paulo → Curitiba.
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-2">
+            {bairrosSaoPaulo.slice(0, 24).map(b => (
+              <Link
+                key={b.slug}
+                to={`/busca?local=${encodeURIComponent(b.nome)}`}
+                className="bg-card border rounded-lg px-4 py-2.5 hover:border-primary hover:shadow-sm transition-all text-sm font-medium"
+              >
+                {b.nome.replace(' — São Paulo', '')}
+              </Link>
+            ))}
+            <Link to="/busca?local=S%C3%A3o%20Paulo" className="bg-primary text-primary-foreground rounded-lg px-4 py-2.5 text-sm font-bold hover:bg-primary/90 transition-colors">
+              Ver empresas em São Paulo →
+            </Link>
+          </div>
+
+          <p className="text-center text-sm text-muted-foreground mt-6 max-w-3xl mx-auto">
+            Também atendemos {cidadesSaoPauloRegiao.slice(1, 12).map(c => c.nome).join(', ')} e demais cidades da
+            Grande São Paulo.
+          </p>
+        </div>
+      </section>
+
+
 
       {/* Como Funciona */}
       <section className="py-12 bg-background">

@@ -1,6 +1,7 @@
 import { Empresa, Bairro } from '@/types';
 import { todosBairros, allCicSlugs, bairros, bairrosPopularesData } from '@/data/bairros';
 import { cidadesRMC } from '@/data/cidades-rmc';
+import { bairrosSaoPauloSlugs, cidadesSaoPauloSlugs } from '@/data/bairros-sp';
 
 // All Curitiba bairro slugs (official + popular)
 const allCuritibaSlugs = todosBairros.map(b => b.slug);
@@ -485,8 +486,8 @@ const empresasReais: Empresa[] = [
     atendeEmergencia: true,
     tipoServico: ['motofrete'],
     servicosOferecidos: [],
-    bairrosAtendidos: ['portao'],
-    cidadesAtendidas: ['sao-paulo', 'curitiba'],
+    bairrosAtendidos: ['portao', ...bairrosSaoPauloSlugs],
+    cidadesAtendidas: [...cidadesSaoPauloSlugs, 'curitiba'],
     formasPagamento: ['PIX', 'Dinheiro', 'Cartão de Crédito', 'Cartão de Débito', 'Boleto'],
     horarios: [
       { dia: 'Segunda a sexta', abertura: '08:00', fechamento: '18:00' },

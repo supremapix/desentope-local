@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { servicos } from '@/data/servicos';
 import { todosBairros } from '@/data/bairros';
 import { cidadesRMC } from '@/data/cidades-rmc';
+import { bairrosSaoPaulo, cidadesSaoPauloRegiao } from '@/data/bairros-sp';
 
 export function SearchBar() {
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ export function SearchBar() {
             aria-label="Buscar por cidade ou bairro"
             value={local}
             onChange={e => setLocal(e.target.value)}
-            placeholder="Cidade ou Bairro"
+            placeholder="Cidade ou Bairro (ex.: Batel, Sé — São Paulo)"
             list="locations-list"
             className="w-full h-12 sm:h-14 pl-10 pr-4 bg-transparent text-foreground text-sm placeholder:text-muted-foreground focus:outline-none"
           />
@@ -55,6 +56,12 @@ export function SearchBar() {
               <option key={b.slug} value={b.nome} />
             ))}
             {cidadesRMC.map(c => (
+              <option key={c.slug} value={c.nome} />
+            ))}
+            {bairrosSaoPaulo.map(b => (
+              <option key={b.slug} value={b.nome} />
+            ))}
+            {cidadesSaoPauloRegiao.map(c => (
               <option key={c.slug} value={c.nome} />
             ))}
           </datalist>
