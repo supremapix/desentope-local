@@ -78,3 +78,52 @@ export const cidadesSaoPauloSlugs = cidadesSaoPauloRegiao.map(c => c.slug);
 export function getBairroSPBySlug(slug: string): Bairro | undefined {
   return bairrosSaoPaulo.find(b => b.slug === slug);
 }
+
+/**
+ * Bairros de Osasco e bairros vizinhos (São Paulo capital e cidades limítrofes)
+ * dentro de um raio aproximado de 10 km do Centro de Osasco.
+ * Usados na cobertura da lavanderia profissional em Osasco.
+ */
+export const bairrosOsascoRegiao: Bairro[] = [
+  // Osasco
+  ...[
+    'Vila Osasco', 'Centro', 'Presidente Altino', 'Vila Yara', 'Jardim das Flores',
+    'Bela Vista', 'Vila Campesina', 'Km 18', 'Bonfim', 'City Bussocaba',
+    'Jardim Piratininga', 'Vila Yolanda', 'Jaguaribe', 'Munhoz Júnior', 'Rochdale',
+    'Quitaúna', 'Novo Osasco', 'Helena Maria', 'Santo Antônio', 'Umuarama',
+  ].map(nome => ({
+    slug: `osasco-${toSlug(nome)}`,
+    nome: `${nome} — Osasco`,
+    regional: 'Osasco',
+    oficial: true,
+    vizinhos: [],
+  })),
+  // Vizinhos em até ~10 km (São Paulo capital e cidades limítrofes)
+  ...[
+    ['Lapa', 'São Paulo / Zona Oeste'],
+    ['Vila Leopoldina', 'São Paulo / Zona Oeste'],
+    ['Jaguaré', 'São Paulo / Zona Oeste'],
+    ['Butantã', 'São Paulo / Zona Oeste'],
+    ['Pirituba', 'São Paulo / Zona Norte'],
+    ['Raposo Tavares', 'São Paulo / Zona Oeste'],
+    ['Rio Pequeno', 'São Paulo / Zona Oeste'],
+    ['Alphaville', 'Barueri'],
+    ['Centro', 'Carapicuíba'],
+    ['Cotia Centro', 'Cotia'],
+    ['Centro', 'Taboão da Serra'],
+    ['Centro', 'Jandira'],
+  ].map(([nome, regional]) => ({
+    slug: `osasco-vz-${toSlug(`${nome}-${regional}`)}`,
+    nome: `${nome} — ${regional.split(' / ')[0]}`,
+    regional: `Região de Osasco / ${regional}`,
+    oficial: true,
+    vizinhos: [],
+  })),
+];
+
+export const bairrosOsascoSlugs = bairrosOsascoRegiao.map(b => b.slug);
+
+/** Cidades em até ~10 km do Centro de Osasco. */
+export const cidadesOsasco10kmSlugs = [
+  'osasco', 'carapicuiba', 'barueri', 'taboao-da-serra', 'sao-paulo', 'cotia', 'jandira',
+];
