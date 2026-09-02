@@ -117,6 +117,39 @@ const Index = () => {
         </div>
       </section>
 
+      {/* São Paulo — bairros e região */}
+      <section className="py-12 bg-muted">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold text-center mb-2">Bairros de São Paulo e Grande SP</h2>
+          <p className="text-center text-muted-foreground mb-8">
+            Motofrete e entregas com coleta no Centro de São Paulo e região, em um raio de até 60 km — e viagens
+            frequentes São Paulo → Curitiba.
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-2">
+            {bairrosSaoPaulo.slice(0, 24).map(b => (
+              <Link
+                key={b.slug}
+                to={`/busca?local=${encodeURIComponent(b.nome)}`}
+                className="bg-card border rounded-lg px-4 py-2.5 hover:border-primary hover:shadow-sm transition-all text-sm font-medium"
+              >
+                {b.nome.replace(' — São Paulo', '')}
+              </Link>
+            ))}
+            <Link to="/busca?local=S%C3%A3o%20Paulo" className="bg-primary text-primary-foreground rounded-lg px-4 py-2.5 text-sm font-bold hover:bg-primary/90 transition-colors">
+              Ver empresas em São Paulo →
+            </Link>
+          </div>
+
+          <p className="text-center text-sm text-muted-foreground mt-6 max-w-3xl mx-auto">
+            Também atendemos {cidadesSaoPauloRegiao.slice(1, 12).map(c => c.nome).join(', ')} e demais cidades da
+            Grande São Paulo.
+          </p>
+        </div>
+      </section>
+
+
+
       {/* Como Funciona */}
       <section className="py-12 bg-background">
         <div className="container mx-auto px-4">
