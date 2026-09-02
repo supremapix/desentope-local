@@ -1211,6 +1211,56 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/lavanderia-profissional</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/passadoria-roupas</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/lavagem-a-seco</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/lave-e-dobre</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/limpeza-edredom-roupa-cama</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/limpeza-tapetes-cortinas</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/limpeza-couro-camurca</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/conservacao-vestido-noiva</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/consertos-ajustes-roupas</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/lavanderia-industrial</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.servicosnobairro.com.br/empresa/agua-facil-desentupidora-encanador-24h</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -1227,6 +1277,11 @@
   </url>
   <url>
     <loc>https://www.servicosnobairro.com.br/empresa/motofrete-sao-paulo-curitiba</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/empresa/lavanderia-inovata-osasco</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
