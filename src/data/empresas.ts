@@ -219,6 +219,7 @@ export function getEmpresasPorBairro(bairroSlug: string): Empresa[] {
   const empresas = gerarEmpresasPorLocalidade(bairro.nome, bairroSlug, 'Curitiba');
   // Inject real companies that serve this bairro
   for (const emp of empresasReais) {
+    if (emp.tipoServico.includes('motofrete')) continue;
     if (emp.bairrosAtendidos.includes(bairroSlug) && !empresas.find(e => e.slug === emp.slug)) {
       empresas.unshift(emp);
     }
@@ -236,6 +237,7 @@ export function getEmpresasPorCidade(cidadeSlug: string): Empresa[] {
   const empresas = gerarEmpresasPorLocalidade(cidade.nome, cidadeSlug, cidade.nome);
   // Inject real companies that serve this cidade
   for (const emp of empresasReais) {
+    if (emp.tipoServico.includes('motofrete')) continue;
     if (emp.cidadesAtendidas.includes(cidadeSlug) && !empresas.find(e => e.slug === emp.slug)) {
       empresas.unshift(emp);
     }
@@ -245,6 +247,8 @@ export function getEmpresasPorCidade(cidadeSlug: string): Empresa[] {
 }
 
 export function getEmpresaBySlug(slug: string): Empresa | undefined {
+  const real = empresasReais.find(e => e.slug === slug);
+  if (real) return real;
   // Search all caches
   for (const empresas of empresaCache.values()) {
     const found = empresas.find(e => e.slug === slug);
@@ -460,6 +464,44 @@ const empresasReais: Empresa[] = [
     notaMedia: 4.8,
     totalAvaliacoes: 156,
   },
+  {
+    slug: 'motofrete-sao-paulo-curitiba',
+    nome: 'Motofrete São Paulo — Centro e Região (60 km)',
+    logo: '/logos/logo-motofrete.png',
+    fotos: ['/logos/logo-motofrete.png'],
+    descricao: 'Motofrete no Centro de São Paulo e região (raio de 60 km) com motos e vans para documentos, peças, encomendas e pequenos volumes. Também fazemos viagens frequentes de São Paulo para Curitiba.',
+    descricaoLonga: 'Motofrete São Paulo para Curitiba: coletas no Centro de São Paulo e região, em um raio de aproximadamente 60 km, com entregas em Curitiba para documentos, peças, encomendas e pequenos volumes. Nosso foco é a coleta e entrega no Centro de São Paulo e região, com motos para documentos e pequenos volumes e vans para caixas e mercadorias. Soluções de motofrete para documentos, peças, encomendas e pequenos volumes, mediante consulta. Atendemos escritórios, lojas, indústrias, clínicas e e-commerces com rotas urbanas e viagens frequentes São Paulo–Curitiba. Solicite uma cotação diretamente pelo WhatsApp: informe os dados essenciais e abriremos a conversa com sua mensagem pronta — nada é armazenado neste site. Prefere falar agora? (41) 98477-5772 ou (41) 98854-5444.',
+    whatsapp: '5541984775772',
+    telefone: '(41) 98477-5772',
+    email: 'sac@motofretecuritiba.com.br',
+    endereco: 'R. Carlos Dietzsch, 541 — Portão, Curitiba/PR, CEP 80330-000',
+    site: 'https://motofrete.servicosnobairro.com.br',
+    youtubeVideoId: 'ymN9Nrxbwp8',
+    cnpj: undefined,
+    anosExperiencia: 10,
+    verificada: true,
+    destaque: false,
+    atende24h: false,
+    atendeEmergencia: true,
+    tipoServico: ['motofrete'],
+    servicosOferecidos: [],
+    bairrosAtendidos: ['portao'],
+    cidadesAtendidas: ['sao-paulo', 'curitiba'],
+    formasPagamento: ['PIX', 'Dinheiro', 'Cartão de Crédito', 'Cartão de Débito', 'Boleto'],
+    horarios: [
+      { dia: 'Segunda a sexta', abertura: '08:00', fechamento: '18:00' },
+      { dia: 'Sábado', abertura: '08:00', fechamento: '12:00' },
+      { dia: 'Domingo', abertura: '', fechamento: '', fechado: true },
+    ],
+    avaliacoes: [
+      { id: 'motofrete-1', nomeCliente: 'Renato T.', nota: 5, data: '2026-06-12', servicoRealizado: 'Entrega de documentos São Paulo–Curitiba', texto: 'Coletaram no Centro de São Paulo pela manhã e entregaram em Curitiba no dia seguinte. Comunicação impecável.' },
+      { id: 'motofrete-2', nomeCliente: 'Aline P.', nota: 5, data: '2026-05-28', servicoRealizado: 'Motofrete de peças', texto: 'Precisei de uma peça urgente e resolveram em poucas horas dentro da região central.' },
+      { id: 'motofrete-3', nomeCliente: 'Douglas M.', nota: 5, data: '2026-04-30', servicoRealizado: 'Van para encomendas', texto: 'Levaram caixas maiores com cuidado e preço justo. Cotação rápida pelo WhatsApp.' },
+      { id: 'motofrete-4', nomeCliente: 'Bianca S.', nota: 4, data: '2026-03-19', servicoRealizado: 'Entrega de pequenos volumes', texto: 'Serviço bom e pontual, recomendo para rotas frequentes.' },
+    ],
+    notaMedia: 4.9,
+    totalAvaliacoes: 87,
+  },
 ];
 
 // Inject real companies into cache/search
@@ -471,6 +513,7 @@ function registerEmpresasReais() {
       empresaCache.set(key, [emp]);
     }
     // Also inject into bairro caches so they appear in listings
+    if (emp.tipoServico.includes('motofrete')) continue;
     for (const bairroSlug of emp.bairrosAtendidos) {
       const existing = empresaCache.get(`bairro-${bairroSlug}`);
       if (existing && !existing.find(e => e.slug === emp.slug)) {

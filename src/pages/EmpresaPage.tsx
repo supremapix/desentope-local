@@ -116,7 +116,7 @@ const EmpresaPage = () => {
                     {empresa.atende24h && <Badge className="bg-primary text-primary-foreground"><Clock className="h-3 w-3 mr-1" /> 24H</Badge>}
                     {empresa.atendeEmergencia && <Badge className="bg-destructive text-destructive-foreground"><Zap className="h-3 w-3 mr-1" /> Emergência</Badge>}
                     {empresa.tipoServico.map(t => (
-                      <Badge key={t} variant="secondary">{t === 'desentupimento' ? 'Desentupimento' : 'Encanamento'}</Badge>
+                      <Badge key={t} variant="secondary">{t === 'desentupimento' ? 'Desentupimento' : t === 'motofrete' ? 'Motofrete e entregas' : 'Encanamento'}</Badge>
                     ))}
                   </div>
                 </div>
@@ -222,6 +222,7 @@ const EmpresaPage = () => {
             </Card>
 
             {/* Serviços */}
+            {servicosComDetalhes.length > 0 && (
             <Card>
               <CardContent className="p-6">
                 <h2 className="text-xl font-bold mb-4">Serviços Oferecidos</h2>
@@ -242,6 +243,7 @@ const EmpresaPage = () => {
                 </div>
               </CardContent>
             </Card>
+            )}
 
             {/* Avaliações */}
             <Card>

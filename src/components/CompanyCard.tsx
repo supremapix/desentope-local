@@ -68,7 +68,7 @@ export function CompanyCard({ empresa }: CompanyCardProps) {
               <div className="flex items-center gap-1.5">
                 <Wrench className="h-3.5 w-3.5 flex-shrink-0" />
                 <span className="truncate">
-                  {empresa.tipoServico.map(t => t === 'desentupimento' ? 'Desentupimento' : 'Encanamento').join(' | ')}
+                  {empresa.tipoServico.map(t => t === 'desentupimento' ? 'Desentupimento' : t === 'motofrete' ? 'Motofrete e entregas' : 'Encanamento').join(' | ')}
                 </span>
               </div>
               <div className="flex items-center gap-1.5">

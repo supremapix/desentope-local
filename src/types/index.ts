@@ -60,7 +60,7 @@ export interface Empresa {
   destaque: boolean;
   atende24h: boolean;
   atendeEmergencia: boolean;
-  tipoServico: ('desentupimento' | 'encanamento')[];
+  tipoServico: ('desentupimento' | 'encanamento' | 'motofrete')[];
   servicosOferecidos: string[];
   bairrosAtendidos: string[];
   cidadesAtendidas: string[];
