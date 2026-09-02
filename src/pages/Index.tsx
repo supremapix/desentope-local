@@ -17,8 +17,8 @@ const Index = () => {
   const empresasDestaque = getEmpresasDestaque();
 
   useSEO({
-    title: 'Desentupidora e Encanador 24h em Curitiba e RMC',
-    description: 'Desentupidoras e encanadores verificados em Curitiba e RMC: 75 bairros, 29 cidades, emergência 24h e orçamento grátis no WhatsApp.',
+    title: 'Empresas e Profissionais Verificados no Bairro em Curitiba e RMC',
+    description: 'Diretório de empresas e profissionais verificados que prestam serviços no bairro em Curitiba e na RMC: desentupimento, hidráulica, motofrete e mais. Orçamento grátis no WhatsApp.',
     canonical: '/',
     jsonLd: [buildWebsiteSchema(), buildOrganizationSchema()],
   });
@@ -29,10 +29,10 @@ const Index = () => {
       <section className="bg-primary text-primary-foreground py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-3xl md:text-5xl font-black mb-4 leading-tight">
-            Desentupidoras e Encanadores<br className="hidden md:block" /> em Curitiba e Região
+            Empresas no Bairro que Prestam Serviços<br className="hidden md:block" /> em Curitiba e Região
           </h1>
           <p className="text-lg md:text-xl text-primary-foreground mb-8 max-w-2xl mx-auto">
-            Encontre profissionais verificados, disponíveis 24h, perto de você
+            Diretório de empresas e profissionais verificados que prestam serviços perto de você: desentupimento, hidráulica, motofrete e outros, com atendimento 24h e orçamento grátis no WhatsApp
           </p>
 
           <SearchBar />
@@ -120,7 +120,7 @@ const Index = () => {
       <section className="py-12 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl font-bold text-center mb-2">Como Funciona o Serviços no Bairro</h2>
-          <p className="text-center text-muted-foreground mb-8">3 passos simples para resolver seu problema hidráulico</p>
+          <p className="text-center text-muted-foreground mb-8">3 passos simples para encontrar empresas de serviços perto de você</p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             <div className="flex flex-col items-center text-center p-6 rounded-xl bg-card border hover:shadow-md transition-shadow">
