@@ -1,7 +1,7 @@
 import {
   Bath, ShowerHead, Home, Building2, Utensils, Waves, Camera, Truck,
   CircleDot, Factory, AlertTriangle, Wrench, Store, Droplet, HardHat,
-  Cog, GlassWater, Flame, Search, type LucideIcon,
+  Cog, GlassWater, Flame, Search, Bike, Package, type LucideIcon,
   Shield, DollarSign, Scale, Leaf, Cpu, HelpCircle, MapPin, ClipboardList
 } from 'lucide-react';
 
@@ -25,6 +25,8 @@ const iconMap: Record<string, LucideIcon> = {
   'glass-water': GlassWater,
   flame: Flame,
   search: Search,
+  bike: Bike,
+  package: Package,
   shield: Shield,
   'dollar-sign': DollarSign,
   scale: Scale,

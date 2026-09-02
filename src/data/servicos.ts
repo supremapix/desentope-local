@@ -25,6 +25,9 @@ export const servicos: Servico[] = [
   { slug: 'instalacao-aquecedor', nome: 'Instalação de Aquecedor', icone: 'flame', categoria: 'encanamento', descricao: 'Instalação de aquecedores a gás e elétricos.', precoMedio: 'R$ 200 - R$ 500' },
   { slug: 'reforma-banheiro-hidraulica', nome: 'Reforma de Banheiro (Hidráulica)', icone: 'bath', categoria: 'encanamento', descricao: 'Parte hidráulica de reformas de banheiro.', precoMedio: 'R$ 800 - R$ 3.000' },
   { slug: 'deteccao-vazamento-oculto', nome: 'Detecção de Vazamento Oculto', icone: 'search', categoria: 'encanamento', descricao: 'Detecção eletrônica de vazamentos não visíveis.', precoMedio: 'R$ 200 - R$ 600' },
+  // Motofrete e entregas
+  { slug: 'motofrete-motoboy', nome: 'Motofrete e Motoboy', icone: 'bike', categoria: 'motofrete', descricao: 'Motoboy para coleta e entrega de documentos, peças e pequenos volumes no seu bairro.', precoMedio: 'Sob consulta' },
+  { slug: 'entrega-expressa-van', nome: 'Entrega Expressa e Van', icone: 'package', categoria: 'motofrete', descricao: 'Transporte de caixas, encomendas e mercadorias com van e motofrete dedicado.', precoMedio: 'Sob consulta' },
 ];
 
 export function getServicoBySlug(slug: string): Servico | undefined {
@@ -35,5 +38,5 @@ export const categoriasRapidas = servicos.filter(s => [
   'desentupimento-vaso-sanitario', 'desentupimento-esgoto-residencial', 'desentupimento-esgoto-comercial',
   'encanador-residencial', 'conserto-vazamento', 'desentupimento-pia-cozinha',
   'limpa-fossa', 'camera-inspecao-esgoto', 'instalacao-hidraulica',
-  'emergencia-24h', 'desentupimento-industrial', 'instalacao-caixa-dagua'
+  'emergencia-24h', 'motofrete-motoboy', 'entrega-expressa-van'
 ].includes(s.slug));

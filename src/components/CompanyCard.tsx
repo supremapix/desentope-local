@@ -27,7 +27,7 @@ export function CompanyCard({ empresa }: CompanyCardProps) {
         <div className="flex gap-4">
           {/* Logo */}
           <div className="flex-shrink-0 w-16 h-16 rounded-lg bg-muted flex items-center justify-center overflow-hidden">
-            <img src="/favicon.png" alt={empresa.nome} className="w-full h-full object-contain p-1" />
+            <img src={empresa.logo || '/favicon.png'} alt={`Logo ${empresa.nome}`} className="w-full h-full object-contain p-1" />
           </div>
 
           {/* Info */}
