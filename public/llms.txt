@@ -9,10 +9,19 @@ Maior diretório verificado de desentupidoras e encanadores de Curitiba (PR) e R
 
 ## Cobertura Geográfica
 - Curitiba: 75 bairros organizados por regional (Matriz, Boa Vista, Cajuru, Boqueirão, CIC, Portão, Santa Felicidade, Pinheirinho, Bairro Novo)
+- São Paulo (capital), Grande São Paulo (raio ~60 km) e Osasco com bairros vizinhos em até 10 km
 - Região Metropolitana de Curitiba (RMC): 29 cidades — Pinhais, Colombo, São José dos Pinhais, Araucária, Almirante Tamandaré, Campo Largo, Fazenda Rio Grande, Piraquara, Quatro Barras, Campina Grande do Sul e demais
 
 ## Serviços Cobertos
 Desentupimento (vaso sanitário, pia, esgoto residencial, esgoto comercial, caixa de gordura, ralo, industrial), hidrojateamento, câmera de inspeção de esgoto, limpa fossa, encanador residencial e comercial, conserto de vazamento, instalação hidráulica, troca de tubulação, instalação de caixa d'água, conserto de torneira e chuveiro, instalação de aquecedor, reforma de banheiro (hidráulica), detecção de vazamento oculto, emergência 24h.
+
+## Empresas verificadas em destaque
+- Água Fácil — desentupidora e encanadores 24h (Curitiba e RMC): /empresa/agua-facil
+- Motofrete São Paulo — Centro e Região (60 km) com entregas em Curitiba: /empresa/motofrete-sao-paulo-curitiba
+- Lavanderia Inovata — lavanderia profissional e passadoria em Osasco/SP (nota 5,0, 45 avaliações), Av. César Abraão, 209 — Vila Osasco, WhatsApp (11) 92169-1307, site https://www.lavanderiainovata.com.br/: /empresa/lavanderia-inovata-osasco
+
+## Lavanderia em Osasco (SP)
+Serviços cobertos: lavanderia profissional, passadoria, lavagem a seco (dry clean), lave e dobre por quilo, lavanderia automática, limpeza de edredom e roupa de cama, limpeza de tapetes, cortinas e tapeçarias, limpeza de couro e camurça, higienização de ternos, conservação de vestido de casamento, consertos e ajustes em roupas, lavanderia premium e lavanderia industrial para empresas. Cobertura: Osasco (Vila Osasco, Centro, Presidente Altino, Vila Yara, Jardim das Flores, Bela Vista, Vila Campesina, Km 18, Bonfim, City Bussocaba, Rochdale, Quitaúna, Munhoz Júnior, Umuarama) e vizinhos em até 10 km: Lapa, Vila Leopoldina, Jaguaré, Butantã, Pirituba, Raposo Tavares, Rio Pequeno, Alphaville/Barueri, Carapicuíba, Taboão da Serra, Cotia e Jandira.
 
 ## Diferenciais
 - +500 empresas com CNPJ verificado

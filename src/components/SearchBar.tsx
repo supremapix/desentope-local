@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { servicos } from '@/data/servicos';
 import { todosBairros } from '@/data/bairros';
 import { cidadesRMC } from '@/data/cidades-rmc';
-import { bairrosSaoPaulo, cidadesSaoPauloRegiao } from '@/data/bairros-sp';
+import { bairrosSaoPaulo, cidadesSaoPauloRegiao, bairrosOsascoRegiao } from '@/data/bairros-sp';
 
 export function SearchBar() {
   const navigate = useNavigate();
@@ -63,6 +63,9 @@ export function SearchBar() {
             ))}
             {cidadesSaoPauloRegiao.map(c => (
               <option key={c.slug} value={c.nome} />
+            ))}
+            {bairrosOsascoRegiao.map(b => (
+              <option key={b.slug} value={b.nome} />
             ))}
           </datalist>
         </div>

@@ -28,6 +28,17 @@ export const servicos: Servico[] = [
   // Motofrete e entregas
   { slug: 'motofrete-motoboy', nome: 'Motofrete e Motoboy', icone: 'bike', categoria: 'motofrete', descricao: 'Motoboy para coleta e entrega de documentos, peças e pequenos volumes no seu bairro.', precoMedio: 'Sob consulta' },
   { slug: 'entrega-expressa-van', nome: 'Entrega Expressa e Van', icone: 'package', categoria: 'motofrete', descricao: 'Transporte de caixas, encomendas e mercadorias com van e motofrete dedicado.', precoMedio: 'Sob consulta' },
+  // Lavanderia e passadoria
+  { slug: 'lavanderia-profissional', nome: 'Lavanderia Profissional', icone: 'shirt', categoria: 'lavanderia', descricao: 'Lavagem profissional de roupas do dia a dia, uniformes e peças delicadas com coleta e entrega.', precoMedio: 'Sob consulta' },
+  { slug: 'passadoria-roupas', nome: 'Passadoria de Roupas', icone: 'wind', categoria: 'lavanderia', descricao: 'Serviço de passadoria de camisas, calças, ternos e roupas sociais com acabamento profissional.', precoMedio: 'Sob consulta' },
+  { slug: 'lavagem-a-seco', nome: 'Lavagem a Seco (Dry Clean)', icone: 'sparkles', categoria: 'lavanderia', descricao: 'Lavagem a seco para ternos, vestidos, casacos e tecidos que não podem ser lavados com água.', precoMedio: 'Sob consulta' },
+  { slug: 'lave-e-dobre', nome: 'Lave e Dobre', icone: 'washing-machine', categoria: 'lavanderia', descricao: 'Lavanderia lave e dobre por quilo: roupas lavadas, secas e dobradas prontas para guardar.', precoMedio: 'Sob consulta' },
+  { slug: 'limpeza-edredom-roupa-cama', nome: 'Limpeza de Edredom e Roupa de Cama', icone: 'bed-double', categoria: 'lavanderia', descricao: 'Higienização de edredons, cobertores, colchas e limpeza geral de roupas de cama.', precoMedio: 'Sob consulta' },
+  { slug: 'limpeza-tapetes-cortinas', nome: 'Limpeza de Tapetes, Cortinas e Tapeçaria', icone: 'sofa', categoria: 'lavanderia', descricao: 'Limpeza de tapetes, cortinas e tapeçarias com produtos específicos para cada tecido.', precoMedio: 'Sob consulta' },
+  { slug: 'limpeza-couro-camurca', nome: 'Limpeza de Couro e Camurça', icone: 'briefcase', categoria: 'lavanderia', descricao: 'Limpeza e hidratação de jaquetas, bolsas e peças em couro e camurça.', precoMedio: 'Sob consulta' },
+  { slug: 'conservacao-vestido-noiva', nome: 'Conservação de Vestido de Noiva', icone: 'sparkles', categoria: 'lavanderia', descricao: 'Limpeza especializada e conservação de vestidos de casamento e trajes de festa.', precoMedio: 'Sob consulta' },
+  { slug: 'consertos-ajustes-roupas', nome: 'Consertos e Ajustes em Roupas', icone: 'scissors', categoria: 'lavanderia', descricao: 'Costura, barras, ajustes de cintura e pequenos reparos em peças de roupa.', precoMedio: 'Sob consulta' },
+  { slug: 'lavanderia-industrial', nome: 'Lavanderia Industrial e Empresarial', icone: 'factory', categoria: 'lavanderia', descricao: 'Lavanderia para hotéis, restaurantes, clínicas e empresas com contratos de uniformes e enxoval.', precoMedio: 'Sob consulta' },
 ];
 
 export function getServicoBySlug(slug: string): Servico | undefined {
@@ -38,5 +49,6 @@ export const categoriasRapidas = servicos.filter(s => [
   'desentupimento-vaso-sanitario', 'desentupimento-esgoto-residencial', 'desentupimento-esgoto-comercial',
   'encanador-residencial', 'conserto-vazamento', 'desentupimento-pia-cozinha',
   'limpa-fossa', 'camera-inspecao-esgoto', 'instalacao-hidraulica',
-  'emergencia-24h', 'motofrete-motoboy', 'entrega-expressa-van'
+  'emergencia-24h', 'motofrete-motoboy', 'entrega-expressa-van',
+  'lavanderia-profissional', 'passadoria-roupas', 'lavagem-a-seco', 'lave-e-dobre'
 ].includes(s.slug));
