@@ -14,6 +14,13 @@ const ServicoPage = () => {
   const servico = getServicoBySlug(slug || '');
   const empresas = getEmpresasPorServico(slug || '');
 
+  // Região principal por categoria de serviço (SEO semântico correto por segmento)
+  const regiao = servico?.categoria === 'lavanderia'
+    ? 'Osasco e Região'
+    : servico?.categoria === 'motofrete'
+      ? 'São Paulo e Curitiba'
+      : 'Curitiba';
+
   const faqData = getFaqServico(slug || '');
   const allFaqItems = getAllFaqServico(slug || '');
   const dicas = getDicasServico(slug || '');
@@ -21,14 +28,14 @@ const ServicoPage = () => {
   const faqServico = allFaqItems.length > 0
     ? allFaqItems.map(f => ({ pergunta: f.pergunta, resposta: f.resposta, categoria: f.categoria }))
     : servico ? [
-      { pergunta: `Quanto custa ${servico.nome.toLowerCase()} em Curitiba?`, resposta: `O preço médio para ${servico.nome.toLowerCase()} em Curitiba é ${servico.precoMedio || 'sob consulta'}.`, categoria: 'precos' },
-      { pergunta: `${servico.nome} tem atendimento 24 horas?`, resposta: `Sim! Diversas empresas oferecem ${servico.nome.toLowerCase()} com atendimento 24 horas em Curitiba.`, categoria: 'emergencia' },
+      { pergunta: `Quanto custa ${servico.nome.toLowerCase()} em ${regiao}?`, resposta: `O preço médio para ${servico.nome.toLowerCase()} em ${regiao} é ${servico.precoMedio || 'sob consulta'}.`, categoria: 'precos' },
+      { pergunta: `${servico.nome} tem atendimento 24 horas?`, resposta: `Sim! Diversas empresas oferecem ${servico.nome.toLowerCase()} com atendimento 24 horas em ${regiao}.`, categoria: 'emergencia' },
       { pergunta: `Como funciona o serviço de ${servico.nome.toLowerCase()}?`, resposta: servico.descricao, categoria: 'tecnico' },
     ] : [];
 
   useSEO({
-    title: servico ? `${servico.nome} em Curitiba — Preços, Empresas e 24h | Serviços no Bairro` : 'Serviço não encontrado',
-    description: servico ? `${servico.descricao} Preço médio: ${servico.precoMedio || 'sob consulta'}. ${empresas.length} empresas disponíveis em Curitiba. Orçamento grátis.` : '',
+    title: servico ? `${servico.nome} em ${regiao} — Preços, Empresas e 24h | Serviços no Bairro` : 'Serviço não encontrado',
+    description: servico ? `${servico.descricao} Preço médio: ${servico.precoMedio || 'sob consulta'}. ${empresas.length} empresas disponíveis em ${regiao}. Orçamento grátis.` : '',
     canonical: servico ? `/servicos/${servico.slug}` : undefined,
     jsonLd: servico ? [
       buildServiceSchema(servico.nome, servico.descricao, servico.precoMedio, empresas.length),
@@ -65,7 +72,7 @@ const ServicoPage = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl">
           <ServiceIcon name={servico.icone} className="h-12 w-12 text-primary mb-4" />
-          <h1 className="text-2xl md:text-3xl font-black mb-4">{servico.nome} em Curitiba</h1>
+          <h1 className="text-2xl md:text-3xl font-black mb-4">{servico.nome} em {regiao}</h1>
           <p className="text-muted-foreground text-lg mb-4">{servico.descricao}</p>
           {servico.precoMedio && (
             <div className="inline-flex items-center gap-2 bg-accent/10 text-accent border border-accent/30 px-4 py-2 rounded-lg font-bold mb-8">
@@ -94,7 +101,7 @@ const ServicoPage = () => {
           <FaqPremium
             perguntas={faqServico}
             titulo="Perguntas Frequentes"
-            subtitulo={`${faqServico.length} perguntas sobre ${servico.nome.toLowerCase()} em Curitiba`}
+            subtitulo={`${faqServico.length} perguntas sobre ${servico.nome.toLowerCase()} em ${regiao}`}
             mostrarBusca={faqServico.length > 5}
             mostrarAbas={!!faqData}
             limitePorCategoria={5}
