@@ -3,6 +3,7 @@ import { SearchBar } from '@/components/SearchBar';
 import { CompanyCard } from '@/components/CompanyCard';
 import { regionais } from '@/data/bairros';
 import { cidadesRMC } from '@/data/cidades-rmc';
+import { bairrosSaoPaulo, cidadesSaoPauloRegiao } from '@/data/bairros-sp';
 import { categoriasRapidas } from '@/data/servicos';
 import { getEmpresasDestaque } from '@/data/empresas';
 import { Shield, Clock, Star, Zap, AlertTriangle, Search, ShieldCheck, MessageCircle } from 'lucide-react';
