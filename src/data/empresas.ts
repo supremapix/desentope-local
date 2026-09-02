@@ -486,8 +486,8 @@ const empresasReais: Empresa[] = [
     atendeEmergencia: true,
     tipoServico: ['motofrete'],
     servicosOferecidos: [],
-    bairrosAtendidos: ['portao'],
-    cidadesAtendidas: ['sao-paulo', 'curitiba'],
+    bairrosAtendidos: ['portao', ...bairrosSaoPauloSlugs],
+    cidadesAtendidas: [...cidadesSaoPauloSlugs, 'curitiba'],
     formasPagamento: ['PIX', 'Dinheiro', 'Cartão de Crédito', 'Cartão de Débito', 'Boleto'],
     horarios: [
       { dia: 'Segunda a sexta', abertura: '08:00', fechamento: '18:00' },
