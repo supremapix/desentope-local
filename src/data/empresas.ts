@@ -285,14 +285,25 @@ export function getEmpresasPorServico(servicoSlug: string): Empresa[] {
   });
 }
 
-export function getEmpresasDestaque(): Empresa[] {
-  const popularBairros = ['centro', 'batel', 'agua-verde', 'boqueirao'];
-  const result: Empresa[] = [];
-  for (const bSlug of popularBairros) {
-    const empresas = getEmpresasPorBairro(bSlug);
-    result.push(...empresas.filter(e => e.destaque));
+/**
+ * Empresas em destaque = SEMPRE as últimas empresas reais cadastradas primeiro.
+ * Basta adicionar a nova empresa ao FINAL do array `empresasReais` que ela
+ * aparece automaticamente no topo da home, sem nenhuma outra alteração.
+ */
+export function getEmpresasDestaque(limite = 4): Empresa[] {
+  const ultimasCadastradas = [...empresasReais].reverse();
+  const result: Empresa[] = [...ultimasCadastradas];
+
+  if (result.length < limite) {
+    const popularBairros = ['centro', 'batel', 'agua-verde', 'boqueirao'];
+    for (const bSlug of popularBairros) {
+      for (const e of getEmpresasPorBairro(bSlug)) {
+        if (e.destaque && !result.some(r => r.slug === e.slug)) result.push(e);
+      }
+    }
   }
-  return result.slice(0, 4);
+
+  return result.slice(0, limite);
 }
 
 // WhatsApp link with UTM tracking
