@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import { getEmpresasPorBairro } from '@/data/empresas';
+import { getEmpresasPorBairro, empresas as empresasReais } from '@/data/empresas';
 import { servicos } from '@/data/servicos';
 import { todosBairros } from '@/data/bairros';
 import { CompanyCard } from '@/components/CompanyCard';
