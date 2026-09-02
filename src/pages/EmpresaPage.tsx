@@ -243,6 +243,7 @@ const EmpresaPage = () => {
                 </div>
               </CardContent>
             </Card>
+            )}
 
             {/* Avaliações */}
             <Card>
