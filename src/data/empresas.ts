@@ -1,6 +1,7 @@
 import { Empresa, Bairro } from '@/types';
 import { todosBairros, allCicSlugs, bairros, bairrosPopularesData } from '@/data/bairros';
 import { cidadesRMC } from '@/data/cidades-rmc';
+import { bairrosSaoPauloSlugs, cidadesSaoPauloSlugs } from '@/data/bairros-sp';
 
 // All Curitiba bairro slugs (official + popular)
 const allCuritibaSlugs = todosBairros.map(b => b.slug);
