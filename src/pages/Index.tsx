@@ -17,8 +17,8 @@ const Index = () => {
   const empresasDestaque = getEmpresasDestaque();
 
   useSEO({
-    title: 'Empresas e Profissionais Verificados no Bairro em Curitiba e RMC',
-    description: 'Diretório de empresas e profissionais verificados que prestam serviços no bairro em Curitiba e na RMC: desentupimento, hidráulica, motofrete e mais. Orçamento grátis no WhatsApp.',
+    title: 'Serviços no Bairro | Empresas Verificadas em Todo o Brasil',
+    description: 'Diretório de empresas e profissionais verificados que prestam serviços no seu bairro, em cidades de todo o Brasil: desentupimento, hidráulica, motofrete e mais. Cobertura completa em Curitiba, RMC e São Paulo. Orçamento grátis no WhatsApp.',
     canonical: '/',
     jsonLd: [buildWebsiteSchema(), buildOrganizationSchema()],
   });
@@ -29,13 +29,14 @@ const Index = () => {
       <section className="bg-primary text-primary-foreground py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-3xl md:text-5xl font-black mb-4 leading-tight">
-            Empresas no Bairro que Prestam Serviços<br className="hidden md:block" /> em Curitiba e Região
+            Empresas que Prestam Serviços no Seu Bairro<br className="hidden md:block" /> em Cidades de Todo o Brasil
           </h1>
-          <p className="text-lg md:text-xl text-primary-foreground mb-8 max-w-2xl mx-auto">
-            Diretório de empresas e profissionais verificados que prestam serviços perto de você: desentupimento, hidráulica, motofrete e outros, com atendimento 24h e orçamento grátis no WhatsApp
+          <p className="text-lg md:text-xl text-primary-foreground mb-8 max-w-3xl mx-auto">
+            O Serviços no Bairro conecta você a empresas e profissionais verificados de qualquer segmento perto de você — desentupimento, hidráulica, motofrete e entregas e muito mais. Cobertura hiperlocal bairro a bairro em Curitiba e Região Metropolitana, em São Paulo capital e Grande São Paulo, e em expansão para todas as cidades do Brasil, com atendimento 24h e orçamento grátis pelo WhatsApp.
           </p>
 
           <SearchBar />
+
 
           {/* Trust badges */}
           <div className="flex flex-wrap justify-center gap-6 mt-8 text-sm font-medium text-primary-foreground">
