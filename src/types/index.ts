@@ -17,7 +17,7 @@ export interface Servico {
   slug: string;
   nome: string;
   icone: string;
-  categoria: 'desentupimento' | 'encanamento';
+  categoria: 'desentupimento' | 'encanamento' | 'motofrete';
   descricao: string;
   descricaoLonga?: string;
   precoMedio?: string;
