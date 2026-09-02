@@ -67,10 +67,20 @@ const BuscaPage = () => {
       filtered = filtered.filter(e => e.servicosOferecidos.includes(filtroServico));
     }
     if (localParam) {
-      const slug = localParam.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-');
+      // "Sé — São Paulo" -> ["se", "sao", "paulo"] ; matches bairro/cidade slugs (inclusive "sp-se")
+      const tokens = localParam
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]+/g, ' ')
+        .trim()
+        .split(' ')
+        .filter(Boolean);
+      const slug = tokens.join('-');
+      const matches = (v: string) =>
+        v.includes(slug) || slug.includes(v) || tokens.every(t => v.includes(t));
       filtered = filtered.filter(e =>
-        e.bairrosAtendidos.some(b => b.includes(slug)) ||
-        e.cidadesAtendidas.some(c => c.includes(slug))
+        e.bairrosAtendidos.some(matches) || e.cidadesAtendidas.some(matches)
       );
     }
 
