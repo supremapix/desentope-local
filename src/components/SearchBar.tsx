@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { servicos } from '@/data/servicos';
 import { todosBairros } from '@/data/bairros';
 import { cidadesRMC } from '@/data/cidades-rmc';
+import { bairrosSaoPaulo, cidadesSaoPauloRegiao } from '@/data/bairros-sp';
 
 export function SearchBar() {
   const navigate = useNavigate();
