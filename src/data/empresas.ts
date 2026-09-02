@@ -1,7 +1,13 @@
 import { Empresa, Bairro } from '@/types';
 import { todosBairros, allCicSlugs, bairros, bairrosPopularesData } from '@/data/bairros';
 import { cidadesRMC } from '@/data/cidades-rmc';
-import { bairrosSaoPauloSlugs, cidadesSaoPauloSlugs } from '@/data/bairros-sp';
+import { bairrosSaoPauloSlugs, cidadesSaoPauloSlugs, bairrosOsascoSlugs, cidadesOsasco10kmSlugs } from '@/data/bairros-sp';
+
+// Segmentos que NÃO devem aparecer nas listagens hidráulicas por bairro/cidade
+const SEGMENTOS_NAO_HIDRAULICOS = ['motofrete', 'lavanderia'] as const;
+function isSegmentoHidraulico(emp: Empresa): boolean {
+  return !emp.tipoServico.some(t => (SEGMENTOS_NAO_HIDRAULICOS as readonly string[]).includes(t));
+}
 
 // All Curitiba bairro slugs (official + popular)
 const allCuritibaSlugs = todosBairros.map(b => b.slug);
@@ -220,7 +226,7 @@ export function getEmpresasPorBairro(bairroSlug: string): Empresa[] {
   const empresas = gerarEmpresasPorLocalidade(bairro.nome, bairroSlug, 'Curitiba');
   // Inject real companies that serve this bairro
   for (const emp of empresasReais) {
-    if (emp.tipoServico.includes('motofrete')) continue;
+    if (!isSegmentoHidraulico(emp)) continue;
     if (emp.bairrosAtendidos.includes(bairroSlug) && !empresas.find(e => e.slug === emp.slug)) {
       empresas.unshift(emp);
     }
@@ -238,7 +244,7 @@ export function getEmpresasPorCidade(cidadeSlug: string): Empresa[] {
   const empresas = gerarEmpresasPorLocalidade(cidade.nome, cidadeSlug, cidade.nome);
   // Inject real companies that serve this cidade
   for (const emp of empresasReais) {
-    if (emp.tipoServico.includes('motofrete')) continue;
+    if (!isSegmentoHidraulico(emp)) continue;
     if (emp.cidadesAtendidas.includes(cidadeSlug) && !empresas.find(e => e.slug === emp.slug)) {
       empresas.unshift(emp);
     }
@@ -517,6 +523,46 @@ const empresasReais: Empresa[] = [
     notaMedia: 4.9,
     totalAvaliacoes: 87,
   },
+  {
+    slug: 'lavanderia-inovata-osasco',
+    nome: 'Lavanderia Inovata — Lavanderia Profissional e Passadoria em Osasco',
+    logo: '/logos/logo-lavanderia-inovata.png',
+    fotos: ['/logos/logo-lavanderia-inovata.png'],
+    descricao: 'Lavanderia profissional e passadoria em Osasco (SP): lavagem a seco, lave e dobre, limpeza de edredom, tapetes, cortinas, couro, ternos e vestidos de noiva, com coleta e entrega em Osasco e bairros num raio de 10 km.',
+    descricaoLonga: 'A Lavanderia Inovata é uma lavanderia profissional e passadoria em Osasco, na Av. César Abraão, 209 — Vila Osasco, com nota 5,0 e 45 avaliações. Atende Osasco e bairros vizinhos em um raio de aproximadamente 10 km, incluindo Vila Osasco, Centro, Presidente Altino, Vila Yara, Jardim das Flores, Bela Vista, Vila Campesina, Km 18, Bonfim, City Bussocaba, Rochdale, Quitaúna, Munhoz Júnior e Umuarama, além de Lapa, Vila Leopoldina, Jaguaré, Butantã, Pirituba, Raposo Tavares e Rio Pequeno (São Paulo capital), Alphaville/Barueri, Carapicuíba, Taboão da Serra, Cotia e Jandira. Serviços: lavanderia profissional, passadoria de camisas e roupas sociais, lavagem a seco (dry clean), lavanderia lave e dobre por quilo, lavanderia automática, limpeza com cuidados especiais para tecidos delicados, limpeza de couro e camurça, limpeza de edredom, cobertores e roupa de cama, limpeza de tapetes, tapeçarias e cortinas, higienização de ternos, conservação de vestido de casamento, consertos e ajustes em roupas, secagem de roupas em geral, lavanderia premium e lavanderia industrial para empresas, hotéis, restaurantes e clínicas. Trabalhamos com retirada na lavanderia ou entrega (delivery) na região. Peça um orçamento pelo WhatsApp (11) 92169-1307 ou acesse www.lavanderiainovata.com.br.',
+    whatsapp: '5511921691307',
+    telefone: '(11) 92169-1307',
+    endereco: 'Av. César Abraão, 209 — Vila Osasco, Osasco/SP, CEP 06086-170',
+    site: 'https://www.lavanderiainovata.com.br/',
+    youtubeVideoId: 't4Sbb8b2xz0',
+    anosExperiencia: 8,
+    verificada: true,
+    destaque: true,
+    atende24h: false,
+    atendeEmergencia: false,
+    tipoServico: ['lavanderia'],
+    servicosOferecidos: [
+      'lavanderia-profissional', 'passadoria-roupas', 'lavagem-a-seco', 'lave-e-dobre',
+      'limpeza-edredom-roupa-cama', 'limpeza-tapetes-cortinas', 'limpeza-couro-camurca',
+      'conservacao-vestido-noiva', 'consertos-ajustes-roupas', 'lavanderia-industrial',
+    ],
+    bairrosAtendidos: [...bairrosOsascoSlugs],
+    cidadesAtendidas: [...cidadesOsasco10kmSlugs],
+    formasPagamento: ['PIX', 'Dinheiro', 'Cartão de Crédito', 'Cartão de Débito'],
+    horarios: [
+      { dia: 'Segunda a Sexta', abertura: '08:00', fechamento: '18:30' },
+      { dia: 'Sábado', abertura: '08:00', fechamento: '13:00' },
+      { dia: 'Domingo', abertura: '', fechamento: '', fechado: true },
+    ],
+    avaliacoes: [
+      { id: 'inovata-1', nomeCliente: 'Camila R.', nota: 5, data: '2026-07-18', servicoRealizado: 'Lavagem a seco de ternos', texto: 'Ternos voltaram impecáveis e no prazo combinado. Atendimento muito atencioso.' },
+      { id: 'inovata-2', nomeCliente: 'Fernando L.', nota: 5, data: '2026-06-22', servicoRealizado: 'Lave e dobre', texto: 'Uso o lave e dobre toda semana. Roupas cheirosas, dobradas e prontas para guardar.' },
+      { id: 'inovata-3', nomeCliente: 'Patrícia N.', nota: 5, data: '2026-05-09', servicoRealizado: 'Limpeza de edredom', texto: 'Edredom king ficou como novo. Recomendo para quem mora em Osasco e região.' },
+      { id: 'inovata-4', nomeCliente: 'Marcos A.', nota: 5, data: '2026-04-14', servicoRealizado: 'Conservação de vestido de noiva', texto: 'Cuidaram do vestido da minha esposa com todo carinho e embalaram para guardar.' },
+    ],
+    notaMedia: 5.0,
+    totalAvaliacoes: 45,
+  },
 ];
 
 // Inject real companies into cache/search
@@ -528,7 +574,7 @@ function registerEmpresasReais() {
       empresaCache.set(key, [emp]);
     }
     // Also inject into bairro caches so they appear in listings
-    if (emp.tipoServico.includes('motofrete')) continue;
+    if (!isSegmentoHidraulico(emp)) continue;
     for (const bairroSlug of emp.bairrosAtendidos) {
       const existing = empresaCache.get(`bairro-${bairroSlug}`);
       if (existing && !existing.find(e => e.slug === emp.slug)) {
