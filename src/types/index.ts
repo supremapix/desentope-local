@@ -17,7 +17,7 @@ export interface Servico {
   slug: string;
   nome: string;
   icone: string;
-  categoria: 'desentupimento' | 'encanamento' | 'motofrete';
+  categoria: 'desentupimento' | 'encanamento' | 'motofrete' | 'lavanderia';
   descricao: string;
   descricaoLonga?: string;
   precoMedio?: string;
@@ -60,7 +60,7 @@ export interface Empresa {
   destaque: boolean;
   atende24h: boolean;
   atendeEmergencia: boolean;
-  tipoServico: ('desentupimento' | 'encanamento' | 'motofrete')[];
+  tipoServico: ('desentupimento' | 'encanamento' | 'motofrete' | 'lavanderia')[];
   servicosOferecidos: string[];
   bairrosAtendidos: string[];
   cidadesAtendidas: string[];

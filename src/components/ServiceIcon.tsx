@@ -2,7 +2,8 @@ import {
   Bath, ShowerHead, Home, Building2, Utensils, Waves, Camera, Truck,
   CircleDot, Factory, AlertTriangle, Wrench, Store, Droplet, HardHat,
   Cog, GlassWater, Flame, Search, Bike, Package, type LucideIcon,
-  Shield, DollarSign, Scale, Leaf, Cpu, HelpCircle, MapPin, ClipboardList
+  Shield, DollarSign, Scale, Leaf, Cpu, HelpCircle, MapPin, ClipboardList,
+  Shirt, Wind, Sparkles, WashingMachine, BedDouble, Sofa, Briefcase, Scissors
 } from 'lucide-react';
 
 const iconMap: Record<string, LucideIcon> = {
@@ -35,6 +36,14 @@ const iconMap: Record<string, LucideIcon> = {
   'help-circle': HelpCircle,
   'map-pin': MapPin,
   'clipboard-list': ClipboardList,
+  shirt: Shirt,
+  wind: Wind,
+  sparkles: Sparkles,
+  'washing-machine': WashingMachine,
+  'bed-double': BedDouble,
+  sofa: Sofa,
+  briefcase: Briefcase,
+  scissors: Scissors,
 };
 
 interface ServiceIconProps {
