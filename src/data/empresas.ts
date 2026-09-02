@@ -265,6 +265,8 @@ export function getEmpresaBySlug(slug: string): Empresa | undefined {
 }
 
 export function getEmpresasPorServico(servicoSlug: string): Empresa[] {
+  // Empresas reais cadastradas que oferecem exatamente este serviço
+  const reais = empresasReais.filter(e => e.servicosOferecidos.includes(servicoSlug));
   // Return empresas from popular bairros that offer this service
   const popularBairros = ['centro', 'batel', 'agua-verde', 'boqueirao', 'portao'];
   const result: Empresa[] = [];
@@ -273,9 +275,10 @@ export function getEmpresasPorServico(servicoSlug: string): Empresa[] {
     result.push(...empresas.filter(e => e.servicosOferecidos.includes(servicoSlug)));
   }
   // Deduplicate by template prefix
-  const seen = new Set<string>();
-  return result.filter(e => {
+  const seen = new Set<string>(reais.map(e => e.nome.split(' ').slice(0, 2).join(' ')));
+  return [...reais, ...result].filter(e => {
     const key = e.nome.split(' ').slice(0, 2).join(' ');
+    if (reais.includes(e)) return true;
     if (seen.has(key)) return false;
     seen.add(key);
     return true;
@@ -485,7 +488,7 @@ const empresasReais: Empresa[] = [
     atende24h: false,
     atendeEmergencia: true,
     tipoServico: ['motofrete'],
-    servicosOferecidos: [],
+    servicosOferecidos: ['motofrete-motoboy', 'entrega-expressa-van'],
     bairrosAtendidos: ['portao', ...bairrosSaoPauloSlugs],
     cidadesAtendidas: [...cidadesSaoPauloSlugs, 'curitiba'],
     formasPagamento: ['PIX', 'Dinheiro', 'Cartão de Crédito', 'Cartão de Débito', 'Boleto'],
