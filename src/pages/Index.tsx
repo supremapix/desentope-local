@@ -120,7 +120,7 @@ const Index = () => {
       <section className="py-12 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl font-bold text-center mb-2">Como Funciona o Serviços no Bairro</h2>
-          <p className="text-center text-muted-foreground mb-8">3 passos simples para resolver seu problema hidráulico</p>
+          <p className="text-center text-muted-foreground mb-8">3 passos simples para encontrar empresas de serviços perto de você</p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             <div className="flex flex-col items-center text-center p-6 rounded-xl bg-card border hover:shadow-md transition-shadow">
