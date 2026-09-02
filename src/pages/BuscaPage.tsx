@@ -113,7 +113,8 @@ const BuscaPage = () => {
           <h1 className="text-2xl font-black">Buscar Empresas de Serviços no Seu Bairro</h1>
           <p className="mt-2 text-muted-foreground max-w-3xl">
             Compare empresas e profissionais verificados que prestam serviços no seu bairro — desentupimento,
-            hidráulica, motofrete e entregas — com atendimento 24h e orçamento gratuito pelo WhatsApp.
+            hidráulica, motofrete e entregas — em Curitiba e RMC, São Paulo capital e Grande São Paulo, e em
+            cidades de todo o Brasil, com atendimento 24h e orçamento gratuito pelo WhatsApp.
           </p>
         </header>
         <div className="mb-8">
