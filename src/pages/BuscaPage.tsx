@@ -23,8 +23,8 @@ const BuscaPage = () => {
   const localParam = searchParams.get('local') || '';
 
   useSEO({
-    title: 'Buscar Desentupidoras e Encanadores — Curitiba | Serviços no Bairro',
-    description: 'Busque e compare desentupidoras e encanadores em Curitiba e Região Metropolitana. Filtros por bairro, tipo, disponibilidade 24h e avaliação.',
+    title: 'Buscar Empresas de Serviços em Curitiba | Serviços no Bairro',
+    description: 'Encontre e compare empresas e profissionais que prestam serviços em Curitiba e na RMC: desentupimento, hidráulica, motofrete e mais. Filtre por bairro, categoria, 24h e avaliação.',
     canonical: '/busca',
     jsonLd: buildBreadcrumbSchema([
       { name: 'Início', url: '/' },
@@ -32,15 +32,18 @@ const BuscaPage = () => {
     ]),
   });
 
-  // Generate empresas from popular bairros
+  // Generate empresas from popular bairros + real registered companies
   const todasEmpresas = useMemo(() => {
     const map = new Map<string, Empresa>();
+    for (const e of empresasReais) {
+      map.set(e.slug, e);
+    }
     for (const bSlug of POPULAR_BAIRROS) {
       const empresas = getEmpresasPorBairro(bSlug);
       for (const e of empresas) {
         // Use template prefix as dedup key
         const key = e.nome.split(' ').slice(0, 2).join(' ');
-        if (!map.has(key)) {
+        if (!map.has(key) && !map.has(e.slug)) {
           map.set(key, e);
         }
       }
