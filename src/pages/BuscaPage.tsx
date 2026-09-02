@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import { getEmpresasPorBairro } from '@/data/empresas';
+import { getEmpresasPorBairro, empresas as empresasReais } from '@/data/empresas';
 import { servicos } from '@/data/servicos';
 import { todosBairros } from '@/data/bairros';
 import { CompanyCard } from '@/components/CompanyCard';
@@ -23,8 +23,8 @@ const BuscaPage = () => {
   const localParam = searchParams.get('local') || '';
 
   useSEO({
-    title: 'Buscar Desentupidoras e Encanadores — Curitiba | Serviços no Bairro',
-    description: 'Busque e compare desentupidoras e encanadores em Curitiba e Região Metropolitana. Filtros por bairro, tipo, disponibilidade 24h e avaliação.',
+    title: 'Buscar Empresas de Serviços em Curitiba | Serviços no Bairro',
+    description: 'Encontre e compare empresas e profissionais que prestam serviços em Curitiba e na RMC: desentupimento, hidráulica, motofrete e mais. Filtre por bairro, categoria, 24h e avaliação.',
     canonical: '/busca',
     jsonLd: buildBreadcrumbSchema([
       { name: 'Início', url: '/' },
@@ -32,15 +32,18 @@ const BuscaPage = () => {
     ]),
   });
 
-  // Generate empresas from popular bairros
+  // Generate empresas from popular bairros + real registered companies
   const todasEmpresas = useMemo(() => {
     const map = new Map<string, Empresa>();
+    for (const e of empresasReais) {
+      map.set(e.slug, e);
+    }
     for (const bSlug of POPULAR_BAIRROS) {
       const empresas = getEmpresasPorBairro(bSlug);
       for (const e of empresas) {
         // Use template prefix as dedup key
         const key = e.nome.split(' ').slice(0, 2).join(' ');
-        if (!map.has(key)) {
+        if (!map.has(key) && !map.has(e.slug)) {
           map.set(key, e);
         }
       }
@@ -96,7 +99,13 @@ const BuscaPage = () => {
       </div>
 
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-2xl font-black mb-6">Buscar Empresas</h1>
+        <header className="mb-6">
+          <h1 className="text-2xl font-black">Buscar Empresas de Serviços em Curitiba e Região</h1>
+          <p className="mt-2 text-muted-foreground max-w-3xl">
+            Compare empresas e profissionais verificados que prestam serviços no seu bairro — desentupimento,
+            hidráulica, motofrete e entregas — com atendimento 24h e orçamento gratuito pelo WhatsApp.
+          </p>
+        </header>
         <div className="mb-8">
           <SearchBar />
         </div>
@@ -104,50 +113,69 @@ const BuscaPage = () => {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Filters toggle mobile */}
           <button
+            type="button"
             onClick={() => setShowFilters(!showFilters)}
+            aria-expanded={showFilters}
+            aria-controls="filtros-busca"
             className="lg:hidden flex items-center gap-2 h-10 px-4 rounded-lg border font-medium text-sm"
           >
-            <SlidersHorizontal className="h-4 w-4" />
+            <SlidersHorizontal className="h-4 w-4" aria-hidden="true" />
             Filtros
-            {showFilters && <X className="h-4 w-4 ml-auto" />}
+            {showFilters && <X className="h-4 w-4 ml-auto" aria-hidden="true" />}
           </button>
 
           {/* Sidebar Filters */}
-          <aside className={`lg:w-64 flex-shrink-0 space-y-6 ${showFilters ? 'block' : 'hidden lg:block'}`}>
-            <div className="bg-card rounded-xl border p-5 space-y-5">
-              <h3 className="font-bold">Filtrar Resultados</h3>
+          <aside
+            id="filtros-busca"
+            aria-label="Filtros de busca de empresas"
+            className={`lg:w-64 flex-shrink-0 space-y-6 ${showFilters ? 'block' : 'hidden lg:block'}`}
+          >
+            <form className="bg-card rounded-xl border p-5 space-y-5" onSubmit={e => e.preventDefault()}>
+              <h2 className="font-bold text-base">Filtrar Resultados</h2>
 
-              <div>
-                <div className="text-sm font-medium mb-2">Tipo</div>
+              <fieldset>
+                <legend className="text-sm font-medium mb-2">Categoria de serviço</legend>
                 <div className="space-y-1">
-                  {[{ value: '', label: 'Todos' }, { value: 'desentupimento', label: 'Desentupidora' }, { value: 'encanamento', label: 'Encanador' }].map(opt => (
+                  {[
+                    { value: '', label: 'Todas as categorias' },
+                    { value: 'desentupimento', label: 'Desentupidora' },
+                    { value: 'encanamento', label: 'Encanador e hidráulica' },
+                    { value: 'motofrete', label: 'Motofrete e entregas' },
+                  ].map(opt => (
                     <label key={opt.value} className="flex items-center gap-2 text-sm cursor-pointer">
-                      <input type="radio" name="tipo" value={opt.value} checked={filtroTipo === opt.value} onChange={() => setFiltroTipo(opt.value)} />
+                      <input
+                        type="radio"
+                        name="tipo"
+                        value={opt.value}
+                        checked={filtroTipo === opt.value}
+                        onChange={() => setFiltroTipo(opt.value)}
+                      />
                       {opt.label}
                     </label>
                   ))}
                 </div>
-              </div>
+              </fieldset>
 
-              <div>
-                <div className="text-sm font-medium mb-2">Disponibilidade</div>
+              <fieldset>
+                <legend className="text-sm font-medium mb-2">Disponibilidade</legend>
                 <label className="flex items-center gap-2 text-sm cursor-pointer">
                   <input type="checkbox" checked={filtro24h} onChange={e => setFiltro24h(e.target.checked)} />
-                  Atende 24h
+                  Atende 24 horas
                 </label>
-              </div>
+              </fieldset>
 
-              <div>
-                <div className="text-sm font-medium mb-2">Verificação</div>
+              <fieldset>
+                <legend className="text-sm font-medium mb-2">Verificação</legend>
                 <label className="flex items-center gap-2 text-sm cursor-pointer">
                   <input type="checkbox" checked={filtroVerificada} onChange={e => setFiltroVerificada(e.target.checked)} />
-                  Empresa verificada
+                  Somente empresas verificadas
                 </label>
-              </div>
+              </fieldset>
 
               <div>
-                <div className="text-sm font-medium mb-2">Serviço</div>
+                <label htmlFor="filtro-servico" className="block text-sm font-medium mb-2">Serviço específico</label>
                 <select
+                  id="filtro-servico"
                   value={filtroServico}
                   onChange={e => setFiltroServico(e.target.value)}
                   className="w-full h-9 px-2 rounded-md border bg-background text-sm"
@@ -158,29 +186,37 @@ const BuscaPage = () => {
                   ))}
                 </select>
               </div>
-            </div>
+            </form>
           </aside>
 
           {/* Results */}
-          <div className="flex-1">
+          <section className="flex-1" aria-label="Resultados da busca">
             <div className="flex items-center justify-between mb-4">
-              <span className="text-sm text-muted-foreground">{resultado.length} empresa{resultado.length !== 1 ? 's' : ''} encontrada{resultado.length !== 1 ? 's' : ''}</span>
-              <select
-                value={ordenar}
-                onChange={e => setOrdenar(e.target.value)}
-                className="h-9 px-3 rounded-md border bg-background text-sm"
-              >
-                <option value="relevante">Mais Relevante</option>
-                <option value="avaliacao">Melhor Avaliado</option>
-                <option value="avaliacoes">Mais Avaliações</option>
-              </select>
+              <p aria-live="polite" className="text-sm text-muted-foreground">
+                {resultado.length} empresa{resultado.length !== 1 ? 's' : ''} encontrada{resultado.length !== 1 ? 's' : ''}
+              </p>
+              <div className="flex items-center gap-2">
+                <label htmlFor="ordenar-resultados" className="sr-only">Ordenar resultados</label>
+                <select
+                  id="ordenar-resultados"
+                  value={ordenar}
+                  onChange={e => setOrdenar(e.target.value)}
+                  className="h-9 px-3 rounded-md border bg-background text-sm"
+                >
+                  <option value="relevante">Mais Relevante</option>
+                  <option value="avaliacao">Melhor Avaliado</option>
+                  <option value="avaliacoes">Mais Avaliações</option>
+                </select>
+              </div>
             </div>
 
-            <div className="space-y-4">
+            <ul className="space-y-4 list-none p-0 m-0">
               {resultado.map(e => (
-                <CompanyCard key={e.slug} empresa={e} />
+                <li key={e.slug}>
+                  <CompanyCard empresa={e} />
+                </li>
               ))}
-            </div>
+            </ul>
 
             {resultado.length === 0 && (
               <div className="text-center py-16 text-muted-foreground">
@@ -188,7 +224,7 @@ const BuscaPage = () => {
                 <p>Tente ajustar os filtros ou buscar em outra região.</p>
               </div>
             )}
-          </div>
+          </section>
         </div>
       </div>
     </div>
