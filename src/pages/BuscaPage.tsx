@@ -23,7 +23,7 @@ const BuscaPage = () => {
   const localParam = searchParams.get('local') || '';
 
   useSEO({
-    title: 'Buscar Empresas de Serviços em Curitiba | Serviços no Bairro',
+    title: 'Buscar Empresas de Serviços no Seu Bairro | Brasil',
     description: 'Encontre e compare empresas e profissionais que prestam serviços em Curitiba e na RMC: desentupimento, hidráulica, motofrete e mais. Filtre por bairro, categoria, 24h e avaliação.',
     canonical: '/busca',
     jsonLd: buildBreadcrumbSchema([
@@ -110,7 +110,7 @@ const BuscaPage = () => {
 
       <div className="container mx-auto px-4 py-8">
         <header className="mb-6">
-          <h1 className="text-2xl font-black">Buscar Empresas de Serviços em Curitiba e Região</h1>
+          <h1 className="text-2xl font-black">Buscar Empresas de Serviços no Seu Bairro</h1>
           <p className="mt-2 text-muted-foreground max-w-3xl">
             Compare empresas e profissionais verificados que prestam serviços no seu bairro — desentupimento,
             hidráulica, motofrete e entregas — com atendimento 24h e orçamento gratuito pelo WhatsApp.
