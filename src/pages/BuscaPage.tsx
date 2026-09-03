@@ -24,7 +24,7 @@ const BuscaPage = () => {
 
   useSEO({
     title: 'Buscar Empresas de Serviços no Seu Bairro | Brasil',
-    description: 'Encontre e compare empresas e profissionais que prestam serviços em Curitiba e na RMC: desentupimento, hidráulica, motofrete, lavanderia e mais. Filtre por bairro, categoria, 24h e avaliação.',
+    description: 'Encontre e compare empresas e profissionais que prestam serviços em Curitiba e na RMC: desentupimento, hidráulica, motofrete, lavanderia, refrigeração e mais. Filtre por bairro, categoria, 24h e avaliação.',
     canonical: '/busca',
     jsonLd: buildBreadcrumbSchema([
       { name: 'Início', url: '/' },
@@ -113,7 +113,8 @@ const BuscaPage = () => {
           <h1 className="text-2xl font-black">Buscar Empresas de Serviços no Seu Bairro</h1>
           <p className="mt-2 text-muted-foreground max-w-3xl">
             Compare empresas e profissionais verificados que prestam serviços no seu bairro — desentupimento,
-            hidráulica, motofrete e entregas — em Curitiba e RMC, São Paulo capital e Grande São Paulo, e em
+            hidráulica, motofrete e entregas, lavanderia e assistência técnica em refrigeração — em Curitiba e RMC,
+            São Paulo capital e Grande São Paulo, Navegantes e o litoral de Santa Catarina, e em
             cidades de todo o Brasil, com atendimento 24h e orçamento gratuito pelo WhatsApp.
           </p>
         </header>
@@ -153,6 +154,7 @@ const BuscaPage = () => {
                     { value: 'encanamento', label: 'Encanador e hidráulica' },
                     { value: 'motofrete', label: 'Motofrete e entregas' },
                     { value: 'lavanderia', label: 'Lavanderia e passadoria' },
+                    { value: 'refrigeracao', label: 'Refrigeração e assistência técnica' },
                   ].map(opt => (
                     <label key={opt.value} className="flex items-center gap-2 text-sm cursor-pointer">
                       <input

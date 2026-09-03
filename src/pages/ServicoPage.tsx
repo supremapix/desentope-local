@@ -19,7 +19,9 @@ const ServicoPage = () => {
     ? 'Osasco e Região'
     : servico?.categoria === 'motofrete'
       ? 'São Paulo e Curitiba'
-      : 'Curitiba';
+      : servico?.categoria === 'refrigeracao'
+        ? 'Navegantes e Região (SC)'
+        : 'Curitiba';
 
   const faqData = getFaqServico(slug || '');
   const allFaqItems = getAllFaqServico(slug || '');

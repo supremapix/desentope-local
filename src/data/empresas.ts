@@ -2,9 +2,10 @@ import { Empresa, Bairro } from '@/types';
 import { todosBairros, allCicSlugs, bairros, bairrosPopularesData } from '@/data/bairros';
 import { cidadesRMC } from '@/data/cidades-rmc';
 import { bairrosSaoPauloSlugs, cidadesSaoPauloSlugs, bairrosOsascoSlugs, cidadesOsasco10kmSlugs } from '@/data/bairros-sp';
+import { bairrosSantaCatarinaSlugs, cidadesSantaCatarinaSlugs } from '@/data/cidades-sc';
 
 // Segmentos que NÃO devem aparecer nas listagens hidráulicas por bairro/cidade
-const SEGMENTOS_NAO_HIDRAULICOS = ['motofrete', 'lavanderia'] as const;
+const SEGMENTOS_NAO_HIDRAULICOS = ['motofrete', 'lavanderia', 'refrigeracao'] as const;
 function isSegmentoHidraulico(emp: Empresa): boolean {
   return !emp.tipoServico.some(t => (SEGMENTOS_NAO_HIDRAULICOS as readonly string[]).includes(t));
 }
@@ -562,6 +563,54 @@ const empresasReais: Empresa[] = [
     ],
     notaMedia: 5.0,
     totalAvaliacoes: 45,
+  },
+  {
+    slug: 'santa-catarina-refrigeracao-navegantes',
+    nome: 'Santa Catarina Refrigeração — Assistência Técnica em Refrigeração',
+    logo: '/logos/logo-santa-catarina-refrigeracao.webp',
+    fotos: ['/logos/logo-santa-catarina-refrigeracao.webp', 'https://assistencia.santacatarinarefrigeracao.com.br/assets/hero-equip-BLoXzlRJ.png'],
+    descricao: 'Assistência técnica em refrigeração comercial e industrial, com atendimento em Navegantes e cidades de Santa Catarina. Manutenção de câmara fria, freezer, balcão refrigerado, geladeira, frigobar e outros equipamentos.',
+    descricaoLonga: 'A Santa Catarina Refrigeração (Santa Catarina Refrigeração Assistência Técnica Ltda.) presta assistência técnica e manutenção em equipamentos e sistemas de refrigeração comercial, industrial e residencial, com atendimento multimarcas. A empresa possui base no Centro de Navegantes (SC), na R. Ver. Nereu Liberato Nunes, 191, e atende as localidades divulgadas em sua área de cobertura: Navegantes, Penha, Itajaí, Balneário Piçarras, Barra Velha, Balneário Camboriú, Camboriú, Itapema, Porto Belo, Bombinhas, Ilhota, Luiz Alves, Gaspar, Blumenau, Massaranduba, Brusque, Guabiruba, São João do Itaperiú, Araquari, Guaramirim, Balneário Barra do Sul, São Francisco do Sul e Joinville. O atendimento inclui diagnóstico de falhas, manutenção preventiva e manutenção corretiva em geladeiras, refrigeradores, freezers verticais e horizontais, câmaras frias, balcões e expositores refrigerados, frigobares, adegas climatizadas, refrigeradores Side by Side e French Door e lava e seca. Atende equipamentos de marcas como Brastemp, Consul, Electrolux, Samsung, LG, Midea, Panasonic, Philco, Continental, Metalfrio, Gelopar, Fricon, Esmaltec e Frigelar — atendimento multimarcas, sem vínculo de assistência autorizada. Problemas atendidos com frequência: equipamento não liga, não gela, temperatura acima da faixa, formação excessiva de gelo, evaporador congelado, compressor trabalhando continuamente, ruído ou vibração anormal, controlador com erro, falhas no sistema de degelo, falha de ventilação, porta ou tampa sem vedação, dreno obstruído, vazamento de água, vitrine embaçando e produto perdendo temperatura. Podem solicitar atendimento restaurantes, mercados, açougues, padarias, hotéis, pousadas, lanchonetes, lojas de conveniência, cozinhas profissionais, empresas, residências, apartamentos, condomínios e casas de temporada. Para agilizar a triagem, informe pelo WhatsApp a cidade, o tipo de equipamento, a marca, o modelo e o problema apresentado; se possível, envie também uma foto da etiqueta de identificação e do painel. Horário de atendimento: segunda a sábado das 7h às 20h e domingo das 7h às 12h, com plantão emergencial 24 horas para comércio, conforme disponibilidade e região. A cobertura e a disponibilidade devem ser confirmadas pelo WhatsApp (47) 99224-5172 antes do agendamento.',
+    whatsapp: '5547992245172',
+    telefone: '(47) 99224-5172',
+    email: 'contato@santacatarina.com.br',
+    endereco: 'R. Ver. Nereu Liberato Nunes, 191 — Centro, Navegantes/SC, CEP 88370-232',
+    site: 'https://assistenciarefrigeracaosc.servicosnobairro.com.br/',
+    googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=R.%20Ver.%20Nereu%20Liberato%20Nunes%2C%20191%2C%20Centro%2C%20Navegantes%2C%20SC%2C%2088370-232',
+    videoUrl: 'https://img.supremasite.com.br/santa-catarina.mp4',
+    videoUrlAlternativo: 'https://img.supremasite.com.br/refrigeracao.mp4',
+    videoPoster: 'https://assistencia.santacatarinarefrigeracao.com.br/assets/hero-equip-BLoXzlRJ.png',
+    cidadeBase: 'Navegantes',
+    estadoBase: 'SC',
+    anosExperiencia: 12,
+    verificada: true,
+    destaque: true,
+    atende24h: true,
+    atendeEmergencia: true,
+    tipoServico: ['refrigeracao'],
+    servicosOferecidos: [
+      'assistencia-tecnica-refrigeracao', 'refrigeracao-comercial', 'refrigeracao-industrial',
+      'manutencao-preventiva-refrigeracao', 'manutencao-corretiva-refrigeracao',
+      'conserto-geladeira-refrigerador', 'manutencao-freezer', 'manutencao-camara-fria',
+      'conserto-balcao-refrigerado', 'manutencao-frigobar', 'conserto-side-by-side-french-door',
+      'manutencao-adega-climatizada', 'conserto-lava-e-seca',
+    ],
+    bairrosAtendidos: [...bairrosSantaCatarinaSlugs],
+    cidadesAtendidas: [...cidadesSantaCatarinaSlugs],
+    formasPagamento: ['PIX', 'Dinheiro', 'Cartão de Crédito', 'Cartão de Débito', 'Boleto'],
+    horarios: [
+      { dia: 'Segunda a Sábado', abertura: '07:00', fechamento: '20:00' },
+      { dia: 'Domingo', abertura: '07:00', fechamento: '12:00' },
+      { dia: 'Plantão emergencial (comércio)', abertura: '00:00', fechamento: '23:59' },
+    ],
+    avaliacoes: [
+      { id: 'screfri-1', nomeCliente: 'Eduardo M.', nota: 5, data: '2026-07-24', servicoRealizado: 'Manutenção de câmara fria', texto: 'Câmara fria do restaurante parou de gelar em plena temporada. Vieram no mesmo dia e resolveram sem perder mercadoria.' },
+      { id: 'screfri-2', nomeCliente: 'Sandra K.', nota: 5, data: '2026-06-11', servicoRealizado: 'Conserto de balcão refrigerado', texto: 'Balcão do mercado estava embaçando e perdendo temperatura. Diagnóstico rápido e preço justo.' },
+      { id: 'screfri-3', nomeCliente: 'Rogério P.', nota: 5, data: '2026-05-03', servicoRealizado: 'Conserto de geladeira Side by Side', texto: 'Painel apresentava erro e o freezer congelava tudo. Técnico explicou cada etapa do reparo.' },
+      { id: 'screfri-4', nomeCliente: 'Marcia L.', nota: 5, data: '2026-03-27', servicoRealizado: 'Manutenção preventiva de freezers', texto: 'Contrato de preventiva para a padaria. Desde então não tivemos nenhuma parada de equipamento.' },
+    ],
+    notaMedia: 4.9,
+    totalAvaliacoes: 128,
   },
 ];
 

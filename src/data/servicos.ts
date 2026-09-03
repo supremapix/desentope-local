@@ -39,6 +39,20 @@ export const servicos: Servico[] = [
   { slug: 'conservacao-vestido-noiva', nome: 'Conservação de Vestido de Noiva', icone: 'sparkles', categoria: 'lavanderia', descricao: 'Limpeza especializada e conservação de vestidos de casamento e trajes de festa.', precoMedio: 'Sob consulta' },
   { slug: 'consertos-ajustes-roupas', nome: 'Consertos e Ajustes em Roupas', icone: 'scissors', categoria: 'lavanderia', descricao: 'Costura, barras, ajustes de cintura e pequenos reparos em peças de roupa.', precoMedio: 'Sob consulta' },
   { slug: 'lavanderia-industrial', nome: 'Lavanderia Industrial e Empresarial', icone: 'factory', categoria: 'lavanderia', descricao: 'Lavanderia para hotéis, restaurantes, clínicas e empresas com contratos de uniformes e enxoval.', precoMedio: 'Sob consulta' },
+  // Refrigeração
+  { slug: 'assistencia-tecnica-refrigeracao', nome: 'Assistência Técnica em Refrigeração', icone: 'snowflake', categoria: 'refrigeracao', descricao: 'Assistência técnica multimarcas em equipamentos e sistemas de refrigeração comercial, industrial e residencial.', precoMedio: 'Sob consulta' },
+  { slug: 'refrigeracao-comercial', nome: 'Refrigeração Comercial', icone: 'store', categoria: 'refrigeracao', descricao: 'Manutenção de equipamentos de refrigeração para mercados, padarias, restaurantes, açougues e lojas de conveniência.', precoMedio: 'Sob consulta' },
+  { slug: 'refrigeracao-industrial', nome: 'Refrigeração Industrial', icone: 'factory', categoria: 'refrigeracao', descricao: 'Manutenção de sistemas de refrigeração industrial e instalações de grande porte com atendimento programado.', precoMedio: 'Sob consulta' },
+  { slug: 'manutencao-preventiva-refrigeracao', nome: 'Manutenção Preventiva de Refrigeração', icone: 'clipboard-list', categoria: 'refrigeracao', descricao: 'Limpeza de condensador, verificação de degelo, vedação, controlador e temperatura para evitar paradas.', precoMedio: 'Sob consulta' },
+  { slug: 'manutencao-corretiva-refrigeracao', nome: 'Manutenção Corretiva de Refrigeração', icone: 'wrench', categoria: 'refrigeracao', descricao: 'Diagnóstico de falhas e reparo de equipamentos que não ligam, não gelam ou trabalham fora da faixa de temperatura.', precoMedio: 'Sob consulta' },
+  { slug: 'conserto-geladeira-refrigerador', nome: 'Conserto de Geladeira e Refrigerador', icone: 'refrigerator', categoria: 'refrigeracao', descricao: 'Conserto de geladeiras e refrigeradores multimarcas: não gela, forma gelo em excesso, faz ruído ou vaza água.', precoMedio: 'Sob consulta' },
+  { slug: 'manutencao-freezer', nome: 'Manutenção de Freezer Vertical e Horizontal', icone: 'thermometer-snowflake', categoria: 'refrigeracao', descricao: 'Manutenção de freezers verticais e horizontais com ajuste de temperatura, degelo e vedação.', precoMedio: 'Sob consulta' },
+  { slug: 'manutencao-camara-fria', nome: 'Manutenção de Câmara Fria', icone: 'warehouse', categoria: 'refrigeracao', descricao: 'Manutenção preventiva e corretiva de câmaras frias comerciais, com controle de temperatura e degelo.', precoMedio: 'Sob consulta' },
+  { slug: 'conserto-balcao-refrigerado', nome: 'Conserto de Balcão e Expositor Refrigerado', icone: 'boxes', categoria: 'refrigeracao', descricao: 'Conserto de balcões refrigerados e expositores que embaçam, perdem temperatura ou congelam o evaporador.', precoMedio: 'Sob consulta' },
+  { slug: 'manutencao-frigobar', nome: 'Manutenção de Frigobar', icone: 'snowflake', categoria: 'refrigeracao', descricao: 'Manutenção de frigobares para hotéis, pousadas, casas de temporada e residências.', precoMedio: 'Sob consulta' },
+  { slug: 'conserto-side-by-side-french-door', nome: 'Conserto de Side by Side e French Door', icone: 'refrigerator', categoria: 'refrigeracao', descricao: 'Assistência técnica em refrigeradores Side by Side e French Door: painel com erro, degelo e ventilação.', precoMedio: 'Sob consulta' },
+  { slug: 'manutencao-adega-climatizada', nome: 'Manutenção de Adega Climatizada', icone: 'wine', categoria: 'refrigeracao', descricao: 'Manutenção de adegas climatizadas com ajuste de temperatura e verificação do sistema de refrigeração.', precoMedio: 'Sob consulta' },
+  { slug: 'conserto-lava-e-seca', nome: 'Conserto de Lava e Seca', icone: 'washing-machine', categoria: 'refrigeracao', descricao: 'Conserto de lava e seca multimarcas com diagnóstico de falhas e reposição de peças.', precoMedio: 'Sob consulta' },
 ];
 
 export function getServicoBySlug(slug: string): Servico | undefined {
@@ -50,5 +64,8 @@ export const categoriasRapidas = servicos.filter(s => [
   'encanador-residencial', 'conserto-vazamento', 'desentupimento-pia-cozinha',
   'limpa-fossa', 'camera-inspecao-esgoto', 'instalacao-hidraulica',
   'emergencia-24h', 'motofrete-motoboy', 'entrega-expressa-van',
-  'lavanderia-profissional', 'passadoria-roupas', 'lavagem-a-seco', 'lave-e-dobre'
+  'lavanderia-profissional', 'passadoria-roupas', 'lavagem-a-seco', 'lave-e-dobre',
+  'assistencia-tecnica-refrigeracao', 'refrigeracao-comercial', 'conserto-geladeira-refrigerador',
+  'manutencao-camara-fria'
 ].includes(s.slug));
+

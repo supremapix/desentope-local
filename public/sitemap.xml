@@ -1261,6 +1261,71 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/assistencia-tecnica-refrigeracao</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/refrigeracao-comercial</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/refrigeracao-industrial</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/manutencao-preventiva-refrigeracao</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/manutencao-corretiva-refrigeracao</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/conserto-geladeira-refrigerador</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/manutencao-freezer</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/manutencao-camara-fria</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/conserto-balcao-refrigerado</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/manutencao-frigobar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/conserto-side-by-side-french-door</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/manutencao-adega-climatizada</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/conserto-lava-e-seca</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.servicosnobairro.com.br/empresa/agua-facil-desentupidora-encanador-24h</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -1282,6 +1347,11 @@
   </url>
   <url>
     <loc>https://www.servicosnobairro.com.br/empresa/lavanderia-inovata-osasco</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/empresa/santa-catarina-refrigeracao-navegantes</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>

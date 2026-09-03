@@ -3,7 +3,8 @@ import {
   CircleDot, Factory, AlertTriangle, Wrench, Store, Droplet, HardHat,
   Cog, GlassWater, Flame, Search, Bike, Package, type LucideIcon,
   Shield, DollarSign, Scale, Leaf, Cpu, HelpCircle, MapPin, ClipboardList,
-  Shirt, Wind, Sparkles, WashingMachine, BedDouble, Sofa, Briefcase, Scissors
+  Shirt, Wind, Sparkles, WashingMachine, BedDouble, Sofa, Briefcase, Scissors,
+  Snowflake, Refrigerator, ThermometerSnowflake, AirVent, Wine, Warehouse, Boxes
 } from 'lucide-react';
 
 const iconMap: Record<string, LucideIcon> = {
@@ -44,6 +45,13 @@ const iconMap: Record<string, LucideIcon> = {
   sofa: Sofa,
   briefcase: Briefcase,
   scissors: Scissors,
+  snowflake: Snowflake,
+  refrigerator: Refrigerator,
+  'thermometer-snowflake': ThermometerSnowflake,
+  'air-vent': AirVent,
+  wine: Wine,
+  warehouse: Warehouse,
+  boxes: Boxes,
 };
 
 interface ServiceIconProps {

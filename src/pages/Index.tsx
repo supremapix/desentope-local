@@ -4,6 +4,7 @@ import { CompanyCard } from '@/components/CompanyCard';
 import { regionais } from '@/data/bairros';
 import { cidadesRMC } from '@/data/cidades-rmc';
 import { bairrosSaoPaulo, cidadesSaoPauloRegiao } from '@/data/bairros-sp';
+import { cidadesSantaCatarina } from '@/data/cidades-sc';
 import { categoriasRapidas } from '@/data/servicos';
 import { getEmpresasDestaque } from '@/data/empresas';
 import { Shield, Clock, Star, Zap, AlertTriangle, Search, ShieldCheck, MessageCircle } from 'lucide-react';
@@ -150,6 +151,29 @@ const Index = () => {
       </section>
 
 
+
+      {/* Santa Catarina — Navegantes e litoral */}
+      <section className="py-12 bg-background">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold text-center mb-2">Cidades de Santa Catarina atendidas</h2>
+          <p className="text-center text-muted-foreground mb-8">
+            Assistência técnica em refrigeração comercial, industrial e residencial com base em Navegantes (SC):
+            câmara fria, freezer, balcão refrigerado, geladeira, frigobar e mais. Confirme a cobertura pelo WhatsApp.
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-2">
+            {cidadesSantaCatarina.map(c => (
+              <Link
+                key={c.slug}
+                to={`/busca?local=${encodeURIComponent(c.nome)}`}
+                className="bg-card border rounded-lg px-4 py-2.5 hover:border-primary hover:shadow-sm transition-all text-sm font-medium"
+              >
+                {c.nome}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Como Funciona */}
       <section className="py-12 bg-background">
