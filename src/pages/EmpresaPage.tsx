@@ -20,6 +20,8 @@ const EmpresaPage = () => {
   const bairroSlug = empresa?.bairrosAtendidos[0] || 'centro';
   const coords = getCoordenadasBairro(bairroSlug);
   const bairroNome = bairroSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+  const cidadeBase = empresa?.cidadeBase || 'Curitiba';
+  const estadoBase = empresa?.estadoBase || 'PR';
 
   const similares = useMemo(() => {
     if (!empresa) return [];
@@ -33,18 +35,18 @@ const EmpresaPage = () => {
   }, [empresa]);
 
   useSEO({
-    title: empresa ? `${empresa.nome} — ${bairroNome}, Curitiba`.slice(0, 60) : 'Empresa não encontrada',
-    description: empresa ? `${empresa.descricao} Atendimento ${empresa.atende24h ? '24h' : 'rápido'} em ${bairroNome}. Nota ${empresa.notaMedia}/5 com ${empresa.totalAvaliacoes} avaliações. Orçamento grátis via WhatsApp.` : '',
+    title: empresa ? `${empresa.nome} — ${cidadeBase}/${estadoBase}`.slice(0, 60) : 'Empresa não encontrada',
+    description: empresa ? `${empresa.descricao} Atendimento ${empresa.atende24h ? '24h' : 'rápido'} em ${cidadeBase}/${estadoBase}. Nota ${empresa.notaMedia}/5 com ${empresa.totalAvaliacoes} avaliações. Orçamento grátis via WhatsApp.` : '',
     canonical: empresa ? `/empresa/${empresa.slug}` : undefined,
     type: empresa ? 'business.business' : 'website',
     geoPosition: coords,
-    geoPlacename: `${bairroNome}, Curitiba, PR`,
+    geoPlacename: `${cidadeBase}, ${estadoBase}`,
     jsonLd: empresa ? [
       buildLocalBusinessSchema(empresa, coords, bairroNome, servicosDetalhes),
       buildBreadcrumbSchema([
         { name: 'Início', url: '/' },
-        { name: 'Curitiba', url: `/curitiba/${bairroSlug}` },
-        { name: bairroNome, url: `/curitiba/${bairroSlug}` },
+        { name: 'Buscar empresas', url: '/busca' },
+        { name: cidadeBase, url: `/busca?local=${encodeURIComponent(cidadeBase)}` },
         { name: empresa.nome, url: `/empresa/${empresa.slug}` },
       ]),
       buildFAQSchema([
@@ -80,7 +82,7 @@ const EmpresaPage = () => {
         <div className="container mx-auto px-4 py-3 text-sm text-muted-foreground">
           <Link to="/" className="hover:text-primary">Início</Link>
           <span className="mx-2">›</span>
-          <Link to={`/curitiba/${bairroSlug}`} className="hover:text-primary">{bairroNome}</Link>
+          <Link to={`/busca?local=${encodeURIComponent(cidadeBase)}`} className="hover:text-primary">{cidadeBase}</Link>
           <span className="mx-2">›</span>
           <span className="text-foreground font-medium">{empresa.nome}</span>
         </div>
@@ -146,6 +148,44 @@ const EmpresaPage = () => {
               </div>
             </div>
 
+            {/* Vídeo institucional (MP4) */}
+            {!empresa.youtubeVideoId && empresa.videoUrl && (
+              <Card className="border-secondary border-2 overflow-hidden">
+                <CardContent className="p-0">
+                  <video
+                    className="w-full aspect-video bg-muted object-cover"
+                    controls
+                    preload="metadata"
+                    playsInline
+                    poster={empresa.videoPoster}
+                    aria-label={`Vídeo institucional da ${empresa.nome}`}
+                  >
+                    <source src={empresa.videoUrl} type="video/mp4" />
+                    {empresa.videoUrlAlternativo && <source src={empresa.videoUrlAlternativo} type="video/mp4" />}
+                    Seu navegador não suporta a reprodução de vídeo.
+                  </video>
+                  <div className="p-5 bg-gradient-to-r from-secondary/10 to-primary/10">
+                    <h2 className="text-lg font-black mb-2">Conheça o trabalho da {empresa.nome}</h2>
+                    <p className="text-sm text-muted-foreground mb-3">{empresa.descricao}</p>
+                    <div className="flex flex-wrap gap-2">
+                      <a
+                        href={`tel:${empresa.telefone.replace(/\D/g, '')}`}
+                        className="inline-flex items-center gap-2 h-11 px-6 rounded-lg bg-destructive text-destructive-foreground font-bold hover:bg-destructive/90 transition-colors"
+                      >
+                        <Phone className="h-5 w-5" /> LIGAR {empresa.telefone}
+                      </a>
+                      <WhatsAppButton
+                        whatsapp={empresa.whatsapp}
+                        mensagem={`Olá! Gostaria de solicitar assistência técnica em refrigeração. [via vídeo - servicosnobairro.com.br]`}
+                        size="lg"
+                        label={`WHATSAPP ${empresa.telefone}`}
+                      />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
             {/* YouTube Video CTA */}
             {empresa.youtubeVideoId && (
               <Card className="border-secondary border-2 overflow-hidden">
@@ -191,6 +231,13 @@ const EmpresaPage = () => {
                   <div className="flex items-center gap-2 mt-4 text-sm text-muted-foreground">
                     <MapPin className="h-4 w-4 text-primary" />
                     <span>{empresa.endereco}</span>
+                  </div>
+                )}
+                {empresa.googleMapsUrl && (
+                  <div className="mt-2">
+                    <a href={empresa.googleMapsUrl} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline font-medium">
+                      Ver no Google Maps
+                    </a>
                   </div>
                 )}
                 {empresa.site && (
@@ -314,11 +361,15 @@ const EmpresaPage = () => {
                   <div>
                     <div className="font-medium text-sm">Bairros Atendidos</div>
                     <div className="flex flex-wrap gap-1 mt-1">
-                      {empresa.bairrosAtendidos.map(b => (
-                        <Link key={b} to={`/curitiba/${b}`} className="text-xs bg-muted px-2 py-0.5 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors">
-                          {b.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
-                        </Link>
-                      ))}
+                      {empresa.bairrosAtendidos.map(b => {
+                        const rotulo = b.replace(/^sc-/, '').replace(/^osasco-(vz-)?/, '').replace(/^sp-/, '').replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+                        const destino = empresa.cidadeBase ? `/busca?local=${encodeURIComponent(rotulo)}` : `/curitiba/${b}`;
+                        return (
+                          <Link key={b} to={destino} className="text-xs bg-muted px-2 py-0.5 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors">
+                            {rotulo}
+                          </Link>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>
