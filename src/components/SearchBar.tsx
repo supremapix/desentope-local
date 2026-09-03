@@ -6,6 +6,7 @@ import { servicos } from '@/data/servicos';
 import { todosBairros } from '@/data/bairros';
 import { cidadesRMC } from '@/data/cidades-rmc';
 import { bairrosSaoPaulo, cidadesSaoPauloRegiao, bairrosOsascoRegiao } from '@/data/bairros-sp';
+import { bairrosSantaCatarina, cidadesSantaCatarina } from '@/data/cidades-sc';
 
 export function SearchBar() {
   const navigate = useNavigate();
@@ -66,6 +67,12 @@ export function SearchBar() {
             ))}
             {bairrosOsascoRegiao.map(b => (
               <option key={b.slug} value={b.nome} />
+            ))}
+            {bairrosSantaCatarina.map(b => (
+              <option key={b.slug} value={b.nome} />
+            ))}
+            {cidadesSantaCatarina.map(c => (
+              <option key={c.slug} value={`${c.nome} — SC`} />
             ))}
           </datalist>
         </div>
