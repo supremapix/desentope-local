@@ -17,7 +17,7 @@ export interface Servico {
   slug: string;
   nome: string;
   icone: string;
-  categoria: 'desentupimento' | 'encanamento' | 'motofrete' | 'lavanderia';
+  categoria: 'desentupimento' | 'encanamento' | 'motofrete' | 'lavanderia' | 'refrigeracao';
   descricao: string;
   descricaoLonga?: string;
   precoMedio?: string;
@@ -55,12 +55,20 @@ export interface Empresa {
   endereco?: string;
   site?: string;
   youtubeVideoId?: string;
+  /** Vídeo hospedado (MP4) exibido no perfil quando não houver vídeo do YouTube. */
+  videoUrl?: string;
+  videoUrlAlternativo?: string;
+  videoPoster?: string;
+  /** Cidade/UF base da empresa, usada em SEO e breadcrumbs. */
+  cidadeBase?: string;
+  estadoBase?: string;
+  googleMapsUrl?: string;
   anosExperiencia: number;
   verificada: boolean;
   destaque: boolean;
   atende24h: boolean;
   atendeEmergencia: boolean;
-  tipoServico: ('desentupimento' | 'encanamento' | 'motofrete' | 'lavanderia')[];
+  tipoServico: ('desentupimento' | 'encanamento' | 'motofrete' | 'lavanderia' | 'refrigeracao')[];
   servicosOferecidos: string[];
   bairrosAtendidos: string[];
   cidadesAtendidas: string[];
