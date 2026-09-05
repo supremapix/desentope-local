@@ -52,6 +52,7 @@ export const servicos: Servico[] = [
   { slug: 'manutencao-frigobar', nome: 'Manutenção de Frigobar', icone: 'snowflake', categoria: 'refrigeracao', descricao: 'Manutenção de frigobares para hotéis, pousadas, casas de temporada e residências.', precoMedio: 'Sob consulta' },
   { slug: 'conserto-side-by-side-french-door', nome: 'Conserto de Side by Side e French Door', icone: 'refrigerator', categoria: 'refrigeracao', descricao: 'Assistência técnica em refrigeradores Side by Side e French Door: painel com erro, degelo e ventilação.', precoMedio: 'Sob consulta' },
   { slug: 'manutencao-adega-climatizada', nome: 'Manutenção de Adega Climatizada', icone: 'wine', categoria: 'refrigeracao', descricao: 'Manutenção de adegas climatizadas com ajuste de temperatura e verificação do sistema de refrigeração.', precoMedio: 'Sob consulta' },
+  { slug: 'conserto-cervejeira', nome: 'Conserto e Assistência Técnica de Cervejeira', icone: 'wine', categoria: 'refrigeracao', descricao: 'Diagnóstico, manutenção e conserto de cervejeiras residenciais e comerciais: não gela, congela bebidas, erro no painel, ruído ou vazamento.', precoMedio: 'Sob consulta' },
   { slug: 'conserto-lava-e-seca', nome: 'Conserto de Lava e Seca', icone: 'washing-machine', categoria: 'refrigeracao', descricao: 'Conserto de lava e seca multimarcas com diagnóstico de falhas e reposição de peças.', precoMedio: 'Sob consulta' },
 ];
 
