@@ -112,7 +112,7 @@ export function buildWebsiteSchema() {
     '@id': `${SITE_URL}/#website`,
     name: SITE_NAME,
     url: SITE_URL,
-    description: 'Diretório absolute de desentupidoras e encanadores em Curitiba e Região Metropolitana. Profissionais verificados, atendimento 24h, orçamento grátis.',
+    description: 'Plataforma para encontrar empresas e profissionais de serviços por categoria, cidade e bairro no Brasil.',
     potentialAction: {
       '@type': 'SearchAction',
       target: {
@@ -128,58 +128,40 @@ export function buildWebsiteSchema() {
 export function buildOrganizationSchema() {
   return {
     '@context': 'https://schema.org',
-    '@type': ['Organization', 'LocalBusiness'],
+    '@type': 'Organization',
     '@id': `${SITE_URL}/#organization`,
     name: SITE_NAME,
+    alternateName: 'Empresas no Bairro',
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
     image: `${SITE_URL}/og-image.png`,
-    description: 'Maior diretório de desentupidoras e encanadores verificados de Curitiba e Região Metropolitana. Atendimento 24h, orçamento grátis.',
-    telephone: [PHONE_1, PHONE_2],
+    description:
+      'Serviços no Bairro é um diretório que conecta moradores e empresas a prestadores de serviços locais, organizados por categoria, cidade e bairro. O portal não executa os serviços anunciados.',
     email: EMAIL,
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Curitiba',
-      addressRegion: 'PR',
-      postalCode: '80000-000',
-      addressCountry: 'BR',
-    },
+    telephone: [PHONE_1, PHONE_2],
     areaServed: [
+      { '@type': 'Country', name: 'Brasil' },
       { '@type': 'City', name: 'Curitiba' },
-      { '@type': 'City', name: 'São José dos Pinhais' },
-      { '@type': 'City', name: 'Colombo' },
-      { '@type': 'City', name: 'Pinhais' },
-      { '@type': 'City', name: 'Araucária' },
-      { '@type': 'City', name: 'Fazenda Rio Grande' },
-      { '@type': 'City', name: 'Campo Largo' },
-      { '@type': 'City', name: 'Almirante Tamandaré' },
+      { '@type': 'AdministrativeArea', name: 'Região Metropolitana de Curitiba' },
+      { '@type': 'City', name: 'São Paulo' },
+      { '@type': 'City', name: 'Osasco' },
+      { '@type': 'City', name: 'Navegantes' },
     ],
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: 'Serviços Hidráulicos e Desentupimento',
-      itemListElement: [
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Desentupimento de Esgoto' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Desentupimento de Vaso Sanitário' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Encanador Residencial' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Limpa Fossa' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hidrojateamento' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Câmera de Inspeção de Esgoto' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Emergência 24h' } },
-      ],
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      reviewCount: '500',
-      bestRating: '5',
-    },
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        telephone: PHONE_1,
+        contactType: 'customer service',
+        areaServed: 'BR',
+        availableLanguage: 'Portuguese',
+      },
+    ],
+    sameAs: [WHATSAPP_URL],
   };
 }
 
 /** Bairro — Service schema dinâmico */
 export function buildBairroServiceSchema(bairroNome: string, regional: string, totalEmpresas: number, isCidade = false) {
-  const rating = totalEmpresas > 0 ? '4.8' : '4.7';
-  const reviewCount = Math.max(totalEmpresas * 12, 50).toString();
   const localLabel = isCidade ? `${bairroNome}, PR` : `${bairroNome}, Curitiba, Paraná, Brasil`;
   const titleLabel = isCidade
     ? `Desentupidoras e Encanadores em ${bairroNome} — PR`
@@ -209,12 +191,6 @@ export function buildBairroServiceSchema(bairroNome: string, regional: string, t
         opens: '00:00',
         closes: '23:59',
       },
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: rating,
-      reviewCount: reviewCount,
-      bestRating: '5',
     },
   };
 }
@@ -341,14 +317,8 @@ export function buildServiceSchema(serviceName: string, description: string, pri
       lowPrice: lowPrice,
       highPrice: highPrice,
       priceCurrency: 'BRL',
-      offerCount: (empresasCount || 47).toString(),
+      ...(empresasCount ? { offerCount: empresasCount.toString() } : {}),
       availability: 'https://schema.org/InStock',
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      reviewCount: '389',
-      bestRating: '5',
     },
   };
 }
