@@ -9,11 +9,39 @@ import { categoriasRapidas } from '@/data/servicos';
 import { getEmpresasDestaque } from '@/data/empresas';
 import { Shield, Clock, Star, Zap, AlertTriangle, Search, ShieldCheck, MessageCircle } from 'lucide-react';
 import { ServiceIcon } from '@/components/ServiceIcon';
-import { useSEO, buildWebsiteSchema, buildOrganizationSchema } from '@/hooks/useSEO';
+import { useSEO, buildWebsiteSchema, buildOrganizationSchema, buildFAQSchema } from '@/hooks/useSEO';
 
 function toSlug(nome: string): string {
   return nome.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 }
+
+const perguntasHome = [
+  {
+    pergunta: 'Como encontrar um profissional ou empresa de serviços perto de mim?',
+    resposta:
+      'Digite o serviço que você precisa e o nome da sua cidade ou bairro na busca do Serviços no Bairro. A plataforma lista as empresas cadastradas que declaram atender aquela região, com serviços oferecidos, áreas de cobertura e contato direto por WhatsApp ou telefone.',
+  },
+  {
+    pergunta: 'O Serviços no Bairro executa os serviços anunciados?',
+    resposta:
+      'Não. O Serviços no Bairro é um diretório: conectamos você às empresas e profissionais cadastrados. A execução, o orçamento, a garantia e a nota fiscal são responsabilidade da empresa contratada.',
+  },
+  {
+    pergunta: 'Quem atende no meu bairro?',
+    resposta:
+      'Cada página de bairro e de cidade lista as empresas cadastradas que informam atender aquela área, além de bairros e cidades vizinhas. Se ainda não houver empresa para o seu bairro, a busca sugere prestadores das regiões próximas.',
+  },
+  {
+    pergunta: 'O que significa uma empresa "Verificada"?',
+    resposta:
+      'Significa que nossa equipe conferiu os dados informados no cadastro — nome, contato, endereço e existência da empresa. Não é auditoria de qualidade nem garantia de execução, e nem toda empresa do diretório é verificada.',
+  },
+  {
+    pergunta: 'Preciso pagar para usar o Serviços no Bairro?',
+    resposta:
+      'Não há cobrança para quem procura um serviço. A busca e o contato com as empresas são gratuitos. Empresas que desejam divulgar seus serviços podem se cadastrar na página "Cadastrar minha empresa".',
+  },
+];
 
 const Index = () => {
   const empresasDestaque = getEmpresasDestaque();
@@ -22,7 +50,7 @@ const Index = () => {
     title: 'Serviços no Bairro | Empresas e Profissionais Perto de Você',
     description: 'Encontre empresas e profissionais de serviços por categoria, cidade e bairro. Diretório com perfis, áreas atendidas e contato direto por WhatsApp — Curitiba, RMC, São Paulo, Osasco e litoral de SC.',
     canonical: '/',
-    jsonLd: [buildWebsiteSchema(), buildOrganizationSchema()],
+    jsonLd: [buildWebsiteSchema(), buildOrganizationSchema(), buildFAQSchema(perguntasHome)],
   });
 
   return (
