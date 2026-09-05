@@ -12,5 +12,12 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /busca?
+Disallow: /*?local=
+Disallow: /*?servico=
+Disallow: /*?24h=
+Disallow: /*?ordenar=
+Disallow: /*?q=
+Disallow: /*?utm_
 
 Sitemap: https://www.servicosnobairro.com.br/sitemap.xml

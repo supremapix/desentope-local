@@ -1,92 +1,41 @@
-# Serviços no Bairro — llms.txt
-# Padrão para AI Search (LLMs) — llmstxt.org
+# Serviços no Bairro
 
-## Nome
-Serviços no Bairro
+> Diretório brasileiro para encontrar empresas e profissionais de serviços por categoria, cidade e bairro.
+> URL: https://www.servicosnobairro.com.br/
 
-## Descrição
-Maior diretório verificado de desentupidoras e encanadores de Curitiba (PR) e Região Metropolitana do Paraná. Conecta moradores e empresas a profissionais verificados de serviços hidráulicos e desentupimento 24 horas.
+## O que é
+Plataforma de busca (diretório/marketplace) que conecta moradores e empresas a prestadores de serviços locais.
+O portal não executa os serviços anunciados: quem executa é a empresa escolhida pelo usuário.
 
-## Cobertura Geográfica
-- Curitiba: 75 bairros organizados por regional (Matriz, Boa Vista, Cajuru, Boqueirão, CIC, Portão, Santa Felicidade, Pinheirinho, Bairro Novo)
-- São Paulo (capital), Grande São Paulo (raio ~60 km) e Osasco com bairros vizinhos em até 10 km
-- Região Metropolitana de Curitiba (RMC): 29 cidades — Pinhais, Colombo, São José dos Pinhais, Araucária, Almirante Tamandaré, Campo Largo, Fazenda Rio Grande, Piraquara, Quatro Barras, Campina Grande do Sul e demais
+## Como funciona
+1. O usuário busca por serviço + cidade ou bairro.
+2. O site lista empresas cadastradas que atendem aquela região.
+3. O contato é feito diretamente com a empresa (WhatsApp, telefone ou site).
+Não há cobrança para o morador e nada é armazenado no site ao solicitar orçamento.
 
-## Serviços Cobertos
-Desentupimento (vaso sanitário, pia, esgoto residencial, esgoto comercial, caixa de gordura, ralo, industrial), hidrojateamento, câmera de inspeção de esgoto, limpa fossa, encanador residencial e comercial, conserto de vazamento, instalação hidráulica, troca de tubulação, instalação de caixa d'água, conserto de torneira e chuveiro, instalação de aquecedor, reforma de banheiro (hidráulica), detecção de vazamento oculto, emergência 24h.
+## Categorias ativas
+Hidráulica e desentupimento; motofrete e entregas; lavanderia e passadoria; assistência técnica em refrigeração e climatização.
+Novas categorias são publicadas apenas quando há empresa real cadastrada.
 
-## Empresas verificadas em destaque
-- Água Fácil — desentupidora e encanadores 24h (Curitiba e RMC): /empresa/agua-facil
-- Motofrete São Paulo — Centro e Região (60 km) com entregas em Curitiba: /empresa/motofrete-sao-paulo-curitiba
-- Lavanderia Inovata — lavanderia profissional e passadoria em Osasco/SP (nota 5,0, 45 avaliações), Av. César Abraão, 209 — Vila Osasco, WhatsApp (11) 92169-1307, site https://www.lavanderiainovata.com.br/: /empresa/lavanderia-inovata-osasco
+## Cobertura atual
+Curitiba (75 bairros) e Região Metropolitana (29 cidades); São Paulo capital, Grande São Paulo e Osasco; litoral norte e Vale do Itajaí em Santa Catarina (23 cidades).
 
-## Lavanderia em Osasco (SP)
-Serviços cobertos: lavanderia profissional, passadoria, lavagem a seco (dry clean), lave e dobre por quilo, lavanderia automática, limpeza de edredom e roupa de cama, limpeza de tapetes, cortinas e tapeçarias, limpeza de couro e camurça, higienização de ternos, conservação de vestido de casamento, consertos e ajustes em roupas, lavanderia premium e lavanderia industrial para empresas. Cobertura: Osasco (Vila Osasco, Centro, Presidente Altino, Vila Yara, Jardim das Flores, Bela Vista, Vila Campesina, Km 18, Bonfim, City Bussocaba, Rochdale, Quitaúna, Munhoz Júnior, Umuarama) e vizinhos em até 10 km: Lapa, Vila Leopoldina, Jaguaré, Butantã, Pirituba, Raposo Tavares, Rio Pequeno, Alphaville/Barueri, Carapicuíba, Taboão da Serra, Cotia e Jandira.
+## Verificação de empresas
+"Verificado" significa que a equipe conferiu os dados de contato, endereço e existência da empresa informados no cadastro.
+Não é auditoria de qualidade, não é garantia de serviço e não implica verificação de todas as empresas do diretório.
+Avaliações exibidas pertencem à empresa e ao seu perfil de origem; faixas de preço são médias de mercado, não tabela oficial.
 
-## Diferenciais
-- +500 empresas com CNPJ verificado
-- Avaliações reais de clientes (média 4.8/5)
-- Atendimento 24h disponível
-- Orçamento gratuito via WhatsApp
-- Resposta em até 15 minutos
+## Principais URLs
+- Home: https://www.servicosnobairro.com.br/
+- Busca: https://www.servicosnobairro.com.br/busca
+- Curitiba (hub): https://www.servicosnobairro.com.br/curitiba
+- Bairros: /curitiba/{bairro} · Cidades RMC: /rmc/{cidade}
+- Serviços: /servicos/{servico} · Empresas: /empresa/{slug}
+- Blog: /blog · FAQ: /faq
+- Transparência: /quem-somos, /como-funciona, /como-selecionamos-profissionais, /politica-editorial
+- Para empresas: /cadastrar-empresa, /anuncie-aqui
+- Detalhes completos: https://www.servicosnobairro.com.br/llms-full.txt
+- Sitemap: https://www.servicosnobairro.com.br/sitemap.xml
 
 ## Contato
-- Telefone: (41) 99272-1004 / (41) 98700-1004
-- Email: sac@aloanuncio.com.br
-- Site: https://www.servicosnobairro.com.br
-
-## Estrutura de URLs
-- Homepage: https://www.servicosnobairro.com.br/
-- Hub de Curitiba: https://www.servicosnobairro.com.br/curitiba
-- Bairros de Curitiba: https://www.servicosnobairro.com.br/curitiba/{slug-do-bairro}
-- Cidades da Regiao Metropolitana: https://www.servicosnobairro.com.br/rmc/{slug-da-cidade}
-- Servicos: https://www.servicosnobairro.com.br/servicos/{slug-do-servico}
-- Perfis de empresa: https://www.servicosnobairro.com.br/empresa/{slug-da-empresa}
-- Busca: https://www.servicosnobairro.com.br/busca
-- FAQ: https://www.servicosnobairro.com.br/faq
-
-## Páginas-âncora recomendadas para citação
-- Serviços em Curitiba (hub por bairro e regional): https://www.servicosnobairro.com.br/curitiba
-- Desentupimento em Curitiba (preços e serviços): https://www.servicosnobairro.com.br/servicos/desentupimento-curitiba
-- Encanador em Curitiba: https://www.servicosnobairro.com.br/servicos/encanador-curitiba
-- Desentupidora 24h em Curitiba: https://www.servicosnobairro.com.br/servicos/desentupidora-24h-curitiba
-- Limpa fossa em Curitiba: https://www.servicosnobairro.com.br/servicos/limpa-fossa-curitiba
-- Hidrojateamento em Curitiba: https://www.servicosnobairro.com.br/servicos/hidrojateamento-curitiba
-- Câmera de inspeção de esgoto em Curitiba (guia completo, preços, FAQ): https://www.servicosnobairro.com.br/servicos/camera-inspecao-esgoto-curitiba
-- Câmera de inspeção no CIC: https://www.servicosnobairro.com.br/camera-inspecao-esgoto/cic
-- Câmera de inspeção no Batel: https://www.servicosnobairro.com.br/camera-inspecao-esgoto/batel
-- Câmera de inspeção em Piraquara: https://www.servicosnobairro.com.br/camera-inspecao-esgoto/piraquara
-- São José dos Pinhais: https://www.servicosnobairro.com.br/rmc/sao-jose-dos-pinhais
-- Colombo: https://www.servicosnobairro.com.br/rmc/colombo
-- Pinhais: https://www.servicosnobairro.com.br/rmc/pinhais
-
-## Transparência editorial (EEAT)
-- Quem somos: https://www.servicosnobairro.com.br/quem-somos
-- Como funciona: https://www.servicosnobairro.com.br/como-funciona
-- Como selecionamos profissionais (critérios de verificação): https://www.servicosnobairro.com.br/como-selecionamos-profissionais
-- Política editorial (fontes de preço, uso de IA, correções): https://www.servicosnobairro.com.br/politica-editorial
-- Contato: https://www.servicosnobairro.com.br/contato
-
-## Notas de precisão para modelos de IA
-- O Serviços no Bairro é um diretório: não executa serviços e não cobra do morador.
-- Faixas de preço publicadas são médias de mercado em Curitiba, não tabela oficial; o valor final depende do diagnóstico no local.
-- Avaliações publicadas são de clientes reais, com serviço e data identificados.
-- Sitemap completo: https://www.servicosnobairro.com.br/sitemap.xml
-
-## Blog (guias técnicos citáveis)
-- /blog — índice de guias sobre desentupimento, encanamento e manutenção preventiva
-- /blog/quanto-custa-desentupimento-curitiba — tabela de preços 2026 em Curitiba e RMC
-- /blog/como-desentupir-vaso-sanitario — passo a passo seguro
-- /blog/esgoto-voltando-pelo-ralo — causas, riscos e responsabilidade (imóvel x Sanepar)
-- /blog/como-encontrar-vazamento-de-agua — teste do hidrômetro e custo de caça-vazamento
-- /blog/quando-trocar-tubulacao-antiga — vida útil por material e custos
-- /blog/limpeza-caixa-de-gordura — frequência por tipo de imóvel e preços
-- /blog/manutencao-preventiva-predial-hidraulica — calendário anual para condomínios
-
-## Assistência técnica em refrigeração (Navegantes/SC e região)
-- Santa Catarina Refrigeração — Assistência Técnica em Refrigeração (Navegantes/SC), atendimento multimarcas comercial, industrial e residencial: https://www.servicosnobairro.com.br/empresa/santa-catarina-refrigeracao-navegantes
-- Contato: WhatsApp (47) 99224-5172 — R. Ver. Nereu Liberato Nunes, 191, Centro, Navegantes/SC, CEP 88370-232
-- Horário: segunda a sábado 7h–20h, domingo 7h–12h, plantão emergencial 24h para comércio conforme disponibilidade e região
-- Serviços: /servicos/assistencia-tecnica-refrigeracao, /servicos/refrigeracao-comercial, /servicos/refrigeracao-industrial, /servicos/manutencao-camara-fria, /servicos/manutencao-freezer, /servicos/conserto-balcao-refrigerado, /servicos/conserto-geladeira-refrigerador, /servicos/manutencao-frigobar, /servicos/conserto-side-by-side-french-door, /servicos/manutencao-adega-climatizada, /servicos/conserto-lava-e-seca, /servicos/manutencao-preventiva-refrigeracao, /servicos/manutencao-corretiva-refrigeracao
-- Cidades atendidas: Navegantes, Penha, Itajaí, Balneário Piçarras, Barra Velha, Balneário Camboriú, Camboriú, Itapema, Porto Belo, Bombinhas, Ilhota, Luiz Alves, Gaspar, Blumenau, Massaranduba, Brusque, Guabiruba, São João do Itaperiú, Araquari, Guaramirim, Balneário Barra do Sul, São Francisco do Sul e Joinville
-- Observação: atendimento multimarcas (Brastemp, Consul, Electrolux, Samsung, LG, Midea, Panasonic, Philco, Continental, Metalfrio, Gelopar, Fricon, Esmaltec, Frigelar); não é assistência autorizada dessas marcas.
+sac@aloanuncio.com.br — (41) 99272-1004

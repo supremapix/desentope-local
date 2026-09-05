@@ -43,38 +43,40 @@ const staticPages: SitemapEntry[] = [
   { path: '/termos', changefreq: 'yearly', priority: '0.3' },
 ];
 
-const entries: SitemapEntry[] = [
-  ...staticPages,
-  // Silo de câmera de inspeção de esgoto (páginas locais)
-  ...locaisInspecao
-    .filter((l) => l.slug !== 'curitiba')
-    .map((l) => ({ path: `/camera-inspecao-esgoto/${l.slug}`, changefreq: 'monthly' as const, priority: '0.7' })),
-  // Blog — categorias e artigos
-  ...blogCategorias.map((c) => ({ path: `/blog/categoria/${c.slug}`, changefreq: 'weekly' as const, priority: '0.6' })),
-  ...blogArtigos.map((a) => ({ path: `/blog/${a.slug}`, changefreq: 'monthly' as const, priority: '0.8' })),
-  // Landing pages editoriais (serviço + cidade).
-  // As que apontam canonical para outra URL (consolidação de canibalização)
-  // ficam fora do sitemap — o sitemap só lista URLs canônicas.
-  ...landingPages
-    .filter((p) => !p.canonical || p.canonical === p.route)
-    .map((p) => ({ path: p.route, changefreq: 'weekly' as const, priority: '0.9' })),
-  // Bairros de Curitiba
-  ...todosBairros.map((b) => ({
-    path: `/curitiba/${b.slug}`,
-    changefreq: 'weekly' as const,
-    priority: b.oficial ? '0.8' : '0.6',
-  })),
-  // Cidades da Região Metropolitana
-  ...cidadesRMC.map((c) => ({ path: `/rmc/${c.slug}`, changefreq: 'weekly' as const, priority: '0.7' })),
-  // Serviços
-  ...servicos.map((s) => ({ path: `/servicos/${s.slug}`, changefreq: 'weekly' as const, priority: '0.7' })),
-  // Empresas
-  ...empresas.map((e) => ({ path: `/empresa/${e.slug}`, changefreq: 'weekly' as const, priority: '0.6' })),
-];
+const grupos: Record<string, SitemapEntry[]> = {
+  // Páginas institucionais, hubs e conteúdo editorial
+  'sitemap-pages.xml': [
+    ...staticPages,
+    ...blogCategorias.map((c) => ({ path: `/blog/categoria/${c.slug}`, changefreq: 'weekly' as const, priority: '0.6' })),
+    ...blogArtigos.map((a) => ({ path: `/blog/${a.slug}`, changefreq: 'monthly' as const, priority: '0.8' })),
+  ],
+  // Categorias e serviços (+ landing pages editoriais canônicas)
+  'sitemap-categories.xml': [
+    ...servicos.map((s) => ({ path: `/servicos/${s.slug}`, changefreq: 'weekly' as const, priority: '0.7' })),
+    ...landingPages
+      .filter((pg) => !pg.canonical || pg.canonical === pg.route)
+      .map((pg) => ({ path: pg.route, changefreq: 'weekly' as const, priority: '0.9' })),
+  ],
+  // Cidades e bairros
+  'sitemap-cities.xml': [
+    ...todosBairros.map((b) => ({
+      path: `/curitiba/${b.slug}`,
+      changefreq: 'weekly' as const,
+      priority: b.oficial ? '0.8' : '0.6',
+    })),
+    ...cidadesRMC.map((c) => ({ path: `/rmc/${c.slug}`, changefreq: 'weekly' as const, priority: '0.7' })),
+    ...locaisInspecao
+      .filter((l) => l.slug !== 'curitiba')
+      .map((l) => ({ path: `/camera-inspecao-esgoto/${l.slug}`, changefreq: 'monthly' as const, priority: '0.7' })),
+  ],
+  // Perfis de empresa
+  'sitemap-businesses.xml': [
+    ...empresas.map((e) => ({ path: `/empresa/${e.slug}`, changefreq: 'weekly' as const, priority: '0.6' })),
+  ],
+};
 
-// Deduplicate by path — landing pages and service routes can overlap.
-const seen = new Set<string>();
-const unique = entries.filter((e) => (seen.has(e.path) ? false : (seen.add(e.path), true)));
+// URLs não canônicas / não indexáveis nunca entram no sitemap.
+const NAO_INDEXAVEIS = new Set(['/busca']);
 
 function generateSitemap(list: SitemapEntry[]) {
   const urls = list.map((e) =>
@@ -98,5 +100,27 @@ function generateSitemap(list: SitemapEntry[]) {
   ].join('\n');
 }
 
-writeFileSync(resolve('public/sitemap.xml'), generateSitemap(unique));
-console.log(`sitemap.xml gerado (${unique.length} URLs)`);
+const seen = new Set<string>();
+let total = 0;
+
+for (const [arquivo, lista] of Object.entries(grupos)) {
+  const unicos = lista.filter((e) => {
+    if (NAO_INDEXAVEIS.has(e.path) || seen.has(e.path)) return false;
+    seen.add(e.path);
+    return true;
+  });
+  writeFileSync(resolve(`public/${arquivo}`), generateSitemap(unicos));
+  total += unicos.length;
+  console.log(`${arquivo} gerado (${unicos.length} URLs)`);
+}
+
+const indexXml = [
+  '<?xml version="1.0" encoding="UTF-8"?>',
+  '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+  ...Object.keys(grupos).map((f) => `  <sitemap>\n    <loc>${BASE_URL}/${f}</loc>\n  </sitemap>`),
+  '</sitemapindex>',
+  '',
+].join('\n');
+
+writeFileSync(resolve('public/sitemap.xml'), indexXml);
+console.log(`sitemap.xml (index) gerado — ${total} URLs em ${Object.keys(grupos).length} arquivos`);

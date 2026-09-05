@@ -22,7 +22,10 @@ const BuscaPage = () => {
 
   const localParam = searchParams.get('local') || '';
 
+  const temParametros = Array.from(searchParams.keys()).length > 0;
+
   useSEO({
+    noindex: temParametros,
     title: 'Buscar Empresas de Serviços no Seu Bairro | Brasil',
     description: 'Encontre e compare empresas e profissionais que prestam serviços em Curitiba e na RMC: desentupimento, hidráulica, motofrete, lavanderia, refrigeração e mais. Filtre por bairro, categoria, 24h e avaliação.',
     canonical: '/busca',

@@ -46,13 +46,24 @@ const EmpresaPage = () => {
       buildBreadcrumbSchema([
         { name: 'Início', url: '/' },
         { name: 'Buscar empresas', url: '/busca' },
-        { name: cidadeBase, url: `/busca?local=${encodeURIComponent(cidadeBase)}` },
+        { name: cidadeBase, url: '/busca' },
         { name: empresa.nome, url: `/empresa/${empresa.slug}` },
       ]),
       buildFAQSchema([
-        { pergunta: `Quanto custa ${empresa.nome.split(' ')[0].toLowerCase()} no ${bairroNome}?`, resposta: `Os serviços da ${empresa.nome} variam de R$ 150 a R$ 800, dependendo do tipo de serviço. Solicite orçamento grátis pelo WhatsApp (41) 98517-1966.` },
-        { pergunta: `${empresa.nome} atende 24 horas?`, resposta: empresa.atende24h ? `Sim! A ${empresa.nome} oferece atendimento 24 horas, inclusive feriados e fins de semana.` : `A ${empresa.nome} atende em horário comercial estendido. Para emergências, ligue (41) 3345-1194.` },
-        { pergunta: `${empresa.nome} é uma empresa verificada?`, resposta: empresa.verificada ? `Sim! A ${empresa.nome} é verificada pelo Serviços no Bairro com nota ${empresa.notaMedia}/5 baseada em ${empresa.totalAvaliacoes} avaliações reais.` : `A ${empresa.nome} está em processo de verificação.` },
+        {
+          pergunta: `Como entrar em contato com a ${empresa.nome}?`,
+          resposta: `Pelo WhatsApp ou telefone ${empresa.telefone}${empresa.email ? `, ou pelo e-mail ${empresa.email}` : ''}. O contato é feito diretamente com a empresa: o Serviços no Bairro é um diretório e não executa o serviço.`,
+        },
+        {
+          pergunta: `Quais regiões a ${empresa.nome} atende?`,
+          resposta: `A empresa informa atender ${cidadeBase}/${estadoBase}${empresa.cidadesAtendidas.length > 1 ? ` e outras ${empresa.cidadesAtendidas.length - 1} localidades da região` : ''}. Confirme a disponibilidade para o seu endereço antes de agendar.`,
+        },
+        {
+          pergunta: `A ${empresa.nome} atende 24 horas?`,
+          resposta: empresa.atende24h
+            ? `A empresa informa atendimento 24 horas, inclusive fins de semana e feriados, conforme disponibilidade.`
+            : `A empresa atende nos horários publicados neste perfil. Consulte disponibilidade para urgências pelo telefone ${empresa.telefone}.`,
+        },
       ]),
     ] : undefined,
   });

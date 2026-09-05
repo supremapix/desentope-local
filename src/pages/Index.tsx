@@ -9,20 +9,48 @@ import { categoriasRapidas } from '@/data/servicos';
 import { getEmpresasDestaque } from '@/data/empresas';
 import { Shield, Clock, Star, Zap, AlertTriangle, Search, ShieldCheck, MessageCircle } from 'lucide-react';
 import { ServiceIcon } from '@/components/ServiceIcon';
-import { useSEO, buildWebsiteSchema, buildOrganizationSchema } from '@/hooks/useSEO';
+import { useSEO, buildWebsiteSchema, buildOrganizationSchema, buildFAQSchema } from '@/hooks/useSEO';
 
 function toSlug(nome: string): string {
   return nome.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 }
 
+const perguntasHome = [
+  {
+    pergunta: 'Como encontrar um profissional ou empresa de serviços perto de mim?',
+    resposta:
+      'Digite o serviço que você precisa e o nome da sua cidade ou bairro na busca do Serviços no Bairro. A plataforma lista as empresas cadastradas que declaram atender aquela região, com serviços oferecidos, áreas de cobertura e contato direto por WhatsApp ou telefone.',
+  },
+  {
+    pergunta: 'O Serviços no Bairro executa os serviços anunciados?',
+    resposta:
+      'Não. O Serviços no Bairro é um diretório: conectamos você às empresas e profissionais cadastrados. A execução, o orçamento, a garantia e a nota fiscal são responsabilidade da empresa contratada.',
+  },
+  {
+    pergunta: 'Quem atende no meu bairro?',
+    resposta:
+      'Cada página de bairro e de cidade lista as empresas cadastradas que informam atender aquela área, além de bairros e cidades vizinhas. Se ainda não houver empresa para o seu bairro, a busca sugere prestadores das regiões próximas.',
+  },
+  {
+    pergunta: 'O que significa uma empresa "Verificada"?',
+    resposta:
+      'Significa que nossa equipe conferiu os dados informados no cadastro — nome, contato, endereço e existência da empresa. Não é auditoria de qualidade nem garantia de execução, e nem toda empresa do diretório é verificada.',
+  },
+  {
+    pergunta: 'Preciso pagar para usar o Serviços no Bairro?',
+    resposta:
+      'Não há cobrança para quem procura um serviço. A busca e o contato com as empresas são gratuitos. Empresas que desejam divulgar seus serviços podem se cadastrar na página "Cadastrar minha empresa".',
+  },
+];
+
 const Index = () => {
   const empresasDestaque = getEmpresasDestaque();
 
   useSEO({
-    title: 'Serviços no Bairro | Empresas Verificadas em Todo o Brasil',
-    description: 'Diretório de empresas e profissionais verificados que prestam serviços no seu bairro, em cidades de todo o Brasil: desentupimento, hidráulica, motofrete e mais. Cobertura completa em Curitiba, RMC e São Paulo. Orçamento grátis no WhatsApp.',
+    title: 'Serviços no Bairro | Empresas e Profissionais Perto de Você',
+    description: 'Encontre empresas e profissionais de serviços por categoria, cidade e bairro. Diretório com perfis, áreas atendidas e contato direto por WhatsApp — Curitiba, RMC, São Paulo, Osasco e litoral de SC.',
     canonical: '/',
-    jsonLd: [buildWebsiteSchema(), buildOrganizationSchema()],
+    jsonLd: [buildWebsiteSchema(), buildOrganizationSchema(), buildFAQSchema(perguntasHome)],
   });
 
   return (
@@ -31,10 +59,11 @@ const Index = () => {
       <section className="bg-primary text-primary-foreground py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-3xl md:text-5xl font-black mb-4 leading-tight">
-            Empresas que Prestam Serviços no Seu Bairro<br className="hidden md:block" /> em Cidades de Todo o Brasil
+            Encontre Empresas e Profissionais<br className="hidden md:block" /> de Serviços Perto de Você
           </h1>
           <p className="text-lg md:text-xl text-primary-foreground mb-8 max-w-3xl mx-auto">
-            O Serviços no Bairro conecta você a empresas e profissionais verificados de qualquer segmento perto de você — desentupimento, hidráulica, motofrete e entregas e muito mais. Cobertura hiperlocal bairro a bairro em Curitiba e Região Metropolitana, em São Paulo capital e Grande São Paulo, e em expansão para todas as cidades do Brasil, com atendimento 24h e orçamento grátis pelo WhatsApp.
+            Busque serviços por cidade ou bairro e encontre empresas e profissionais disponíveis na sua região.
+            O Serviços no Bairro é um diretório: reunimos perfis, áreas atendidas e contatos — quem executa o serviço é a empresa escolhida por você.
           </p>
 
           <SearchBar />
@@ -42,9 +71,9 @@ const Index = () => {
 
           {/* Trust badges */}
           <div className="flex flex-wrap justify-center gap-6 mt-8 text-sm font-medium text-primary-foreground">
-            <span className="flex items-center gap-1.5"><Zap className="h-4 w-4 text-secondary" /> Resposta em até 15min</span>
-            <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-accent" /> +500 empresas cadastradas</span>
-            <span className="flex items-center gap-1.5"><Star className="h-4 w-4 text-secondary" /> Avaliações reais</span>
+            <span className="flex items-center gap-1.5"><Search className="h-4 w-4 text-secondary" /> Busca por serviço, cidade e bairro</span>
+            <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-accent" /> Perfis com dados conferidos pela equipe</span>
+            <span className="flex items-center gap-1.5"><MessageCircle className="h-4 w-4 text-secondary" /> Contato direto com a empresa</span>
           </div>
         </div>
       </section>
@@ -248,20 +277,33 @@ const Index = () => {
           <h2 className="text-2xl font-bold text-center mb-6">Sobre o Serviços no Bairro</h2>
           <div className="prose prose-sm max-w-none text-muted-foreground space-y-4">
             <p>
-              O Serviços no Bairro nasceu em Curitiba com um propósito claro: facilitar o encontro entre moradores e profissionais confiáveis de desentupimento e hidráulica. Sabemos que uma emergência hidráulica — esgoto voltando, vaso entupido, cano estourado — é uma situação de estresse. Por isso, criamos um diretório com critérios rigorosos de verificação.
+              O Serviços no Bairro é um diretório de empresas e profissionais de serviços organizado por categoria, cidade e bairro. A plataforma não executa serviços: ela reúne perfis com descrição, serviços oferecidos, áreas atendidas e contato direto, para que você fale com a empresa que atende a sua região.
             </p>
             <p>
-              Cada empresa listada passa por verificação de CNPJ ativo, conferência de documentação e análise de avaliações de clientes reais. Nosso selo "Verificado" significa que você pode contratar com segurança. Monitoramos continuamente a qualidade do atendimento e removemos empresas que não atendem aos nossos padrões.
+              O selo "Verificado" indica que nossa equipe conferiu os dados informados no cadastro — nome, contato, endereço e existência da empresa. Não é auditoria de qualidade nem garantia de execução, e nem toda empresa listada é verificada. Avaliações exibidas pertencem ao perfil de origem da empresa e faixas de preço são médias de mercado, não tabela oficial.
             </p>
             <p>
-              Cobrimos os 75 bairros de Curitiba, organizados pelas 9 regionais da cidade, além de 29 cidades da Região Metropolitana de Curitiba (RMC) em até 40km do Centro. Oferecemos serviços completos: desentupimento de vaso sanitário, pia, esgoto residencial e comercial, caixa de gordura; hidrojateamento industrial; câmera de inspeção; limpa fossa; encanadores para instalação, conserto de vazamentos e manutenção hidráulica.
-            </p>
-            <p>
-              Para emergências, temos empresas parceiras disponíveis 24 horas por dia, 7 dias por semana, incluindo feriados, com tempo médio de chegada de 30 a 60 minutos. O orçamento é sempre gratuito e sem compromisso — você recebe pelo WhatsApp e decide com calma. Nosso objetivo é que cada morador de Curitiba e região tenha acesso rápido a um profissional qualificado, a preço justo, no momento em que mais precisa.
+              A cobertura atual concentra-se em Curitiba (75 bairros, 9 regionais) e nas 29 cidades da Região Metropolitana, além de São Paulo capital, Grande São Paulo e Osasco, e de 23 cidades do litoral norte e Vale do Itajaí em Santa Catarina. Categorias ativas: hidráulica e desentupimento, motofrete e entregas, lavanderia e passadoria, refrigeração e climatização. Novas categorias e cidades entram no ar conforme empresas reais são cadastradas.
             </p>
           </div>
         </div>
       </section>
+
+      {/* Respostas rápidas (AEO/GEO) */}
+      <section className="py-14 bg-muted">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-2xl font-bold text-center mb-6">Perguntas frequentes sobre encontrar serviços perto de você</h2>
+          <dl className="space-y-5">
+            {perguntasHome.map(f => (
+              <div key={f.pergunta} className="bg-card border rounded-xl p-5">
+                <dt className="font-semibold text-foreground mb-1">{f.pergunta}</dt>
+                <dd className="text-sm text-muted-foreground">{f.resposta}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
     </div>
   );
 };
