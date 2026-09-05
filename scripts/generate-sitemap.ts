@@ -38,6 +38,7 @@ const staticPages: SitemapEntry[] = [
   { path: '/anuncie-aqui', changefreq: 'monthly', priority: '0.6' },
   { path: '/servicos/guia-limpa-fossa', changefreq: 'monthly', priority: '0.8' },
   { path: '/servicos/camera-inspecao-esgoto-curitiba', changefreq: 'weekly', priority: '0.9' },
+  { path: '/servicos/conserto-cervejeira-navegantes', changefreq: 'weekly', priority: '0.9' },
   { path: '/blog', changefreq: 'weekly', priority: '0.8' },
   { path: '/privacidade', changefreq: 'yearly', priority: '0.3' },
   { path: '/termos', changefreq: 'yearly', priority: '0.3' },

@@ -593,7 +593,7 @@ const empresasReais: Empresa[] = [
       'manutencao-preventiva-refrigeracao', 'manutencao-corretiva-refrigeracao',
       'conserto-geladeira-refrigerador', 'manutencao-freezer', 'manutencao-camara-fria',
       'conserto-balcao-refrigerado', 'manutencao-frigobar', 'conserto-side-by-side-french-door',
-      'manutencao-adega-climatizada', 'conserto-lava-e-seca',
+      'manutencao-adega-climatizada', 'conserto-lava-e-seca', 'conserto-cervejeira',
     ],
     bairrosAtendidos: [...bairrosSantaCatarinaSlugs],
     cidadesAtendidas: [...cidadesSantaCatarinaSlugs],
