@@ -225,7 +225,7 @@ export function buildLocalBusinessSchema(empresa: {
   formasPagamento: string[];
   atende24h: boolean;
   avaliacoes?: { nomeCliente: string; nota: number; servicoRealizado: string; texto: string; data: string }[];
-}, coords: { lat: number; lng: number }, bairroNome: string, servicosDetalhes?: { nome: string; precoMedio?: string }[]) {
+}, coords: { lat: number; lng: number }, _bairroNome: string, servicosDetalhes?: { nome: string; precoMedio?: string }[]) {
   const reviews = (empresa.avaliacoes || []).map(a => ({
     '@type': 'Review',
     reviewRating: {

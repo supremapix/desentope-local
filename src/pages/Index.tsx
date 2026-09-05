@@ -19,8 +19,8 @@ const Index = () => {
   const empresasDestaque = getEmpresasDestaque();
 
   useSEO({
-    title: 'Serviços no Bairro | Empresas Verificadas em Todo o Brasil',
-    description: 'Diretório de empresas e profissionais verificados que prestam serviços no seu bairro, em cidades de todo o Brasil: desentupimento, hidráulica, motofrete e mais. Cobertura completa em Curitiba, RMC e São Paulo. Orçamento grátis no WhatsApp.',
+    title: 'Serviços no Bairro | Empresas e Profissionais Perto de Você',
+    description: 'Encontre empresas e profissionais de serviços por categoria, cidade e bairro. Diretório com perfis, áreas atendidas e contato direto por WhatsApp — Curitiba, RMC, São Paulo, Osasco e litoral de SC.',
     canonical: '/',
     jsonLd: [buildWebsiteSchema(), buildOrganizationSchema()],
   });
@@ -31,10 +31,11 @@ const Index = () => {
       <section className="bg-primary text-primary-foreground py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-3xl md:text-5xl font-black mb-4 leading-tight">
-            Empresas que Prestam Serviços no Seu Bairro<br className="hidden md:block" /> em Cidades de Todo o Brasil
+            Encontre Empresas e Profissionais<br className="hidden md:block" /> de Serviços Perto de Você
           </h1>
           <p className="text-lg md:text-xl text-primary-foreground mb-8 max-w-3xl mx-auto">
-            O Serviços no Bairro conecta você a empresas e profissionais verificados de qualquer segmento perto de você — desentupimento, hidráulica, motofrete e entregas e muito mais. Cobertura hiperlocal bairro a bairro em Curitiba e Região Metropolitana, em São Paulo capital e Grande São Paulo, e em expansão para todas as cidades do Brasil, com atendimento 24h e orçamento grátis pelo WhatsApp.
+            Busque serviços por cidade ou bairro e encontre empresas e profissionais disponíveis na sua região.
+            O Serviços no Bairro é um diretório: reunimos perfis, áreas atendidas e contatos — quem executa o serviço é a empresa escolhida por você.
           </p>
 
           <SearchBar />
@@ -42,9 +43,9 @@ const Index = () => {
 
           {/* Trust badges */}
           <div className="flex flex-wrap justify-center gap-6 mt-8 text-sm font-medium text-primary-foreground">
-            <span className="flex items-center gap-1.5"><Zap className="h-4 w-4 text-secondary" /> Resposta em até 15min</span>
-            <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-accent" /> +500 empresas cadastradas</span>
-            <span className="flex items-center gap-1.5"><Star className="h-4 w-4 text-secondary" /> Avaliações reais</span>
+            <span className="flex items-center gap-1.5"><Search className="h-4 w-4 text-secondary" /> Busca por serviço, cidade e bairro</span>
+            <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-accent" /> Perfis com dados conferidos pela equipe</span>
+            <span className="flex items-center gap-1.5"><MessageCircle className="h-4 w-4 text-secondary" /> Contato direto com a empresa</span>
           </div>
         </div>
       </section>
