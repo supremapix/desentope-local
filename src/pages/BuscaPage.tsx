@@ -58,7 +58,7 @@ const BuscaPage = () => {
     let filtered = [...todasEmpresas];
 
     if (filtroTipo) {
-      filtered = filtered.filter(e => e.tipoServico.includes(filtroTipo as any));
+      filtered = filtered.filter(e => e.tipoServico.includes(filtroTipo as Empresa['tipoServico'][number]));
     }
     if (filtro24h) {
       filtered = filtered.filter(e => e.atende24h);

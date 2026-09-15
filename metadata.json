@@ -1,0 +1,6 @@
+{
+  "name": "Serviços no Bairro",
+  "description": "Diretório de empresas e profissionais de serviços por categoria, cidade e bairro com contato direto.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

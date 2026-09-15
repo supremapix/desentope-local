@@ -281,15 +281,15 @@ export function getEmpresasPorServico(servicoSlug: string): Empresa[] {
     const empresas = getEmpresasPorBairro(bSlug);
     result.push(...empresas.filter(e => e.servicosOferecidos.includes(servicoSlug)));
   }
-  // Deduplicate by template prefix
-  const seen = new Set<string>(reais.map(e => e.nome.split(' ').slice(0, 2).join(' ')));
-  return [...reais, ...result].filter(e => {
-    const key = e.nome.split(' ').slice(0, 2).join(' ');
-    if (reais.includes(e)) return true;
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
+  const seenSlug = new Set<string>();
+  const list: Empresa[] = [];
+  for (const emp of [...reais, ...result]) {
+    if (!seenSlug.has(emp.slug)) {
+      seenSlug.add(emp.slug);
+      list.push(emp);
+    }
+  }
+  return list;
 }
 
 /**

@@ -1,6 +1,17 @@
 {
   "redirects": [
     {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "servicosnobairro.com.br"
+        }
+      ],
+      "destination": "https://www.servicosnobairro.com.br/$1",
+      "permanent": true
+    },
+    {
       "source": "/curitiba/cic",
       "destination": "/curitiba/cidade-industrial",
       "permanent": true
