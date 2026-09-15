@@ -77,6 +77,11 @@ export interface Empresa {
   avaliacoes: Avaliacao[];
   notaMedia: number;
   totalAvaliacoes: number;
+  slogan?: string;
+  razaoSocial?: string;
+  marcasAtendidas?: string[];
+  diferenciais?: string[];
+  faq?: FAQItem[];
   redesSociais?: {
     instagram?: string;
     facebook?: string;

@@ -49,22 +49,26 @@ const EmpresaPage = () => {
         { name: cidadeBase, url: '/busca' },
         { name: empresa.nome, url: `/empresa/${empresa.slug}` },
       ]),
-      buildFAQSchema([
-        {
-          pergunta: `Como entrar em contato com a ${empresa.nome}?`,
-          resposta: `Pelo WhatsApp ou telefone ${empresa.telefone}${empresa.email ? `, ou pelo e-mail ${empresa.email}` : ''}. O contato é feito diretamente com a empresa: o Serviços no Bairro é um diretório e não executa o serviço.`,
-        },
-        {
-          pergunta: `Quais regiões a ${empresa.nome} atende?`,
-          resposta: `A empresa informa atender ${cidadeBase}/${estadoBase}${empresa.cidadesAtendidas.length > 1 ? ` e outras ${empresa.cidadesAtendidas.length - 1} localidades da região` : ''}. Confirme a disponibilidade para o seu endereço antes de agendar.`,
-        },
-        {
-          pergunta: `A ${empresa.nome} atende 24 horas?`,
-          resposta: empresa.atende24h
-            ? `A empresa informa atendimento 24 horas, inclusive fins de semana e feriados, conforme disponibilidade.`
-            : `A empresa atende nos horários publicados neste perfil. Consulte disponibilidade para urgências pelo telefone ${empresa.telefone}.`,
-        },
-      ]),
+      buildFAQSchema(
+        empresa.faq && empresa.faq.length > 0
+          ? empresa.faq
+          : [
+              {
+                pergunta: `Como entrar em contato com a ${empresa.nome}?`,
+                resposta: `Pelo WhatsApp ou telefone ${empresa.telefone}${empresa.email ? `, ou pelo e-mail ${empresa.email}` : ''}. O contato é feito diretamente com a empresa: o Serviços no Bairro é um diretório e não executa o serviço.`,
+              },
+              {
+                pergunta: `Quais regiões a ${empresa.nome} atende?`,
+                resposta: `A empresa informa atender ${cidadeBase}/${estadoBase}${empresa.cidadesAtendidas.length > 1 ? ` e outras ${empresa.cidadesAtendidas.length - 1} localidades da região` : ''}. Confirme a disponibilidade para o seu endereço antes de agendar.`,
+              },
+              {
+                pergunta: `A ${empresa.nome} atende 24 horas?`,
+                resposta: empresa.atende24h
+                  ? `A empresa informa atendimento 24 horas, inclusive fins de semana e feriados, conforme disponibilidade.`
+                  : `A empresa atende nos horários publicados neste perfil. Consulte disponibilidade para urgências pelo telefone ${empresa.telefone}.`,
+              },
+            ]
+      ),
     ] : undefined,
   });
 
@@ -122,6 +126,9 @@ const EmpresaPage = () => {
                       </Badge>
                     )}
                   </div>
+                  {empresa.slogan && (
+                    <p className="text-sm font-medium text-muted-foreground mt-0.5">{empresa.slogan}</p>
+                  )}
                   <div className="mt-1">
                     <RatingStars nota={empresa.notaMedia} total={empresa.totalAvaliacoes} />
                   </div>
@@ -279,6 +286,42 @@ const EmpresaPage = () => {
               </CardContent>
             </Card>
 
+            {/* Diferenciais */}
+            {empresa.diferenciais && empresa.diferenciais.length > 0 && (
+              <Card className="border-accent/30 bg-accent/5">
+                <CardContent className="p-6">
+                  <h2 className="text-xl font-bold mb-3 flex items-center gap-2 text-foreground">
+                    <ShieldCheck className="h-5 w-5 text-accent" /> Diferenciais da Empresa
+                  </h2>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mt-3">
+                    {empresa.diferenciais.map((dif, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-sm text-foreground">
+                        <span className="text-accent font-bold mt-0.5">✓</span>
+                        <span>{dif}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Marcas Atendidas */}
+            {empresa.marcasAtendidas && empresa.marcasAtendidas.length > 0 && (
+              <Card>
+                <CardContent className="p-6">
+                  <h2 className="text-xl font-bold mb-3">Marcas Atendidas</h2>
+                  <p className="text-xs text-muted-foreground mb-3">Assistência técnica especializada multimarcas:</p>
+                  <div className="flex flex-wrap gap-2">
+                    {empresa.marcasAtendidas.map((marca, idx) => (
+                      <Badge key={idx} variant="secondary" className="text-xs py-1 px-2.5 font-medium">
+                        {marca}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
             {/* Serviços */}
             {servicosComDetalhes.length > 0 && (
             <Card>
@@ -349,6 +392,23 @@ const EmpresaPage = () => {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Perguntas Frequentes */}
+            {empresa.faq && empresa.faq.length > 0 && (
+              <Card>
+                <CardContent className="p-6">
+                  <h2 className="text-xl font-bold mb-4">Perguntas Frequentes</h2>
+                  <div className="space-y-4">
+                    {empresa.faq.map((item, idx) => (
+                      <div key={idx} className="border-b pb-4 last:border-0 last:pb-0">
+                        <h3 className="font-semibold text-base mb-1 text-foreground">{item.pergunta}</h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{item.resposta}</p>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
           </div>
 
           {/* Sidebar */}
@@ -384,6 +444,28 @@ const EmpresaPage = () => {
                     </div>
                   </div>
                 </div>
+                {empresa.cidadesAtendidas && empresa.cidadesAtendidas.length > 1 && (
+                  <div className="flex items-start gap-2">
+                    <MapPin className="h-4 w-4 mt-0.5 text-muted-foreground" />
+                    <div>
+                      <div className="font-medium text-sm">Cidades Atendidas ({empresa.cidadesAtendidas.length})</div>
+                      <div className="flex flex-wrap gap-1 mt-1">
+                        {empresa.cidadesAtendidas.map(c => {
+                          const rotulo = c.replace(/-/g, ' ').replace(/\b\w/g, ch => ch.toUpperCase());
+                          return (
+                            <Link
+                              key={c}
+                              to={`/busca?local=${encodeURIComponent(rotulo)}`}
+                              className="text-xs bg-muted px-2 py-0.5 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+                            >
+                              {rotulo}
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                )}
                 <div className="flex items-start gap-2">
                   <CreditCard className="h-4 w-4 mt-0.5 text-muted-foreground" />
                   <div>
