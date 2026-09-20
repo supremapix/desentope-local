@@ -56,24 +56,37 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="bg-primary text-primary-foreground py-16 md:py-24">
+      <section className="relative py-16 md:py-24 border-b border-border/80 bg-gradient-to-b from-card via-background to-background">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-3xl md:text-5xl font-black mb-4 leading-tight">
-            Encontre Empresas e Profissionais<br className="hidden md:block" /> de Serviços Perto de Você
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted border border-border text-xs font-medium text-muted-foreground mb-5">
+            <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+            Guia regional de serviços com contato direto
+          </div>
+
+          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 leading-[1.15] tracking-tight text-foreground max-w-3xl mx-auto">
+            Encontre Empresas e Profissionais de Serviços Perto de Você
           </h1>
-          <p className="text-lg md:text-xl text-primary-foreground mb-8 max-w-3xl mx-auto">
-            Busque serviços por cidade ou bairro e encontre empresas e profissionais disponíveis na sua região.
-            O Serviços no Bairro é um diretório: reunimos perfis, áreas atendidas e contatos — quem executa o serviço é a empresa escolhida por você.
+          <p className="text-base sm:text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+            Catálogo regional organizado por especialidade, cidade e bairro.
+            Consulte perfis com dados conferidos, áreas de atendimento e fale direto com o prestador pelo WhatsApp.
           </p>
 
           <SearchBar />
 
-
-          {/* Trust badges */}
-          <div className="flex flex-wrap justify-center gap-6 mt-8 text-sm font-medium text-primary-foreground">
-            <span className="flex items-center gap-1.5"><Search className="h-4 w-4 text-secondary" /> Busca por serviço, cidade e bairro</span>
-            <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-accent" /> Perfis com dados conferidos pela equipe</span>
-            <span className="flex items-center gap-1.5"><MessageCircle className="h-4 w-4 text-secondary" /> Contato direto com a empresa</span>
+          {/* Trust points */}
+          <div className="flex flex-wrap items-center justify-center gap-6 mt-8 text-xs sm:text-sm text-muted-foreground">
+            <span className="flex items-center gap-2">
+              <ShieldCheck className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+              Perfis com dados e CNPJ checados
+            </span>
+            <span className="flex items-center gap-2">
+              <Clock className="h-4 w-4 text-slate-500" />
+              Identificação de plantão 24h para urgências
+            </span>
+            <span className="flex items-center gap-2">
+              <MessageCircle className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+              Negociação sem taxa de intermediação
+            </span>
           </div>
         </div>
       </section>
@@ -205,42 +218,54 @@ const Index = () => {
       </section>
 
       {/* Como Funciona */}
-      <section className="py-12 bg-background">
+      <section className="py-14 bg-background border-t border-border/60">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold text-center mb-2">Como Funciona o Serviços no Bairro</h2>
-          <p className="text-center text-muted-foreground mb-8">3 passos simples para encontrar empresas de serviços perto de você</p>
+          <div className="max-w-2xl mx-auto text-center mb-10">
+            <h2 className="text-2xl font-bold tracking-tight mb-2">Como Funciona o Guia de Serviços</h2>
+            <p className="text-sm text-muted-foreground">Etapas objetivas para consultar, avaliar e contatar profissionais na sua localidade</p>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div className="flex flex-col items-center text-center p-6 rounded-xl bg-card border hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                <Search className="h-7 w-7 text-primary" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto">
+            <div className="p-6 rounded-lg bg-card border border-border flex flex-col justify-between">
+              <div>
+                <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest font-mono">Passo 01</span>
+                <h3 className="font-bold text-base text-foreground mt-2 mb-2">Localize a cobertura</h3>
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                  Selecione o tipo de serviço e sua cidade ou bairro para visualizar empresas com rota de atendimento confirmada.
+                </p>
               </div>
-              <h3 className="font-bold text-lg mb-2">Busque seu Bairro</h3>
-              <p className="text-sm text-muted-foreground">Selecione o tipo de serviço e seu bairro ou cidade na Região Metropolitana de Curitiba</p>
             </div>
-            <div className="flex flex-col items-center text-center p-6 rounded-xl bg-card border hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mb-4">
-                <ShieldCheck className="h-7 w-7 text-accent" />
+
+            <div className="p-6 rounded-lg bg-card border border-border flex flex-col justify-between">
+              <div>
+                <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest font-mono">Passo 02</span>
+                <h3 className="font-bold text-base text-foreground mt-2 mb-2">Verifique as credenciais</h3>
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                  Confira especialidades, disponibilidade de plantão 24h para urgências e o selo de verificação cadastral.
+                </p>
               </div>
-              <h3 className="font-bold text-lg mb-2">Veja Profissionais Verificados</h3>
-              <p className="text-sm text-muted-foreground">Todas as empresas têm CNPJ conferido, avaliações reais e histórico de atendimento</p>
             </div>
-            <div className="flex flex-col items-center text-center p-6 rounded-xl bg-card border hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mb-4">
-                <MessageCircle className="h-7 w-7 text-accent" />
+
+            <div className="p-6 rounded-lg bg-card border border-border flex flex-col justify-between">
+              <div>
+                <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest font-mono">Passo 03</span>
+                <h3 className="font-bold text-base text-foreground mt-2 mb-2">Fale direto com a equipe</h3>
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                  Inicie o atendimento pelo WhatsApp ou telefone. Você negocia prazos, orçamentos e detalhes diretamente com o técnico.
+                </p>
               </div>
-              <h3 className="font-bold text-lg mb-2">Peça Orçamento Grátis</h3>
-              <p className="text-sm text-muted-foreground">Entre em contato pelo WhatsApp e receba resposta em até 15 minutos</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Empresas em Destaque */}
-      <section className="py-12 bg-muted">
+      <section className="py-14 bg-muted/50 border-t border-border/60">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold text-center mb-2">Empresas em Destaque</h2>
-          <p className="text-center text-muted-foreground mb-8">Profissionais verificados e bem avaliados</p>
+          <div className="max-w-2xl mx-auto text-center mb-8">
+            <h2 className="text-2xl font-bold tracking-tight mb-1.5">Empresas em Destaque</h2>
+            <p className="text-sm text-muted-foreground">Prestadores cadastrados com histórico e atuação regional</p>
+          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 max-w-5xl mx-auto">
             {empresasDestaque.map(e => (
@@ -249,26 +274,38 @@ const Index = () => {
           </div>
 
           <div className="text-center mt-8">
-            <Link to="/busca" className="inline-flex items-center justify-center h-11 px-8 rounded-lg bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-colors">
-              Ver Todas as Empresas →
+            <Link
+              to="/busca"
+              className="inline-flex items-center justify-center h-10 px-6 rounded-md bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors shadow-xs"
+            >
+              Consultar catálogo completo de empresas →
             </Link>
           </div>
         </div>
       </section>
 
-      {/* CTA Emergência */}
-      <section className="py-16 bg-destructive text-destructive-foreground">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-black mb-4 flex items-center justify-center gap-2">
-            <AlertTriangle className="h-8 w-8" /> Emergência Agora?
-          </h2>
-          <p className="text-lg mb-6 text-destructive-foreground">Esgoto voltando? Vaso transbordando? Encontre atendimento 24h imediato.</p>
-          <Link
-            to="/busca?24h=true"
-            className="inline-flex items-center justify-center h-12 px-8 rounded-lg bg-card text-foreground font-bold hover:bg-card/90 transition-colors text-lg"
-          >
-            Ver Empresas Disponíveis Agora →
-          </Link>
+      {/* Plantão 24h & Urgências */}
+      <section className="py-14 bg-slate-900 text-slate-100">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-medium mb-4">
+              <Clock className="h-3.5 w-3.5 text-amber-400" />
+              Atendimento Noturno e Fins de Semana
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-3">
+              Precisa de atendimento de urgência agora?
+            </h2>
+            <p className="text-sm sm:text-base text-slate-300 mb-6 leading-relaxed">
+              Casos como refluxo de esgoto, vazamentos graves ou falhas em câmaras frigoríficas exigem prontidão imediata.
+              Consulte a listagem de empresas que oferecem escala de plantão 24 horas na sua região.
+            </p>
+            <Link
+              to="/busca?24h=true"
+              className="inline-flex items-center justify-center h-11 px-7 rounded-md bg-white text-slate-900 font-semibold text-sm hover:bg-slate-100 transition-colors shadow-sm"
+            >
+              Ver empresas com plantão 24h disponível →
+            </Link>
+          </div>
         </div>
       </section>
       {/* Sobre o Serviços no Bairro */}

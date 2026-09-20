@@ -36,11 +36,14 @@ export function PerfilLocalSection({ perfil, localNome, isCidade }: PerfilLocalS
     <>
       {/* Resposta direta — bloco AEO/GEO */}
       <section aria-labelledby="resposta-rapida" className="mb-12">
-        <div className="rounded-xl border-l-4 border-primary bg-muted p-6">
-          <h2 id="resposta-rapida" className="text-lg font-bold mb-2">
+        <div className="rounded-lg border border-border bg-card p-6">
+          <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider font-mono block mb-1">
+            Síntese do Atendimento
+          </span>
+          <h2 id="resposta-rapida" className="text-base sm:text-lg font-bold text-foreground mb-2">
             Resumo rápido: desentupidora {prep} {localNome}
           </h2>
-          <p className="text-base leading-relaxed">{perfil.respostaDireta}</p>
+          <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">{perfil.respostaDireta}</p>
         </div>
       </section>
 
@@ -130,12 +133,14 @@ export function PerfilLocalSection({ perfil, localNome, isCidade }: PerfilLocalS
         </h2>
         <ol className="grid gap-4 md:grid-cols-4">
           {PASSOS.map((p) => (
-            <li key={p.n} className="rounded-xl border bg-card p-5">
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold mb-2">
-                {p.n}
-              </span>
-              <h3 className="font-bold mb-1">{p.titulo}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{p.texto}</p>
+            <li key={p.n} className="rounded-lg border border-border bg-card p-5 flex flex-col justify-between">
+              <div>
+                <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest font-mono">
+                  Etapa 0{p.n}
+                </span>
+                <h3 className="font-bold text-base text-foreground mt-2 mb-1.5">{p.titulo}</h3>
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{p.texto}</p>
+              </div>
             </li>
           ))}
         </ol>

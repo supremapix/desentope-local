@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Droplets, Menu, X } from 'lucide-react';
+import { MapPin, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export function Header() {
@@ -12,26 +12,64 @@ export function Header() {
   }, [location.pathname]);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 10);
+    const handleScroll = () => setScrolled(window.scrollY > 8);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <header className={`bg-primary text-primary-foreground sticky top-0 z-40 transition-all duration-300 ${scrolled ? 'shadow-lg shadow-primary/20' : ''}`}>
+    <header
+      className={`sticky top-0 z-40 transition-colors duration-200 border-b ${
+        scrolled
+          ? 'bg-card/95 backdrop-blur-md border-border shadow-xs'
+          : 'bg-card border-border/80'
+      }`}
+    >
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
-        <Link to="/" className="flex items-center gap-2 font-black text-xl group">
-          <Droplets className="h-7 w-7 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110 animate-[pulse_3s_ease-in-out_infinite]" />
-          <span className="transition-all duration-300 group-hover:tracking-wider">Serviços no Bairro</span>
+        <Link to="/" className="flex items-center gap-2.5 group">
+          <div className="flex items-center justify-center w-8 h-8 rounded-md bg-primary text-primary-foreground shadow-xs">
+            <MapPin className="h-4 w-4 text-primary-foreground" />
+          </div>
+          <div className="flex flex-col leading-tight">
+            <span className="font-bold text-base tracking-tight text-foreground">
+              Serviços <span className="text-muted-foreground font-normal">no Bairro</span>
+            </span>
+            <span className="text-[10.5px] text-muted-foreground font-medium uppercase tracking-wider">
+              Guia Regional de Serviços
+            </span>
+          </div>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-          <Link to="/curitiba/centro" className="relative hover:text-primary-foreground/80 transition-colors after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary-foreground after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Bairros</Link>
-          <Link to="/busca" className="relative hover:text-primary-foreground/80 transition-colors after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary-foreground after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Buscar</Link>
-          <Link to="/faq" className="relative hover:text-primary-foreground/80 transition-colors after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary-foreground after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">FAQ</Link>
-          <Link to="/anuncie-aqui" className="relative hover:text-primary-foreground/80 transition-colors after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary-foreground after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Anuncie Aqui</Link>
-          <Link to="/cadastrar-empresa" className="bg-secondary text-secondary-foreground px-4 py-2 rounded-lg font-bold hover:bg-secondary/90 transition-all hover:scale-105 hover:shadow-lg">
+        <nav className="hidden md:flex items-center gap-7 text-sm font-medium">
+          <Link
+            to="/curitiba/centro"
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Bairros
+          </Link>
+          <Link
+            to="/busca"
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Buscar Serviços
+          </Link>
+          <Link
+            to="/faq"
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Dúvidas & FAQ
+          </Link>
+          <Link
+            to="/anuncie-aqui"
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Para Empresas
+          </Link>
+          <Link
+            to="/cadastrar-empresa"
+            className="inline-flex items-center justify-center h-9 px-4 rounded-md bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors shadow-xs"
+          >
             Cadastrar Empresa
           </Link>
         </nav>
@@ -39,25 +77,50 @@ export function Header() {
         {/* Mobile toggle */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden p-2 transition-transform duration-200 active:scale-90"
-          aria-label="Menu"
+          className="md:hidden p-2 rounded-md text-foreground hover:bg-muted transition-colors"
+          aria-label="Abrir menu de navegação"
         >
-          {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
 
       {/* Mobile menu */}
-      <nav className={`md:hidden border-t border-primary-foreground/20 px-4 overflow-hidden transition-all duration-300 ease-out ${menuOpen ? 'max-h-80 py-4 opacity-100' : 'max-h-0 py-0 opacity-0'}`}>
-        <div className="space-y-3">
-          <Link to="/curitiba/centro" className="block py-2 transition-transform hover:translate-x-2">Bairros</Link>
-          <Link to="/busca" className="block py-2 transition-transform hover:translate-x-2">Buscar</Link>
-          <Link to="/faq" className="block py-2 transition-transform hover:translate-x-2">FAQ</Link>
-          <Link to="/anuncie-aqui" className="block py-2 transition-transform hover:translate-x-2">Anuncie Aqui</Link>
-          <Link to="/cadastrar-empresa" className="block bg-secondary text-secondary-foreground px-4 py-2 rounded-lg font-bold text-center hover:bg-secondary/90 transition-colors">
-            Cadastrar Empresa
+      {menuOpen && (
+        <nav className="md:hidden border-t border-border bg-card px-4 py-4 space-y-2 animate-in fade-in-50 duration-150">
+          <Link
+            to="/curitiba/centro"
+            className="block px-3 py-2 rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors"
+          >
+            Bairros de Curitiba
           </Link>
-        </div>
-      </nav>
+          <Link
+            to="/busca"
+            className="block px-3 py-2 rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors"
+          >
+            Buscar Serviços
+          </Link>
+          <Link
+            to="/faq"
+            className="block px-3 py-2 rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors"
+          >
+            Dúvidas Frequentes (FAQ)
+          </Link>
+          <Link
+            to="/anuncie-aqui"
+            className="block px-3 py-2 rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors"
+          >
+            Para Empresas e Anunciantes
+          </Link>
+          <div className="pt-2">
+            <Link
+              to="/cadastrar-empresa"
+              className="block w-full text-center py-2.5 px-4 rounded-md bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors"
+            >
+              Cadastrar Empresa no Guia
+            </Link>
+          </div>
+        </nav>
+      )}
     </header>
   );
 }

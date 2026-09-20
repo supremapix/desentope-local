@@ -5,31 +5,27 @@ interface DicasRapidasProps {
   titulo?: string;
 }
 
-const BG_COLORS: Record<string, string> = {
-  dica: 'bg-primary/5 border-primary/20',
-  alerta: 'bg-destructive/5 border-destructive/20',
-  ok: 'bg-accent/5 border-accent/20',
-  tempo: 'bg-secondary/5 border-secondary/20',
-};
-
-export function DicasRapidas({ dicas, titulo = '💡 Dicas de Quem Entende' }: DicasRapidasProps) {
+export function DicasRapidas({ dicas, titulo = 'Orientações práticas de contratação' }: DicasRapidasProps) {
   if (!dicas.length) return null;
 
   return (
     <div className="mb-12">
-      <h2 className="text-xl font-bold mb-4">{titulo}</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <h2 className="text-xl font-bold tracking-tight mb-4 text-foreground">{titulo}</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
         {dicas.map((dica, i) => (
           <div
             key={i}
-            className={`rounded-xl border p-4 ${BG_COLORS[dica.tipo] || 'bg-muted border-border'}`}
+            className="rounded-lg border border-border bg-card p-4.5 transition-colors hover:border-foreground/20"
           >
-            <div className="text-2xl mb-2">{dica.icone}</div>
-            <h3 className="font-bold text-sm mb-1">{dica.titulo}</h3>
-            <p className="text-xs text-muted-foreground leading-relaxed">{dica.texto}</p>
+            <div className="flex items-center gap-2 mb-1.5">
+              <span className="text-base" aria-hidden="true">{dica.icone}</span>
+              <h3 className="font-semibold text-sm text-foreground">{dica.titulo}</h3>
+            </div>
+            <p className="text-xs text-muted-foreground leading-relaxed pl-6">{dica.texto}</p>
           </div>
         ))}
       </div>
     </div>
   );
 }
+

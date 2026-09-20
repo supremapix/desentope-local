@@ -78,8 +78,12 @@ export function SearchBar() {
         </div>
 
         {/* Submit */}
-        <Button type="submit" className="h-12 sm:h-14 px-8 rounded-none sm:rounded-r-xl bg-secondary text-secondary-foreground hover:bg-secondary/90 text-base font-bold">
-          BUSCAR AGORA
+        <Button
+          type="submit"
+          className="h-12 sm:h-14 px-7 rounded-none sm:rounded-r-xl bg-primary text-primary-foreground hover:bg-primary/90 text-sm font-semibold tracking-normal flex items-center justify-center gap-2 transition-colors"
+        >
+          <Search className="h-4 w-4" />
+          <span>Buscar serviços</span>
         </Button>
       </div>
     </form>

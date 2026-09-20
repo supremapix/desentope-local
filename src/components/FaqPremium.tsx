@@ -102,21 +102,21 @@ export function FaqPremium({ perguntas, titulo, subtitulo, mostrarBusca = true, 
   }, [filtradas, abaAtiva, busca]);
 
   return (
-    <div className="rounded-2xl overflow-hidden" style={{ background: 'linear-gradient(180deg, hsl(var(--muted)) 0%, hsl(var(--background)) 100%)' }}>
-      <div className="p-6 md:p-8">
-        {titulo && <h2 className="text-xl md:text-2xl font-black mb-1">{titulo}</h2>}
-        {subtitulo && <p className="text-muted-foreground mb-6">{subtitulo}</p>}
+    <div className="rounded-xl border border-border bg-card p-6 md:p-8">
+      <div>
+        {titulo && <h2 className="text-xl md:text-2xl font-bold tracking-tight mb-1">{titulo}</h2>}
+        {subtitulo && <p className="text-sm text-muted-foreground mb-6 leading-relaxed">{subtitulo}</p>}
 
         {/* Search */}
         {mostrarBusca && (
           <div className="relative mb-6">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <input
               type="text"
               value={busca}
               onChange={e => setBusca(e.target.value)}
-              placeholder="Buscar pergunta..."
-              className="w-full h-12 pl-12 pr-10 rounded-xl border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+              placeholder="Buscar por termo ou dúvida..."
+              className="w-full h-11 pl-10 pr-10 rounded-md border border-border bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
             />
             {busca && (
               <button onClick={() => setBusca('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
@@ -128,10 +128,10 @@ export function FaqPremium({ perguntas, titulo, subtitulo, mostrarBusca = true, 
 
         {/* Tabs */}
         {mostrarAbas && categorias.length > 1 && (
-          <div className="flex flex-wrap gap-2 mb-6">
+          <div className="flex flex-wrap gap-1.5 mb-6">
             <button
               onClick={() => setAbaAtiva('todas')}
-              className={`px-3 py-1.5 rounded-full text-xs font-bold transition-colors ${abaAtiva === 'todas' ? 'bg-primary text-primary-foreground' : 'bg-card border text-muted-foreground hover:text-foreground'}`}
+              className={`px-3 py-1 rounded-md text-xs font-medium transition-colors ${abaAtiva === 'todas' ? 'bg-primary text-primary-foreground shadow-xs' : 'bg-muted/60 text-muted-foreground hover:text-foreground hover:bg-muted'}`}
             >
               Todas ({contadorPorCategoria.todas})
             </button>
@@ -141,9 +141,9 @@ export function FaqPremium({ perguntas, titulo, subtitulo, mostrarBusca = true, 
                 <button
                   key={cat}
                   onClick={() => setAbaAtiva(cat)}
-                  className={`px-3 py-1.5 rounded-full text-xs font-bold transition-colors ${abaAtiva === cat ? 'bg-primary text-primary-foreground' : 'bg-card border text-muted-foreground hover:text-foreground'}`}
+                  className={`px-3 py-1 rounded-md text-xs font-medium transition-colors ${abaAtiva === cat ? 'bg-primary text-primary-foreground shadow-xs' : 'bg-muted/60 text-muted-foreground hover:text-foreground hover:bg-muted'}`}
                 >
-                  {config?.emoji || '📌'} {config?.label || cat} ({contadorPorCategoria[cat] || 0})
+                  {config?.label || cat} ({contadorPorCategoria[cat] || 0})
                 </button>
               );
             })}
@@ -151,7 +151,7 @@ export function FaqPremium({ perguntas, titulo, subtitulo, mostrarBusca = true, 
         )}
 
         {/* FAQ items */}
-        <div className="space-y-6">
+        <div className="space-y-4">
           {grupos.map(grupo => {
             const config = CATEGORIAS_CONFIG[grupo.categoria];
             const isExpanded = expandidos.has(grupo.categoria);
@@ -161,62 +161,58 @@ export function FaqPremium({ perguntas, titulo, subtitulo, mostrarBusca = true, 
             return (
               <div key={grupo.categoria}>
                 {abaAtiva === 'todas' && !busca.trim() && config && (
-                  <h3 className="text-base font-bold flex items-center gap-2 mb-3">
-                    <span>{config.emoji}</span> {config.label}
+                  <h3 className="text-sm font-semibold text-foreground flex items-center gap-2 mb-2.5 mt-2">
+                    {config.label}
                   </h3>
                 )}
                 <div className="space-y-2">
                   {visibleItems.map((p, i) => {
                     const globalIdx = perguntas.indexOf(p);
                     const isOpen = abertos.has(globalIdx);
-                    const borderColor = config?.cor || 'hsl(var(--primary))';
 
                     return (
                       <div
                         key={globalIdx}
-                        className="bg-card rounded-xl border overflow-hidden transition-shadow hover:shadow-md"
-                        style={{ borderLeftWidth: '4px', borderLeftColor: borderColor }}
+                        className="bg-card rounded-md border border-border/90 overflow-hidden transition-colors hover:border-foreground/20"
                       >
                         <button
                           onClick={() => toggle(globalIdx)}
-                          className="w-full flex items-center justify-between p-4 text-left"
+                          className="w-full flex items-center justify-between p-4 text-left gap-4"
                         >
-                          <span className="text-sm font-semibold pr-4 flex-1"
+                          <span
+                            className="text-sm font-semibold text-foreground flex-1 leading-snug"
                             dangerouslySetInnerHTML={{ __html: highlightText(p.pergunta, busca) }}
                           />
-                          <div className="flex items-center gap-2 flex-shrink-0">
+                          <div className="flex items-center gap-2 shrink-0">
                             {config && (
-                              <span className="hidden sm:inline-block text-[10px] px-2 py-0.5 rounded-full bg-muted text-muted-foreground font-medium">
+                              <span className="hidden sm:inline-block text-[11px] px-2 py-0.5 rounded bg-muted text-muted-foreground font-medium">
                                 {config.label}
                               </span>
                             )}
-                            <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+                            <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
                           </div>
                         </button>
-                        <div
-                          className="overflow-hidden transition-all duration-300 ease-in-out"
-                          style={{ maxHeight: isOpen ? '600px' : '0', opacity: isOpen ? 1 : 0 }}
-                        >
-                          <div className="px-4 pb-4">
+                        {isOpen && (
+                          <div className="px-4 pb-4 pt-1 border-t border-border/60 bg-muted/20">
                             <div
-                              className="text-sm leading-relaxed text-muted-foreground bg-muted/50 rounded-lg p-4"
+                              className="text-xs sm:text-sm leading-relaxed text-muted-foreground pt-2"
                               dangerouslySetInnerHTML={{ __html: highlightText(p.resposta, busca) }}
                             />
-                            <div className="flex items-center justify-between mt-3">
-                              <div className="flex items-center gap-3 text-xs">
-                                <a href="tel:+554133451194" className="flex items-center gap-1 text-primary hover:underline font-medium">
-                                  <Phone className="h-3 w-3" /> (41) 3345-1194
+                            <div className="flex items-center justify-between mt-3 pt-2 border-t border-border/40">
+                              <div className="flex items-center gap-4 text-xs">
+                                <a href="tel:+554133451194" className="flex items-center gap-1.5 text-foreground hover:underline font-medium">
+                                  <Phone className="h-3 w-3 text-muted-foreground" /> (41) 3345-1194
                                 </a>
-                                <a href="https://wa.me/5541985171966" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-accent hover:underline font-medium">
+                                <a href="https://wa.me/5541985171966" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400 hover:underline font-medium">
                                   <MessageCircle className="h-3 w-3" /> WhatsApp
                                 </a>
                               </div>
-                              <button onClick={() => copiarLink(p.pergunta, globalIdx)} className="text-muted-foreground hover:text-primary transition-colors" title="Copiar link">
+                              <button onClick={() => copiarLink(p.pergunta, globalIdx)} className="text-muted-foreground hover:text-foreground transition-colors p-1" title="Copiar link da pergunta">
                                 <Link2 className="h-3.5 w-3.5" />
                               </button>
                             </div>
                           </div>
-                        </div>
+                        )}
                       </div>
                     );
                   })}
