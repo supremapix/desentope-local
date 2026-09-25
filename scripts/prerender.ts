@@ -48,6 +48,28 @@ function setupGlobal(key: string, val: unknown) {
   }
 }
 
+function attachGlobals(win: any) {
+  setupGlobal('window', win);
+  setupGlobal('document', win.document);
+  setupGlobal('navigator', win.navigator);
+  setupGlobal('HTMLElement', win.HTMLElement);
+  setupGlobal('HTMLMetaElement', win.HTMLMetaElement);
+  setupGlobal('HTMLLinkElement', win.HTMLLinkElement);
+  setupGlobal('HTMLButtonElement', win.HTMLButtonElement);
+  setupGlobal('location', win.location);
+  win.scrollTo = () => {};
+  win.matchMedia = (query: string) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: () => {},
+    removeListener: () => {},
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    dispatchEvent: () => false,
+  }) as unknown as MediaQueryList;
+}
+
 async function prerender() {
   console.log('🚀 Iniciando pré-renderização estática (SSG)...');
   const distDir = path.resolve(process.cwd(), 'dist');
@@ -77,25 +99,7 @@ async function prerender() {
     });
 
     const win = dom.window;
-    setupGlobal('window', win);
-    setupGlobal('document', win.document);
-    setupGlobal('navigator', win.navigator);
-    setupGlobal('HTMLElement', win.HTMLElement);
-    setupGlobal('HTMLMetaElement', win.HTMLMetaElement);
-    setupGlobal('HTMLLinkElement', win.HTMLLinkElement);
-    setupGlobal('HTMLButtonElement', win.HTMLButtonElement);
-    setupGlobal('location', win.location);
-    win.scrollTo = () => {};
-    win.matchMedia = (query: string) => ({
-      matches: false,
-      media: query,
-      onchange: null,
-      addListener: () => {},
-      removeListener: () => {},
-      addEventListener: () => {},
-      removeEventListener: () => {},
-      dispatchEvent: () => false,
-    }) as unknown as MediaQueryList;
+    attachGlobals(win);
 
     const rootEl = win.document.getElementById('root');
     if (!rootEl) {
@@ -152,6 +156,56 @@ async function prerender() {
 
   const durationSec = ((Date.now() - startTime) / 1000).toFixed(1);
   console.log(`✅ Pré-renderização concluída com sucesso: ${completed} páginas em ${durationSec}s.`);
+
+  // Pré-renderizar dist/404.html
+  console.log('🚨 Gerando dist/404.html estático para tratamento de rotas inexistentes...');
+  const dom404 = new JSDOM(baseTemplate, {
+    url: 'https://www.servicosnobairro.com.br/404',
+    pretendToBeVisual: true,
+  });
+  const win404 = dom404.window;
+  attachGlobals(win404);
+
+  const rootEl404 = win404.document.getElementById('root');
+  if (rootEl404) {
+    const root404 = ReactDOM.createRoot(rootEl404);
+    root404.render(React.createElement(App));
+    for (let i = 0; i < 45; i++) {
+      await new Promise((resolve) => setTimeout(resolve, 15));
+      if (win404.document.title.length > 0 && win404.document.querySelector('h1')) {
+        break;
+      }
+    }
+    fs.writeFileSync(path.join(distDir, '404.html'), dom404.serialize(), 'utf-8');
+    root404.unmount();
+    console.log('✅ dist/404.html gerado com sucesso.');
+  }
+
+  // Pré-renderizar dist/busca/index.html (para noindex, follow com HTML inicial)
+  console.log('🔍 Gerando dist/busca/index.html estático (noindex, follow)...');
+  const domBusca = new JSDOM(baseTemplate, {
+    url: 'https://www.servicosnobairro.com.br/busca',
+    pretendToBeVisual: true,
+  });
+  const winBusca = domBusca.window;
+  attachGlobals(winBusca);
+
+  const rootElBusca = winBusca.document.getElementById('root');
+  if (rootElBusca) {
+    const rootBusca = ReactDOM.createRoot(rootElBusca);
+    rootBusca.render(React.createElement(App));
+    for (let i = 0; i < 45; i++) {
+      await new Promise((resolve) => setTimeout(resolve, 15));
+      if (winBusca.document.title.length > 0 && winBusca.document.querySelector('h1')) {
+        break;
+      }
+    }
+    const buscaDir = path.join(distDir, 'busca');
+    if (!fs.existsSync(buscaDir)) fs.mkdirSync(buscaDir, { recursive: true });
+    fs.writeFileSync(path.join(buscaDir, 'index.html'), domBusca.serialize(), 'utf-8');
+    rootBusca.unmount();
+    console.log('✅ dist/busca/index.html gerado com sucesso.');
+  }
 }
 
 prerender().catch((err) => {

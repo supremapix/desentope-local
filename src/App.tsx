@@ -95,6 +95,7 @@ const App = () => (
               <Route path="/contato" element={<ContatoPage />} />
               <Route path="/privacidade" element={<PrivacidadePage />} />
               <Route path="/termos" element={<TermosPage />} />
+              <Route path="/404" element={<NotFound />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

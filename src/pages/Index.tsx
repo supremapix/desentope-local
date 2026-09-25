@@ -50,7 +50,7 @@ const Index = () => {
     title: 'Serviços no Bairro | Empresas e Profissionais Perto de Você',
     description: 'Encontre empresas e profissionais de serviços por categoria, cidade e bairro. Diretório com perfis, áreas atendidas e contato direto por WhatsApp — Curitiba, RMC, São Paulo, Osasco e litoral de SC.',
     canonical: '/',
-    jsonLd: [buildWebsiteSchema(), buildOrganizationSchema(), buildFAQSchema(perguntasHome)],
+    jsonLd: [buildFAQSchema(perguntasHome)],
   });
 
   return (
@@ -77,7 +77,7 @@ const Index = () => {
           <div className="flex flex-wrap items-center justify-center gap-6 mt-8 text-xs sm:text-sm text-muted-foreground">
             <span className="flex items-center gap-2">
               <ShieldCheck className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
-              Perfis com dados e CNPJ checados
+              Perfis com dados de contato conferidos
             </span>
             <span className="flex items-center gap-2">
               <Clock className="h-4 w-4 text-slate-500" />
@@ -164,35 +164,35 @@ const Index = () => {
       {/* São Paulo — bairros e região */}
       <section className="py-12 bg-muted">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold text-center mb-2">Bairros de São Paulo e Grande SP</h2>
+          <h2 className="text-2xl font-bold text-center mb-2">Atendimento em São Paulo e Grande SP</h2>
           <p className="text-center text-muted-foreground mb-8">
             Motofrete e entregas com coleta no Centro de São Paulo e região, em um raio de até 60 km — e viagens
-            frequentes São Paulo → Curitiba.
+            frequentes São Paulo → Curitiba, além de serviços de lavanderia profissional em Osasco.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-2">
-            {bairrosSaoPaulo.slice(0, 24).map(b => (
-              <Link
-                key={b.slug}
-                to={`/busca?local=${encodeURIComponent(b.nome)}`}
-                className="bg-card border rounded-lg px-4 py-2.5 hover:border-primary hover:shadow-sm transition-all text-sm font-medium"
-              >
-                {b.nome.replace(' — São Paulo', '')}
-              </Link>
-            ))}
-            <Link to="/busca?local=S%C3%A3o%20Paulo" className="bg-primary text-primary-foreground rounded-lg px-4 py-2.5 text-sm font-bold hover:bg-primary/90 transition-colors">
-              Ver empresas em São Paulo →
+          <div className="flex flex-wrap justify-center gap-3">
+            <Link
+              to="/empresa/motofrete-sao-paulo-curitiba"
+              className="bg-card border rounded-lg px-4 py-2.5 hover:border-primary hover:shadow-sm transition-all text-sm font-medium"
+            >
+              Motofrete São Paulo — Centro e Região (60 km)
+            </Link>
+            <Link
+              to="/empresa/lavanderia-inovata-osasco"
+              className="bg-card border rounded-lg px-4 py-2.5 hover:border-primary hover:shadow-sm transition-all text-sm font-medium"
+            >
+              Lavanderia Inovata — Osasco e Região
+            </Link>
+            <Link to="/busca" className="bg-primary text-primary-foreground rounded-lg px-4 py-2.5 text-sm font-bold hover:bg-primary/90 transition-colors">
+              Buscar empresas em São Paulo →
             </Link>
           </div>
 
           <p className="text-center text-sm text-muted-foreground mt-6 max-w-3xl mx-auto">
-            Também atendemos {cidadesSaoPauloRegiao.slice(1, 12).map(c => c.nome).join(', ')} e demais cidades da
-            Grande São Paulo.
+            Coletas e entregas atendendo o Centro, Vila Leopoldina, Lapa, Pinheiros, Moema, Osasco, Barueri, Guarulhos e demais regiões de SP.
           </p>
         </div>
       </section>
-
-
 
       {/* Santa Catarina — Navegantes e litoral */}
       <section className="py-12 bg-background">
@@ -200,19 +200,31 @@ const Index = () => {
           <h2 className="text-2xl font-bold text-center mb-2">Cidades de Santa Catarina atendidas</h2>
           <p className="text-center text-muted-foreground mb-8">
             Assistência técnica em refrigeração comercial, industrial e residencial com base em Navegantes (SC):
-            câmara fria, freezer, balcão refrigerado, geladeira, frigobar e mais. Confirme a cobertura pelo WhatsApp.
+            câmara fria, freezer, balcão refrigerado, geladeira, frigobar e mais.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-2">
-            {cidadesSantaCatarina.map(c => (
-              <Link
-                key={c.slug}
-                to={`/busca?local=${encodeURIComponent(c.nome)}`}
-                className="bg-card border rounded-lg px-4 py-2.5 hover:border-primary hover:shadow-sm transition-all text-sm font-medium"
-              >
-                {c.nome}
-              </Link>
-            ))}
+          <div className="flex flex-wrap justify-center gap-3">
+            <Link
+              to="/empresa/santa-catarina-refrigeracao-navegantes"
+              className="bg-card border rounded-lg px-4 py-2.5 hover:border-primary hover:shadow-sm transition-all text-sm font-medium"
+            >
+              Santa Catarina Refrigeração — Navegantes
+            </Link>
+            <Link
+              to="/empresa/refrigeracao-navegantes-sc"
+              className="bg-card border rounded-lg px-4 py-2.5 hover:border-primary hover:shadow-sm transition-all text-sm font-medium"
+            >
+              Refrigeração Navegantes SC — Assistência Técnica
+            </Link>
+            <Link
+              to="/servicos/conserto-cervejeira-navegantes"
+              className="bg-card border rounded-lg px-4 py-2.5 hover:border-primary hover:shadow-sm transition-all text-sm font-medium"
+            >
+              Conserto de Cervejeira em Navegantes
+            </Link>
+            <Link to="/busca" className="bg-primary text-primary-foreground rounded-lg px-4 py-2.5 text-sm font-bold hover:bg-primary/90 transition-colors">
+              Buscar empresas em Santa Catarina →
+            </Link>
           </div>
         </div>
       </section>

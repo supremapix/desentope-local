@@ -217,23 +217,17 @@ function gerarEmpresasPorLocalidade(localNome: string, localSlug: string, cidade
   });
 }
 
-// Cache para empresas geradas
+// Cache para empresas reais
 const empresaCache = new Map<string, Empresa[]>();
 
 export function getEmpresasPorBairro(bairroSlug: string): Empresa[] {
   if (empresaCache.has(`bairro-${bairroSlug}`)) {
     return empresaCache.get(`bairro-${bairroSlug}`)!;
   }
-  const bairro = todosBairros.find(b => b.slug === bairroSlug);
-  if (!bairro) return [];
-  const empresas = gerarEmpresasPorLocalidade(bairro.nome, bairroSlug, 'Curitiba');
-  // Inject real companies that serve this bairro
-  for (const emp of empresasReais) {
-    if (!isSegmentoHidraulico(emp)) continue;
-    if (emp.bairrosAtendidos.includes(bairroSlug) && !empresas.find(e => e.slug === emp.slug)) {
-      empresas.unshift(emp);
-    }
-  }
+  const empresas = empresasReais.filter(emp =>
+    isSegmentoHidraulico(emp) &&
+    (emp.bairrosAtendidos.includes(bairroSlug) || emp.bairrosAtendidos.includes('centro') || emp.bairrosAtendidos.length > 50)
+  );
   empresaCache.set(`bairro-${bairroSlug}`, empresas);
   return empresas;
 }
@@ -242,77 +236,26 @@ export function getEmpresasPorCidade(cidadeSlug: string): Empresa[] {
   if (empresaCache.has(`cidade-${cidadeSlug}`)) {
     return empresaCache.get(`cidade-${cidadeSlug}`)!;
   }
-  const cidade = cidadesRMC.find(c => c.slug === cidadeSlug);
-  if (!cidade) return [];
-  const empresas = gerarEmpresasPorLocalidade(cidade.nome, cidadeSlug, cidade.nome);
-  // Inject real companies that serve this cidade
-  for (const emp of empresasReais) {
-    if (!isSegmentoHidraulico(emp)) continue;
-    if (emp.cidadesAtendidas.includes(cidadeSlug) && !empresas.find(e => e.slug === emp.slug)) {
-      empresas.unshift(emp);
-    }
-  }
+  const empresas = empresasReais.filter(emp =>
+    emp.cidadesAtendidas.includes(cidadeSlug) || emp.cidadesAtendidas.includes('curitiba')
+  );
   empresaCache.set(`cidade-${cidadeSlug}`, empresas);
   return empresas;
 }
 
 export function getEmpresaBySlug(slug: string): Empresa | undefined {
-  const real = empresasReais.find(e => e.slug === slug);
-  if (real) return real;
-  // Search all caches
-  for (const empresas of empresaCache.values()) {
-    const found = empresas.find(e => e.slug === slug);
-    if (found) return found;
-  }
-  // Try to generate from slug pattern
-  for (const bairro of todosBairros) {
-    const empresas = getEmpresasPorBairro(bairro.slug);
-    const found = empresas.find(e => e.slug === slug);
-    if (found) return found;
-  }
-  return undefined;
+  return empresasReais.find(e => e.slug === slug);
 }
 
 export function getEmpresasPorServico(servicoSlug: string): Empresa[] {
-  // Empresas reais cadastradas que oferecem exatamente este serviço
-  const reais = empresasReais.filter(e => e.servicosOferecidos.includes(servicoSlug));
-  // Return empresas from popular bairros that offer this service
-  const popularBairros = ['centro', 'batel', 'agua-verde', 'boqueirao', 'portao'];
-  const result: Empresa[] = [];
-  for (const bSlug of popularBairros) {
-    const empresas = getEmpresasPorBairro(bSlug);
-    result.push(...empresas.filter(e => e.servicosOferecidos.includes(servicoSlug)));
-  }
-  const seenSlug = new Set<string>();
-  const list: Empresa[] = [];
-  for (const emp of [...reais, ...result]) {
-    if (!seenSlug.has(emp.slug)) {
-      seenSlug.add(emp.slug);
-      list.push(emp);
-    }
-  }
-  return list;
+  return empresasReais.filter(e => e.servicosOferecidos.includes(servicoSlug));
 }
 
 /**
- * Empresas em destaque = SEMPRE as últimas empresas reais cadastradas primeiro.
- * Basta adicionar a nova empresa ao FINAL do array `empresasReais` que ela
- * aparece automaticamente no topo da home, sem nenhuma outra alteração.
+ * Empresas em destaque = empresas reais com marca de destaque.
  */
 export function getEmpresasDestaque(limite = 4): Empresa[] {
-  const ultimasCadastradas = [...empresasReais].reverse();
-  const result: Empresa[] = [...ultimasCadastradas];
-
-  if (result.length < limite) {
-    const popularBairros = ['centro', 'batel', 'agua-verde', 'boqueirao'];
-    for (const bSlug of popularBairros) {
-      for (const e of getEmpresasPorBairro(bSlug)) {
-        if (e.destaque && !result.some(r => r.slug === e.slug)) result.push(e);
-      }
-    }
-  }
-
-  return result.slice(0, limite);
+  return empresasReais.filter(e => e.destaque).slice(0, limite);
 }
 
 // WhatsApp link with UTM tracking
@@ -332,8 +275,8 @@ const empresasReais: Empresa[] = [
     logo: '/favicon.png',
     fotos: ['/favicon.png'],
     descricao: 'Desentupidora e encanadores 24 horas em Curitiba e toda Região Metropolitana. Atendimento emergencial com Fátima — desentupimento, vazamentos, hidrojateamento e limpa fossa em todos os bairros.',
-    descricaoLonga: 'A Água Fácil é referência em desentupidora e encanadores 24 horas em Curitiba e em toda a Região Metropolitana (RMC). Atendemos os 75 bairros oficiais de Curitiba — Centro, Batel, Água Verde, Bigorrilho, Boqueirão, Cajuru, CIC, Portão, Santa Felicidade, Pinheirinho, Sítio Cercado, Xaxim, Hauer, Bacacheri, Boa Vista, Uberaba, Tatuquara, entre outros — além das vilas e regiões populares como Vila Sandra, Neoville, Vitória Régia, Caiuá, Sabará, Nossa Senhora da Luz, Vila Pantanal, Vila Torres, Vila Hauer, Vila Guaíra, Vila Oficinas, Pinheirinho Velho, Sítio Cercado Velho, Capão Raso Velho, Jardim Gabineto, Jardim Itatiaia e muito mais. Também atendemos São José dos Pinhais, Pinhais, Colombo, Araucária, Almirante Tamandaré, Campo Largo, Campo Magro, Fazenda Rio Grande, Quatro Barras, Campina Grande do Sul, Mandirituba, Balsa Nova, Rio Branco do Sul, Itaperuçu, Piraquara e Tijucas do Sul. Especialistas em desentupimento de esgoto, pia, vaso sanitário, ralo, caixa de gordura, hidrojateamento, câmera de inspeção, limpa fossa, caça vazamento, conserto de vazamento, troca de tubulação, instalação hidráulica e emergência 24h. Fale com Fátima pelo WhatsApp (41) 99569-4912 ou ligue (41) 3345-1194.',
-    whatsapp: '5541995694912',
+    descricaoLonga: 'A Água Fácil é referência em desentupidora e encanadores 24 horas em Curitiba e em toda a Região Metropolitana (RMC). Atendemos os 75 bairros oficiais de Curitiba — Centro, Batel, Água Verde, Bigorrilho, Boqueirão, Cajuru, CIC, Portão, Santa Felicidade, Pinheirinho, Sítio Cercado, Xaxim, Hauer, Bacacheri, Boa Vista, Uberaba, Tatuquara, entre outros — além das vilas e regiões populares como Vila Sandra, Neoville, Vitória Régia, Caiuá, Sabará, Nossa Senhora da Luz, Vila Pantanal, Vila Torres, Vila Hauer, Vila Guaíra, Vila Oficinas, Pinheirinho Velho, Sítio Cercado Velho, Capão Raso Velho, Jardim Gabineto, Jardim Itatiaia e muito mais. Também atendemos São José dos Pinhais, Pinhais, Colombo, Araucária, Almirante Tamandaré, Campo Largo, Campo Magro, Fazenda Rio Grande, Quatro Barras, Campina Grande do Sul, Mandirituba, Balsa Nova, Rio Branco do Sul, Itaperuçu, Piraquara e Tijucas do Sul. Especialistas em desentupimento de esgoto, pia, vaso sanitário, ralo, caixa de gordura, hidrojateamento, câmera de inspeção, limpa fossa, caça vazamento, conserto de vazamento, troca de tubulação, instalação hidráulica e emergência 24h. Fale com Fátima pelo WhatsApp (41) 98517-1966 ou ligue (41) 3345-1194.',
+    whatsapp: '5541985171966',
     telefone: '(41) 3345-1194',
     email: 'contato@aguafacil.app.br',
     site: 'https://www.aguafacil.app.br',
