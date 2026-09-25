@@ -25,6 +25,7 @@ export const bairrosPopulares = [
   'Champagnat', 'Ecoville', 'Mossunguê Ecoville', 'Vila Torres', 'Vila Guaíra', 'Vila Hauer',
   'Jardim Paranaense', 'Vila Oficinas', 'Vila Uberaba', 'Jardim Aliança',
   'Bom Jesus', 'Parolinzinho', 'Igapó', 'Iapi', 'Barigui', 'Gramado', 'Colônia Arbeiter', 'Embracur',
+  'Carmo', // Região do Terminal do Carmo e Santuário (Boqueirão)
   // Regiões buscadas no CIC (SEO)
   'CIC Neoville', 'CIC Vila Sandra', 'CIC Caiuá', 'CIC Nossa Senhora da Luz',
   'CIC Vitória', 'CIC Sabará', 'CIC Riviera', 'CIC Campo Comprido Divisa', 'CIC Fazendinha Divisa',
@@ -57,9 +58,9 @@ export const bairros: Bairro[] = Object.entries(regionais).flatMap(([regional, n
 export const bairrosPopularesData: Bairro[] = bairrosPopulares.map(nome => ({
   slug: toSlug(nome),
   nome,
-  regional: 'Popular',
+  regional: nome === 'Carmo' ? 'Boqueirão' : 'Popular',
   oficial: false,
-  vizinhos: [],
+  vizinhos: nome === 'Carmo' ? ['boqueirao', 'hauer', 'xaxim', 'alto-boqueirao'] : [],
 }));
 
 export const todosBairros = [...bairros, ...bairrosPopularesData];

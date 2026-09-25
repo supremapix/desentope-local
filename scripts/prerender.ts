@@ -48,7 +48,7 @@ function setupGlobal(key: string, val: unknown) {
   }
 }
 
-function attachGlobals(win: any) {
+function attachGlobals(win: Record<string, unknown>) {
   setupGlobal('window', win);
   setupGlobal('document', win.document);
   setupGlobal('navigator', win.navigator);

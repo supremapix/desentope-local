@@ -261,17 +261,17 @@ const perfisBairro: Record<string, Partial<PerfilBase>> = {
     perfilResidencial:
       'O Batel é o endereço mais verticalizado de alto padrão de Curitiba, com torres de dois a quatro apartamentos por andar, subsolos profundos e áreas comuns extensas. A hidráulica é complexa: prumadas longas, bombas de recalque e sistemas de água quente central.',
     perfilComercial:
-      'Concentra restaurantes premiados, shoppings, clínicas e escritórios. A densidade gastronômica da Avenida do Batel e da Rua Bispo Dom José faz da caixa de gordura o ponto crítico do bairro.',
+      'Concentra restaurantes premiados, shoppings, clínicas e escritórios. A densidade gastronômica da Avenida do Batel e da Rua Bispo Dom José faz da caixa de gordura e das redes comerciais de esgoto pontos críticos do bairro.',
     imoveis: 'Torres residenciais de alto padrão, shoppings, casarões convertidos em restaurantes e lajes corporativas.',
     infraestrutura: 'Rede consolidada e de boa capacidade, porém com ramais internos de edifícios dos anos 1980 e forte carga comercial concentrada em poucas quadras.',
     demanda: 'Manutenção preventiva contratada por condomínios e restaurantes, atendimento discreto e fora do horário de pico.',
     problemas: [
+      { titulo: 'Vazamentos ocultos em sistemas hidráulicos', texto: 'Infiltrações em prumadas ou redes de água quente exigem caça vazamentos com detecção eletrônica para evitar quebra desnecessária de revestimentos de alto custo.' },
       { titulo: 'Caixa de gordura de restaurante saturada', texto: 'Cozinhas de alto volume exigem limpeza quinzenal com destinação documentada dos resíduos.' },
+      { titulo: 'Desentupimento de esgoto comercial', texto: 'Redes coletivas de bares e restaurantes sofrem com o acúmulo contínuo de gordura e óleos alimentares.' },
       { titulo: 'Bomba de recalque de subsolo', texto: 'Poço de esgoto pressurizado entope com panos e resíduos, e a falha só aparece com transbordo na garagem.' },
-      { titulo: 'Prumada de torre com incrustação', texto: 'Colunas de mais de 15 andares acumulam gordura e sabão; o hidrojato com bico rotativo restaura a seção.' },
-      { titulo: 'Vazamento em água quente central', texto: 'Sistemas de aquecimento central exigem detecção eletrônica para não quebrar acabamento de alto custo.' },
     ],
-    servicosDestaque: ['desentupimento-caixa-gordura', 'hidrojateamento', 'deteccao-vazamento-oculto', 'desentupimento-esgoto-comercial', 'encanador-comercial', 'emergencia-24h'],
+    servicosDestaque: ['deteccao-vazamento-oculto', 'desentupimento-caixa-gordura', 'desentupimento-esgoto-comercial', 'hidrojateamento', 'encanador-comercial', 'emergencia-24h'],
   },
 
   'agua-verde': {
@@ -280,15 +280,15 @@ const perfisBairro: Record<string, Partial<PerfilBase>> = {
     perfilComercial:
       'A Avenida República Argentina e a Rua Brasílio Itiberê concentram padarias, academias, clínicas e restaurantes de bairro com uso intenso da rede.',
     imoveis: 'Edifícios de médio e alto padrão, sobrados antigos e salas comerciais em pavimentos térreos.',
-    infraestrutura: 'Rede pública madura, com prumadas de edifícios de três décadas que nunca passaram por limpeza programada.',
-    demanda: 'Síndicos buscam hidrojateamento anual de prumadas e desobstrução rápida de coluna sem interditar o prédio.',
+    infraestrutura: 'Rede pública madura, com prumadas de edifícios de três décadas que exigem manutenção e acompanhamento periódico.',
+    demanda: 'Moradores e síndicos buscam diferenciar problemas em unidades individuais de falhas no ramal comum, além de desentupimento de pias e detecção de vazamentos.',
     problemas: [
-      { titulo: 'Coluna de esgoto de edifício', texto: 'A obstrução na prumada aparece como refluxo simultâneo em vários apartamentos do mesmo alinhamento.' },
-      { titulo: 'Ralo de sacada com folhas', texto: 'Sacadas altas acumulam folhagem e sujeira, causando infiltração na unidade de baixo.' },
-      { titulo: 'Gordura em pia de apartamento', texto: 'A ausência de caixa de gordura individual transfere todo o resíduo para a coluna coletiva.' },
-      { titulo: 'Vazamento entre unidades', texto: 'Infiltração no teto do vizinho exige localização precisa antes de qualquer obra.' },
+      { titulo: 'Pia da cozinha com escoamento lento', texto: 'Acúmulo progressivo de gordura no sifão ou ramal privativo do apartamento que necessita de desobstrução rápida.' },
+      { titulo: 'Vazamento oculto entre apartamentos', texto: 'Infiltrações no teto do vizinho de baixo exigem diagnóstico preciso para identificar a origem exata sem reformas invasivas.' },
+      { titulo: 'Conserto de vazamento localizado', texto: 'Reparo direto em registros, válvulas de descarga ou encanamentos de água fria e quente.' },
+      { titulo: 'Coluna coletiva de esgoto', texto: 'Gordura acumulada na prumada do prédio provoca refluxo nos andares inferiores, afetando a área comum.' },
     ],
-    servicosDestaque: ['hidrojateamento', 'desentupimento-esgoto-residencial', 'deteccao-vazamento-oculto', 'desentupimento-pia-cozinha', 'conserto-vazamento', 'emergencia-24h'],
+    servicosDestaque: ['desentupimento-pia-cozinha', 'deteccao-vazamento-oculto', 'conserto-vazamento', 'hidrojateamento', 'desentupimento-esgoto-residencial', 'emergencia-24h'],
   },
 
   centro: {
@@ -315,14 +315,52 @@ const perfisBairro: Record<string, Partial<PerfilBase>> = {
       'É o maior distrito industrial do Paraná, com montadoras, fornecedores, transportadoras e refeitórios coletivos que operam redes de grande diâmetro e caixas separadoras.',
     imoveis: 'Casas populares, geminados, conjuntos habitacionais, galpões logísticos e plantas industriais.',
     infraestrutura: 'Rede da Sanepar em boa parte do bairro, com vilas periféricas ainda em fossa e sumidouro e ramais industriais independentes.',
-    demanda: 'Duas frentes distintas: emergência residencial de baixo custo e desentupimento industrial com hidrojato de alta vazão.',
+    demanda: 'Atendimento diferenciado para demandas residenciais de vilas e bairros, e desentupimento industrial com avaliação técnica para hidrojateamento.',
     problemas: [
-      { titulo: 'Fossa saturada em vila sem rede', texto: 'Sucção com caminhão e avaliação do sumidouro resolvem transbordo e mau cheiro no terreno.' },
-      { titulo: 'Rede industrial com resíduo pesado', texto: 'Galpões e refeitórios acumulam sólidos e óleo que só saem com jato de alta pressão.' },
-      { titulo: 'Ampliação residencial sem projeto', texto: 'Edículas ligadas ao ramal original sobrecarregam tubulação dimensionada para uma família.' },
-      { titulo: 'Ligação de água de chuva no esgoto', texto: 'A prática provoca refluxo generalizado nas casas mais baixas durante temporais.' },
+      { titulo: 'Entupimento em esgoto residencial', texto: 'Obstruções em ramais de residências e sobrados causadas por acúmulo de sujeira ou fios no encanamento.' },
+      { titulo: 'Rede industrial com resíduo pesado', texto: 'Galpões, refeitórios e fábricas acumulam óleos, graxas e sólidos em tubulações de grande diâmetro.' },
+      { titulo: 'Avaliação técnica para hidrojateamento', texto: 'Diagnóstico para definir quando a desobstrução exige jato de alta pressão em redes industriais ou comerciais.' },
+      { titulo: 'Fossa saturada em vila sem rede', texto: 'Sucção com caminhão limpa fossa e limpeza do sumidouro para sanar transbordamentos no lote.' },
     ],
-    servicosDestaque: ['limpa-fossa', 'desentupimento-industrial', 'hidrojateamento', 'desentupimento-esgoto-residencial', 'camera-inspecao-esgoto', 'emergencia-24h'],
+    servicosDestaque: ['desentupimento-esgoto-residencial', 'desentupimento-industrial', 'hidrojateamento', 'limpa-fossa', 'camera-inspecao-esgoto', 'emergencia-24h'],
+  },
+
+  neoville: {
+    perfilResidencial:
+      'Neoville é um bairro planejado situado na Cidade Industrial de Curitiba (CIC), caracterizado por condomínios residenciais modernos, sobrados e edifícios recentes. A infraestrutura exige diferenciação entre problemas na unidade individual e no ramal comum do condomínio.',
+    perfilComercial:
+      'Comércio de apoio local, pequenos centros comerciais, academias e escolas com demanda focada em caixas de gordura e ralos.',
+    imoveis: 'Condomínios residenciais horizontais e verticais, sobrados de loteamento planejado, edifícios residenciais e lojas térreas.',
+    infraestrutura:
+      'Rede de esgoto pública nova interligada à rede da Sanepar. A transição entre o ramal privativo da unidade e a caixa de inspeção do condomínio exige diagnóstico correto.',
+    demanda:
+      'Moradores buscam orientações para identificar se o entupimento é isolado na unidade (vaso ou pia) ou no ramal coletivo do condomínio.',
+    problemas: [
+      { titulo: 'Obstrução em vaso sanitário individual', texto: 'Descartes inadequados em vasos de apartamentos ou sobrados que afetam apenas a unidade, sem comprometer vizinhos.' },
+      { titulo: 'Entupimento em ramal residencial de esgoto', texto: 'Obstrução na tubulação de saída da residência que requer desobstrução limpa com mola rotativa.' },
+      { titulo: 'Inspeção com câmera em área comum', texto: 'Investigação por vídeo em tubulações de condomínio para localizar o ponto exato do bloqueio antes de qualquer intervenção.' },
+      { titulo: 'Caixa de gordura de condomínio', texto: 'Acúmulo de gorduras de cozinhas nos ramais coletivos dos edifícios e sobrados do Neoville.' },
+    ],
+    servicosDestaque: ['desentupimento-vaso-sanitario', 'desentupimento-esgoto-residencial', 'camera-inspecao-esgoto', 'desentupimento-caixa-gordura', 'desentupimento-ralo', 'emergencia-24h'],
+  },
+
+  carmo: {
+    perfilResidencial:
+      'A Região do Carmo é uma importante centralidade no bairro Boqueirão, estruturada ao redor do Terminal do Carmo, do Santuário e da Rua da Cidadania. Trata-se de uma região de referência no Boqueirão, e não de um bairro oficial independente. As casas e comércios locais exigem confirmação de endereço completo para envio do profissional.',
+    perfilComercial:
+      'Densidade comercial marcante nas imediações do Terminal do Carmo, com lanchonetes, pastelarias, lojas e comércios de rua com grande fluxo diário.',
+    imoveis: 'Casas residenciais de alvenaria, sobrados, galerias e lojas comerciais no entorno do terminal e da Rua da Cidadania.',
+    infraestrutura:
+      'Rede de esgoto pública consolidada. O terreno plano característico do Boqueirão exige manutenção atenta das tubulações internas de residências e comércios.',
+    demanda:
+      'Atendimento focado em desentupimento de ralos, pias de cozinha e conserto de vazamentos, com confirmação prévia do endereço completo.',
+    problemas: [
+      { titulo: 'Desentupimento de ralo sanitário e externo', texto: 'Acúmulo de sujeira e gordura nos ralos de banheiros, áreas de serviço e pátios comerciais.' },
+      { titulo: 'Pia de cozinha com escoamento lento', texto: 'Gordura e restos de alimentos que reduzem a vazão na pia de residências e lanchonetes da região.' },
+      { titulo: 'Conserto de vazamentos hidráulicos', texto: 'Reparo em encanamentos de água fria, registros e tubulações de casas e lojas antigas do Boqueirão/Carmo.' },
+      { titulo: 'Sedimentação por baixa declividade', texto: 'Terreno plano que favorece o acúmulo de sólidos nas caixas de passagem e ramais do entorno.' },
+    ],
+    servicosDestaque: ['desentupimento-ralo', 'desentupimento-pia-cozinha', 'conserto-vazamento', 'desentupimento-caixa-gordura', 'desentupimento-esgoto-residencial', 'emergencia-24h'],
   },
 
   portao: {
@@ -331,15 +369,15 @@ const perfisBairro: Record<string, Partial<PerfilBase>> = {
     perfilComercial:
       'Shopping, concessionárias, mercados e restaurantes formam um dos corredores comerciais mais movimentados do sul da cidade.',
     imoveis: 'Edifícios de médio porte, casas de alvenaria antiga e grandes lojas de rua.',
-    infraestrutura: 'Rede pública consolidada, com ramais residenciais antigos de tubulação galvanizada que perderam diâmetro por incrustação.',
-    demanda: 'Troca de tubulação em casas antigas e desobstrução de rede comercial de grande volume.',
+    infraestrutura: 'Rede pública consolidada, com ramais residenciais antigos de tubulação galvanizada ou ferro que perderam diâmetro por incrustação.',
+    demanda: 'Diagnóstico para diferenciar vazamentos pontuais de necessidade comprovada de troca de tubulação e atendimento a comércios.',
     problemas: [
-      { titulo: 'Tubo galvanizado incrustado', texto: 'Pressão baixa e água amarelada indicam corrosão interna; a solução definitiva é a substituição por PPR ou PEX.' },
-      { titulo: 'Rede comercial de alto volume', texto: 'Mercados e restaurantes exigem hidrojateamento programado para não parar a operação.' },
-      { titulo: 'Caixa de inspeção sob piso novo', texto: 'Reformas cobriram tampas e obrigam localização por câmera e sonda.' },
-      { titulo: 'Vazamento em ramal de entrada', texto: 'O trecho entre o cavalete e a casa costuma vazar em imóveis com mais de 30 anos.' },
+      { titulo: 'Conserto de vazamento hidráulico', texto: 'Reparo de vazamentos localizados em canos e conexões hidráulicas residenciais ou comerciais.' },
+      { titulo: 'Troca de tubulação galvanizada antiga', texto: 'Substituição completa de encanamentos velhos de ferro galvanizado por PPR ou PEX quando há perda de vazão ou corrosão extrema.' },
+      { titulo: 'Desentupimento de esgoto comercial', texto: 'Atendimento especializado para lojas, mercados e restaurantes de alto fluxo no corredor comercial do Portão.' },
+      { titulo: 'Incrustação em ramal antigo', texto: 'Tubulações antigas de casas que acumularam minerais e sabão ao longo das décadas.' },
     ],
-    servicosDestaque: ['troca-tubulacao', 'hidrojateamento', 'desentupimento-esgoto-comercial', 'conserto-vazamento', 'camera-inspecao-esgoto', 'encanador-residencial'],
+    servicosDestaque: ['conserto-vazamento', 'troca-tubulacao', 'desentupimento-esgoto-comercial', 'hidrojateamento', 'camera-inspecao-esgoto', 'encanador-residencial'],
   },
 
   boqueirao: {
@@ -366,14 +404,14 @@ const perfisBairro: Record<string, Partial<PerfilBase>> = {
       'Comércio de vizinhança intenso na Avenida Izaac Ferreira da Cruz, com mercearias, lanchonetes e salões de pequeno porte.',
     imoveis: 'Geminados de conjunto habitacional, sobrados populares e pequenos comércios.',
     infraestrutura: 'Terreno plano e baixo, com lençol freático raso e ramais de pequeno diâmetro em boa parte das casas.',
-    demanda: 'Volume alto de desentupimento de vaso sanitário e esgoto residencial, muitas vezes em regime de emergência noturna.',
+    demanda: 'Identificação rápida para saber se a obstrução é isolada em um ralo ou vaso, ou se há retorno generalizado na rede interna.',
     problemas: [
-      { titulo: 'Ramal de pequeno diâmetro', texto: 'Tubos de 40 e 50 mm em ampliações caseiras entopem com qualquer sólido.' },
-      { titulo: 'Casa sem caixa de gordura', texto: 'A pia ligada direto ao esgoto faz a gordura endurecer no trecho externo.' },
-      { titulo: 'Lençol freático alto', texto: 'A água do solo reduz a capacidade da caixa de inspeção e agrava o refluxo.' },
-      { titulo: 'Geminado com ramal compartilhado', texto: 'Duas casas na mesma saída significam obstrução conjunta e necessidade de acordo entre vizinhos.' },
+      { titulo: 'Desentupimento de ralo sanitário', texto: 'Desobstrução de ralos de banheiro e lavanderia impedindo o retorno de água e maus odores.' },
+      { titulo: 'Desentupimento de vaso sanitário', texto: 'Remoção de obstruções causadas por objetos ou papel no vaso de residências e sobrados.' },
+      { titulo: 'Retorno generalizado de esgoto residencial', texto: 'Quando múltiplos pontos da casa (ralo, vaso e pia) sofrem refluxo ao mesmo tempo, indicando obstrução no ramal externo.' },
+      { titulo: 'Ramal de pequeno diâmetro', texto: 'Tubulações de 40 e 50 mm em ampliações caseiras que entopem com facilidade.' },
     ],
-    servicosDestaque: ['desentupimento-vaso-sanitario', 'desentupimento-esgoto-residencial', 'emergencia-24h', 'desentupimento-ralo', 'desentupimento-caixa-gordura', 'hidrojateamento'],
+    servicosDestaque: ['desentupimento-ralo', 'desentupimento-vaso-sanitario', 'desentupimento-esgoto-residencial', 'desentupimento-caixa-gordura', 'hidrojateamento', 'emergencia-24h'],
   },
 
   cajuru: {
