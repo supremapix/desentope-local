@@ -237,7 +237,9 @@ export function getEmpresasPorCidade(cidadeSlug: string): Empresa[] {
     return empresaCache.get(`cidade-${cidadeSlug}`)!;
   }
   const empresas = empresasReais.filter(emp =>
-    emp.cidadesAtendidas.includes(cidadeSlug) || emp.cidadesAtendidas.includes('curitiba')
+    isSegmentoHidraulico(emp) &&
+    emp.tipoServico.includes('desentupimento') &&
+    emp.cidadesAtendidas.includes(cidadeSlug)
   );
   empresaCache.set(`cidade-${cidadeSlug}`, empresas);
   return empresas;

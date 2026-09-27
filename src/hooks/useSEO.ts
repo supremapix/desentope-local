@@ -171,7 +171,7 @@ export function buildBairroServiceSchema(bairroNome: string, regional: string, t
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: titleLabel,
-    description: `Encontre desentupidoras e encanadores verificados ${isCidade ? 'em' : 'no'} ${bairroNome}${!isCidade ? `, ${regional} de Curitiba` : ', PR'}. ${totalEmpresas} empresas disponíveis com atendimento 24h.`,
+    description: `Encontre desentupidoras e encanadores verificados ${isCidade ? 'em' : 'no'} ${bairroNome}${!isCidade ? `, ${regional} de Curitiba` : ', PR'}. ${totalEmpresas} ${totalEmpresas === 1 ? 'empresa disponível' : 'empresas disponíveis'} com atendimento 24h.`,
     provider: {
       '@type': 'Organization',
       name: SITE_NAME,

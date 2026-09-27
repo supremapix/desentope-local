@@ -60,9 +60,10 @@ const BairroPage = () => {
   const pageTitle = isCidade
     ? `Desentupidora em ${localNome} PR — 24h`
     : `Desentupidora no ${localNome} — Curitiba 24h`;
+  const empresaLabel = empresas.length === 1 ? 'empresa' : 'empresas';
 
   const metaDescription = perfil
-    ? `Desentupidora e encanador 24h ${isCidade ? 'em' : 'no'} ${localNome}: ${perfil.problemas[0].titulo.toLowerCase()}, ${perfil.problemas[1].titulo.toLowerCase()} e mais. ${empresas.length} empresas verificadas, orçamento grátis.`.slice(0, 158)
+    ? `Desentupidora e encanador 24h ${isCidade ? 'em' : 'no'} ${localNome}: ${perfil.problemas[0].titulo.toLowerCase()}, ${perfil.problemas[1].titulo.toLowerCase()} e mais. ${empresas.length} ${empresaLabel} ${empresas.length === 1 ? 'verificada' : 'verificadas'}, orçamento grátis.`.slice(0, 158)
     : `Desentupidoras e encanadores ${isCidade ? 'em' : 'no'} ${localNome} com atendimento 24h e orçamento grátis.`;
 
   useSEO({
@@ -145,7 +146,7 @@ const BairroPage = () => {
           Encontre desentupidoras e encanadores {isCidade ? 'em' : 'no'} {localNome}
           {!isCidade && `, regional ${localRegional} de Curitiba`}. 
           Profissionais verificados com atendimento 24h, orçamento grátis via WhatsApp. 
-          {empresas.length > 0 ? ` ${empresas.length} empresas atendem ${isCidade ? 'esta cidade' : 'este bairro'}.` : ''}
+          {empresas.length > 0 ? ` ${empresas.length} ${empresaLabel} ${empresas.length === 1 ? 'atende' : 'atendem'} ${isCidade ? 'esta cidade' : 'este bairro'}.` : ''}
         </p>
 
         <div className="mb-8">
@@ -161,7 +162,7 @@ const BairroPage = () => {
         {/* Empresas */}
         {empresas.length > 0 ? (
           <div className="space-y-4 mb-12">
-            <h2 className="text-xl font-bold">Empresas {isCidade ? 'em' : 'no'} {localNome} ({empresas.length})</h2>
+            <h2 className="text-xl font-bold">{isCidade ? 'Desentupidoras cadastradas' : 'Empresas'} {isCidade ? 'em' : 'no'} {localNome} ({empresas.length})</h2>
             {empresas.map(e => (
               <CompanyCard key={e.slug} empresa={e} />
             ))}
