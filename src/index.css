@@ -3,100 +3,82 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap');
+
 @layer base {
   :root {
-    --background: 210 20% 98.5%;
-    --foreground: 218 36% 14%;
+    --background: 40 33% 97%; /* #FBF7F0 */
+    --foreground: 164 22% 14%; /* #1C2B26 */
 
-    --card: 0 0% 100%;
-    --card-foreground: 218 36% 14%;
+    --card: 40 33% 97%;
+    --card-foreground: 164 22% 14%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 218 36% 14%;
+    --popover: 40 33% 97%;
+    --popover-foreground: 164 22% 14%;
 
-    --primary: 217 50% 16%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 164 50% 25%; /* #1F5E4B */
+    --primary-foreground: 40 33% 97%;
 
-    --secondary: 28 78% 44%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 39 77% 56%; /* #E3A93B */
+    --secondary-foreground: 164 22% 14%;
 
-    --accent: 158 52% 34%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 17 69% 39%; /* #A8461F */
+    --accent-foreground: 40 33% 97%;
 
-    --muted: 214 18% 94%;
-    --muted-foreground: 215 16% 40%;
+    --muted: 40 15% 90%;
+    --muted-foreground: 162 10% 32%; /* #4A5B56 */
 
-    --destructive: 0 70% 45%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 17 69% 39%; /* #A8461F */
+    --destructive-foreground: 40 33% 97%;
 
-    --border: 215 22% 90%;
-    --input: 215 22% 90%;
-    --ring: 217 50% 16%;
+    --border: 39 20% 87%; /* #E6DFD2 */
+    --input: 39 20% 87%;
+    --ring: 164 50% 25%;
 
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 99%;
-    --sidebar-foreground: 218 36% 14%;
-    --sidebar-primary: 217 50% 16%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 214 18% 94%;
-    --sidebar-accent-foreground: 218 36% 14%;
-    --sidebar-border: 215 22% 90%;
-    --sidebar-ring: 217 50% 16%;
+    --radius: 0.875rem; /* 14px */
   }
 
-  .dark {
-    --background: 220 30% 9%;
-    --foreground: 210 20% 98%;
-
-    --card: 220 28% 12%;
-    --card-foreground: 210 20% 98%;
-
-    --popover: 220 28% 12%;
-    --popover-foreground: 210 20% 98%;
-
-    --primary: 217 60% 48%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 28 78% 48%;
-    --secondary-foreground: 0 0% 100%;
-
-    --accent: 158 52% 40%;
-    --accent-foreground: 0 0% 100%;
-
-    --muted: 220 22% 16%;
-    --muted-foreground: 215 16% 65%;
-
-    --destructive: 0 65% 42%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 220 22% 18%;
-    --input: 220 22% 18%;
-    --ring: 217 60% 48%;
-
-    --sidebar-background: 220 28% 12%;
-    --sidebar-foreground: 210 20% 98%;
-    --sidebar-primary: 217 60% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 22% 16%;
-    --sidebar-accent-foreground: 210 20% 98%;
-    --sidebar-border: 220 22% 18%;
-    --sidebar-ring: 217 60% 48%;
-  }
-}
-
-@layer base {
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-family: 'Fraunces', serif;
     letter-spacing: -0.02em;
   }
 }
+
+@layer utilities {
+  .text-secondary-fixed {
+    color: #4A5B56;
+  }
+  .bg-accent-fixed {
+    background-color: #A8461F;
+  }
+  .text-accent-fixed {
+    color: #A8461F;
+  }
+  
+  .reveal{opacity:0;transform:translateY(28px);transition-property:opacity,transform;transition-duration:.65s;transition-timing-function:cubic-bezier(.2,.7,.2,1)}
+  .reveal.is-visible{opacity:1;transform:none}
+}
+
+header{transition:box-shadow .25s,padding .25s}
+header.is-scrolled{box-shadow:0 6px 24px -12px rgba(20,35,30,.35)}
+@keyframes heroUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+main section:first-of-type h1{animation:heroUp .7s cubic-bezier(.2,.7,.2,1) both}
+main section:first-of-type h1 + p{animation:heroUp .7s .15s cubic-bezier(.2,.7,.2,1) both}
+main section:first-of-type form, main section:first-of-type [role="search"]{animation:heroUp .7s .3s cubic-bezier(.2,.7,.2,1) both}
+a[href*="wa.me"][class*="fixed"], [class*="fixed"][class*="bottom"] > a{animation:popIn .5s 1s cubic-bezier(.3,1.5,.5,1) both, pulse 8s 2s infinite}
+@keyframes popIn{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes pulse{0%,90%,100%{box-shadow:0 0 0 0 rgba(168,70,31,.45)}95%{box-shadow:0 0 0 14px rgba(168,70,31,0)}}
+main [class*="rounded-xl"],main [class*="rounded-2xl"]{transition:transform .25s ease,box-shadow .25s ease}
+main a[class*="rounded-xl"]:hover,main a[class*="rounded-2xl"]:hover,main [class*="rounded-2xl"][class*="border"]:hover{transform:translateY(-4px);box-shadow:0 14px 30px -16px rgba(20,35,30,.35)}
+@media (prefers-reduced-motion: reduce){.reveal{opacity:1!important;transform:none!important}*{animation:none!important;transition:none!important}}

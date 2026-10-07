@@ -10,6 +10,7 @@ import { EmergencyBanner } from "@/components/EmergencyBanner";
 import { WhatsAppFloating } from "@/components/WhatsAppButton";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { PageTransition } from "@/components/PageTransition";
+import GlobalAnimations from "@/components/GlobalAnimations";
 import Index from "./pages/Index";
 
 // Code splitting: só a home entra no bundle inicial (LCP mais rápido).
@@ -52,6 +53,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <GlobalAnimations />
         <ScrollToTop />
         <EmergencyBanner />
         <Header />

@@ -593,6 +593,8 @@ const perfisCidade: Record<string, PerfilBase> = {
   },
 
   piraquara: {
+    respostaDireta:
+      'O Serviços no Bairro conecta moradores e empresas de Piraquara a desentupidoras e encanadores verificados que atendem a cidade 24 horas por dia. Em imóveis locais, é essencial diferenciar uma obstrução na rede interna (desentupimento de esgoto residencial), o diagnóstico com inspeção por câmera e a limpeza de fossa séptica em áreas de mananciais.',
     perfilResidencial:
       'Piraquara reúne dois mundos: o Guarituba, uma das maiores áreas de ocupação urbana adensada da Região Metropolitana, e a zona de mananciais com chácaras, sítios e condomínios rurais protegidos por legislação ambiental.',
     perfilComercial:
@@ -608,7 +610,7 @@ const perfisCidade: Record<string, PerfilBase> = {
       { titulo: 'Lençol freático muito alto', texto: 'Próximo às represas, o solo encharcado reduz a absorção do sumidouro e antecipa a saturação.' },
       { titulo: 'Tubulação longa até a fossa', texto: 'Chácaras com casa distante da fossa acumulam sólidos no percurso e exigem hidrojateamento.' },
     ],
-    servicosDestaque: ['limpa-fossa', 'desentupimento-esgoto-residencial', 'hidrojateamento', 'desentupimento-vaso-sanitario', 'camera-inspecao-esgoto', 'emergencia-24h'],
+    servicosDestaque: ['desentupimento-esgoto-residencial', 'camera-inspecao-esgoto', 'limpa-fossa', 'hidrojateamento', 'desentupimento-vaso-sanitario', 'emergencia-24h'],
   },
 
   pinhais: {

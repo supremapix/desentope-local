@@ -237,7 +237,6 @@ export function getEmpresasPorCidade(cidadeSlug: string): Empresa[] {
     return empresaCache.get(`cidade-${cidadeSlug}`)!;
   }
   const empresas = empresasReais.filter(emp =>
-    isSegmentoHidraulico(emp) &&
     emp.tipoServico.includes('desentupimento') &&
     emp.cidadesAtendidas.includes(cidadeSlug)
   );
@@ -368,7 +367,7 @@ const empresasReais: Empresa[] = [
       // All CIC bairros and vilas
       ...allCicSlugs,
     ].filter((v, i, a) => a.indexOf(v) === i), // deduplicate
-    cidadesAtendidas: ['curitiba', 'almirante-tamandare'],
+    cidadesAtendidas: ['curitiba', 'almirante-tamandare', 'piraquara'],
     formasPagamento: ['PIX', 'Dinheiro', 'Cartão de Crédito', 'Cartão de Débito'],
     horarios: [
       { dia: 'Segunda a Domingo', abertura: '00:00', fechamento: '23:59' },
@@ -419,7 +418,7 @@ const empresasReais: Empresa[] = [
       'emergencia-24h',
     ],
     bairrosAtendidos: [...allCuritibaSlugs],
-    cidadesAtendidas: ['curitiba'],
+    cidadesAtendidas: ['curitiba', 'piraquara'],
     formasPagamento: ['PIX', 'Dinheiro', 'Cartão de Crédito', 'Cartão de Débito'],
     horarios: [
       { dia: 'Segunda a Domingo', abertura: '00:00', fechamento: '23:59' },
@@ -650,6 +649,47 @@ const empresasReais: Empresa[] = [
     ],
     notaMedia: 3.8,
     totalAvaliacoes: 84,
+  },
+  {
+    slug: 'borba-refrigeracao-curitiba',
+    nome: 'Borba Refrigeração — Assistência Técnica e Equipamentos em Curitiba',
+    logo: 'https://refrigeracao.servicosnobairro.com.br/images/borba-logo.png',
+    fotos: [
+      'https://refrigeracao.servicosnobairro.com.br/images/fachada-original.jpg',
+      'https://refrigeracao.servicosnobairro.com.br/images/balcao-refrigerado.jpg',
+      'https://refrigeracao.servicosnobairro.com.br/images/bancada-inox.jpg',
+      'https://refrigeracao.servicosnobairro.com.br/images/buffet-inox.jpg'
+    ],
+    descricao: 'A Borba Refrigeração, localizada no Sítio Cercado, em Curitiba, oferece assistência técnica em geladeiras, freezers, expositores e balcões refrigerados para residências e comércios. Também trabalha com compra e venda de equipamentos e fabricação sob medida de bancadas e estruturas em inox.',
+    descricaoLonga: 'A Borba Refrigeração, localizada no Sítio Cercado, em Curitiba, oferece assistência técnica em geladeiras, freezers, expositores e balcões refrigerados para residências e comércios. Também trabalha com compra e venda de equipamentos de refrigeração e fabricação sob medida de bancadas, balcões e estruturas em inox para restaurantes, buffets e cozinhas profissionais. Solicite atendimento ou orçamento pelo WhatsApp (41) 99609-1688. Envie seu bairro, fotos e uma descrição do que precisa. Disponibilidade, valores, prazos e condições são confirmados diretamente com a Borba.',
+    whatsapp: '5541996091688',
+    telefone: '(41) 99609-1688',
+    email: 'mborba0304@gmail.com',
+    endereco: 'Rua Marte, 942, Sítio Cercado, Curitiba – PR, CEP 81910-340',
+    site: 'https://refrigeracao.servicosnobairro.com.br',
+    cidadeBase: 'Curitiba',
+    estadoBase: 'PR',
+    verificada: false,
+    destaque: false,
+    atende24h: false,
+    atendeEmergencia: true,
+    tipoServico: ['refrigeracao'],
+    servicosOferecidos: [
+      'conserto-geladeira-refrigerador',
+      'manutencao-freezer',
+      'conserto-balcao-refrigerado',
+      'fabricacao-inox-sob-medida',
+      'assistencia-tecnica-refrigeracao'
+    ],
+    bairrosAtendidos: ['sitio-cercado', 'boqueirao', 'hauer', 'xaxim', 'pinheirinho'],
+    cidadesAtendidas: ['Curitiba', 'São José dos Pinhais', 'Pinhais'],
+    formasPagamento: ['PIX', 'Dinheiro', 'Cartão de Crédito', 'Cartão de Débito'],
+    horarios: [
+      { dia: 'Segunda a Sexta', abertura: '08:00', fechamento: '18:00' }
+    ],
+    avaliacoes: [],
+    notaMedia: 0,
+    totalAvaliacoes: 0,
   },
 ];
 
