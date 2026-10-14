@@ -54,6 +54,21 @@ export const servicos: Servico[] = [
   { slug: 'manutencao-adega-climatizada', nome: 'Manutenção de Adega Climatizada', icone: 'wine', categoria: 'refrigeracao', descricao: 'Manutenção de adegas climatizadas com ajuste de temperatura e verificação do sistema de refrigeração.', precoMedio: 'Sob consulta' },
   { slug: 'conserto-cervejeira', nome: 'Conserto e Assistência Técnica de Cervejeira', icone: 'wine', categoria: 'refrigeracao', descricao: 'Diagnóstico, manutenção e conserto de cervejeiras residenciais e comerciais: não gela, congela bebidas, erro no painel, ruído ou vazamento.', precoMedio: 'Sob consulta' },
   { slug: 'conserto-lava-e-seca', nome: 'Conserto de Lava e Seca', icone: 'washing-machine', categoria: 'refrigeracao', descricao: 'Conserto de lava e seca multimarcas com diagnóstico de falhas e reposição de peças.', precoMedio: 'Sob consulta' },
+  // Construção, Toldos e Coberturas
+  { slug: 'toldos-retraveis-curitiba', nome: 'Toldos Retráteis em Curitiba', icone: 'home', categoria: 'construcao', descricao: 'Fabricação e instalação de toldos retráteis sob medida para residências e comércios.', precoMedio: 'Sob consulta' },
+  { slug: 'toldos-de-lona-curitiba', nome: 'Toldos de Lona Residenciais e Comerciais', icone: 'store', categoria: 'construcao', descricao: 'Toldos de lona fixa e móvel com proteção solar e resistência a intempéries.', precoMedio: 'Sob consulta' },
+  { slug: 'coberturas-de-policarbonato-curitiba', nome: 'Coberturas de Policarbonato', icone: 'layers', categoria: 'construcao', descricao: 'Coberturas em policarbonato alveolar e compacto com perfis estruturais de alumínio.', precoMedio: 'Sob consulta' },
+  { slug: 'coberturas-de-vidro-curitiba', nome: 'Coberturas de Vidro', icone: 'sparkles', categoria: 'construcao', descricao: 'Coberturas em vidro laminado e temperado com alto padrão estético.', precoMedio: 'Sob consulta' },
+  { slug: 'coberturas-de-zinco-curitiba', nome: 'Coberturas de Zinco', icone: 'warehouse', categoria: 'construcao', descricao: 'Coberturas metálicas em galvalume e zinco para garagens e galpões.', precoMedio: 'Sob consulta' },
+  { slug: 'toldos-de-policarbonato-curitiba', nome: 'Toldos de Policarbonato', icone: 'shield', categoria: 'construcao', descricao: 'Toldos de policarbonato para portas e janelas com proteção contra chuva e sol.', precoMedio: 'Sob consulta' },
+  { slug: 'cortinas-de-lona-curitiba', nome: 'Cortinas de Lona', icone: 'layout-grid', categoria: 'construcao', descricao: 'Cortinas retráteis de lona para fechamento de sacadas, varandas e quiosques.', precoMedio: 'Sob consulta' },
+  { slug: 'cortinas-rolo-curitiba', nome: 'Cortinas Rolô', icone: 'sliders', categoria: 'construcao', descricao: 'Cortinas rolô externas para proteção contra vento, chuva e luminosidade.', precoMedio: 'Sob consulta' },
+  { slug: 'reforma-manutencao-toldos', nome: 'Reforma e Manutenção de Toldos', icone: 'wrench', categoria: 'construcao', descricao: 'Reforma completa de armações, regulagens e conserto de toldos.', precoMedio: 'Sob consulta' },
+  { slug: 'troca-de-lonas-toldos', nome: 'Troca de Lonas para Toldos', icone: 'repeat', categoria: 'construcao', descricao: 'Substituição de lonas antigas ou rasgadas reaproveitando a estrutura.', precoMedio: 'Sob consulta' },
+  { slug: 'troca-chapas-policarbonato', nome: 'Troca de Chapas de Policarbonato', icone: 'refresh-cw', categoria: 'construcao', descricao: 'Troca de placas danificadas de policarbonato alveolar e compacto.', precoMedio: 'Sob consulta' },
+  { slug: 'sombreiros-areas-externas', nome: 'Sombreiros para Áreas Externas', icone: 'sun', categoria: 'construcao', descricao: 'Sombreiros e telas de sombreamento para estacionamentos e garagens.', precoMedio: 'Sob consulta' },
+  { slug: 'venda-de-lonas-curitiba', nome: 'Venda de Lonas', icone: 'package', categoria: 'construcao', descricao: 'Comercialização de lonas resistentes por metro ou rolo.', precoMedio: 'Sob consulta' },
+  { slug: 'coberturas-sob-medida-curitiba', nome: 'Fabricação de Coberturas Sob Medida', icone: 'hammer', categoria: 'construcao', descricao: 'Projetos completos e personalizados de coberturas para residências e empresas.', precoMedio: 'Sob consulta' },
 ];
 
 export function getServicoBySlug(slug: string): Servico | undefined {

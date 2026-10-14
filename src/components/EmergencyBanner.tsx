@@ -71,7 +71,7 @@ export function EmergencyBanner() {
                 href={`/perfil/${emp.slug}`}
                 className="inline-flex items-center gap-1.5 font-semibold text-sm hover:underline focus:outline-none focus:ring-2 focus:ring-white rounded"
               >
-                {emp.nome} · {emp.bairrosAtendidos[0] || 'Curitiba'}
+                {emp.nome} · {(emp.bairrosAtendidos[0] || 'Curitiba').replace(/^sc-/, '').replace(/^osasco-(vz-)?/, '').replace(/^sp-/, '').replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
                 {emp.atende24h && <span title="Plantão 24h">⏱</span>}
               </a>
             ))}

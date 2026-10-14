@@ -12,8 +12,14 @@ import { ServiceIcon } from '@/components/ServiceIcon';
 import { useEffect, useState, useMemo } from 'react';
 import { useSEO, buildLocalBusinessSchema, buildBreadcrumbSchema, buildFAQSchema } from '@/hooks/useSEO';
 
-const EmpresaPage = () => {
-  const { slug } = useParams<{ slug: string }>();
+interface EmpresaPageProps {
+  slugOverride?: string;
+}
+
+const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
+  const { slug: paramSlug } = useParams<{ slug: string }>();
+  const pathnameSlug = typeof window !== 'undefined' ? window.location.pathname.replace(/^\//, '').split('/')[0] : '';
+  const slug = slugOverride || paramSlug || pathnameSlug;
   const empresa = getEmpresaBySlug(slug || '');
   const [formData, setFormData] = useState({ nome: '', telefone: '', problema: '', bairro: '', descricao: '', urgencia: 'normal' });
 
@@ -35,9 +41,9 @@ const EmpresaPage = () => {
   }, [empresa]);
 
   useSEO({
-    title: empresa ? `${empresa.nome} — ${cidadeBase}/${estadoBase}`.slice(0, 60) : 'Empresa não encontrada',
+    title: empresa ? (empresa.titleSeo || `${empresa.nome} — ${cidadeBase}/${estadoBase}`).slice(0, 95) : 'Empresa não encontrada',
     description: empresa ? `${empresa.descricao} Atendimento ${empresa.atende24h ? '24h' : 'rápido'} em ${cidadeBase}/${estadoBase}. Nota ${empresa.notaMedia}/5 com ${empresa.totalAvaliacoes} avaliações. Orçamento grátis via WhatsApp.` : '',
-    canonical: empresa ? `/empresa/${empresa.slug}` : undefined,
+    canonical: empresa ? (empresa.slug === 'toldos-soares-curitiba' ? '/toldos-soares-curitiba' : `/empresa/${empresa.slug}`) : undefined,
     type: empresa ? 'business.business' : 'website',
     geoPosition: coords,
     geoPlacename: `${cidadeBase}, ${estadoBase}`,
@@ -136,7 +142,19 @@ const EmpresaPage = () => {
                     {empresa.atende24h && <Badge className="bg-primary text-primary-foreground"><Clock className="h-3 w-3 mr-1" /> 24H</Badge>}
                     {empresa.atendeEmergencia && <Badge className="bg-destructive text-destructive-foreground"><Zap className="h-3 w-3 mr-1" /> Emergência</Badge>}
                     {empresa.tipoServico.map(t => (
-                      <Badge key={t} variant="secondary">{t === 'desentupimento' ? 'Desentupimento' : t === 'motofrete' ? 'Motofrete e entregas' : t === 'lavanderia' ? 'Lavanderia e passadoria' : t === 'refrigeracao' ? 'Refrigeração e assistência técnica' : 'Encanamento'}</Badge>
+                      <Badge key={t} variant="secondary">
+                        {t === 'desentupimento'
+                          ? 'Desentupimento'
+                          : t === 'motofrete'
+                          ? 'Motofrete e entregas'
+                          : t === 'lavanderia'
+                          ? 'Lavanderia e passadoria'
+                          : t === 'refrigeracao'
+                          ? 'Refrigeração e assistência técnica'
+                          : t === 'madeireira' || t === 'construcao'
+                          ? 'Construção & Madeireira'
+                          : 'Encanamento'}
+                      </Badge>
                     ))}
                   </div>
                 </div>
@@ -323,6 +341,57 @@ const EmpresaPage = () => {
                       <Badge key={idx} variant="secondary" className="text-xs py-1 px-2.5 font-medium">
                         {marca}
                       </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Catálogo de Produtos & Materiais */}
+            {empresa.produtos && empresa.produtos.length > 0 && (
+              <Card className="border-primary/20">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between flex-wrap gap-2 mb-4">
+                    <div>
+                      <h2 className="text-xl font-bold text-foreground">Catálogo de Produtos & Materiais</h2>
+                      <p className="text-xs text-muted-foreground mt-0.5">Estoque próprio, corte sob medida e frota própria para entrega</p>
+                    </div>
+                    <Badge variant="secondary" className="text-xs font-semibold">
+                      {empresa.produtos.length} produtos em destaque
+                    </Badge>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {empresa.produtos.map((prod, idx) => (
+                      <div
+                        key={idx}
+                        className="rounded-xl border border-border bg-card/60 p-4 flex flex-col justify-between hover:shadow-md transition-all group"
+                      >
+                        <div>
+                          <div className="w-full h-44 rounded-lg bg-muted/60 overflow-hidden mb-3 border border-border/60">
+                            <img
+                              src={prod.imagem}
+                              alt={prod.alt || prod.nome}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                              loading="lazy"
+                            />
+                          </div>
+                          <h3 className="font-bold text-base text-foreground mb-1 leading-snug">{prod.nome}</h3>
+                          <p className="text-xs text-muted-foreground leading-relaxed mb-3">{prod.descricao}</p>
+                        </div>
+                        <div className="pt-2 border-t border-border/60 flex items-center justify-between gap-2 mt-auto">
+                          <span className="text-xs font-semibold text-primary bg-primary/10 px-2.5 py-1 rounded-md">
+                            {prod.preco || 'Consulte valores'}
+                          </span>
+                          <a
+                            href={`https://wa.me/${empresa.whatsapp}?text=${encodeURIComponent(`Olá! Vi no portal Alô Anúncios o produto "${prod.nome}" da ${empresa.nome} e gostaria de solicitar um orçamento.`)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-accent-fixed hover:bg-accent-fixed/90 px-3 py-1.5 rounded-md transition-colors"
+                          >
+                            <MessageCircle className="h-3.5 w-3.5" /> Solicitar orçamento
+                          </a>
+                        </div>
+                      </div>
                     ))}
                   </div>
                 </CardContent>

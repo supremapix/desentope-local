@@ -11,7 +11,7 @@ export const Reveal = ({ children, delay = 0 }: RevealProps) => {
 
   return (
     <div
-      ref={ref as any}
+      ref={ref}
       className={`reveal ${isVisible ? 'is-visible' : ''}`}
       style={{ transitionDelay: `${delay}ms` }}
     >

@@ -17,7 +17,7 @@ export interface Servico {
   slug: string;
   nome: string;
   icone: string;
-  categoria: 'desentupimento' | 'encanamento' | 'motofrete' | 'lavanderia' | 'refrigeracao';
+  categoria: 'desentupimento' | 'encanamento' | 'motofrete' | 'lavanderia' | 'refrigeracao' | 'construcao';
   descricao: string;
   descricaoLonga?: string;
   precoMedio?: string;
@@ -68,7 +68,7 @@ export interface Empresa {
   destaque: boolean;
   atende24h: boolean;
   atendeEmergencia: boolean;
-  tipoServico: ('desentupimento' | 'encanamento' | 'motofrete' | 'lavanderia' | 'refrigeracao')[];
+  tipoServico: ('desentupimento' | 'encanamento' | 'motofrete' | 'lavanderia' | 'refrigeracao' | 'construcao' | 'madeireira')[];
   servicosOferecidos: string[];
   bairrosAtendidos: string[];
   cidadesAtendidas: string[];
@@ -78,10 +78,12 @@ export interface Empresa {
   notaMedia: number;
   totalAvaliacoes: number;
   slogan?: string;
+  titleSeo?: string;
   razaoSocial?: string;
   marcasAtendidas?: string[];
   diferenciais?: string[];
   faq?: FAQItem[];
+  produtos?: ProdutoItem[];
   redesSociais?: {
     instagram?: string;
     facebook?: string;
@@ -89,6 +91,15 @@ export interface Empresa {
     tiktok?: string;
     googleMeuNegocio?: string;
   };
+}
+
+export interface ProdutoItem {
+  id?: string;
+  nome: string;
+  descricao: string;
+  imagem: string;
+  alt: string;
+  preco?: string;
 }
 
 export interface FAQItem {

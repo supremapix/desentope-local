@@ -22,7 +22,6 @@ export const CountUp = ({ end, duration = 1600 }: CountUpProps) => {
 
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
-        let start = 0;
         const startTime = performance.now();
 
         const animate = (currentTime: number) => {

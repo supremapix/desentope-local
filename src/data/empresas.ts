@@ -5,7 +5,7 @@ import { bairrosSaoPauloSlugs, cidadesSaoPauloSlugs, bairrosOsascoSlugs, cidades
 import { bairrosSantaCatarinaSlugs, cidadesSantaCatarinaSlugs } from '@/data/cidades-sc';
 
 // Segmentos que NÃO devem aparecer nas listagens hidráulicas por bairro/cidade
-const SEGMENTOS_NAO_HIDRAULICOS = ['motofrete', 'lavanderia', 'refrigeracao'] as const;
+const SEGMENTOS_NAO_HIDRAULICOS = ['motofrete', 'lavanderia', 'refrigeracao', 'construcao', 'madeireira'] as const;
 function isSegmentoHidraulico(emp: Empresa): boolean {
   return !emp.tipoServico.some(t => (SEGMENTOS_NAO_HIDRAULICOS as readonly string[]).includes(t));
 }
@@ -245,7 +245,9 @@ export function getEmpresasPorCidade(cidadeSlug: string): Empresa[] {
 }
 
 export function getEmpresaBySlug(slug: string): Empresa | undefined {
-  return empresasReais.find(e => e.slug === slug);
+  return empresasReais.find(
+    e => e.slug === slug || (e.slug === 'madeireira-bairro-novo' && slug === 'madeireira-bairro-novo-curitiba')
+  );
 }
 
 export function getEmpresasPorServico(servicoSlug: string): Empresa[] {
@@ -255,8 +257,18 @@ export function getEmpresasPorServico(servicoSlug: string): Empresa[] {
 /**
  * Empresas em destaque = empresas reais com marca de destaque.
  */
-export function getEmpresasDestaque(limite = 4): Empresa[] {
-  return empresasReais.filter(e => e.destaque).slice(0, limite);
+export function getEmpresasDestaque(limite = 6): Empresa[] {
+  // Prioriza empresas marcadas como destaque, seguidas pelas verificadas,
+  // mantendo a ordem inversa (últimas cadastradas primeiro) para rotatividade.
+  const empresasRotacionadas = [...empresasReais].reverse();
+  const destaque = empresasRotacionadas.filter(e => e.destaque);
+  const verificadas = empresasRotacionadas.filter(e => e.verificada && !e.destaque);
+  
+  return [...destaque, ...verificadas].slice(0, limite);
+}
+
+export function getUltimasEmpresasCadastradas(limite = 6): Empresa[] {
+  return [...empresasReais].reverse().slice(0, limite);
 }
 
 // WhatsApp link with UTM tracking
@@ -745,6 +757,352 @@ const empresasReais: Empresa[] = [
     redesSociais: {
       instagram: 'https://www.instagram.com/sangelebebedouros/',
     },
+    avaliacoes: [],
+    notaMedia: 0,
+    totalAvaliacoes: 0,
+  },
+  {
+    slug: 'madeireira-bairro-novo',
+    nome: 'Madeireira Bairro Novo',
+    titleSeo: 'Madeireira Bairro Novo em Curitiba | Madeira de Pinus, Tábuas, Caibros e Vigas',
+    razaoSocial: 'Bairro Novo Comércio de Madeiras Ltda.',
+    cnpj: '44.205.587/0001-40',
+    logo: 'https://pinus.madeireirabairronovo.com.br/img/madeira-pinus-in-natura.jpg',
+    fotoCapa: 'https://pinus.madeireirabairronovo.com.br/img/madeira-pinus-in-natura.jpg',
+    fotos: [
+      'https://pinus.madeireirabairronovo.com.br/img/madeira-pinus-in-natura.jpg',
+      'https://pinus.madeireirabairronovo.com.br/img/vigas-barrote-pinus.jpg',
+      'https://pinus.madeireirabairronovo.com.br/img/escoras-pinus-laje.jpg',
+      'https://http2.mlstatic.com/D_NQ_NP_2X_999161-MLB115526529167_082026-F-tabua-de-20-pinus-aparelhada-c-3-metros.webp',
+      'https://images.cws.digital/produtos/gg/28/34/caibro-pinus-para-telhado-3000x55x55mm-118x22x22-polegadas-3m-madeiras-n-10573428-1744295482122.jpg',
+      'https://static.kiaga.com.br/public/kiaga/imagens/produtos/media/ripa-de-madeira-pinus-natural-para-artesanato-4x2-646deb2fa511f.jpg',
+    ],
+    descricao: 'A Madeireira Bairro Novo, no Sítio Cercado em Curitiba, é especializada em madeira de pinus in natura para construção civil, telhados, caixarias e escoramentos. Estoque próprio, corte sob medida e entrega programada.',
+    descricaoLonga: 'A Madeireira Bairro Novo, localizada no Sítio Cercado, em Curitiba, é especializada no fornecimento de madeira de pinus serrada in natura para construção civil, telhados, caixarias, fôrmas de concreto e escoramentos.\n\nCom estoque próprio, corte sob medida e frota própria, atende construtoras, empreiteiros, carpinteiros, profissionais da construção e consumidores que procuram madeira de pinus em Curitiba e Região Metropolitana.\n\nO catálogo inclui tábuas de pinus, caibros, vigas, barrotes, ripas, sarrafos e escoras para laje, com diferentes bitolas e comprimentos, conforme a necessidade de cada projeto.\n\nA empresa trabalha com pinus proveniente de reflorestamento, oferece atendimento direto e realiza entregas programadas mediante consulta de disponibilidade e frete.\n\nPrecisa de madeira de pinus para sua obra? Solicite seu orçamento diretamente com a Madeireira Bairro Novo pelo WhatsApp (41) 3013-4692 ou visite nossa loja na Rua Coronel Joaquim Antônio de Azevedo, 1459, no Sítio Cercado, Curitiba.',
+    whatsapp: '554130134692',
+    telefone: '(41) 3013-4692',
+    email: 'bairronovomadeiras@gmail.com',
+    endereco: 'Rua Coronel Joaquim Antônio de Azevedo, 1459 — Sítio Cercado, Curitiba/PR, CEP 81920-010',
+    site: 'https://pinus.madeireirabairronovo.com.br/',
+    googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Rua+Coronel+Joaquim+Ant%C3%B4nio+de+Azevedo%2C+1459%2C+S%C3%ADtio+Cercado%2C+Curitiba+-+PR%2C+81920-010',
+    cidadeBase: 'Curitiba',
+    estadoBase: 'PR',
+    anosExperiencia: 5,
+    verificada: true,
+    destaque: true,
+    atende24h: false,
+    atendeEmergencia: false,
+    tipoServico: ['construcao', 'madeireira'],
+    servicosOferecidos: [
+      'madeira-de-pinus-curitiba',
+      'tabuas-de-pinus-caixaria',
+      'caibros-de-pinus',
+      'vigas-e-barrotes-de-pinus',
+      'ripas-e-sarrafos-de-pinus',
+      'escoras-de-pinus-para-laje',
+      'corte-de-madeira-sob-medida',
+      'entrega-programada-de-madeira',
+    ],
+    bairrosAtendidos: [
+      'sitio-cercado', 'ganchinho', 'umbara', 'alto-boqueirao', 'boqueirao',
+      'xaxim', 'pinheirinho', 'capao-raso', 'cidade-industrial', 'novo-mundo',
+      'portao', 'fazendinha', 'tatuquara', 'caximba', 'campo-de-santana',
+      'centro', 'agua-verde', 'hauer', 'uberaba', 'cajuru'
+    ],
+    cidadesAtendidas: [
+      'Curitiba', 'São José dos Pinhais', 'Fazenda Rio Grande', 'Araucária',
+      'Colombo', 'Pinhais', 'Campo Largo', 'Almirante Tamandaré', 'Piraquara'
+    ],
+    formasPagamento: ['PIX', 'Dinheiro', 'Cartão de Crédito', 'Cartão de Débito', 'Transferência Bancária'],
+    horarios: [
+      { dia: 'Segunda a Sexta', abertura: '08:00', fechamento: '18:00' },
+      { dia: 'Sábado', abertura: '08:00', fechamento: '12:00' },
+      { dia: 'Domingo', abertura: '', fechamento: '', fechado: true },
+    ],
+    diferenciais: [
+      'Madeira de pinus in natura proveniente de reflorestamento sustentável',
+      'Estoque próprio a pronta entrega e corte sob medida para obras',
+      'Frota própria para entrega rápida e programada em Curitiba e RMC',
+      'Atendimento direto e técnico para construtoras, carpinteiros e obras residenciais',
+      'Linha completa: tábuas, caibros, vigas, barrotes, ripas, sarrafos e escoras',
+    ],
+    produtos: [
+      {
+        nome: 'Madeira de Pinus Serrada In Natura',
+        descricao: 'Madeira bruta serrada de alta qualidade para obras civis, fôrmas, caixarias e estruturas em geral. Procedência de reflorestamento com corte sob medida.',
+        imagem: 'https://pinus.madeireirabairronovo.com.br/img/madeira-pinus-in-natura.jpg',
+        alt: 'Madeira de pinus serrada in natura para obras e construção civil em Curitiba - Madeireira Bairro Novo',
+        preco: 'Consulte valores',
+      },
+      {
+        nome: 'Tábuas de Pinus para Caixaria',
+        descricao: 'Tábuas selecionadas para fôrmas de concreto, caixarias e fechamentos de obra. Disponíveis nas larguras de 15, 20, 25 e 30 cm, no comprimento padrão de 3 metros.',
+        imagem: 'https://http2.mlstatic.com/D_NQ_NP_2X_999161-MLB115526529167_082026-F-tabua-de-20-pinus-aparelhada-c-3-metros.webp',
+        alt: 'Tábuas de pinus para caixaria de 3 metros em Curitiba - Madeireira Bairro Novo',
+        preco: 'Consulte valores',
+      },
+      {
+        nome: 'Caibros de Pinus para Telhado',
+        descricao: 'Caibros resistentes para estruturas de telhado, coberturas e armações. Bitolas de 5x5, 5x7 e 5x10 cm, com excelente alinhamento e resistência.',
+        imagem: 'https://images.cws.digital/produtos/gg/28/34/caibro-pinus-para-telhado-3000x55x55mm-118x22x22-polegadas-3m-madeiras-n-10573428-1744295482122.jpg',
+        alt: 'Caibros de pinus para telhados e estruturas em Curitiba - Madeireira Bairro Novo',
+        preco: 'Consulte valores',
+      },
+      {
+        nome: 'Vigas e Barrotes de Pinus',
+        descricao: 'Vigas e barrotes estruturais para suporte, mezaninos, engradamentos de cobertura e apoios pesados de carpintaria e construção civil.',
+        imagem: 'https://pinus.madeireirabairronovo.com.br/img/vigas-barrote-pinus.jpg',
+        alt: 'Vigas e barrotes de pinus para estruturas e engradamentos em Curitiba - Madeireira Bairro Novo',
+        preco: 'Consulte valores',
+      },
+      {
+        nome: 'Ripas e Sarrafos de Pinus',
+        descricao: 'Ripas e sarrafos para travamentos de telhado, fixação de telhas, esquadrias e reforço de fôrmas com madeira seca e padronizada.',
+        imagem: 'https://static.kiaga.com.br/public/kiaga/imagens/produtos/media/ripa-de-madeira-pinus-natural-para-artesanato-4x2-646deb2fa511f.jpg',
+        alt: 'Ripas e sarrafos de pinus para telhados e travamentos em Curitiba - Madeireira Bairro Novo',
+        preco: 'Consulte valores',
+      },
+      {
+        nome: 'Escoras de Pinus para Laje',
+        descricao: 'Escoras brutas reforçadas para escoramento seguro de lajes, vigas e fôrmas em obras residenciais e comerciais de pequeno a grande porte.',
+        imagem: 'https://pinus.madeireirabairronovo.com.br/img/escoras-pinus-laje.jpg',
+        alt: 'Escoras de madeira de pinus para laje em Curitiba - Madeireira Bairro Novo',
+        preco: 'Consulte valores',
+      },
+    ],
+    faq: [
+      {
+        pergunta: 'Quais tipos de madeira a Madeireira Bairro Novo comercializa?',
+        resposta: 'A empresa é especializada em madeira de pinus serrada in natura proveniente de reflorestamento, comercializando tábuas para caixaria (15, 20, 25 e 30 cm por 3m), caibros (5x5, 5x7 e 5x10 cm), vigas, barrotes, ripas, sarrafos e escoras brutas para laje.',
+      },
+      {
+        pergunta: 'A Madeireira Bairro Novo realiza entregas em Curitiba e Região Metropolitana?',
+        resposta: 'Sim. Contamos com frota própria para entregas programadas em todos os bairros de Curitiba (como Sítio Cercado, Ganchinho, Umbará, Boqueirão, CIC, Pinheirinho e Xaxim) e municípios da Região Metropolitana (São José dos Pinhais, Fazenda Rio Grande, Araucária, Colombo e Pinhais). Consulte disponibilidade de frete via WhatsApp.',
+      },
+      {
+        pergunta: 'É possível solicitar corte de madeira sob medida?',
+        resposta: 'Sim! Possuímos estrutura para corte sob medida de acordo com o projeto de caixaria, telhado ou escoramento da sua obra, minimizando desperdícios e agilizando a execução.',
+      },
+      {
+        pergunta: 'Como solicitar um orçamento rápido de madeira?',
+        resposta: 'O orçamento pode ser solicitado diretamente pelo WhatsApp (41) 3013-4692 ou na loja física na Rua Cel. Joaquim Antônio de Azevedo, 1459, Sítio Cercado. Informe a lista de materiais, bitolas e o bairro de entrega para receber as cotações.',
+      },
+      {
+        pergunta: 'Qual o horário de funcionamento da Madeireira Bairro Novo?',
+        resposta: 'Nosso atendimento funciona de segunda a sexta-feira das 08h às 18h e aos sábados das 08h às 12h. Aos domingos a empresa permanece fechada.',
+      },
+    ],
+    avaliacoes: [],
+    notaMedia: 0,
+    totalAvaliacoes: 0,
+  },
+  {
+    slug: 'toldos-soares-curitiba',
+    nome: 'Toldos Soares',
+    titleSeo: 'Toldos Soares em Curitiba | Toldos, Coberturas e Policarbonato',
+    razaoSocial: 'Toldos Soares',
+    logo: 'https://toldosoares.com.br/wp-content/uploads/2024/11/logo-toldo-soares.png',
+    fotoCapa: 'https://toldosoares.com.br/wp-content/uploads/2024/12/COBERTURA-DE-POLICARBONATO-01.webp',
+    fotos: [
+      'https://toldosoares.com.br/wp-content/uploads/2024/12/COBERTURA-DE-POLICARBONATO-01.webp',
+      'https://toldosoares.com.br/wp-content/uploads/2025/01/COBERTURA-DE-VIDRO-01-1.webp',
+      'https://toldosoares.com.br/wp-content/uploads/2024/12/toldo-retratil.webp',
+      'https://toldosoares.com.br/wp-content/uploads/2025/01/CORTINAS-ROLO-01.webp',
+      'https://toldosoares.com.br/wp-content/uploads/2025/01/CORTINAS-DE-LONAS-.webp',
+      'https://toldosoares.com.br/wp-content/uploads/2025/01/COBERTURAS-DE-ZINCO-03.webp',
+      'https://toldosoares.com.br/wp-content/uploads/2024/12/sombreio-01.webp',
+      'https://toldosoares.com.br/wp-content/uploads/2025/01/REFORMA-DE-TOLDOS-01-1.webp',
+      'https://toldosoares.com.br/wp-content/uploads/2025/01/TROCA-DE-LONA-DE-TOLDOS-01.webp',
+      'https://toldosoares.com.br/wp-content/uploads/2024/12/Troca-de-Chapa-de-Policarbonato.webp',
+      'https://toldosoares.com.br/wp-content/uploads/2025/09/toldos-de-policarbonato-em-Curitiba.jpg',
+      'https://toldosoares.com.br/wp-content/uploads/2025/01/venda-de-lona-01.webp',
+      'https://toldosoares.com.br/wp-content/uploads/2024/12/COBERTURA-DE-POLICARBONATO-03.webp',
+      'https://toldosoares.com.br/wp-content/uploads/2025/09/banner-toldos.webp',
+    ],
+    descricao: 'A Toldos Soares é especialista na fabricação, instalação e reforma de toldos retráteis, toldos de lona, coberturas em policarbonato, vidro e zinco, cortinas rolô e sombreiros em Curitiba e Região Metropolitana.',
+    descricaoLonga: 'A Toldos Soares é uma empresa especializada na fabricação, instalação e reforma de toldos e coberturas em Curitiba e Região Metropolitana.\n\nLocalizada no bairro Sítio Cercado, oferece soluções personalizadas para residências, comércios e empresas, trabalhando com toldos retráteis, toldos de lona, coberturas de policarbonato, coberturas de vidro, coberturas de zinco, cortinas de lona, cortinas rolô, sombreiros e estruturas para proteção de áreas externas.\n\nA empresa também realiza reformas de toldos, substituição de lonas, troca de chapas de policarbonato e projetos personalizados de coberturas.\n\nCom mais de 15 anos de experiência informados em seu site institucional, a Toldos Soares desenvolve projetos que combinam funcionalidade, acabamento e proteção contra sol e chuva.\n\nAtende clientes em Curitiba e Grande Curitiba, oferecendo soluções para garagens, fachadas comerciais, varandas, corredores, áreas de lazer e demais ambientes externos.\n\nSolicite seu orçamento diretamente pelo WhatsApp (41) 99800-0366.',
+    whatsapp: '5541998000366',
+    telefone: '(41) 3550-2323',
+    email: 'contato@toldosoares.com.br',
+    endereco: 'Rua Delegado Ruy Rebello Vieira, 455 — Sítio Cercado, Curitiba/PR, CEP 81920-290',
+    site: 'https://toldosoares.com.br/',
+    googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Rua+Delegado+Ruy+Rebello+Vieira%2C+455%2C+S%C3%ADtio+Cercado%2C+Curitiba+-+PR%2C+81920-290',
+    cidadeBase: 'Curitiba',
+    estadoBase: 'PR',
+    anosExperiencia: 15,
+    verificada: true,
+    destaque: true,
+    atende24h: false,
+    atendeEmergencia: false,
+    tipoServico: ['construcao'],
+    servicosOferecidos: [
+      'toldos-retraveis-curitiba',
+      'toldos-de-lona-curitiba',
+      'coberturas-de-policarbonato-curitiba',
+      'coberturas-de-vidro-curitiba',
+      'coberturas-de-zinco-curitiba',
+      'toldos-de-policarbonato-curitiba',
+      'cortinas-de-lona-curitiba',
+      'cortinas-rolo-curitiba',
+      'reforma-manutencao-toldos',
+      'troca-de-lonas-toldos',
+      'troca-chapas-policarbonato',
+      'sombreiros-areas-externas',
+      'venda-de-lonas-curitiba',
+      'coberturas-sob-medida-curitiba',
+    ],
+    bairrosAtendidos: [
+      'sitio-cercado', 'bairro-novo', 'alto-boqueirao', 'boqueirao', 'xaxim',
+      'pinheirinho', 'umbara', 'ganchinho', 'capao-raso', 'agua-verde',
+      'centro', 'portao', 'cidade-industrial', 'novo-mundo', 'fazendinha',
+      'tatuquara', 'caximba', 'campo-de-santana', 'hauer', 'uberaba',
+      'cajuru', 'reboucas', 'cabral', 'juveve', 'santa-felicidade',
+      'batel', 'cristo-rei', 'centro-civico', 'bigorrilho'
+    ],
+    cidadesAtendidas: [
+      'Curitiba', 'São José dos Pinhais', 'Fazenda Rio Grande', 'Araucária',
+      'Colombo', 'Pinhais', 'Campo Largo', 'Almirante Tamandaré', 'Piraquara'
+    ],
+    formasPagamento: ['PIX', 'Dinheiro', 'Cartão de Crédito', 'Cartão de Débito', 'Transferência Bancária', 'Parcelamento no Cartão'],
+    horarios: [
+      { dia: 'Segunda a Sexta', abertura: '08:00', fechamento: '18:00' },
+      { dia: 'Sábado', abertura: '08:00', fechamento: '12:00' },
+      { dia: 'Domingo', abertura: '', fechamento: '', fechado: true },
+    ],
+    diferenciais: [
+      'Mais de 15 anos de experiência comprovada em toldos e coberturas em Curitiba',
+      'Projetos 100% personalizados sob medida para ambientes residenciais e comerciais',
+      'Estruturas de alta durabilidade com perfis de alumínio e aço galvanizado',
+      'Materiais com proteção anti-UV, tratamento antimofo e alta resistência a intempéries',
+      'Equipe própria para visita técnica no local, medição de precisão e instalação rápida',
+      'Parcelamento facilitado no cartão de crédito e orçamento sem compromisso',
+    ],
+    produtos: [
+      {
+        nome: 'Toldos Retráteis em Curitiba',
+        descricao: 'Fabricação e instalação de toldos retráteis sob medida com braços articulados ou pistões, ideais para sacadas, varandas, garagens e entradas comerciais com proteção solar e recolhimento prático.',
+        imagem: 'https://toldosoares.com.br/wp-content/uploads/2024/12/toldo-retratil.webp',
+        alt: 'Toldos Retráteis sob medida em Curitiba — Toldos Soares',
+        preco: 'Consulte valores',
+      },
+      {
+        nome: 'Toldos de Lona Residenciais e Comerciais',
+        descricao: 'Toldos fixos e móveis confeccionados em lona sintética ou acrílica de alta resistência, com tratamento anti-UV e antimofo, sob medida para residências, condomínios e fachadas comerciais.',
+        imagem: 'https://toldosoares.com.br/wp-content/uploads/2025/09/toldos-de-lona-no-centro-civico.jpg',
+        alt: 'Toldos de Lona Residenciais e Comerciais em Curitiba — Toldos Soares',
+        preco: 'Consulte valores',
+      },
+      {
+        nome: 'Coberturas de Policarbonato',
+        descricao: 'Coberturas em policarbonato alveolar ou compacto com estrutura reforçada de alumínio ou aço galvanizado, oferecendo alta luminosidade natural, proteção contra chuva e bloqueio de raios UV.',
+        imagem: 'https://toldosoares.com.br/wp-content/uploads/2024/12/COBERTURA-DE-POLICARBONATO-01.webp',
+        alt: 'Coberturas de Policarbonato Alveolar e Compacto em Curitiba — Toldos Soares',
+        preco: 'Consulte valores',
+      },
+      {
+        nome: 'Coberturas de Vidro',
+        descricao: 'Instalação de coberturas em vidro laminado ou temperado com perfis estruturais de alumínio de fino acabamento, proporcionando sofisticação, isolamento acústico e visual moderno.',
+        imagem: 'https://toldosoares.com.br/wp-content/uploads/2025/01/COBERTURA-DE-VIDRO-01-1.webp',
+        alt: 'Cobertura de Vidro Laminado e Temperado em Curitiba — Toldos Soares',
+        preco: 'Consulte valores',
+      },
+      {
+        nome: 'Coberturas de Zinco',
+        descricao: 'Coberturas metálicas com telhas de zinco e galvalume de alta resistência para galpões, garagens, depósitos e áreas de serviço com durabilidade contra intempéries e ótimo custo-benefício.',
+        imagem: 'https://toldosoares.com.br/wp-content/uploads/2025/01/COBERTURAS-DE-ZINCO-03.webp',
+        alt: 'Coberturas de Zinco e Telhas Metálicas em Curitiba — Toldos Soares',
+        preco: 'Consulte valores',
+      },
+      {
+        nome: 'Toldos de Policarbonato',
+        descricao: 'Toldos curvos ou retos com placas de policarbonato para proteção de portas, janelas e portões contra chuva e incidência direta de sol sem escurecer os ambientes internos.',
+        imagem: 'https://toldosoares.com.br/wp-content/uploads/2025/09/toldos-de-policarbonato-em-Curitiba.jpg',
+        alt: 'Toldos de Policarbonato para Portas e Janelas em Curitiba — Toldos Soares',
+        preco: 'Consulte valores',
+      },
+      {
+        nome: 'Cortinas de Lona',
+        descricao: 'Cortinas retráteis de lona com visor transparente ou opaca, acionamento por manivela ou mola, para fechamento de varandas, áreas gourmet, quiosques e sacadas.',
+        imagem: 'https://toldosoares.com.br/wp-content/uploads/2025/01/CORTINAS-DE-LONAS-.webp',
+        alt: 'Cortinas de Lona para Fechamento de Áreas Externas em Curitiba — Toldos Soares',
+        preco: 'Consulte valores',
+      },
+      {
+        nome: 'Cortinas Rolô',
+        descricao: 'Cortinas rolô externas para proteção contra vento, poeira e sol, com fácil enrolamento manual ou automatizado e tecido técnico resistente para sacadas e áreas de lazer.',
+        imagem: 'https://toldosoares.com.br/wp-content/uploads/2025/01/CORTINAS-ROLO-01.webp',
+        alt: 'Cortinas Rolô Externas em Curitiba — Toldos Soares',
+        preco: 'Consulte valores',
+      },
+      {
+        nome: 'Reforma e Manutenção de Toldos',
+        descricao: 'Reforma geral, reparo mecânico, alinhamento de braços, reforço de estruturas metálicas e regulagem de sistemas de toldos de todos os modelos e marcas.',
+        imagem: 'https://toldosoares.com.br/wp-content/uploads/2025/01/REFORMA-DE-TOLDOS-01-1.webp',
+        alt: 'Reforma e Manutenção de Toldos e Coberturas em Curitiba — Toldos Soares',
+        preco: 'Consulte valores',
+      },
+      {
+        nome: 'Troca de Lonas para Toldos',
+        descricao: 'Substituição profissional de lonas rasgadas, desbotadas ou ressecadas por lonas novas de primeira linha com solda eletrônica, reaproveitando a estrutura existente com economia.',
+        imagem: 'https://toldosoares.com.br/wp-content/uploads/2025/01/TROCA-DE-LONA-DE-TOLDOS-01.webp',
+        alt: 'Troca de Lonas para Toldos em Curitiba — Toldos Soares',
+        preco: 'Consulte valores',
+      },
+      {
+        nome: 'Troca de Chapas de Policarbonato',
+        descricao: 'Manutenção e substituição de chapas de policarbonato alveolar ou compacto danificadas por granizo, sol ou tempo, com vedação e perfis de união novos.',
+        imagem: 'https://toldosoares.com.br/wp-content/uploads/2024/12/Troca-de-Chapa-de-Policarbonato.webp',
+        alt: 'Troca de Chapas de Policarbonato em Curitiba — Toldos Soares',
+        preco: 'Consulte valores',
+      },
+      {
+        nome: 'Sombreiros para Áreas Externas',
+        descricao: 'Sombreiros e coberturas tensionadas com telas de sombreamento decorativas para estacionamentos, garagens descobertas, condomínios, áreas de piscina e lazer.',
+        imagem: 'https://toldosoares.com.br/wp-content/uploads/2024/12/sombreio-01.webp',
+        alt: 'Sombreiros para Áreas Externas e Estacionamentos em Curitiba — Toldos Soares',
+        preco: 'Consulte valores',
+      },
+      {
+        nome: 'Venda de Lonas',
+        descricao: 'Comercialização de lonas sintéticas, vinílicas e impermeáveis por metro ou rolo para projetos de toldos, coberturas, transportes e utilidades gerais em Curitiba.',
+        imagem: 'https://toldosoares.com.br/wp-content/uploads/2025/01/venda-de-lona-01.webp',
+        alt: 'Venda de Lonas em Curitiba — Toldos Soares',
+        preco: 'Consulte valores',
+      },
+      {
+        nome: 'Fabricação e Instalação de Coberturas Sob Medida',
+        descricao: 'Projetos completos personalizados desde a medição no local, cálculo estrutural, serralheria de precisão, pintura até a instalação final de coberturas residenciais e comerciais.',
+        imagem: 'https://toldosoares.com.br/wp-content/uploads/2024/12/COBERTURA-DE-POLICARBONATO-03.webp',
+        alt: 'Fabricação e Instalação de Coberturas Sob Medida em Curitiba — Toldos Soares',
+        preco: 'Consulte valores',
+      },
+    ],
+    faq: [
+      {
+        pergunta: 'Quais tipos de toldos e coberturas a Toldos Soares fabrica?',
+        resposta: 'A Toldos Soares fabrica toldos retráteis, toldos fixos de lona, coberturas de policarbonato alveolar e compacto, coberturas em vidro laminado ou temperado, coberturas de zinco/galvalume, cortinas rolô e cortinas de lona com visor para proteção de áreas externas residenciais e comerciais.',
+      },
+      {
+        pergunta: 'A Toldos Soares atende em quais bairros e cidades da Grande Curitiba?',
+        resposta: 'Atendemos todos os bairros de Curitiba (como Sítio Cercado, Boqueirão, Xaxim, Pinheirinho, Água Verde, Batel, Portão, CIC, Centro, etc.) e cidades da Região Metropolitana (São José dos Pinhais, Fazenda Rio Grande, Araucária, Colombo, Pinhais, Campo Largo e região).',
+      },
+      {
+        pergunta: 'Como solicitar orçamento ou agendar medição no local?',
+        resposta: 'O orçamento pode ser solicitado diretamente pelo WhatsApp (41) 99800-0366 ou telefone fixo (41) 3550-2323. Nossa equipe agenda visita técnica no seu endereço para tirar medidas exatas e apresentar o melhor projeto sob medida.',
+      },
+      {
+        pergunta: 'A Toldos Soares faz reforma e troca de lona em estruturas existentes?',
+        resposta: 'Sim! Realizamos reformas mecânicas e estruturais completas, além da substituição de lonas ressecadas ou rasgadas por lonas novas com proteção UV, reaproveitando sua armação existente com excelente economia.',
+      },
+      {
+        pergunta: 'Qual a durabilidade de uma cobertura de policarbonato ou vidro?',
+        resposta: 'Nossas coberturas contam com materiais de primeira qualidade com tratamento contra raios UV e perfis resistentes a intempéries, proporcionando alta vida útil (mais de 10 a 15 anos) com excelente isolamento contra sol e chuva.',
+      },
+      {
+        pergunta: 'Quais são as opções de pagamento e parcelamento?',
+        resposta: 'Oferecemos condições facilitadas via PIX, cartões de crédito com parcelamento sem juros, cartões de débito e transferência bancária.',
+      },
+    ],
     avaliacoes: [],
     notaMedia: 0,
     totalAvaliacoes: 0,

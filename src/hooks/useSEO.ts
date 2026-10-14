@@ -202,6 +202,8 @@ const TIPO_LOCALBUSINESS: Record<string, string> = {
   motofrete: 'DeliveryService',
   lavanderia: 'DryCleaningOrLaundry',
   refrigeracao: 'HVACBusiness',
+  construcao: 'HomeAndConstructionBusiness',
+  madeireira: 'HomeAndConstructionBusiness',
 };
 
 export function buildLocalBusinessSchema(empresa: {
@@ -212,6 +214,7 @@ export function buildLocalBusinessSchema(empresa: {
   whatsapp?: string;
   email?: string;
   logo?: string;
+  fotoCapa?: string;
   site?: string;
   endereco?: string;
   cnpj?: string;
@@ -225,6 +228,7 @@ export function buildLocalBusinessSchema(empresa: {
   formasPagamento: string[];
   atende24h: boolean;
   avaliacoes?: { nomeCliente: string; nota: number; servicoRealizado: string; texto: string; data: string }[];
+  produtos?: { nome: string; descricao: string; imagem: string; preco?: string }[];
 }, coords: { lat: number; lng: number }, _bairroNome: string, servicosDetalhes?: { nome: string; precoMedio?: string }[]) {
   const reviews = (empresa.avaliacoes || []).map(a => ({
     '@type': 'Review',
@@ -257,6 +261,18 @@ export function buildLocalBusinessSchema(empresa: {
     };
   });
 
+  const productOffers = (empresa.produtos || []).map(p => ({
+    '@type': 'Offer',
+    itemOffered: {
+      '@type': 'Product',
+      name: p.nome,
+      description: p.descricao,
+      image: p.imagem,
+    },
+    priceCurrency: 'BRL',
+    availability: 'https://schema.org/InStock',
+  }));
+
   const tipo = TIPO_LOCALBUSINESS[empresa.tipoServico?.[0] || ''] || 'LocalBusiness';
   const cidade = empresa.cidadeBase || 'Curitiba';
   const uf = empresa.estadoBase || 'PR';
@@ -266,14 +282,22 @@ export function buildLocalBusinessSchema(empresa: {
     empresa.whatsapp ? `https://wa.me/${empresa.whatsapp}` : undefined,
   ].filter(Boolean) as string[];
 
+  const businessImage = empresa.fotoCapa?.startsWith('http')
+    ? empresa.fotoCapa
+    : empresa.logo?.startsWith('http')
+      ? empresa.logo
+      : empresa.logo
+        ? `${SITE_URL}${empresa.logo}`
+        : `${SITE_URL}/og-image.png`;
+
   return {
     '@context': 'https://schema.org',
     '@id': `${SITE_URL}/empresa/${empresa.slug}#business`,
     '@type': tipo === 'LocalBusiness' ? 'LocalBusiness' : ['LocalBusiness', tipo],
     name: empresa.nome,
     description: empresa.descricao,
-    image: empresa.logo ? `${SITE_URL}${empresa.logo}` : `${SITE_URL}/og-image.png`,
-    ...(empresa.logo && { logo: `${SITE_URL}${empresa.logo}` }),
+    image: businessImage,
+    ...(empresa.logo && { logo: empresa.logo.startsWith('http') ? empresa.logo : `${SITE_URL}${empresa.logo}` }),
     url: `${SITE_URL}/empresa/${empresa.slug}`,
     telephone: empresa.telefone,
     ...(empresa.email && { email: empresa.email }),
@@ -299,11 +323,11 @@ export function buildLocalBusinessSchema(empresa: {
       },
     }),
     ...(reviews.length > 0 && { review: reviews }),
-    ...(offers.length > 0 && {
+    ...((offers.length > 0 || productOffers.length > 0) && {
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
-        name: `Serviços — ${empresa.nome}`,
-        itemListElement: offers,
+        name: `Catálogo de Produtos e Serviços — ${empresa.nome}`,
+        itemListElement: [...offers, ...productOffers],
       },
     }),
     address: {

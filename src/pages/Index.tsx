@@ -271,12 +271,57 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Empresas Recentes em Curitiba e Região */}
+      <section className="py-12 bg-card border-t border-border/60">
+        <div className="container mx-auto px-4">
+          <div className="max-w-2xl mx-auto text-center mb-6">
+            <h2 className="text-2xl font-bold tracking-tight mb-2">Empresas e Prestadores Recentes</h2>
+            <p className="text-sm text-muted-foreground">
+              Novos parceiros cadastrados com atendimento em Curitiba e Região Metropolitana
+            </p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Link
+              to="/toldos-soares-curitiba"
+              className="bg-background border rounded-lg px-4 py-2.5 hover:border-primary hover:shadow-sm transition-all text-sm font-medium flex items-center gap-2"
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+              Toldos Soares — Toldos e Coberturas (Sítio Cercado & Curitiba)
+            </Link>
+            <Link
+              to="/empresa/madeireira-bairro-novo"
+              className="bg-background border rounded-lg px-4 py-2.5 hover:border-primary hover:shadow-sm transition-all text-sm font-medium flex items-center gap-2"
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+              Madeireira Bairro Novo — Madeira de Pinus
+            </Link>
+            <Link
+              to="/perfil/borba-refrigeracao-curitiba"
+              className="bg-background border rounded-lg px-4 py-2.5 hover:border-primary hover:shadow-sm transition-all text-sm font-medium flex items-center gap-2"
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+              Borba Refrigeração — Assistência Técnica
+            </Link>
+            <Link
+              to="/empresa/sangel-bebedouros-purificadores"
+              className="bg-background border rounded-lg px-4 py-2.5 hover:border-primary hover:shadow-sm transition-all text-sm font-medium flex items-center gap-2"
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+              Sangel Bebedouros — Centro Curitiba
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Empresas em Destaque */}
       <section className="py-14 bg-muted/50 border-t border-border/60">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center mb-8">
-            <h2 className="text-2xl font-bold tracking-tight mb-1.5">Empresas em Destaque</h2>
-            <p className="text-sm text-muted-foreground">Prestadores cadastrados com histórico e atuação regional</p>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-3">
+              <Star className="h-3.5 w-3.5 fill-current" /> Empresas em Destaque & Novidades
+            </div>
+            <h2 className="text-2xl font-bold tracking-tight mb-1.5">Empresas em Destaque no Portal</h2>
+            <p className="text-sm text-muted-foreground">Prestadores cadastrados e novidades verificadas com atuação regional</p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 max-w-5xl mx-auto">

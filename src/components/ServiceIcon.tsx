@@ -4,10 +4,18 @@ import {
   Cog, GlassWater, Flame, Search, Bike, Package, type LucideIcon,
   Shield, DollarSign, Scale, Leaf, Cpu, HelpCircle, MapPin, ClipboardList,
   Shirt, Wind, Sparkles, WashingMachine, BedDouble, Sofa, Briefcase, Scissors,
-  Snowflake, Refrigerator, ThermometerSnowflake, AirVent, Wine, Warehouse, Boxes
+  Snowflake, Refrigerator, ThermometerSnowflake, AirVent, Wine, Warehouse, Boxes,
+  Layers, Repeat, Sun, Hammer, SlidersHorizontal, RefreshCw, LayoutGrid
 } from 'lucide-react';
 
 const iconMap: Record<string, LucideIcon> = {
+  layers: Layers,
+  repeat: Repeat,
+  'refresh-cw': RefreshCw,
+  sun: Sun,
+  hammer: Hammer,
+  sliders: SlidersHorizontal,
+  'layout-grid': LayoutGrid,
   bath: Bath,
   'shower-head': ShowerHead,
   home: Home,
