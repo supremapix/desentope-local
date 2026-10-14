@@ -265,6 +265,13 @@ const EmpresaPage = () => {
                     </a>
                   </div>
                 )}
+                {empresa.redesSociais?.instagram && (
+                  <div className="mt-2">
+                    <a href={empresa.redesSociais.instagram} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline font-medium">
+                      📷 Instagram: {empresa.redesSociais.instagram.replace('https://www.instagram.com/', '@').replace(/\/$/, '')}
+                    </a>
+                  </div>
+                )}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6">
                   <div className="text-center p-3 bg-muted rounded-lg">
                     <div className="text-2xl font-black text-primary">{empresa.anosExperiencia}</div>
