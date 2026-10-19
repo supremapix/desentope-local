@@ -1,10 +1,11 @@
+import { CuritibaCategoryLinks } from '@/components/CuritibaCategoryLinks';
 import { Link } from 'react-router-dom';
 import { ChevronRight, MapPin, Search, ShieldCheck, MessageCircle } from 'lucide-react';
 import { SearchBar } from '@/components/SearchBar';
 import { ServiceIcon } from '@/components/ServiceIcon';
 import { regionais } from '@/data/bairros';
 import { cidadesRMC } from '@/data/cidades-rmc';
-import { categoriasRapidas, servicos } from '@/data/servicos';
+import { categoriasRapidas } from '@/data/servicos';
 import {
   useSEO,
   buildBreadcrumbSchema,
@@ -35,7 +36,7 @@ const perguntas = [
   {
     pergunta: 'Quais serviços estão disponíveis em Curitiba pelo diretório?',
     resposta:
-      'O diretório cobre duas categorias: desentupimento (vaso sanitário, pia de cozinha e banheiro, ralo, esgoto residencial e comercial, caixa de gordura, hidrojateamento, câmera de inspeção, limpa fossa, desentupimento industrial e emergência 24h) e encanamento (encanador residencial e comercial, conserto de vazamento, instalação hidráulica, troca de tubulação, instalação de caixa d’água, conserto de torneira e chuveiro, instalação de aquecedor, hidráulica de reforma de banheiro e detecção de vazamento oculto).',
+      'Há páginas de serviços de desentupimento (vaso sanitário, pia de cozinha e banheiro, ralo, esgoto residencial e comercial, caixa de gordura, hidrojateamento, câmera de inspeção, limpa fossa, desentupimento industrial e emergência 24h) e encanamento (encanador residencial e comercial, conserto de vazamento, instalação hidráulica, troca de tubulação, instalação de caixa d’água, conserto de torneira e chuveiro, instalação de aquecedor, hidráulica de reforma de banheiro e detecção de vazamento oculto). Também há guias de mudanças, transportes e entregas em Curitiba, com orientações de contratação e cadastro em formação. Cada perfil deve ser consultado para confirmar o serviço e a cobertura.',
   },
   {
     pergunta: 'O Serviços no Bairro executa os serviços?',
@@ -61,7 +62,7 @@ const CuritibaHubPage = () => {
   useSEO({
     title: 'Serviços em Curitiba: Profissionais por Bairro | Serviços no Bairro',
     description:
-      'Encontre desentupidoras e encanadores em Curitiba por bairro e regional. Navegue por categoria de serviço, veja empresas que atendem seu endereço e peça orçamento grátis.',
+      'Consulte serviços por bairro de Curitiba e guias de mudanças, transportes e entregas. Veja orientações, perfis e limites de cobertura dos cadastros.',
     canonical: '/curitiba',
     geoPlacename: 'Curitiba, Paraná',
     jsonLd: [
@@ -124,12 +125,14 @@ const CuritibaHubPage = () => {
         </div>
       </section>
 
+      <CuritibaCategoryLinks />
+
       {/* Categorias */}
       <section className="py-12 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold text-center mb-2">Categorias de serviço em Curitiba</h2>
+          <h2 className="text-2xl font-bold text-center mb-2">Outros serviços do diretório</h2>
           <p className="text-center text-muted-foreground mb-8">
-            {servicos.length} serviços cadastrados em desentupimento e encanamento
+            Consulte o serviço e sua região de atendimento antes de entrar em contato
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
             {categoriasRapidas.map((s) => (

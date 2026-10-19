@@ -63,12 +63,12 @@ export interface Empresa {
   cidadeBase?: string;
   estadoBase?: string;
   googleMapsUrl?: string;
-  anosExperiencia: number;
+  anosExperiencia?: number;
   verificada: boolean;
   destaque: boolean;
   atende24h: boolean;
   atendeEmergencia: boolean;
-  tipoServico: ('desentupimento' | 'encanamento' | 'motofrete' | 'lavanderia' | 'refrigeracao' | 'construcao' | 'madeireira')[];
+  tipoServico: ('desentupimento' | 'encanamento' | 'motofrete' | 'lavanderia' | 'refrigeracao' | 'construcao' | 'madeireira' | 'assistencia-tecnica' | 'cozinhas-industriais')[];
   servicosOferecidos: string[];
   bairrosAtendidos: string[];
   cidadesAtendidas: string[];
@@ -79,6 +79,11 @@ export interface Empresa {
   totalAvaliacoes: number;
   slogan?: string;
   titleSeo?: string;
+  /** Campos legados presentes nos cadastros; ausência não implica valor padrão. */
+  tituloSeo?: string;
+  cep?: string;
+  horario?: string;
+  instagram?: string;
   razaoSocial?: string;
   marcasAtendidas?: string[];
   diferenciais?: string[];

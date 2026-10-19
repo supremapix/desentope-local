@@ -1,4 +1,4 @@
-import { Clock, ArrowRight, Pause, Play } from 'lucide-react';
+import { Building2, ArrowRight, Pause, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { empresas } from '../data/empresas';
@@ -42,12 +42,12 @@ export function EmergencyBanner() {
 
   return (
     <aside
-      aria-label="Empresas cadastradas e atendimento de emergência"
+      aria-label="Empresas cadastradas no guia"
       className="bg-[#1F5E4B] text-white border-b border-white/20 text-xs sm:text-sm"
     >
       <div className="container mx-auto flex items-center gap-4 py-2 px-4 h-11">
         <span className="inline-flex items-center gap-1 font-semibold px-2 py-0.5 rounded-sm bg-white/15 text-[11px] uppercase tracking-wider shrink-0 whitespace-nowrap">
-          <Clock className="h-3 w-3" /> Plantão 24h
+          <Building2 className="h-3 w-3" /> Empresas no guia
         </span>
 
         <nav
@@ -68,7 +68,7 @@ export function EmergencyBanner() {
             {[...sortedEmpresas, ...sortedEmpresas].map((emp, i) => (
               <a
                 key={`${emp.slug}-${i}`}
-                href={`/perfil/${emp.slug}`}
+                href={`/empresa/${emp.slug}`}
                 className="inline-flex items-center gap-1.5 font-semibold text-sm hover:underline focus:outline-none focus:ring-2 focus:ring-white rounded"
               >
                 {emp.nome} · {(emp.bairrosAtendidos[0] || 'Curitiba').replace(/^sc-/, '').replace(/^osasco-(vz-)?/, '').replace(/^sp-/, '').replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
@@ -90,7 +90,7 @@ export function EmergencyBanner() {
           to="/busca?24h=true"
           className="inline-flex items-center gap-1 font-semibold text-xs whitespace-nowrap hover:underline text-white shrink-0"
         >
-          Ver empresas com plantão <ArrowRight className="h-3.5 w-3.5" />
+          Ver plantões <ArrowRight className="h-3.5 w-3.5" />
         </Link>
       </div>
     </aside>

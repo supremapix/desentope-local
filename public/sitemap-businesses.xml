@@ -35,4 +35,24 @@
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/empresa/borba-refrigeracao-curitiba</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/empresa/sangel-bebedouros-purificadores</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/empresa/madeireira-bairro-novo</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/empresa/toldos-soares-curitiba</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>

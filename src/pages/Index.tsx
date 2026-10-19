@@ -1,3 +1,4 @@
+import { CuritibaCategoryLinks } from '@/components/CuritibaCategoryLinks';
 import { Link } from 'react-router-dom';
 import { SearchBar } from '@/components/SearchBar';
 import { CompanyCard } from '@/components/CompanyCard';
@@ -90,6 +91,8 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      <CuritibaCategoryLinks />
 
       {/* Categorias Rápidas */}
       <section className="py-12 bg-background">

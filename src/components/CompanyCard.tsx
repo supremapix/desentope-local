@@ -5,6 +5,18 @@ import { WhatsAppButton } from './WhatsAppButton';
 import { Empresa } from '@/types';
 import { MapPin, Wrench, CreditCard, Clock, ShieldCheck, Zap, Phone, Mail, Star } from 'lucide-react';
 
+const categorias: Record<Empresa['tipoServico'][number], string> = {
+  desentupimento: 'Desentupimento',
+  encanamento: 'Encanamento',
+  motofrete: 'Motofrete e entregas',
+  lavanderia: 'Lavanderia e passadoria',
+  refrigeracao: 'Refrigeração e assistência técnica',
+  construcao: 'Construção, toldos e coberturas',
+  madeireira: 'Madeireira',
+  'assistencia-tecnica': 'Assistência técnica',
+  'cozinhas-industriais': 'Cozinhas industriais',
+};
+
 interface CompanyCardProps {
   empresa: Empresa;
 }
@@ -81,7 +93,7 @@ export function CompanyCard({ empresa }: CompanyCardProps) {
               <div className="flex items-center gap-2">
                 <Wrench className="h-3.5 w-3.5 flex-shrink-0 text-muted-foreground/80" />
                 <span className="truncate">
-                  {empresa.tipoServico.map(t => t === 'desentupimento' ? 'Desentupimento' : t === 'motofrete' ? 'Motofrete e entregas' : t === 'lavanderia' ? 'Lavanderia e passadoria' : t === 'refrigeracao' ? 'Refrigeração e assistência técnica' : 'Encanamento').join(' · ')}
+                  {empresa.tipoServico.map(t => categorias[t] || 'Serviços').join(' · ')}
                 </span>
               </div>
               <div className="flex items-center gap-2">

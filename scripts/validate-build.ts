@@ -6,6 +6,7 @@
 import fs from 'fs';
 import path from 'path';
 import { getIndexableRoutes } from '../src/data/routes-indexaveis';
+import { hubsCuritiba } from '../src/data/hubs-curitiba';
 
 async function validate() {
   console.log('\n🔍 Iniciando validação automatizada de integridade do build...');
@@ -15,9 +16,9 @@ async function validate() {
     throw new Error('Diretório dist/ não encontrado.');
   }
 
-  // 1. Validar 272 URLs indexáveis
+  // 1. Validar todas as URLs indexáveis
   const routes = getIndexableRoutes();
-  console.log(`\n1. Validando 272 URLs indexáveis em dist/...`);
+  console.log(`\n1. Validando ${routes.length} URLs indexáveis em dist/...`);
   let missingCount = 0;
   for (const route of routes) {
     const filePath =
@@ -108,13 +109,14 @@ async function validate() {
   }
 
   // 5. Inspecionar HTML bruto de pelo menos 5 páginas representativas
-  console.log(`\n5. Inspecionando HTML bruto de 5 páginas representativas...`);
+  console.log(`\n5. Inspecionando HTML bruto de páginas representativas e dos novos guias...`);
   const sampleRoutes = [
     { name: '1. Home', route: '/' },
     { name: '2. Bairro', route: '/curitiba/batel' },
     { name: '3. Cidade RMC', route: '/rmc/sao-jose-dos-pinhais' },
     { name: '4. Serviço', route: '/servicos/desentupimento-curitiba' },
     { name: '5. Empresa', route: '/empresa/agua-facil-desentupidora-encanador-24h' },
+    ...hubsCuritiba.map((hub) => ({ name: `Guia de ${hub.nome}`, route: hub.path })),
   ];
 
   for (const sample of sampleRoutes) {
@@ -159,7 +161,7 @@ async function validate() {
     console.log(`     • JSON-LD:     OK`);
   }
 
-  console.log('\n🎉 TODAS AS VALIDAÇÕES PASSARAM COM SUCESSO! O build está 100% pronto para deploy.\n');
+  console.log('\n✅ Verificações automatizadas concluídas. QA visual e revisão editorial não são substituídas por este teste.\n');
 }
 
 validate().catch((err) => {
