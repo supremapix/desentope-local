@@ -12,9 +12,11 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import { PageTransition } from "@/components/PageTransition";
 import GlobalAnimations from "@/components/GlobalAnimations";
 import Index from "./pages/Index";
+import { hubsCuritiba } from "./data/hubs-curitiba";
 
 // Code splitting: só a home entra no bundle inicial (LCP mais rápido).
 const BairroPage = lazy(() => import("./pages/BairroPage"));
+const CategoriaCuritibaPage = lazy(() => import("./pages/CategoriaCuritibaPage"));
 const CuritibaHubPage = lazy(() => import("./pages/CuritibaHubPage"));
 const EmpresaPage = lazy(() => import("./pages/EmpresaPage"));
 const ServicoPage = lazy(() => import("./pages/ServicoPage"));
@@ -64,6 +66,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/curitiba" element={<CuritibaHubPage />} />
+              {hubsCuritiba.map((hub) => <Route key={hub.slug} path={hub.path} element={<CategoriaCuritibaPage categoriaSlug={hub.slug} />} />)}
               {/* "cic" nao e slug de bairro: o bairro oficial e Cidade Industrial.
                   Redirect tambem existe como 301 no vercel.json. */}
               <Route path="/curitiba/cic" element={<Navigate to="/curitiba/cidade-industrial" replace />} />

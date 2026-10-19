@@ -15,6 +15,11 @@
       "source": "/curitiba/cic",
       "destination": "/curitiba/cidade-industrial",
       "permanent": true
+    },
+    {
+      "source": "/perfil/:slug",
+      "destination": "/empresa/:slug",
+      "permanent": true
     }
   ],
   "cleanUrls": true,

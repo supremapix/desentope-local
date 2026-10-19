@@ -1,11 +1,17 @@
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
+import { getHubCuritiba } from '@/data/hubs-curitiba';
 import { Check, MessageCircle } from 'lucide-react';
 import { useSEO } from '@/hooks/useSEO';
 
 const CadastrarEmpresaPage = () => {
+  const [searchParams] = useSearchParams();
+  const hub = getHubCuritiba(searchParams.get('categoria') || '');
+  const contexto = hub && searchParams.get('cidade') === 'curitiba'
+    ? `Categoria: ${hub.nome}. Cidade de atendimento: Curitiba.`
+    : 'Categoria: [informe seu ramo]. Cidade de atendimento: [informe sua cidade].';
   useSEO({
-    title: 'Cadastrar Empresa Grátis | Serviços no Bairro',
-    description: 'Cadastre sua empresa de desentupimento ou encanamento em Curitiba e RMC. Receba clientes pelo WhatsApp com cadastro rápido e plano gratuito.',
+    title: 'Cadastrar Empresa | Serviços no Bairro',
+    description: 'Apresente sua empresa por categoria e cidade no Serviços no Bairro. Consulte os planos e as condições de cadastro com pagamento único.',
     canonical: '/cadastrar-empresa',
   });
 
@@ -23,7 +29,7 @@ const CadastrarEmpresaPage = () => {
         <div className="max-w-2xl mx-auto text-center">
           <h1 className="text-2xl md:text-3xl font-black mb-4">Cadastre sua Empresa</h1>
           <p className="text-muted-foreground text-lg mb-8">
-            Aumente sua visibilidade e receba mais clientes pelo WhatsApp. Cadastro rápido, pagamento único.
+            Apresente seus serviços e área de atendimento. Consulte as opções de cadastro por categoria e cidade, com pagamento único.
           </p>
 
           {/* Plans */}
@@ -35,7 +41,7 @@ const CadastrarEmpresaPage = () => {
               { nome: 'Premium', preco: 'R$ 199', features: ['Todos bairros', 'Topo listagem', 'Relatórios', 'Vídeo/Galeria'] },
             ].map(plan => (
               <div key={plan.nome} className={`rounded-xl p-6 border-2 ${plan.destaque ? 'border-[#E3A93B] bg-[#E3A93B]/5' : 'border-[#E6DFD2] bg-card'}`}>
-                {plan.destaque && <div className="text-xs font-bold text-[#1C2B26] bg-[#E3A93B] rounded-full px-2 py-0.5 mb-2 inline-block">MAIS POPULAR</div>}
+                {plan.destaque && <div className="text-xs font-bold text-[#1C2B26] bg-[#E3A93B] rounded-full px-2 py-0.5 mb-2 inline-block">PLANO PROFISSIONAL</div>}
                 <h3 className="font-bold text-lg">{plan.nome}</h3>
                 <div className="text-3xl font-black text-[#1F5E4B] mt-1 mb-1">{plan.preco}</div>
                 <div className="text-[14px] text-[#A8461F] font-semibold mb-4">taxa única de cadastro</div>
@@ -54,7 +60,7 @@ const CadastrarEmpresaPage = () => {
             <h2 className="text-xl font-bold mb-2">Interessado?</h2>
             <p className="text-white/90 mb-4">Entre em contato pelo WhatsApp para iniciar seu cadastro com pagamento único.</p>
             <a
-              href="https://wa.me/5541992721004?text=Olá! Gostaria de cadastrar minha empresa com pagamento único no Serviços no Bairro."
+              href={`https://wa.me/5541992721004?text=${encodeURIComponent(`Olá! Gostaria de conhecer as condições para cadastrar minha empresa com pagamento único no Serviços no Bairro. ${contexto}`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 h-12 px-8 rounded-lg bg-[#A8461F] text-white font-bold hover:bg-[#8e3b1a] transition-colors"

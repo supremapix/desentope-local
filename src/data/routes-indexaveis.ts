@@ -5,6 +5,7 @@ import { landingPages } from './landing-pages';
 import { empresas } from './empresas';
 import { blogArtigos, blogCategorias } from './blog';
 import { locaisInspecao } from './camera-inspecao';
+import { hubsCuritiba } from './hubs-curitiba';
 
 export const BASE_URL = 'https://www.servicosnobairro.com.br';
 
@@ -15,7 +16,7 @@ export interface SitemapEntry {
 }
 
 /**
- * 16 Páginas estáticas indexáveis (exclui /busca, aliases e redirects).
+ * Páginas estáticas indexáveis (exclui /busca, aliases e redirects).
  */
 export const staticIndexablePages: SitemapEntry[] = [
   { path: '/', changefreq: 'daily', priority: '1.0' },
@@ -37,23 +38,24 @@ export const staticIndexablePages: SitemapEntry[] = [
 ];
 
 /**
- * Grupos canônicos de sitemap (totalizando 272 URLs indexáveis).
+ * Grupos canônicos de sitemap, derivados do conteúdo publicado.
  */
 export const sitemapGrupos: Record<string, SitemapEntry[]> = {
-  // Páginas institucionais, hubs e conteúdo editorial (28 URLs)
+  // Páginas institucionais, hubs e conteúdo editorial
   'sitemap-pages.xml': [
     ...staticIndexablePages,
     ...blogCategorias.map((c) => ({ path: `/blog/categoria/${c.slug}`, changefreq: 'weekly' as const, priority: '0.6' })),
     ...blogArtigos.map((a) => ({ path: `/blog/${a.slug}`, changefreq: 'monthly' as const, priority: '0.8' })),
   ],
-  // Categorias e serviços (+ landing pages editoriais canônicas) (53 URLs)
+  // Categorias e serviços (+ landing pages editoriais canônicas)
   'sitemap-categories.xml': [
+    ...hubsCuritiba.map((hub) => ({ path: hub.path, changefreq: 'monthly' as const, priority: '0.8' })),
     ...servicos.map((s) => ({ path: `/servicos/${s.slug}`, changefreq: 'weekly' as const, priority: '0.7' })),
     ...landingPages
       .filter((pg) => !pg.canonical || pg.canonical === pg.route)
       .map((pg) => ({ path: pg.route, changefreq: 'weekly' as const, priority: '0.9' })),
   ],
-  // Cidades e bairros (185 URLs)
+  // Cidades e bairros
   'sitemap-cities.xml': [
     ...todosBairros.map((b) => ({
       path: `/curitiba/${b.slug}`,
@@ -65,7 +67,7 @@ export const sitemapGrupos: Record<string, SitemapEntry[]> = {
       .filter((l) => l.slug !== 'curitiba')
       .map((l) => ({ path: `/camera-inspecao-esgoto/${l.slug}`, changefreq: 'monthly' as const, priority: '0.7' })),
   ],
-  // Perfis de empresa (6 URLs)
+  // Perfis de empresa
   'sitemap-businesses.xml': [
     ...empresas.map((e) => ({ path: `/empresa/${e.slug}`, changefreq: 'weekly' as const, priority: '0.6' })),
   ],
@@ -73,7 +75,7 @@ export const sitemapGrupos: Record<string, SitemapEntry[]> = {
 
 /**
  * Fonte única de verdade para sitemap e pré-renderização estática (SSG).
- * Retorna as 272 URLs indexáveis sem duplicatas.
+ * Retorna as URLs indexáveis sem duplicatas.
  */
 export function getIndexableRoutes(): string[] {
   const seen = new Set<string>();

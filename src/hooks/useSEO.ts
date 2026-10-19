@@ -18,11 +18,13 @@ interface SEOProps {
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   geoPosition?: { lat: number; lng: number };
   geoPlacename?: string;
+  /** Omite coordenadas quando a página não representa uma única localidade. */
+  omitGeo?: boolean;
   /** Marca a página como noindex (ex.: 404, resultados de busca). */
   noindex?: boolean;
 }
 
-export function useSEO({ title, description, canonical, type = 'website', ogImage, jsonLd, geoPosition, geoPlacename, noindex = false }: SEOProps) {
+export function useSEO({ title, description, canonical, type = 'website', ogImage, jsonLd, geoPosition, geoPlacename, omitGeo = false, noindex = false }: SEOProps) {
   useEffect(() => {
     document.title = title;
 
@@ -75,11 +77,18 @@ export function useSEO({ title, description, canonical, type = 'website', ogImag
       document.querySelector('meta[property="og:url"]')?.remove();
     }
 
-    const pos = geoPosition || GEO_COORDS;
-    setMeta('geo.region', 'BR-PR');
-    setMeta('geo.placename', geoPlacename || 'Curitiba, Paraná');
-    setMeta('geo.position', `${pos.lat};${pos.lng}`);
-    setMeta('ICBM', `${pos.lat}, ${pos.lng}`);
+    if (omitGeo) {
+      // Remove também metatags herdadas da rota anterior na navegação SPA.
+      ['geo.region', 'geo.placename', 'geo.position', 'ICBM'].forEach(name => {
+        document.querySelector(`meta[name="${name}"]`)?.remove();
+      });
+    } else {
+      const pos = geoPosition || GEO_COORDS;
+      setMeta('geo.region', 'BR-PR');
+      setMeta('geo.placename', geoPlacename || 'Curitiba, Paraná');
+      setMeta('geo.position', `${pos.lat};${pos.lng}`);
+      setMeta('ICBM', `${pos.lat}, ${pos.lng}`);
+    }
 
     if (jsonLd) {
       const existing = document.querySelectorAll('script[data-seo-jsonld]');
@@ -99,7 +108,7 @@ export function useSEO({ title, description, canonical, type = 'website', ogImag
       const scripts = document.querySelectorAll('script[data-seo-jsonld]');
       scripts.forEach(el => el.remove());
     };
-  }, [title, description, canonical, type, ogImage, jsonLd, geoPosition, geoPlacename, noindex]);
+  }, [title, description, canonical, type, ogImage, jsonLd, geoPosition, geoPlacename, omitGeo, noindex]);
 }
 
 // ─── SCHEMA BUILDERS ───────────────────────────────────────
@@ -206,6 +215,20 @@ const TIPO_LOCALBUSINESS: Record<string, string> = {
   madeireira: 'HomeAndConstructionBusiness',
 };
 
+const DIAS_DA_SEMANA = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+const DIAS_POR_ROTULO: Record<string, string[]> = {
+  segunda: ['Monday'],
+  terca: ['Tuesday'],
+  quarta: ['Wednesday'],
+  quinta: ['Thursday'],
+  sexta: ['Friday'],
+  sabado: ['Saturday'],
+  domingo: ['Sunday'],
+  'segunda a sexta': DIAS_DA_SEMANA.slice(0, 5),
+  'segunda a sabado': DIAS_DA_SEMANA.slice(0, 6),
+  'segunda a domingo': DIAS_DA_SEMANA,
+};
+
 export function buildLocalBusinessSchema(empresa: {
   nome: string;
   slug: string;
@@ -227,6 +250,7 @@ export function buildLocalBusinessSchema(empresa: {
   servicosOferecidos: string[];
   formasPagamento: string[];
   atende24h: boolean;
+  horarios?: { dia: string; abertura: string; fechamento: string; fechado?: boolean }[];
   avaliacoes?: { nomeCliente: string; nota: number; servicoRealizado: string; texto: string; data: string }[];
   produtos?: { nome: string; descricao: string; imagem: string; preco?: string }[];
 }, coords: { lat: number; lng: number }, _bairroNome: string, servicosDetalhes?: { nome: string; precoMedio?: string }[]) {
@@ -245,20 +269,32 @@ export function buildLocalBusinessSchema(empresa: {
     datePublished: a.data,
   }));
 
-  const offers = (servicosDetalhes || []).map(s => {
-    const match = s.precoMedio?.match(/R\$\s*([\d.]+)/);
-    const price = match ? match[1].replace('.', '') : '150';
-    return {
-      '@type': 'Offer',
-      itemOffered: {
-        '@type': 'Service',
-        name: s.nome,
-      },
-      price,
-      priceCurrency: 'BRL',
-      priceValidUntil: '2027-12-31',
-      availability: 'https://schema.org/InStock',
-    };
+  // Preço médio editorial não é uma oferta ou cotação desta empresa.
+  const offers = (servicosDetalhes || []).map(s => ({
+    '@type': 'Offer',
+    itemOffered: {
+      '@type': 'Service',
+      name: s.nome,
+    },
+  }));
+
+  const openingHours = (empresa.horarios || []).flatMap(horario => {
+    const rotulo = horario.dia.trim().toLowerCase().normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '').replace(/ \(24 horas\)$/, '');
+    const dayOfWeek = DIAS_POR_ROTULO[rotulo];
+    const horaValida = /^([01]\d|2[0-3]):[0-5]\d$/;
+
+    // Não inferir dias de plantões, períodos fechados ou horários ausentes.
+    if (horario.fechado || !Array.isArray(dayOfWeek) || !horaValida.test(horario.abertura) || !horaValida.test(horario.fechamento)) {
+      return [];
+    }
+
+    return [{
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek,
+      opens: horario.abertura,
+      closes: horario.fechamento,
+    }];
   });
 
   const productOffers = (empresa.produtos || []).map(p => ({
@@ -305,14 +341,7 @@ export function buildLocalBusinessSchema(empresa: {
     ...(empresa.site && { mainEntityOfPage: empresa.site }),
     currenciesAccepted: 'BRL',
     paymentAccepted: empresa.formasPagamento.join(', '),
-    openingHoursSpecification: {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: empresa.atende24h
-        ? ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-        : ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-      opens: empresa.atende24h ? '00:00' : '07:30',
-      closes: empresa.atende24h ? '23:59' : '18:30',
-    },
+    ...(openingHours.length > 0 && { openingHoursSpecification: openingHours }),
     ...(empresa.totalAvaliacoes > 0 && {
       aggregateRating: {
         '@type': 'AggregateRating',
@@ -346,37 +375,43 @@ export function buildLocalBusinessSchema(empresa: {
   };
 }
 
-/** Serviço — Service com AggregateOffer + AggregateRating */
-export function buildServiceSchema(serviceName: string, description: string, priceRange?: string, empresasCount?: number) {
-  const match = priceRange?.match(/R\$\s*([\d.]+)/g);
-  const lowPrice = match?.[0]?.replace(/R\$\s*/, '').replace('.', '') || '150';
-  const highPrice = match?.[1]?.replace(/R\$\s*/, '').replace('.', '') || '800';
-
-  return {
-    '@context': 'https://schema.org',
+/** Serviço editorial, sem transformar referências de preço em ofertas.
+ *  Os argumentos legados de preço e contagem são mantidos por compatibilidade.
+ *  Uma listagem só recebe contagem quando os próprios cadastros são fornecidos. */
+export function buildServiceSchema(
+  serviceName: string,
+  description: string,
+  _priceRange?: string,
+  _empresasCount?: number,
+  context?: {
+    regioes?: string[];
+    listagem?: { url: string; empresas: { nome: string; slug: string }[] };
+  },
+) {
+  const regioes = [...new Set((context?.regioes || []).map(regiao => regiao.trim()).filter(Boolean))];
+  const service = {
     '@type': 'Service',
-    name: `${serviceName} em Curitiba`,
+    name: serviceName,
     description,
-    provider: {
-      '@type': 'Organization',
-      name: SITE_NAME,
-      url: SITE_URL,
-      telephone: PHONE_1,
-    },
-    areaServed: {
-      '@type': 'City',
-      name: 'Curitiba',
-      containedInPlace: { '@type': 'State', name: 'Paraná' },
-    },
-    offers: {
-      '@type': 'AggregateOffer',
-      lowPrice: lowPrice,
-      highPrice: highPrice,
-      priceCurrency: 'BRL',
-      ...(empresasCount ? { offerCount: empresasCount.toString() } : {}),
-      availability: 'https://schema.org/InStock',
-    },
+    ...(regioes.length > 0 && {
+      areaServed: regioes.map(name => ({ '@type': 'Place', name })),
+    }),
   };
+
+  if (context?.listagem) {
+    return buildCollectionPageSchema({
+      name: serviceName,
+      description,
+      url: context.listagem.url,
+      about: service,
+      items: context.listagem.empresas.map(empresa => ({
+        name: empresa.nome,
+        url: `/empresa/${empresa.slug}`,
+      })),
+    });
+  }
+
+  return { '@context': 'https://schema.org', ...service };
 }
 
 /** Hub de localidade/categoria — CollectionPage + ItemList.

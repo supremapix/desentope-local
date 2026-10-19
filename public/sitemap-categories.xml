@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.servicosnobairro.com.br/categorias/mudancas/curitiba</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/categorias/transportes/curitiba</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/categorias/entregas/curitiba</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.servicosnobairro.com.br/servicos/desentupimento-vaso-sanitario</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -237,6 +252,76 @@
   </url>
   <url>
     <loc>https://www.servicosnobairro.com.br/servicos/conserto-lava-e-seca</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/toldos-retraveis-curitiba</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/toldos-de-lona-curitiba</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/coberturas-de-policarbonato-curitiba</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/coberturas-de-vidro-curitiba</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/coberturas-de-zinco-curitiba</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/toldos-de-policarbonato-curitiba</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/cortinas-de-lona-curitiba</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/cortinas-rolo-curitiba</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/reforma-manutencao-toldos</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/troca-de-lonas-toldos</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/troca-chapas-policarbonato</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/sombreiros-areas-externas</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/venda-de-lonas-curitiba</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/servicos/coberturas-sob-medida-curitiba</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
