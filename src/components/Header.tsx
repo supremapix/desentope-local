@@ -1,15 +1,31 @@
 import { Link, useLocation } from 'react-router-dom';
 import { MapPin, Menu, X } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useId, useRef } from 'react';
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const mobileMenuId = useId();
   const location = useLocation();
+  const closeMenu = () => setMenuOpen(false);
 
   useEffect(() => {
     setMenuOpen(false);
-  }, [location.pathname]);
+  }, [location]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      setMenuOpen(false);
+      menuButtonRef.current?.focus();
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [menuOpen]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 8);
@@ -76,51 +92,63 @@ export function Header() {
 
         {/* Mobile toggle */}
         <button
-          onClick={() => setMenuOpen(!menuOpen)}
+          ref={menuButtonRef}
+          type="button"
+          onClick={() => setMenuOpen((open) => !open)}
           className="md:hidden p-2 rounded-md text-foreground hover:bg-muted transition-colors"
-          aria-label="Abrir menu de navegação"
+          aria-label={menuOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação'}
+          aria-expanded={menuOpen}
+          aria-controls={mobileMenuId}
         >
           {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
 
       {/* Mobile menu */}
-      {menuOpen && (
-        <nav className="md:hidden border-t border-border bg-card px-4 py-4 space-y-2 animate-in fade-in-50 duration-150">
+      <nav
+        id={mobileMenuId}
+        aria-label="Navegação móvel"
+        hidden={!menuOpen}
+        className="md:hidden border-t border-border bg-card px-4 py-4 space-y-2 animate-in fade-in-50 duration-150"
+      >
+        <Link
+          to="/curitiba/centro"
+          onClick={closeMenu}
+          className="block px-3 py-2 rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors"
+        >
+          Bairros de Curitiba
+        </Link>
+        <Link
+          to="/busca"
+          onClick={closeMenu}
+          className="block px-3 py-2 rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors"
+        >
+          Buscar Serviços
+        </Link>
+        <Link
+          to="/faq"
+          onClick={closeMenu}
+          className="block px-3 py-2 rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors"
+        >
+          Dúvidas Frequentes (FAQ)
+        </Link>
+        <Link
+          to="/anuncie-aqui"
+          onClick={closeMenu}
+          className="block px-3 py-2 rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors"
+        >
+          Para Empresas e Anunciantes
+        </Link>
+        <div className="pt-2">
           <Link
-            to="/curitiba/centro"
-            className="block px-3 py-2 rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors"
+            to="/cadastrar-empresa"
+            onClick={closeMenu}
+            className="block w-full text-center py-2.5 px-4 rounded-md bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors"
           >
-            Bairros de Curitiba
+            Cadastrar Empresa no Guia
           </Link>
-          <Link
-            to="/busca"
-            className="block px-3 py-2 rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors"
-          >
-            Buscar Serviços
-          </Link>
-          <Link
-            to="/faq"
-            className="block px-3 py-2 rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors"
-          >
-            Dúvidas Frequentes (FAQ)
-          </Link>
-          <Link
-            to="/anuncie-aqui"
-            className="block px-3 py-2 rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors"
-          >
-            Para Empresas e Anunciantes
-          </Link>
-          <div className="pt-2">
-            <Link
-              to="/cadastrar-empresa"
-              className="block w-full text-center py-2.5 px-4 rounded-md bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors"
-            >
-              Cadastrar Empresa no Guia
-            </Link>
-          </div>
-        </nav>
-      )}
+        </div>
+      </nav>
     </header>
   );
 }

@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
-import { getEmpresaBySlug, getEmpresasPorBairro } from '@/data/empresas';
+import { empresas, getEmpresaBySlug } from '@/data/empresas';
+import { getEmpresasRelacionadas } from '@/lib/empresas-relacionadas';
 import { getCoordenadasBairro } from '@/data/empresas';
 import { servicos } from '@/data/servicos';
 import { RatingStars } from '@/components/RatingStars';
@@ -9,7 +10,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { CompanyCard } from '@/components/CompanyCard';
 import { ShieldCheck, Clock, Zap, Phone, MapPin, CreditCard, Star, Wrench, Mail, AlertTriangle, MessageCircle, Send } from 'lucide-react';
 import { ServiceIcon } from '@/components/ServiceIcon';
-import { useEffect, useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { useSEO, buildLocalBusinessSchema, buildBreadcrumbSchema, buildFAQSchema } from '@/hooks/useSEO';
 
 interface EmpresaPageProps {
@@ -29,11 +30,11 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
   const cidadeBase = empresa?.cidadeBase || 'Curitiba';
   const estadoBase = empresa?.estadoBase || 'PR';
 
-  const similares = useMemo(() => {
-    if (!empresa) return [];
-    const bairroEmpresas = getEmpresasPorBairro(bairroSlug);
-    return bairroEmpresas.filter(e => e.slug !== empresa.slug).slice(0, 3);
-  }, [empresa, bairroSlug]);
+  const similares = useMemo(() => empresa ? getEmpresasRelacionadas(empresa, empresas) : [], [empresa]);
+  const youtubeVideoId = empresa?.youtubeVideoId?.trim();
+  const youtubeUrl = youtubeVideoId && /^[A-Za-z0-9_-]{11}$/.test(youtubeVideoId)
+    ? `https://www.youtube.com/watch?v=${youtubeVideoId}`
+    : undefined;
 
   const servicosDetalhes = useMemo(() => {
     if (!empresa) return [];
@@ -223,22 +224,13 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
             )}
 
             {/* YouTube Video CTA */}
-            {empresa.youtubeVideoId && (
+            {youtubeUrl && (
               <Card className="border-secondary border-2 overflow-hidden">
                 <CardContent className="p-0">
-                  <div className="aspect-video w-full">
-                    <iframe
-                      src={`https://www.youtube.com/embed/${empresa.youtubeVideoId}?rel=0&modestbranding=1`}
-                      title={`Vídeo - ${empresa.nome}`}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="w-full h-full"
-                      loading="lazy"
-                    />
-                  </div>
                   <div className="p-5 bg-gradient-to-r from-secondary/10 to-primary/10">
-                    <h2 className="text-lg font-black mb-2">🎬 Conheça nosso trabalho em ação!</h2>
-                    <p className="text-sm text-muted-foreground mb-3">Veja como resolvemos problemas hidráulicos com rapidez e profissionalismo.</p>
+                    <h2 className="text-lg font-black mb-2">Vídeo da {empresa.nome}</h2>
+                    <p className="text-sm text-muted-foreground mb-3">Consulte o vídeo indicado no cadastro da empresa. A reprodução acontece no YouTube, em uma nova aba.</p>
+                    <a href={youtubeUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center min-h-11 text-sm font-semibold text-primary underline underline-offset-4 mb-3">Abrir vídeo no YouTube <span className="sr-only">(abre em nova aba)</span></a>
                     <div className="flex flex-wrap gap-2">
                       <a
                         href={`tel:${empresa.telefone.replace(/\D/g, '')}`}
@@ -250,7 +242,7 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
                         whatsapp={empresa.whatsapp}
                         mensagem={`Olá! Vi o vídeo da ${empresa.nome} e quero solicitar um orçamento. [via vídeo - servicosnobairro.com.br]`}
                         size="lg"
-                        label="WHATSAPP (41) 98517-1966"
+                        label={`WHATSAPP ${empresa.telefone}`}
                       />
                     </div>
                   </div>
@@ -605,7 +597,8 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
         {/* Similares */}
         {similares.length > 0 && (
           <div className="mt-12">
-            <h2 className="text-xl font-bold mb-4">Empresas Similares em {bairroNome}</h2>
+            <h2 className="text-xl font-bold mb-2">Outros perfis com serviços em comum</h2>
+            <p className="text-sm text-muted-foreground mb-4">Os cadastros informam ramo, serviço e ao menos uma cidade em comum. Confirme o endereço ou trajeto atendido diretamente com cada empresa.</p>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {similares.map(e => (
                 <CompanyCard key={e.slug} empresa={e} />
