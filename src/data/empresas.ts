@@ -5,7 +5,7 @@ import { bairrosSaoPauloSlugs, cidadesSaoPauloSlugs, bairrosOsascoSlugs, cidades
 import { bairrosSantaCatarinaSlugs, cidadesSantaCatarinaSlugs } from '@/data/cidades-sc';
 
 // Segmentos que NÃO devem aparecer nas listagens hidráulicas por bairro/cidade
-const SEGMENTOS_NAO_HIDRAULICOS = ['motofrete', 'lavanderia', 'refrigeracao', 'construcao', 'madeireira'] as const;
+const SEGMENTOS_NAO_HIDRAULICOS = ['motofrete', 'lavanderia', 'refrigeracao', 'construcao', 'madeireira', 'religiao'] as const;
 function isSegmentoHidraulico(emp: Empresa): boolean {
   return !emp.tipoServico.some(t => (SEGMENTOS_NAO_HIDRAULICOS as readonly string[]).includes(t));
 }
@@ -1106,6 +1106,65 @@ const empresasReais: Empresa[] = [
         pergunta: 'Quais são as opções de pagamento e parcelamento?',
         resposta: 'Oferecemos condições facilitadas via PIX, cartões de crédito com parcelamento sem juros, cartões de débito e transferência bancária.',
       },
+    ],
+    avaliacoes: [],
+    notaMedia: 0,
+    totalAvaliacoes: 0,
+  },
+  {
+    slug: 'pai-laercio-centro-sagrado-coracao-jesus-curitiba',
+    nome: 'Centro Sagrado Coração de Jesus — Pai Laércio',
+    tituloSeo: 'Pai Laércio em Curitiba | Consultas Espirituais, Cartas e Búzios',
+    logo: 'https://espacopailaercio.com.br/og-image.jpg',
+    fotoCapa: 'https://espacopailaercio.com.br/og-image.jpg',
+    fotos: [
+      'https://espacopailaercio.com.br/og-image.jpg',
+    ],
+    descricao: 'O Centro Sagrado Coração de Jesus, liderado pelo Pai Laércio, oferece consultas espirituais, leitura de cartas e búzios, e trabalhos espirituais em Curitiba.',
+    descricaoLonga: 'O Centro Sagrado Coração de Jesus, sob a orientação do Pai Laércio, é um espaço dedicado ao acolhimento e auxílio espiritual em Curitiba. Com anos de experiência e dedicação, o Pai Laércio realiza consultas através de cartas e búzios, oferecendo revelações e orientações para diversos aspectos da vida, como amor, saúde, negócios e família.\n\nEspecializado em trabalhos para o amor, união de casais, abertura de caminhos e limpeza espiritual, o Centro busca proporcionar equilíbrio e paz interior aos que o procuram. Atendimento realizado com seriedade, respeito e total sigilo.\n\nLocalizado na Rua Frei Orlando, 437, no Jardim Social, Curitiba, o espaço recebe pessoas de toda a região e também oferece atendimento especializado para outras capitais.\n\nOs resultados variam de pessoa para pessoa. O trabalho espiritual não substitui acompanhamento médico, psicológico ou jurídico. Atendimento destinado a maiores de 18 anos.\n\nPara agendar sua consulta ou saber mais, entre em contato pelo WhatsApp (41) 98467-9910 ou ligue para (41) 3222-8276.',
+    whatsapp: '5541984679910',
+    whatsappSecundario: '5511959295981',
+    telefone: '(41) 3222-8276',
+    email: 'sac@espacopailaercio.com.br',
+    cnpj: '67.506.660/0001-10',
+    endereco: 'Rua Frei Orlando, 437 — Jardim Social, Curitiba/PR',
+    site: 'https://espacopailaercio.com.br',
+    cidadeBase: 'Curitiba',
+    estadoBase: 'PR',
+    verificada: true,
+    destaque: true,
+    atende24h: false,
+    atendeEmergencia: true,
+    tipoServico: ['religiao'],
+    servicosOferecidos: [
+      'consultas-espirituais',
+      'cartas-e-buzios',
+      'trabalhos-espirituais',
+      'limpeza-espiritual',
+      'abertura-de-caminhos',
+      'uniao-de-casais',
+    ],
+    bairrosAtendidos: [
+      'jardim-social', 'centro', 'batel', 'agua-verde', 'bigorrilho', 'merces',
+      'reboucas', 'boa-vista', 'bacacheri', 'cajuru', 'uberaba', 'xaxim',
+      'boqueirao', 'alto-boqueirao', 'sitio-cercado', 'pinheirinho', 'capao-raso',
+      'novo-mundo', 'portao', 'santa-felicidade', 'campo-comprido', 'cic',
+      'tatuquara', 'ganchinho', 'umbara', 'pilarzinho', 'abranches', 'taboao',
+      'santa-candida', 'atuba', 'tingui', 'bairro-alto', 'taruma', 'jardim-das-americas',
+      'guabirotuba', 'hauer', 'prado-velho', 'parolin', 'vila-izabel', 'santa-quiteria',
+      'seminario', 'campina-do-siqueira', 'mossungue', 'santo-inacio', 'cascatinha',
+      'vista-alegre', 'bom-retiro', 'sao-francisco', 'alto-da-gloria', 'alto-da-xv',
+      'juveve', 'cabral', 'ahau', 'hugo-lange'
+    ],
+    cidadesAtendidas: [
+      'curitiba', 'sao-jose-dos-pinhais', 'pinhais', 'colombo', 'araucaria',
+      'fazenda-rio-grande', 'piraquara', 'campo-largo', 'almirante-tamandare'
+    ],
+    formasPagamento: ['PIX', 'Dinheiro', 'Cartão de Crédito', 'Cartão de Débito'],
+    horarios: [
+      { dia: 'Segunda a Sexta', abertura: '09:00', fechamento: '19:00' },
+      { dia: 'Sábado', abertura: '09:00', fechamento: '14:00' },
+      { dia: 'Domingo', abertura: '', fechamento: '', fechado: true },
     ],
     avaliacoes: [],
     notaMedia: 0,

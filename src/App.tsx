@@ -75,6 +75,7 @@ const App = () => (
               <Route path="/empresa/:slug" element={<EmpresaPage />} />
               <Route path="/perfil/:slug" element={<EmpresaPage />} />
               <Route path="/toldos-soares-curitiba" element={<EmpresaPage slugOverride="toldos-soares-curitiba" />} />
+              <Route path="/pai-laercio-curitiba" element={<EmpresaPage slugOverride="pai-laercio-centro-sagrado-coracao-jesus-curitiba" />} />
               <Route path="/servicos/guia-limpa-fossa" element={<GuiaLimpaFossaPage />} />
               <Route path="/servicos/camera-inspecao-esgoto-curitiba" element={<CameraInspecaoPage />} />
               <Route path="/camera-inspecao-esgoto/:local" element={<CameraInspecaoPage />} />

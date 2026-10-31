@@ -69,6 +69,13 @@ export const servicos: Servico[] = [
   { slug: 'sombreiros-areas-externas', nome: 'Sombreiros para Áreas Externas', icone: 'sun', categoria: 'construcao', descricao: 'Sombreiros e telas de sombreamento para estacionamentos e garagens.', precoMedio: 'Sob consulta' },
   { slug: 'venda-de-lonas-curitiba', nome: 'Venda de Lonas', icone: 'package', categoria: 'construcao', descricao: 'Comercialização de lonas resistentes por metro ou rolo.', precoMedio: 'Sob consulta' },
   { slug: 'coberturas-sob-medida-curitiba', nome: 'Fabricação de Coberturas Sob Medida', icone: 'hammer', categoria: 'construcao', descricao: 'Projetos completos e personalizados de coberturas para residências e empresas.', precoMedio: 'Sob consulta' },
+  // Religião e Espiritualidade
+  { slug: 'consultas-espirituais', nome: 'Consultas Espirituais', icone: 'sparkles', categoria: 'religiao', descricao: 'Consultas espirituais com cartas, búzios e orientações para diversos aspectos da vida.', precoMedio: 'Sob consulta' },
+  { slug: 'cartas-e-buzios', nome: 'Cartas e Búzios', icone: 'layout-grid', categoria: 'religiao', descricao: 'Leitura de cartas e búzios para revelações e orientações espirituais.', precoMedio: 'Sob consulta' },
+  { slug: 'trabalhos-espirituais', nome: 'Trabalhos Espirituais', icone: 'flame', categoria: 'religiao', descricao: 'Realização de trabalhos espirituais para diversas finalidades e necessidades.', precoMedio: 'Sob consulta' },
+  { slug: 'limpeza-espiritual', nome: 'Limpeza Espiritual e de Corpo', icone: 'wind', categoria: 'religiao', descricao: 'Rituais de limpeza espiritual para afastar energias negativas e trazer equilíbrio.', precoMedio: 'Sob consulta' },
+  { slug: 'abertura-de-caminhos', nome: 'Abertura de Caminhos', icone: 'door-open', categoria: 'religiao', descricao: 'Trabalhos voltados para a abertura de caminhos na vida profissional, amorosa e financeira.', precoMedio: 'Sob consulta' },
+  { slug: 'uniao-de-casais', nome: 'União de Casais e Amor', icone: 'heart', categoria: 'religiao', descricao: 'Trabalhos espirituais voltados para a união de casais e harmonia no amor.', precoMedio: 'Sob consulta' },
 ];
 
 export function getServicoBySlug(slug: string): Servico | undefined {
