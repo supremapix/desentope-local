@@ -5,6 +5,7 @@ import { cidadesRMC } from '@/data/cidades-rmc';
 import { getEmpresasPorBairro, getEmpresasPorCidade } from '@/data/empresas';
 import { CompanyCard } from '@/components/CompanyCard';
 import { SearchBar } from '@/components/SearchBar';
+import { LocalRequestPlanner } from '@/components/LocalRequestPlanner';
 import { useSEO, buildBreadcrumbSchema, buildFAQSchema } from '@/hooks/useSEO';
 import { hiringTopics, localQuestions } from '@/data/local-guides';
 import { bairrosRMC, fichasBairrosRMC, slugLocal } from '@/data/bairros-rmc';
@@ -78,6 +79,7 @@ export default function BairroPage() {
       <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">{cadastro.bairros.filter(n => normalizar(n).includes(normalizar(filtroBairros))).map(n => { const individual = fichasBairrosRMC.find(f => f.cidade === cidadeData!.slug && f.slug === slugLocal(n)); return <li key={n} className="border rounded-xl p-4"><h3 className="font-bold mb-2">{n}</h3><p className="text-xs text-muted-foreground mb-2">{cadastro.classificacoes[n]}</p>{individual ? <Link to={`/rmc/${cidadeData!.slug}/${individual.slug}`} className="text-primary underline">Guia do bairro →</Link> : <a href="#empresas-locais" className="text-primary underline">Consultar prestadores da cidade</a>}</li>; })}</ul>
       {!cadastro.bairros.some(n => normalizar(n).includes(normalizar(filtroBairros))) && <p role="status" className="mt-4">Nome não localizado neste índice. Confira a grafia ou consulte o prestador informando seu endereço completo.</p>}<p className="text-sm mt-5">Nomes e classificação: <a href={cadastro.fonte} target="_blank" rel="noopener noreferrer" className="text-primary underline">fonte municipal</a>. {cadastro.nota}</p></section>}
 
+    <LocalRequestPlanner key={path} place={localCompleto} />
     <section className="mb-12" aria-labelledby="duvidas"><h2 id="duvidas" className="text-2xl font-bold mb-4">Dúvidas sobre atendimento em {localCompleto}</h2><div className="space-y-3">{perguntas.map(q => <details key={q.pergunta} className="border rounded-xl p-5"><summary className="font-bold cursor-pointer min-h-8">{q.pergunta}</summary><p className="mt-3 leading-relaxed">{q.resposta}</p></details>)}</div></section>
     <aside className="border rounded-xl p-5 mb-10"><h2 className="font-bold mb-2">Cuidados com a rede de esgoto</h2><p className="text-sm leading-relaxed">Evite descartar óleo e objetos no vaso ou no ralo. Água de chuva e esgoto têm destinos diferentes; uma avaliação técnica ajuda a identificar ligações inadequadas. <a href="https://www.sanepar.com.br/ligacao-na-rede" className="text-primary underline" target="_blank" rel="noopener noreferrer">Veja as orientações da Sanepar</a>.</p></aside>
     <nav aria-label="Outras localidades" className="border-t pt-6"><h2 className="font-bold mb-4">Continue por cidade e bairro</h2><div className="flex flex-wrap gap-3"><Link to="/curitiba" className="border rounded-lg px-4 py-3">Curitiba</Link>{cidadesRMC.filter(c => !cidadeData || c.slug !== cidadeData.slug || ficha).map(c => <Link key={c.slug} to={`/rmc/${c.slug}`} className="border rounded-lg px-4 py-3 hover:text-primary">{c.nome}</Link>)}</div></nav>

@@ -31,6 +31,61 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.servicosnobairro.com.br/rmc/pinhais/centro</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/rmc/pinhais/weissopolis</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/rmc/pinhais/vargem-grande</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/rmc/pinhais/emiliano-perneta</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/rmc/pinhais/pineville</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/rmc/pinhais/atuba</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/rmc/colombo/centro</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/rmc/colombo/guaraituba</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/rmc/colombo/maracana</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/rmc/colombo/osasco</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.servicosnobairro.com.br/rmc/colombo/roca-grande</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.servicosnobairro.com.br/curitiba/centro</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

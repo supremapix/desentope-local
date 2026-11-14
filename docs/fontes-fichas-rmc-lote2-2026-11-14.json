@@ -1,0 +1,93 @@
+{
+  "verificadoEm": "2026-11-14",
+  "fichas": [
+    {
+      "cidade": "pinhais",
+      "nome": "Centro",
+      "slug": "centro",
+      "contexto": "A Prefeitura identifica a Escola Municipal Dona Maria Chalcoski na Rua América do Sul, no Centro de Pinhais.",
+      "orientacao": "Escreva Centro de Pinhais no pedido, e não somente Centro, para evitar confusão com Curitiba e outras cidades. Para serviço em loja ou prédio, indique entrada, sala ou andar e combine o acesso à instalação antes da visita.",
+      "fonte": "https://atendenet.pinhais.pr.gov.br/cidadao/pagina/escolas-municipais"
+    },
+    {
+      "cidade": "pinhais",
+      "nome": "Weissópolis",
+      "slug": "weissopolis",
+      "contexto": "A Escola Municipal João Leopoldo Jacomel é identificada pela Prefeitura na Rua Rio Tietê, em Weissópolis.",
+      "orientacao": "Ao informar uma rua com nome de rio, envie o nome por completo e o número do imóvel para evitar trocar vias parecidas. Diga se o retorno de água está em um único ponto ou em vários, sem tentar definir a causa antes da avaliação.",
+      "fonte": "https://atendenet.pinhais.pr.gov.br/cidadao/pagina/escolas-municipais"
+    },
+    {
+      "cidade": "pinhais",
+      "nome": "Vargem Grande",
+      "slug": "vargem-grande",
+      "contexto": "A Escola Municipal Guilherme Ceolin consta na Rua Cassiano Ricardo, no bairro Vargem Grande.",
+      "orientacao": "Use Vargem Grande, Pinhais, junto à rua e ao número. Se citar a escola como referência, informe também o acesso exato ao imóvel. No pedido de orçamento, diferencie falta de água, vazamento e dificuldade de escoamento, pois exigem avaliações distintas.",
+      "fonte": "https://atendenet.pinhais.pr.gov.br/cidadao/pagina/escolas-municipais"
+    },
+    {
+      "cidade": "pinhais",
+      "nome": "Emiliano Perneta",
+      "slug": "emiliano-perneta",
+      "contexto": "A Escola Municipal Aroldo de Freitas é relacionada pela Prefeitura na Rua Pedro Fanor, em Emiliano Perneta.",
+      "orientacao": "Prefira o nome completo Emiliano Perneta no pedido, mesmo quando a referência cotidiana for apenas Perneta. Para comércio ou imóvel com várias unidades, identifique qual entrada e qual instalação precisam de atendimento, além do horário em que alguém pode receber a equipe.",
+      "fonte": "https://atendenet.pinhais.pr.gov.br/cidadao/pagina/escolas-municipais"
+    },
+    {
+      "cidade": "pinhais",
+      "nome": "Pineville",
+      "slug": "pineville",
+      "contexto": "A Prefeitura situa a Escola Municipal José Brunetti Gugelmin na Rua Malásia, no bairro Pineville.",
+      "orientacao": "Mantenha a grafia Pineville e informe o município no orçamento. Em condomínios, combine autorização de entrada e acesso ao ponto de inspeção; em casa, descreva se o problema está na cozinha, banheiro ou área externa para o prestador avaliar o escopo.",
+      "fonte": "https://atendenet.pinhais.pr.gov.br/cidadao/pagina/escolas-municipais"
+    },
+    {
+      "cidade": "pinhais",
+      "nome": "Atuba",
+      "slug": "atuba",
+      "contexto": "A Escola Municipal Anísio Teixeira é relacionada na Rua Dr. Waldemar Costa Lima, em Atuba, Pinhais.",
+      "orientacao": "Inclua Pinhais e o CEP no pedido quando usar o nome Atuba. A indicação da cidade, da rua e do número reduz ambiguidades de localização. Explique se o serviço é reparo, instalação ou desentupimento e peça orçamento antes de autorizar a execução.",
+      "fonte": "https://atendenet.pinhais.pr.gov.br/cidadao/pagina/escolas-municipais"
+    },
+    {
+      "cidade": "colombo",
+      "nome": "Centro",
+      "slug": "centro",
+      "contexto": "A Prefeitura de Colombo identifica sua sede na Rua XV de Novembro, no Centro.",
+      "orientacao": "Informe Centro de Colombo, rua e número, evitando confusão com o Centro de Curitiba. Para imóvel comercial, explique o acesso à loja e se a intervenção precisa ocorrer fora do período de atendimento.",
+      "fonte": "https://prefeitura.colombo.pr.gov.br/regionais/"
+    },
+    {
+      "cidade": "colombo",
+      "nome": "Guaraituba",
+      "slug": "guaraituba",
+      "contexto": "A Rua Guaratuba é identificada pela Prefeitura no bairro Guaraituba, em Colombo. Os nomes da via e do bairro são parecidos, mas não são a mesma informação.",
+      "orientacao": "Ao enviar o endereço, escreva separadamente bairro Guaraituba e nome da rua. Não confunda com Guarituba, em Piraquara. Informe quais pontos estão afetados e se o profissional precisará acessar caixa de inspeção ou área compartilhada.",
+      "fonte": "https://prefeitura.colombo.pr.gov.br/rua-guaratuba-uma-das-maiores-vias-publicas-recebera-pavimentacao-asfaltica/"
+    },
+    {
+      "cidade": "colombo",
+      "nome": "Maracanã",
+      "slug": "maracana",
+      "contexto": "A AMEP identifica o Terminal Maracanã na Avenida Marginal José de Anchieta, em Vila Guarani, Colombo. O nome do terminal é uma referência de transporte e não substitui o bairro do imóvel.",
+      "orientacao": "Se a referência for perto do Terminal Maracanã, acrescente a rua, o número e o bairro do endereço. Informe o acesso correto e as condições para parada do veículo; o tempo de chegada precisa ser combinado com o prestador.",
+      "fonte": "https://www.amep.pr.gov.br/Pagina/Terminal-Maracana"
+    },
+    {
+      "cidade": "colombo",
+      "nome": "Osasco",
+      "slug": "osasco",
+      "contexto": "Colombo possui uma Regional Osasco/Roça Grande; a Prefeitura a identifica na Rua Santo Paschoal Francheski, em Jardim Osasco. A regional administrativa abrange mais que um nome de bairro.",
+      "orientacao": "Use Osasco, Colombo, Paraná no chamado, e não apenas Osasco, para não confundir com o município paulista. Descreva casa, comércio ou condomínio e informe se o reparo é na instalação de água ou no escoamento.",
+      "fonte": "https://prefeitura.colombo.pr.gov.br/regionais/"
+    },
+    {
+      "cidade": "colombo",
+      "nome": "Roça Grande",
+      "slug": "roca-grande",
+      "contexto": "A Prefeitura cita a esquina das ruas Rio Japurá e André Nadolny como referência em Roça Grande em sua informação sobre coleta seletiva de abril de 2026.",
+      "orientacao": "No chamado em Roça Grande, envie endereço e ponto de referência por escrito. Não descarte resíduos de limpeza de esgoto junto aos recicláveis: combine com o prestador a retirada e a destinação adequadas ao material do serviço.",
+      "fonte": "https://prefeitura.colombo.pr.gov.br/ecopontos-de-coleta-seletiva-sao-realocados-para-novos-pontos-em-colombo/"
+    }
+  ]
+}
