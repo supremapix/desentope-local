@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { getEmpresasPorBairro, empresas as empresasReais } from '@/data/empresas';
 import { servicos } from '@/data/servicos';
@@ -21,6 +21,14 @@ const BuscaPage = () => {
   const [ordenar, setOrdenar] = useState('relevante');
 
   const localParam = searchParams.get('local') || '';
+  const servicoParam = searchParams.get('servico') || '';
+  const horarioParam = searchParams.get('24h') === 'true';
+
+  // A new search can update the URL without remounting this page.
+  useEffect(() => {
+    setFiltroServico(servicoParam);
+    setFiltro24h(horarioParam);
+  }, [servicoParam, horarioParam]);
 
   useSEO({
     noindex: true,
