@@ -1,0 +1,73 @@
+{
+  "verificadoEm": "2026-11-14",
+  "nota": "Fatos municipais separados de orientações editoriais. Referências de equipamentos públicos não são filiais, contatos de empresas ou parcerias.",
+  "fichas": [
+    {
+      "cidade": "piraquara",
+      "bairro": "centro",
+      "nome": "Centro",
+      "fatos": [
+        "O Terminal de Piraquara é identificado pela Prefeitura na Rua Reinaldo Meira, no Centro.",
+        "A Avenida Getúlio Vargas é apontada como via principal da cidade e se conecta à Rodovia João Leopoldo Jacomel."
+      ],
+      "fonte": "https://www.piraquara.pr.gov.br/como-chegar-3296",
+      "utilidade": "Ao solicitar visita no Centro, informe rua, número e acesso ao imóvel; referências ao terminal ou à Getúlio Vargas ajudam a orientar, mas não substituem o endereço. Combine antecipadamente onde o prestador pode parar e como acessar a instalação."
+    },
+    {
+      "cidade": "piraquara",
+      "bairro": "guarituba-redondo",
+      "nome": "Guarituba Redondo",
+      "fatos": [
+        "A Prefeitura registra a UBS Wanda Mallman na Rua Elizabete de Souza, 126, em Guarituba Redondo.",
+        "A UBS Maria Francelina, conhecida como Madre Tereza, consta na Rua Juri Danilenko, 2925, no mesmo bairro."
+      ],
+      "fonte": "https://www.piraquara.pr.gov.br/portal/secretarias-paginas/202/estrutura-de-atendimento--informacoes-a-populacao/",
+      "utilidade": "Para localizar o atendimento, prefira a denominação Guarituba Redondo acompanhada de rua e número, em vez de apenas Guarituba. Informe qual acesso à casa ou ao comércio deve ser usado e onde está o ponto afetado."
+    },
+    {
+      "cidade": "piraquara",
+      "bairro": "jardim-dos-estados",
+      "nome": "Jardim dos Estados",
+      "fatos": [
+        "O comunicado municipal de 5 de março de 2026 identifica Avenida Santa Catarina, Avenida Paraná, Avenida São Paulo e ruas Amazonas, Pernambuco e Goiás no Jardim dos Estados."
+      ],
+      "fonte": "https://www.piraquara.pr.gov.br/portal/noticias/0/3/715/prefeitura-anuncia-inicio-das-obras-de-pavimentacao-no-jardim-santa-helena-e-jardim-dos-estados/",
+      "utilidade": "Como há avenidas com nomes de estados, envie o endereço escrito completo e o ponto de referência, evitando abreviações. Caso exista alguma restrição de acesso no dia da visita, avise o prestador antes do deslocamento.",
+      "cuidado": "Não afirmar que as obras continuam, que estão concluídas ou que determinado imóvel tem problema de drenagem."
+    },
+    {
+      "cidade": "sao-jose-dos-pinhais",
+      "bairro": "centro",
+      "nome": "Centro",
+      "fatos": [
+        "O Centro faz divisa com Cidade Jardim, São Cristóvão, Águas Belas, Cruzeiro, São Pedro, Bom Jesus, Aristocrata e São Domingos.",
+        "A Prefeitura identifica o Museu Municipal Atílio Rocco na Rua XV de Novembro, 1660."
+      ],
+      "fonte": "https://www.sjp.pr.gov.br/centro/",
+      "utilidade": "No Centro de São José dos Pinhais, inclua o município no pedido para não confundir com o Centro de Curitiba. Em lojas e condomínios, descreva a entrada correta, o andar e as regras de acesso antes de agendar."
+    },
+    {
+      "cidade": "sao-jose-dos-pinhais",
+      "bairro": "borda-do-campo",
+      "nome": "Borda do Campo",
+      "fatos": [
+        "A Administração Regional Borda do Campo está na Estrada da Roseira, 5800.",
+        "A área atendida pela administração inclui localidades como Jardim Roseli, Jardim Guarani, Dom Rodrigo e Planta Virgínia; regional administrativa não é sinônimo de um único bairro."
+      ],
+      "fonte": "https://www.sjp.pr.gov.br/conheca-os-servicos-disponiveis-na-administracao-regional-borda-do-campo/",
+      "utilidade": "Diga se o endereço é no bairro Borda do Campo ou em outra localidade da regional. Informe rua, número e referência de acesso, especialmente quando o pedido usa um nome de jardim ou planta."
+    },
+    {
+      "cidade": "sao-jose-dos-pinhais",
+      "bairro": "guatupe",
+      "nome": "Guatupê",
+      "fatos": [
+        "A Prefeitura identifica a Administração Regional Guatupê na Praça da Juventude, sem número.",
+        "Guatupê também tem mapa individual no portal municipal, distinto de outras regiões administrativas."
+      ],
+      "fonte": "https://www.sjp.pr.gov.br/faq-perguntas-frequentes/",
+      "fonteComplementar": "https://www.sjp.pr.gov.br/mapas-do-municipio/",
+      "utilidade": "Ao pedir um serviço no Guatupê, use a rua e o número como destino principal; uma referência como a Praça da Juventude pode complementar a localização. Explique se o imóvel é casa, comércio ou condomínio e quais pontos precisam de avaliação."
+    }
+  ]
+}

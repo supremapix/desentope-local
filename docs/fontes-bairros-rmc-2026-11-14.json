@@ -1,0 +1,729 @@
+{
+  "verificadoEm": "2026-11-14",
+  "nota": "Cobertura em todos bairros confirmada pelo proprietário Omar. Lista geográfica não confirma filiais ou empresas individuais. Não transferir números/contatos de órgãos públicos para o portal comercial. Não transformar diagnóstico municipal em afirmação sobre risco de um imóvel.",
+  "cidades": [
+    {
+      "slug": "piraquara",
+      "cidade": "Piraquara",
+      "fonte": "https://www.piraquara.pr.gov.br/portal/leis_decretos/81875/",
+      "fonteTitulo": "Lei municipal 2.672/2026, artigo 15",
+      "completude": "21 bairros definidos no artigo 15 da lei vigente consultada",
+      "contexto": "A divisão municipal distingue a sede urbana, áreas urbanas em unidades territoriais e áreas de proteção ambiental, além da zona rural.",
+      "tipoPadrao": "bairro oficial",
+      "bairros": [
+        {
+          "nome": "Jardim Tropical",
+          "tipo": "bairro oficial"
+        },
+        {
+          "nome": "Holandês",
+          "tipo": "bairro oficial"
+        },
+        {
+          "nome": "Guarituba Redondo",
+          "tipo": "bairro oficial"
+        },
+        {
+          "nome": "Guaritubinha",
+          "tipo": "bairro oficial"
+        },
+        {
+          "nome": "Guarituba Central",
+          "tipo": "bairro oficial"
+        },
+        {
+          "nome": "Jardim Santa Mônica",
+          "tipo": "bairro oficial"
+        },
+        {
+          "nome": "Mossoró",
+          "tipo": "bairro oficial"
+        },
+        {
+          "nome": "Jardim dos Estados",
+          "tipo": "bairro oficial"
+        },
+        {
+          "nome": "Vicente",
+          "tipo": "bairro oficial"
+        },
+        {
+          "nome": "Bela Vista",
+          "tipo": "bairro oficial"
+        },
+        {
+          "nome": "Laranjeiras",
+          "tipo": "bairro oficial"
+        },
+        {
+          "nome": "São Tiago",
+          "tipo": "bairro oficial"
+        },
+        {
+          "nome": "Santa Maria",
+          "tipo": "bairro oficial"
+        },
+        {
+          "nome": "Vila Juliana",
+          "tipo": "bairro oficial"
+        },
+        {
+          "nome": "Centro",
+          "tipo": "bairro oficial"
+        },
+        {
+          "nome": "Araçatuba",
+          "tipo": "bairro oficial"
+        },
+        {
+          "nome": "Vila Rosa",
+          "tipo": "bairro oficial"
+        },
+        {
+          "nome": "Deodoro",
+          "tipo": "bairro oficial"
+        },
+        {
+          "nome": "São Cristóvão",
+          "tipo": "bairro oficial"
+        },
+        {
+          "nome": "Borda do Campo",
+          "tipo": "bairro oficial"
+        },
+        {
+          "nome": "Parque das Águas",
+          "tipo": "bairro oficial"
+        }
+      ]
+    },
+    {
+      "slug": "pinhais",
+      "cidade": "Pinhais",
+      "fonte": "https://geo.pinhais.pr.gov.br/geo/download/Populacao_IBGE_2010.pdf",
+      "fonteTitulo": "Mapa municipal GeoPinhais: divisão por bairros",
+      "fonteComplementar": "https://geo.pinhais.pr.gov.br/geo/nav/page.aspx?page=download",
+      "completude": "15 bairros do mapa municipal; nomenclatura também presente nas bases GeoPinhais",
+      "contexto": "O GeoPinhais separa os dados de bairros dos dados de loteamentos, distinção útil para localizar um endereço sem confundir as duas divisões.",
+      "tipoPadrao": "bairro no mapa municipal",
+      "bairros": [
+        {
+          "nome": "Alphaville Graciosa",
+          "tipo": "bairro no mapa municipal"
+        },
+        {
+          "nome": "Alto Tarumã",
+          "tipo": "bairro no mapa municipal"
+        },
+        {
+          "nome": "Atuba",
+          "tipo": "bairro no mapa municipal"
+        },
+        {
+          "nome": "Centro",
+          "tipo": "bairro no mapa municipal"
+        },
+        {
+          "nome": "Emiliano Perneta",
+          "tipo": "bairro no mapa municipal"
+        },
+        {
+          "nome": "Estância Pinhais",
+          "tipo": "bairro no mapa municipal"
+        },
+        {
+          "nome": "Jardim Amélia",
+          "tipo": "bairro no mapa municipal"
+        },
+        {
+          "nome": "Jardim Cláudia",
+          "tipo": "bairro no mapa municipal"
+        },
+        {
+          "nome": "Jardim Karla",
+          "tipo": "bairro no mapa municipal"
+        },
+        {
+          "nome": "Maria Antonieta",
+          "tipo": "bairro no mapa municipal"
+        },
+        {
+          "nome": "Parque das Águas",
+          "tipo": "bairro no mapa municipal"
+        },
+        {
+          "nome": "Parque das Nascentes",
+          "tipo": "bairro no mapa municipal"
+        },
+        {
+          "nome": "Pineville",
+          "tipo": "bairro no mapa municipal"
+        },
+        {
+          "nome": "Vargem Grande",
+          "tipo": "bairro no mapa municipal"
+        },
+        {
+          "nome": "Weissópolis",
+          "tipo": "bairro no mapa municipal"
+        }
+      ]
+    },
+    {
+      "slug": "sao-jose-dos-pinhais",
+      "cidade": "São José dos Pinhais",
+      "fonte": "https://www.sjp.pr.gov.br/mapas-do-municipio/",
+      "fonteTitulo": "Prefeitura: Mapas do Município",
+      "completude": "Todos os 41 itens da tabela de mapas por bairro/localidade consultada",
+      "contexto": "O município disponibiliza mapas individualizados para bairros e áreas como Borda do Campo e Área Institucional Aeroportuária; informar bairro e ponto de referência ajuda a distinguir os destinos.",
+      "tipoPadrao": "bairro ou área no mapa municipal",
+      "bairros": [
+        {
+          "nome": "Academia",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Cachoeira",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Dom Rodrigo",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Rio Pequeno",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Área Institucional Aeroportuária",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Campina do Taquaral",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Guatupê",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Roseira de São Sebastião",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Afonso Pena",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Campo Largo da Roseira",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Iná",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Santo Antônio",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Águas Belas",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Centro",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Ipê",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "São Cristóvão",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Aristocrata",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Cidade Jardim",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Itália",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "São Domingos",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Arujá",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Colônia Rio Grande",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Jurema",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "São Marcos",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Aviação",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Contenda",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Miringuava",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "São Pedro",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Barro Preto",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Costeira",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Ouro Fino",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Zacarias",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Bom Jesus",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Cristal",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Parque da Fonte",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Boneca do Iguaçu",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Cruzeiro",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Pedro Moro",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Borda do Campo",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Del Rey",
+          "tipo": "bairro ou área no mapa municipal"
+        },
+        {
+          "nome": "Quissisana",
+          "tipo": "bairro ou área no mapa municipal"
+        }
+      ]
+    },
+    {
+      "slug": "colombo",
+      "cidade": "Colombo",
+      "fonte": "https://prefeitura.colombo.pr.gov.br/dados-gerais-colombo/",
+      "fonteTitulo": "Prefeitura: Dados Gerais, seção Bairros",
+      "completude": "42 bairros listados pela Prefeitura, separados por área urbana e rural",
+      "contexto": "A Prefeitura distingue bairros urbanos e rurais. Rodovia da Uva e Estrada da Ribeira são referências de acesso municipal, não substitutos do endereço completo.",
+      "tipoPadrao": "bairro urbano",
+      "bairros": [
+        {
+          "nome": "Arruda",
+          "tipo": "bairro urbano"
+        },
+        {
+          "nome": "Atuba",
+          "tipo": "bairro urbano"
+        },
+        {
+          "nome": "Campo Pequeno",
+          "tipo": "bairro urbano"
+        },
+        {
+          "nome": "Canguiri",
+          "tipo": "bairro urbano"
+        },
+        {
+          "nome": "Centro",
+          "tipo": "bairro urbano"
+        },
+        {
+          "nome": "Das Graças",
+          "tipo": "bairro urbano"
+        },
+        {
+          "nome": "Embú",
+          "tipo": "bairro urbano"
+        },
+        {
+          "nome": "Fátima",
+          "tipo": "bairro urbano"
+        },
+        {
+          "nome": "Guaraituba",
+          "tipo": "bairro urbano"
+        },
+        {
+          "nome": "Guarani",
+          "tipo": "bairro urbano"
+        },
+        {
+          "nome": "Maracanã",
+          "tipo": "bairro urbano"
+        },
+        {
+          "nome": "Mauá",
+          "tipo": "bairro urbano"
+        },
+        {
+          "nome": "Monza",
+          "tipo": "bairro urbano"
+        },
+        {
+          "nome": "Osasco",
+          "tipo": "bairro urbano"
+        },
+        {
+          "nome": "Palmital",
+          "tipo": "bairro urbano"
+        },
+        {
+          "nome": "Paloma",
+          "tipo": "bairro urbano"
+        },
+        {
+          "nome": "Rincão",
+          "tipo": "bairro urbano"
+        },
+        {
+          "nome": "Rio Verde",
+          "tipo": "bairro urbano"
+        },
+        {
+          "nome": "Roça Grande",
+          "tipo": "bairro urbano"
+        },
+        {
+          "nome": "Santa Terezinha",
+          "tipo": "bairro urbano"
+        },
+        {
+          "nome": "São Dimas",
+          "tipo": "bairro urbano"
+        },
+        {
+          "nome": "São Gabriel",
+          "tipo": "bairro urbano"
+        },
+        {
+          "nome": "Águas Fervidas",
+          "tipo": "bairro rural"
+        },
+        {
+          "nome": "Bacaetava",
+          "tipo": "bairro rural"
+        },
+        {
+          "nome": "Boicininga",
+          "tipo": "bairro rural"
+        },
+        {
+          "nome": "Butiatumirim",
+          "tipo": "bairro rural"
+        },
+        {
+          "nome": "Campestre",
+          "tipo": "bairro rural"
+        },
+        {
+          "nome": "Capivari",
+          "tipo": "bairro rural"
+        },
+        {
+          "nome": "Colônia Antonio Prado",
+          "tipo": "bairro rural"
+        },
+        {
+          "nome": "Colônia Faria",
+          "tipo": "bairro rural"
+        },
+        {
+          "nome": "Gabirobal",
+          "tipo": "bairro rural"
+        },
+        {
+          "nome": "Imbuial",
+          "tipo": "bairro rural"
+        },
+        {
+          "nome": "Itajacuru",
+          "tipo": "bairro rural"
+        },
+        {
+          "nome": "Morro Grande",
+          "tipo": "bairro rural"
+        },
+        {
+          "nome": "Poço Negro",
+          "tipo": "bairro rural"
+        },
+        {
+          "nome": "Ribeirão das Onças",
+          "tipo": "bairro rural"
+        },
+        {
+          "nome": "Roseira",
+          "tipo": "bairro rural"
+        },
+        {
+          "nome": "Santa Gema",
+          "tipo": "bairro rural"
+        },
+        {
+          "nome": "São João",
+          "tipo": "bairro rural"
+        },
+        {
+          "nome": "Sapopema",
+          "tipo": "bairro rural"
+        },
+        {
+          "nome": "Serrinha",
+          "tipo": "bairro rural"
+        },
+        {
+          "nome": "Uvaranal",
+          "tipo": "bairro rural"
+        }
+      ]
+    },
+    {
+      "slug": "araucaria",
+      "cidade": "Araucária",
+      "fonte": "https://araucaria.atende.net/cidadao/noticia/araucaria-classifica-25-areas-para-o-plano-municipal-de-reducao-de-riscos",
+      "fonteTitulo": "Prefeitura: áreas do Plano Municipal de Redução de Riscos",
+      "completude": "Seleção inicial de nove bairros citados na notícia oficial; não é lista completa municipal",
+      "contexto": "A Prefeitura realizou levantamento de áreas para prevenção de riscos em nove bairros. Isso não significa que todo imóvel desses bairros esteja em área de risco.",
+      "tipoPadrao": "bairro citado pela Prefeitura",
+      "bairros": [
+        {
+          "nome": "Campina da Barra",
+          "tipo": "bairro citado pela Prefeitura"
+        },
+        {
+          "nome": "Capela Velha",
+          "tipo": "bairro citado pela Prefeitura"
+        },
+        {
+          "nome": "Iguaçu",
+          "tipo": "bairro citado pela Prefeitura"
+        },
+        {
+          "nome": "Guajuvira",
+          "tipo": "bairro citado pela Prefeitura"
+        },
+        {
+          "nome": "Passaúna",
+          "tipo": "bairro citado pela Prefeitura"
+        },
+        {
+          "nome": "Thomaz Coelho",
+          "tipo": "bairro citado pela Prefeitura"
+        },
+        {
+          "nome": "Centro",
+          "tipo": "bairro citado pela Prefeitura"
+        },
+        {
+          "nome": "Costeira",
+          "tipo": "bairro citado pela Prefeitura"
+        },
+        {
+          "nome": "Boqueirão",
+          "tipo": "bairro citado pela Prefeitura"
+        }
+      ]
+    },
+    {
+      "slug": "fazenda-rio-grande",
+      "cidade": "Fazenda Rio Grande",
+      "fonte": "https://fazendariogrande.pr.gov.br/noticias/obras/baixa-vazao-do-rio-despique-interrompe-abastecimento-em-bairros-da-fazenda-rio-grande-59004",
+      "fonteTitulo": "Prefeitura: comunicado de abastecimento identifica bairros e localidades",
+      "completude": "Seleção de bairros/localidades citados em comunicado municipal; não tratar loteamentos como bairros oficiais nem apresentar como lista completa",
+      "contexto": "A comunicação municipal de abastecimento usa nomes de bairros e localidades; o nome da rua e o CEP ajudam a confirmar o local do atendimento.",
+      "tipoPadrao": "bairro ou localidade citado pela Prefeitura",
+      "bairros": [
+        {
+          "nome": "Parque Industrial",
+          "tipo": "bairro ou localidade citado pela Prefeitura"
+        },
+        {
+          "nome": "Jardim Itália",
+          "tipo": "bairro ou localidade citado pela Prefeitura"
+        },
+        {
+          "nome": "Eucaliptos",
+          "tipo": "bairro ou localidade citado pela Prefeitura"
+        },
+        {
+          "nome": "Hortência",
+          "tipo": "bairro ou localidade citado pela Prefeitura"
+        },
+        {
+          "nome": "Jardim dos Estados",
+          "tipo": "bairro ou localidade citado pela Prefeitura"
+        },
+        {
+          "nome": "Gralha Azul",
+          "tipo": "bairro ou localidade citado pela Prefeitura"
+        },
+        {
+          "nome": "Jardim Vezena",
+          "tipo": "bairro ou localidade citado pela Prefeitura"
+        },
+        {
+          "nome": "Colonial",
+          "tipo": "bairro ou localidade citado pela Prefeitura"
+        },
+        {
+          "nome": "Nações",
+          "tipo": "bairro ou localidade citado pela Prefeitura"
+        },
+        {
+          "nome": "Santarém",
+          "tipo": "bairro ou localidade citado pela Prefeitura"
+        },
+        {
+          "nome": "Palmeiras",
+          "tipo": "bairro ou localidade citado pela Prefeitura"
+        },
+        {
+          "nome": "Sol-Levante",
+          "tipo": "bairro ou localidade citado pela Prefeitura"
+        },
+        {
+          "nome": "Santa Helena",
+          "tipo": "bairro ou localidade citado pela Prefeitura"
+        },
+        {
+          "nome": "Santa Maria",
+          "tipo": "bairro ou localidade citado pela Prefeitura"
+        },
+        {
+          "nome": "Santa Terezinha",
+          "tipo": "bairro ou localidade citado pela Prefeitura"
+        },
+        {
+          "nome": "São Sebastião",
+          "tipo": "bairro ou localidade citado pela Prefeitura"
+        },
+        {
+          "nome": "Iguaçu",
+          "tipo": "bairro ou localidade citado pela Prefeitura"
+        }
+      ]
+    },
+    {
+      "slug": "almirante-tamandare",
+      "cidade": "Almirante Tamandaré",
+      "fonte": "https://tamandare.pr.gov.br/contatos-telefones",
+      "fonteTitulo": "Prefeitura: endereços dos equipamentos municipais",
+      "fonteComplementar": "https://tamandare.pr.gov.br/secretarias/saude",
+      "completude": "Seleção inicial de bairros/localidades presentes em endereços municipais; não é lista completa nem classificação legal de bairros",
+      "contexto": "Os equipamentos municipais estão distribuídos por localidades como Cachoeira, Tanguá e Tranqueira. Use rua e referência junto ao bairro ao solicitar orçamento.",
+      "tipoPadrao": "bairro ou localidade em endereço municipal",
+      "bairros": [
+        {
+          "nome": "Cachoeira",
+          "tipo": "bairro ou localidade em endereço municipal"
+        },
+        {
+          "nome": "Tanguá",
+          "tipo": "bairro ou localidade em endereço municipal"
+        },
+        {
+          "nome": "Tranqueira",
+          "tipo": "bairro ou localidade em endereço municipal"
+        },
+        {
+          "nome": "Vila Santa Terezinha",
+          "tipo": "bairro ou localidade em endereço municipal"
+        },
+        {
+          "nome": "Lamenha Grande",
+          "tipo": "bairro ou localidade em endereço municipal"
+        },
+        {
+          "nome": "Jardim Paraíso",
+          "tipo": "bairro ou localidade em endereço municipal"
+        },
+        {
+          "nome": "Jardim Roma",
+          "tipo": "bairro ou localidade em endereço municipal"
+        },
+        {
+          "nome": "Jardim Rosana",
+          "tipo": "bairro ou localidade em endereço municipal"
+        },
+        {
+          "nome": "Capivara dos Manfron",
+          "tipo": "bairro ou localidade em endereço municipal"
+        }
+      ]
+    },
+    {
+      "slug": "campo-largo",
+      "cidade": "Campo Largo",
+      "fonte": "https://www.campolargo.pr.gov.br/cidadao/noticia/bateias-e-bom-jesus-oficinas-comunitarias-hoje-07-e-amanha-08-vao-ouvir-moradores-para-mapear-areas-de-risco",
+      "fonteTitulo": "Prefeitura: oficinas comunitárias em Bateias e Bom Jesus",
+      "fonteComplementar": "https://www.campolargo.pr.gov.br/cidadao/noticia/confira-todas-as-entregas-feitas-pela-prefeitura-durante-as-comemoracoes-dos-155-anos-de-campo-largo",
+      "completude": "Seleção inicial com confirmação em notícias municipais; Ferraria também é distrito, evitar rotular todos como bairros oficiais",
+      "contexto": "A Prefeitura menciona Bateias e Bom Jesus nas oficinas locais, e Ferraria em projetos municipais. A indicação da localidade deve acompanhar rua e referência, especialmente fora do centro.",
+      "tipoPadrao": "bairro ou localidade citado pela Prefeitura",
+      "bairros": [
+        {
+          "nome": "Bateias",
+          "tipo": "bairro ou localidade citado pela Prefeitura"
+        },
+        {
+          "nome": "Bom Jesus",
+          "tipo": "bairro ou localidade citado pela Prefeitura"
+        },
+        {
+          "nome": "Ferraria",
+          "tipo": "bairro ou localidade citado pela Prefeitura"
+        },
+        {
+          "nome": "Vila Ferrari",
+          "tipo": "bairro ou localidade citado pela Prefeitura"
+        }
+      ]
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 import { todosBairros } from './bairros';
+import { fichasBairrosRMC } from './bairros-rmc';
 import { cidadesRMC } from './cidades-rmc';
 import { servicos } from './servicos';
 import { landingPages } from './landing-pages';
@@ -57,6 +58,7 @@ export const sitemapGrupos: Record<string, SitemapEntry[]> = {
   ],
   // Cidades e bairros
   'sitemap-cities.xml': [
+    ...fichasBairrosRMC.map(b => ({ path: `/rmc/${b.cidade}/${b.slug}`, changefreq: 'monthly' as const, priority: '0.7' })),
     ...todosBairros.map((b) => ({
       path: `/curitiba/${b.slug}`,
       changefreq: 'weekly' as const,

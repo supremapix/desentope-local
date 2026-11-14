@@ -72,6 +72,7 @@ const App = () => (
               <Route path="/curitiba/cic" element={<Navigate to="/curitiba/cidade-industrial" replace />} />
               <Route path="/curitiba/:bairro" element={<BairroPage />} />
               <Route path="/rmc/:bairro" element={<BairroPage />} />
+              <Route path="/rmc/:cidade/:localidade" element={<BairroPage />} />
               <Route path="/empresa/:slug" element={<EmpresaPage />} />
               <Route path="/perfil/:slug" element={<EmpresaPage />} />
               <Route path="/toldos-soares-curitiba" element={<EmpresaPage slugOverride="toldos-soares-curitiba" />} />
