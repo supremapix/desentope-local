@@ -155,7 +155,7 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
                           : t === 'refrigeracao'
                           ? 'Refrigeração e assistência técnica'
                           : t === 'madeireira' || t === 'construcao'
-                          ? 'Construção & Madeireira'
+                          ? (isEngeum ? 'Engenharia e construção a seco' : 'Construção & Madeireira')
                           : 'Encanamento'}
                       </Badge>
                     ))}
