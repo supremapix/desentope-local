@@ -22,6 +22,7 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
   const pathnameSlug = typeof window !== 'undefined' ? window.location.pathname.replace(/^\//, '').split('/')[0] : '';
   const slug = slugOverride || paramSlug || pathnameSlug;
   const empresa = getEmpresaBySlug(slug || '');
+  const isEngeum = empresa?.slug === 'engeum-engenharia';
   const [formData, setFormData] = useState({ nome: '', telefone: '', problema: '', bairro: '', descricao: '', urgencia: 'normal' });
 
   const bairroSlug = empresa?.bairrosAtendidos[0] || 'centro';
@@ -43,13 +44,14 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
 
   useSEO({
     title: empresa ? (empresa.titleSeo || `${empresa.nome} — ${cidadeBase}/${estadoBase}`).slice(0, 95) : 'Empresa não encontrada',
-    description: empresa ? `${empresa.descricao} Atendimento ${empresa.atende24h ? '24h' : 'rápido'} em ${cidadeBase}/${estadoBase}. Nota ${empresa.notaMedia}/5 com ${empresa.totalAvaliacoes} avaliações. Orçamento grátis via WhatsApp.` : '',
+    description: isEngeum ? empresa!.descricao : empresa ? `${empresa.descricao} Atendimento ${empresa.atende24h ? '24h' : 'rápido'} em ${cidadeBase}/${estadoBase}. Nota ${empresa.notaMedia}/5 com ${empresa.totalAvaliacoes} avaliações. Orçamento grátis via WhatsApp.` : '',
     canonical: empresa ? (empresa.slug === 'toldos-soares-curitiba' ? '/toldos-soares-curitiba' : `/empresa/${empresa.slug}`) : undefined,
     type: empresa ? 'business.business' : 'website',
     geoPosition: coords,
+    omitGeo: isEngeum,
     geoPlacename: `${cidadeBase}, ${estadoBase}`,
     jsonLd: empresa ? [
-      buildLocalBusinessSchema(empresa, coords, bairroNome, servicosDetalhes),
+      { ...buildLocalBusinessSchema(empresa, coords, bairroNome, servicosDetalhes), ...(isEngeum ? { geo: undefined, paymentAccepted: undefined } : {}) },
       buildBreadcrumbSchema([
         { name: 'Início', url: '/' },
         { name: 'Buscar empresas', url: '/busca' },
@@ -91,7 +93,7 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
 
   const handleWhatsApp = (e: React.FormEvent) => {
     e.preventDefault();
-    const msg = `Olá! Vi o cadastro da ${empresa.nome} no Serviços no Bairro.\n\nPreciso de: ${formData.problema || 'serviço de desentupimento/encanamento'}\nBairro: ${formData.bairro}\nMeu nome: ${formData.nome}\n${formData.descricao ? `Descrição: ${formData.descricao}` : ''}\nUrgência: ${formData.urgencia}\n[via formulário perfil - servicosnobairro.com.br]`;
+    const msg = `Olá! Vi o cadastro da ${empresa.nome} no Serviços no Bairro.\n\nPreciso de: ${formData.problema || (isEngeum ? 'projeto de engenharia e construção a seco' : 'serviço de desentupimento/encanamento')}\nBairro: ${formData.bairro}\nMeu nome: ${formData.nome}\n${formData.descricao ? `Descrição: ${formData.descricao}` : ''}\nUrgência: ${formData.urgencia}\n[via formulário perfil - servicosnobairro.com.br]`;
     window.open(`https://wa.me/${empresa.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
@@ -172,7 +174,7 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
                   href={`tel:${empresa.telefone.replace(/\D/g, '')}`}
                   className="inline-flex items-center gap-2 h-12 px-6 rounded-lg border-2 border-destructive text-destructive font-bold hover:bg-destructive hover:text-destructive-foreground transition-colors"
                 >
-                  <Phone className="h-5 w-5" /> <AlertTriangle className="h-4 w-4" /> LIGAR EMERGÊNCIA
+                  <Phone className="h-5 w-5" /> {empresa.atendeEmergencia ? <><AlertTriangle className="h-4 w-4" /> LIGAR EMERGÊNCIA</> : "LIGAR PARA A EMPRESA"}
                 </a>
                 {empresa.email && (
                   <a
@@ -282,7 +284,7 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
                     </a>
                   </div>
                 )}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6">
+                {!isEngeum && <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6">
                   <div className="text-center p-3 bg-muted rounded-lg">
                     <div className="text-2xl font-black text-primary">{empresa.anosExperiencia}</div>
                     <div className="text-xs text-muted-foreground">Anos de experiência</div>
@@ -299,7 +301,7 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
                     <div className="text-2xl font-black text-primary">{empresa.servicosOferecidos.length}</div>
                     <div className="text-xs text-muted-foreground">Serviços</div>
                   </div>
-                </div>
+                </div>}
               </CardContent>
             </Card>
 
@@ -415,7 +417,7 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
             )}
 
             {/* Avaliações */}
-            <Card>
+            {!isEngeum && <Card>
               <CardContent className="p-6">
                 <h2 className="text-xl font-bold mb-4">Avaliações</h2>
                 <div className="flex items-center gap-4 mb-6 p-4 bg-muted rounded-lg">
@@ -459,7 +461,7 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
                   ))}
                 </div>
               </CardContent>
-            </Card>
+            </Card>}
 
             {/* Perguntas Frequentes */}
             {empresa.faq && empresa.faq.length > 0 && (
@@ -488,6 +490,7 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
                   <Clock className="h-4 w-4 mt-0.5 text-muted-foreground" />
                   <div>
                     <div className="font-medium text-sm">Horário</div>
+                    {isEngeum && <p className="text-sm text-muted-foreground">Combine a visita diretamente com a empresa.</p>}
                     {empresa.horarios.map((h, i) => (
                       <div key={i} className="text-xs text-muted-foreground">
                         {h.dia}: {h.fechado ? 'Fechado' : `${h.abertura} - ${h.fechamento}`}
@@ -538,7 +541,7 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
                   <CreditCard className="h-4 w-4 mt-0.5 text-muted-foreground" />
                   <div>
                     <div className="font-medium text-sm">Pagamento</div>
-                    <div className="text-xs text-muted-foreground">{empresa.formasPagamento.join(' • ')}</div>
+                    <div className="text-xs text-muted-foreground">{empresa.formasPagamento.length ? empresa.formasPagamento.join(' • ') : 'Consulte as condições na proposta.'}</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
@@ -569,7 +572,7 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
                   <input type="text" placeholder="Seu nome" value={formData.nome} onChange={e => setFormData(prev => ({ ...prev, nome: e.target.value }))} className="w-full h-10 px-3 rounded-md border bg-background text-sm" required />
                   <input type="tel" placeholder="Telefone" value={formData.telefone} onChange={e => setFormData(prev => ({ ...prev, telefone: e.target.value }))} className="w-full h-10 px-3 rounded-md border bg-background text-sm" />
                   <select value={formData.problema} onChange={e => setFormData(prev => ({ ...prev, problema: e.target.value }))} className="w-full h-10 px-3 rounded-md border bg-background text-sm">
-                    <option value="">Tipo de problema</option>
+                    <option value="">{isEngeum ? "Projeto de engenharia e construção a seco" : "Tipo de problema"}</option>
                     {servicosComDetalhes.map(s => s && <option key={s.slug} value={s.nome}>{s.nome}</option>)}
                   </select>
                   <input type="text" placeholder="Endereço/Bairro" value={formData.bairro} onChange={e => setFormData(prev => ({ ...prev, bairro: e.target.value }))} className="w-full h-10 px-3 rounded-md border bg-background text-sm" />

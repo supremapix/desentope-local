@@ -7,6 +7,7 @@ interface RatingStarsProps {
 }
 
 export function RatingStars({ nota, total, showCount = true }: RatingStarsProps) {
+  if (total === 0) return <span className="text-sm text-muted-foreground">Sem avaliações publicadas</span>;
   const fullStars = Math.floor(nota);
   const hasHalf = nota - fullStars >= 0.5;
 
