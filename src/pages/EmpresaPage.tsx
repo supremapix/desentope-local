@@ -46,7 +46,7 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
   useSEO({
     title: empresa ? (empresa.titleSeo || `${empresa.nome} — ${cidadeBase}/${estadoBase}`).slice(0, 95) : 'Empresa não encontrada',
     description: isEngeum ? empresa!.descricao : empresa ? `${empresa.descricao} Atendimento ${empresa.atende24h ? '24h' : 'rápido'} em ${cidadeBase}/${estadoBase}. Nota ${empresa.notaMedia}/5 com ${empresa.totalAvaliacoes} avaliações. Orçamento grátis via WhatsApp.` : '',
-    canonical: empresa ? (empresa.slug === 'toldos-soares-curitiba' ? '/toldos-soares-curitiba' : `/empresa/${empresa.slug}`) : undefined,
+    canonical: empresa ? `/empresa/${empresa.slug}` : undefined,
     type: empresa ? 'business.business' : 'website',
     geoPosition: coords,
     omitGeo: isEngeum,
