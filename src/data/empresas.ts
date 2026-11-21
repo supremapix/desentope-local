@@ -666,7 +666,7 @@ const empresasReais: Empresa[] = [
   {
     slug: 'borba-refrigeracao-curitiba',
     nome: 'Borba Refrigeração',
-    tituloSeo: 'Borba Refrigeração Curitiba | Conserto de Geladeiras, Freezers e Cozinhas Industriais',
+    titleSeo: 'Borba Refrigeração no Sítio Cercado | Assistência Técnica',
     logo: 'https://refrigeracao.servicosnobairro.com.br/images/borba-logo.png',
     fotos: [
       'https://refrigeracao.servicosnobairro.com.br/images/fachada.png',
@@ -683,7 +683,7 @@ const empresasReais: Empresa[] = [
     cep: '81910-340',
     horario: 'Segunda a sexta, das 8h às 18h.',
     instagram: '@borba_refrigeracao2025',
-    site: 'https://refrigeracao.servicosnobairro.com.br/',
+    site: 'https://refrigeracaonositiocercado.site1.digital/',
     cidadeBase: 'Curitiba',
     estadoBase: 'PR',
     verificada: true,
