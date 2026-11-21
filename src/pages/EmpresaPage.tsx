@@ -26,12 +26,13 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
   const isEngeum = empresa?.slug === 'engeum-engenharia';
   const isRoofingListing = empresa?.slug === 'alpha-telhados-curitiba' || empresa?.slug === 'acquatec-calhas-telhados-curitiba';
   const isGrafica = empresa?.slug === 'grafica-no-tatuquara-curitiba-canecas';
-  const isInformationalListing = isEngeum || isRoofingListing || isGrafica;
+  const isCentroLondrina = empresa?.slug === 'centro-sagrado-londrina';
+  const isInformationalListing = isEngeum || isRoofingListing || isGrafica || isCentroLondrina;
   const [formData, setFormData] = useState({ nome: '', telefone: '', problema: '', bairro: '', descricao: '', urgencia: 'normal' });
 
   const bairroSlug = empresa?.bairrosAtendidos[0] || 'centro';
   const coords = getCoordenadasBairro(bairroSlug);
-  const bairroNome = bairroSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+  const bairroNome = isCentroLondrina ? 'Londrina' : bairroSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
   const cidadeBase = empresa?.cidadeBase || 'Curitiba';
   const estadoBase = empresa?.estadoBase || 'PR';
 
@@ -200,6 +201,8 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
                           ? 'Lavanderia e passadoria'
                           : t === 'refrigeracao'
                           ? 'Refrigeração e assistência técnica'
+                          : t === 'religiao' && isCentroLondrina
+                          ? 'Tarô, Búzios e orientação espiritual'
                           : t === 'grafica'
                           ? 'Gráfica e personalizados'
                           : t === 'madeireira' || t === 'construcao'

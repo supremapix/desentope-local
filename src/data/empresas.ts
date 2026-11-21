@@ -1332,6 +1332,48 @@ const empresasReais: Empresa[] = [
       }
     ]
   },
+  {
+    "slug": "centro-sagrado-londrina",
+    "nome": "Centro Sagrado de Londrina | Tarô, Búzios e Orientação Espiritual",
+    "titleSeo": "Centro Sagrado de Londrina | Tarô e Búzios",
+    "slogan": "Consultas de Tarô, Búzios e orientação espiritual em Londrina",
+    "logo": "https://centrosagrado.site1.digital/assets/logo.png",
+    "fotos": [],
+    "descricao": "O Centro Sagrado de Londrina oferece consultas de Tarô, Búzios e orientação espiritual sobre questões afetivas, decisões e mudanças de fase.",
+    "descricaoLonga": "Conheça o atendimento do Centro Sagrado de Londrina para quem procura consultas de Tarô, Búzios e orientação espiritual. Converse com a equipe sobre como funciona a consulta, horários, formato e condições. Confirme os detalhes do atendimento antes de se deslocar. A orientação espiritual não garante resultados nem substitui acompanhamento médico, psicológico ou jurídico.",
+    "whatsapp": "5543991412500",
+    "telefone": "(43) 99141-2500",
+    "site": "https://centrosagrado.site1.digital/",
+    "cidadeBase": "Londrina",
+    "estadoBase": "PR",
+    "verificada": false,
+    "destaque": false,
+    "atende24h": false,
+    "atendeEmergencia": false,
+    "tipoServico": [
+      "religiao"
+    ],
+    "servicosOferecidos": [],
+    "bairrosAtendidos": [],
+    "cidadesAtendidas": [
+      "londrina"
+    ],
+    "formasPagamento": [],
+    "horarios": [],
+    "avaliacoes": [],
+    "notaMedia": 0,
+    "totalAvaliacoes": 0,
+    "faq": [
+      {
+        "pergunta": "Quais consultas o Centro Sagrado de Londrina oferece?",
+        "resposta": "O site de Londrina apresenta consultas de Tarô, Búzios e orientação espiritual sobre questões afetivas, decisões e mudanças de fase."
+      },
+      {
+        "pergunta": "Como confirmar o formato e o horário de atendimento?",
+        "resposta": "Entre em contato com a equipe de Londrina pelo WhatsApp (43) 99141-2500. Confirme as condições e, se desejar atendimento presencial, peça as orientações antes de sair."
+      }
+    ]
+  },
 ];
 
 // Inject real companies into cache/search
