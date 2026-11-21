@@ -408,14 +408,14 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
                         className="rounded-xl border border-border bg-card/60 p-4 flex flex-col justify-between hover:shadow-md transition-all group"
                       >
                         <div>
-                          <div className="w-full h-44 rounded-lg bg-muted/60 overflow-hidden mb-3 border border-border/60">
+                          {(!isSoares || prod.imagem) && <div className="w-full h-44 rounded-lg bg-muted/60 overflow-hidden mb-3 border border-border/60">
                             <img
                               src={prod.imagem}
                               alt={prod.alt || prod.nome}
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                               loading="lazy"
                             />
-                          </div>
+                          </div>}
                           <h3 className="font-bold text-base text-foreground mb-1 leading-snug">{prod.nome}</h3>
                           <p className="text-xs text-muted-foreground leading-relaxed mb-3">{prod.descricao}</p>
                         </div>

@@ -303,7 +303,7 @@ export function buildLocalBusinessSchema(empresa: {
       '@type': 'Product',
       name: p.nome,
       description: p.descricao,
-      image: p.imagem,
+      ...(p.imagem && { image: p.imagem }),
     },
     priceCurrency: 'BRL',
     availability: 'https://schema.org/InStock',
