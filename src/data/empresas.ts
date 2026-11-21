@@ -906,11 +906,11 @@ const empresasReais: Empresa[] = [
     titleSeo: 'Toldos Soares em Curitiba | Toldos, Coberturas e Policarbonato',
     razaoSocial: 'Toldos Soares',
     logo: '/logos/toldos-soares-oficial.png',
-    fotoCapa: 'https://toldosoares.com.br/wp-content/uploads/2024/12/COBERTURA-DE-POLICARBONATO-01.webp',
+    fotoCapa: 'https://toldosoares.com.br/assets/images/portfolio/obra-03.jpg',
     fotos: [
-      'https://toldosoares.com.br/wp-content/uploads/2024/12/COBERTURA-DE-POLICARBONATO-01.webp',
+      'https://toldosoares.com.br/assets/images/portfolio/obra-03.jpg',
       'https://toldosoares.com.br/wp-content/uploads/2025/01/COBERTURA-DE-VIDRO-01-1.webp',
-      'https://toldosoares.com.br/wp-content/uploads/2024/12/toldo-retratil.webp',
+      'https://site.toldosoares.com.br/wp-content/uploads/elementor/thumbs/toldo-retratil-qyr0l0xyf9wiouvx2actzst803cimsfqcnma5kary8.webp',
       'https://toldosoares.com.br/wp-content/uploads/2025/01/CORTINAS-ROLO-01.webp',
       'https://toldosoares.com.br/wp-content/uploads/2025/01/CORTINAS-DE-LONAS-.webp',
       'https://toldosoares.com.br/wp-content/uploads/2025/01/COBERTURAS-DE-ZINCO-03.webp',
@@ -985,7 +985,7 @@ const empresasReais: Empresa[] = [
       {
         nome: 'Toldos Retráteis em Curitiba',
         descricao: 'Fabricação e instalação de toldos retráteis sob medida com braços articulados ou pistões, ideais para sacadas, varandas, garagens e entradas comerciais com proteção solar e recolhimento prático.',
-        imagem: 'https://toldosoares.com.br/wp-content/uploads/2024/12/toldo-retratil.webp',
+        imagem: 'https://site.toldosoares.com.br/wp-content/uploads/elementor/thumbs/toldo-retratil-qyr0l0xyf9wiouvx2actzst803cimsfqcnma5kary8.webp',
         alt: 'Toldos Retráteis sob medida em Curitiba — Toldos Soares',
         preco: 'Consulte valores',
       },
@@ -999,7 +999,7 @@ const empresasReais: Empresa[] = [
       {
         nome: 'Coberturas de Policarbonato',
         descricao: 'Coberturas em policarbonato alveolar ou compacto com estrutura reforçada de alumínio ou aço galvanizado, oferecendo alta luminosidade natural, proteção contra chuva e bloqueio de raios UV.',
-        imagem: 'https://toldosoares.com.br/wp-content/uploads/2024/12/COBERTURA-DE-POLICARBONATO-01.webp',
+        imagem: 'https://toldosoares.com.br/assets/images/portfolio/obra-03.jpg',
         alt: 'Coberturas de Policarbonato Alveolar e Compacto em Curitiba — Toldos Soares',
         preco: 'Consulte valores',
       },
