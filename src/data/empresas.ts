@@ -905,7 +905,7 @@ const empresasReais: Empresa[] = [
     nome: 'Toldos Soares',
     titleSeo: 'Toldos Soares em Curitiba | Toldos, Coberturas e Policarbonato',
     razaoSocial: 'Toldos Soares',
-    logo: 'https://toldosoares.com.br/wp-content/uploads/2024/11/logo-toldo-soares.png',
+    logo: '/logos/toldos-soares-oficial.png',
     fotoCapa: 'https://toldosoares.com.br/wp-content/uploads/2024/12/COBERTURA-DE-POLICARBONATO-01.webp',
     fotos: [
       'https://toldosoares.com.br/wp-content/uploads/2024/12/COBERTURA-DE-POLICARBONATO-01.webp',

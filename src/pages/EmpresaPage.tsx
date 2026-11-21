@@ -22,6 +22,7 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
   const pathnameSlug = typeof window !== 'undefined' ? window.location.pathname.replace(/^\//, '').split('/')[0] : '';
   const slug = slugOverride || paramSlug || pathnameSlug;
   const empresa = getEmpresaBySlug(slug || '');
+  const isSoares = empresa?.slug === 'toldos-soares-curitiba';
   const isEngeum = empresa?.slug === 'engeum-engenharia';
   const [formData, setFormData] = useState({ nome: '', telefone: '', problema: '', bairro: '', descricao: '', urgencia: 'normal' });
 
@@ -100,7 +101,7 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
   const servicosComDetalhes = empresa.servicosOferecidos.map(slug => servicos.find(s => s.slug === slug)).filter(Boolean);
 
   return (
-    <div className="min-h-screen">
+    <div className={isSoares ? "min-h-screen bg-slate-50" : "min-h-screen"}>
       {/* Breadcrumb */}
       <div className="bg-muted border-b">
         <div className="container mx-auto px-4 py-3 text-sm text-muted-foreground">
@@ -117,6 +118,48 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
           {/* Main */}
           <div className="lg:col-span-2 space-y-8">
             {/* Header */}
+            {isSoares ? (
+              <section aria-labelledby="soares-profile-title" className="relative isolate overflow-hidden rounded-3xl border border-slate-700 bg-slate-950 p-5 text-white shadow-lg sm:p-8">
+                <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-amber-300 via-orange-400 to-red-600" />
+                <div className="relative grid gap-5 sm:grid-cols-[minmax(0,1fr)_12rem] sm:items-start">
+                  <div className="order-2 min-w-0 sm:order-1">
+                    <p className="mb-3 inline-flex flex-wrap items-center gap-1.5 text-sm font-bold text-amber-300">
+                      <MapPin aria-hidden="true" className="h-4 w-4" /> Sítio Cercado · Curitiba/PR
+                    </p>
+                    <h1 id="soares-profile-title" className="text-3xl font-black leading-tight sm:text-4xl">{empresa.nome}</h1>
+                    <p className="mt-2 text-lg font-bold leading-snug text-slate-100">Toldos e coberturas sob medida</p>
+                    <p className="mt-3 max-w-prose leading-relaxed text-slate-200">{empresa.descricao}</p>
+                    {empresa.verificada && (
+                      <p className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-emerald-300">
+                        <ShieldCheck aria-hidden="true" className="h-4 w-4" /> Perfil verificado
+                      </p>
+                    )}
+                  </div>
+                  <div className="order-1 flex w-full max-w-64 items-center justify-center rounded-2xl border border-slate-700 bg-slate-900 p-3 sm:order-2">
+                    {empresa.logo && (
+                      <img src={empresa.logo} width="988" height="440" alt="Logotipo da Toldos Soares" className="h-auto w-full object-contain" />
+                    )}
+                  </div>
+                </div>
+                <div className="mt-6 grid gap-2 border-t border-slate-700 pt-5 sm:flex sm:flex-wrap">
+                  <WhatsAppButton
+                    whatsapp={empresa.whatsapp}
+                    mensagem={`Olá! Vi o perfil da ${empresa.nome} no Serviços no Bairro e gostaria de solicitar um orçamento. [via perfil - servicosnobairro.com.br]`}
+                    size="lg"
+                    className="justify-center focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                    label="Solicitar orçamento"
+                  />
+                  <a href={`tel:${empresa.telefone.replace(/\D/g, '')}`} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-slate-500 px-4 font-bold text-white transition-colors hover:bg-slate-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300">
+                    <Phone aria-hidden="true" className="h-5 w-5" /> Ligar para a empresa
+                  </a>
+                  {empresa.email && (
+                    <a href={`mailto:${empresa.email}`} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-slate-500 px-4 font-bold text-white transition-colors hover:bg-slate-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300">
+                      <Mail aria-hidden="true" className="h-5 w-5" /> E-mail
+                    </a>
+                  )}
+                </div>
+              </section>
+            ) : (
             <div>
               <div className="flex items-start gap-4">
                 <div className="w-20 h-20 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 overflow-hidden">
@@ -186,6 +229,8 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
                 )}
               </div>
             </div>
+
+            )}
 
             {/* Vídeo institucional (MP4) */}
             {!empresa.youtubeVideoId && empresa.videoUrl && (
