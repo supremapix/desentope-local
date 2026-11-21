@@ -8,6 +8,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { EmergencyBanner } from "@/components/EmergencyBanner";
 import { WhatsAppFloating } from "@/components/WhatsAppButton";
+import { PortalShare } from "@/components/PortalShare";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { PageTransition } from "@/components/PageTransition";
 import GlobalAnimations from "@/components/GlobalAnimations";
@@ -113,6 +114,7 @@ const App = () => (
 
         <Footer />
         <WhatsAppFloating />
+        <PortalShare />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
