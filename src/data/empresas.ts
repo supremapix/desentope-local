@@ -1200,6 +1200,100 @@ const empresasReais: Empresa[] = [
       { pergunta: 'Como falar com a empresa?', resposta: 'Use o WhatsApp ou telefone (41) 99664-6761, o e-mail contato@engeumengenharia.com.br ou acesse engeumengenharia.com.br. O Serviços no Bairro é um diretório e não executa a obra.' },
     ],
   },
+  {
+    "slug": "alpha-telhados-curitiba",
+    "nome": "AlphaEng Telhados",
+    "slogan": "Calhas, rufos e coberturas em Curitiba e região",
+    "titleSeo": "AlphaEng Telhados em Curitiba | Calhas, Rufos e Coberturas",
+    "logo": "https://www.alphatelhados.com.br/assets/images/telhados-alphaeng-lindoia-em-curitiba-pr-1.gif",
+    "fotos": [],
+    "descricao": "Avaliação, instalação, reforma e manutenção de telhados, coberturas, calhas e rufos em Curitiba e Região Metropolitana.",
+    "descricaoLonga": "A AlphaEng Telhados atende demandas de montagem, reforma e manutenção de coberturas residenciais e industriais, além de fabricação e instalação de calhas e rufos. Seu catálogo institucional também apresenta dutos para exaustão, renovação de ar e iluminação natural. Para iniciar um orçamento, informe à empresa o bairro, o tipo de imóvel e se a demanda envolve instalação nova, infiltração ou manutenção. Fotos feitas de um local seguro podem ajudar na orientação inicial. A equipe confirma atendimento, escopo e condições conforme o imóvel.",
+    "whatsapp": "5541984943059",
+    "telefone": "(41) 98494-3059",
+    "email": "contato@alphatelhados.com.br",
+    "site": "https://www.alphatelhados.com.br/",
+    "cidadeBase": "Curitiba",
+    "estadoBase": "PR",
+    "verificada": false,
+    "destaque": false,
+    "atende24h": false,
+    "atendeEmergencia": false,
+    "tipoServico": [
+      "construcao"
+    ],
+    "servicosOferecidos": [],
+    "bairrosAtendidos": [],
+    "cidadesAtendidas": [
+      "curitiba"
+    ],
+    "formasPagamento": [],
+    "horarios": [
+      {
+        "dia": "Segunda a sexta",
+        "abertura": "08:00",
+        "fechamento": "18:00"
+      }
+    ],
+    "avaliacoes": [],
+    "notaMedia": 0,
+    "totalAvaliacoes": 0,
+    "faq": [
+      {
+        "pergunta": "A AlphaEng atende telhados residenciais e industriais?",
+        "resposta": "O site oficial apresenta soluções para telhados residenciais e coberturas industriais, além de calhas e rufos. Descreva o imóvel para que a empresa confirme o atendimento."
+      },
+      {
+        "pergunta": "Como solicitar uma avaliação?",
+        "resposta": "Informe o bairro, o tipo de imóvel e o objetivo do serviço. Se possível, envie fotos feitas de um local seguro pelo WhatsApp (41) 98494-3059."
+      }
+    ]
+  },
+  {
+    "slug": "acquatec-calhas-telhados-curitiba",
+    "nome": "Acquatec Calhas e Telhados",
+    "slogan": "Instalação, manutenção e reforma de coberturas",
+    "titleSeo": "Acquatec Calhas e Telhados em Curitiba | Instalação e Reforma",
+    "logo": "https://www.acquateccalhas.com.br/logo-header-rodape-calhas-e-telhados-m2-ctba-pr-brasil.png",
+    "fotos": [],
+    "descricao": "Instalação de calhas, manutenção de telhados e reforma de coberturas para residências, condomínios e empresas em Curitiba e região.",
+    "descricaoLonga": "A Acquatec Calhas e Telhados trabalha com instalação, conservação e reforma de coberturas em Curitiba e região. Entre os serviços do catálogo estão calhas, rufos, telhados metálicos, manta térmica, captação de água, iluminação natural e exaustores eólicos. Para conversar sobre goteiras, transbordamento ou troca de cobertura, envie o bairro, o tipo de imóvel e os sinais observados. A empresa informa se será necessária visita e combina as condições antes da contratação.",
+    "whatsapp": "5541991635740",
+    "telefone": "(41) 99163-5740",
+    "email": "contato@acquateccalhas.com.br",
+    "site": "https://www.acquateccalhas.com.br/",
+    "cidadeBase": "Curitiba",
+    "estadoBase": "PR",
+    "verificada": false,
+    "destaque": false,
+    "atende24h": false,
+    "atendeEmergencia": false,
+    "tipoServico": [
+      "construcao"
+    ],
+    "servicosOferecidos": [],
+    "bairrosAtendidos": [
+      "fanny"
+    ],
+    "cidadesAtendidas": [
+      "curitiba"
+    ],
+    "formasPagamento": [],
+    "horarios": [],
+    "avaliacoes": [],
+    "notaMedia": 0,
+    "totalAvaliacoes": 0,
+    "faq": [
+      {
+        "pergunta": "A Acquatec atende condomínios e empresas?",
+        "resposta": "Sim. O site oficial apresenta serviços para residências, condomínios e empresas. Informe o endereço e a necessidade para confirmar a disponibilidade."
+      },
+      {
+        "pergunta": "Como pedir orçamento para calhas ou telhado?",
+        "resposta": "Fale pelo WhatsApp (41) 99163-5740, informe o endereço e descreva o que precisa. Envie fotos feitas de local seguro, se possível."
+      }
+    ]
+  },
 ];
 
 // Inject real companies into cache/search

@@ -164,6 +164,7 @@ const BuscaPage = () => {
                     { value: 'motofrete', label: 'Motofrete e entregas' },
                     { value: 'lavanderia', label: 'Lavanderia e passadoria' },
                     { value: 'refrigeracao', label: 'Refrigeração e assistência técnica' },
+                    { value: 'construcao', label: 'Construção, toldos e coberturas' },
                   ].map(opt => (
                     <label key={opt.value} className="flex items-center gap-2 text-sm cursor-pointer">
                       <input
