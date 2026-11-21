@@ -5,7 +5,7 @@ import { bairrosSaoPauloSlugs, cidadesSaoPauloSlugs, bairrosOsascoSlugs, cidades
 import { bairrosSantaCatarinaSlugs, cidadesSantaCatarinaSlugs } from '@/data/cidades-sc';
 
 // Segmentos que NÃO devem aparecer nas listagens hidráulicas por bairro/cidade
-const SEGMENTOS_NAO_HIDRAULICOS = ['motofrete', 'lavanderia', 'refrigeracao', 'construcao', 'madeireira', 'religiao'] as const;
+const SEGMENTOS_NAO_HIDRAULICOS = ['motofrete', 'lavanderia', 'refrigeracao', 'construcao', 'madeireira', 'religiao', 'grafica'] as const;
 function isSegmentoHidraulico(emp: Empresa): boolean {
   return !emp.tipoServico.some(t => (SEGMENTOS_NAO_HIDRAULICOS as readonly string[]).includes(t));
 }
@@ -1286,6 +1286,49 @@ const empresasReais: Empresa[] = [
       {
         "pergunta": "Como pedir orçamento para calhas ou telhado?",
         "resposta": "Fale pelo WhatsApp (41) 99163-5740, informe o endereço e descreva o que precisa. Envie fotos feitas de local seguro, se possível."
+      }
+    ]
+  },
+  {
+    "slug": "grafica-no-tatuquara-curitiba-canecas",
+    "nome": "Gráfica no Tatuquara | Curitiba Canecas & Personalização",
+    "slogan": "Impressos, sinalização e personalizados para o Tatuquara",
+    "titleSeo": "Gráfica no Tatuquara | Curitiba Canecas & Personalização",
+    "fotos": [],
+    "descricao": "Serviços gráficos para quem está no Tatuquara, em Curitiba: cartões, flyers, blocos, etiquetas, adesivos, banners, placas e convites.",
+    "descricaoLonga": "A Curitiba Canecas & Personalização atende pedidos de serviços gráficos para comércios, autônomos e moradores do Tatuquara. Consulte cartões de visita, flyers, blocos, adesivos, etiquetas, tags, banners, placas, comunicação para fachadas, convites e canecas personalizadas. Para pedir orçamento, indique material, tamanho, quantidade, prazo desejado e se já tem a arte. Combine diretamente com a equipe as opções de entrega ou retirada antes de se deslocar.",
+    "whatsapp": "5541991031466",
+    "telefone": "(41) 99103-1466",
+    "site": "https://curitibacanecas.com/grafica-no-tatuquara/",
+    "cidadeBase": "Curitiba",
+    "estadoBase": "PR",
+    "verificada": false,
+    "destaque": false,
+    "atende24h": false,
+    "atendeEmergencia": false,
+    "tipoServico": [
+      "grafica"
+    ],
+    "servicosOferecidos": [],
+    "bairrosAtendidos": [
+      "tatuquara"
+    ],
+    "cidadesAtendidas": [
+      "curitiba"
+    ],
+    "formasPagamento": [],
+    "horarios": [],
+    "avaliacoes": [],
+    "notaMedia": 0,
+    "totalAvaliacoes": 0,
+    "faq": [
+      {
+        "pergunta": "A Curitiba Canecas oferece outros serviços gráficos além de canecas?",
+        "resposta": "Sim. A página de serviços para o Tatuquara apresenta cartões, flyers, blocos, adesivos, etiquetas, tags, placas, banners, sinalização para fachadas e convites."
+      },
+      {
+        "pergunta": "O que enviar para pedir um orçamento?",
+        "resposta": "Informe o tipo de material, as medidas, a quantidade, o prazo e se você já tem a arte. Confirme disponibilidade e condições de entrega ou retirada pelo WhatsApp (41) 99103-1466."
       }
     ]
   },

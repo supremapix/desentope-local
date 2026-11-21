@@ -68,7 +68,7 @@ export interface Empresa {
   destaque: boolean;
   atende24h: boolean;
   atendeEmergencia: boolean;
-  tipoServico: ('desentupimento' | 'encanamento' | 'motofrete' | 'lavanderia' | 'refrigeracao' | 'construcao' | 'madeireira' | 'assistencia-tecnica' | 'cozinhas-industriais')[];
+  tipoServico: ('desentupimento' | 'encanamento' | 'motofrete' | 'lavanderia' | 'refrigeracao' | 'construcao' | 'madeireira' | 'assistencia-tecnica' | 'cozinhas-industriais' | 'grafica')[];
   servicosOferecidos: string[];
   bairrosAtendidos: string[];
   cidadesAtendidas: string[];

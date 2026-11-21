@@ -25,7 +25,8 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
   const isSoares = empresa?.slug === 'toldos-soares-curitiba';
   const isEngeum = empresa?.slug === 'engeum-engenharia';
   const isRoofingListing = empresa?.slug === 'alpha-telhados-curitiba' || empresa?.slug === 'acquatec-calhas-telhados-curitiba';
-  const isInformationalListing = isEngeum || isRoofingListing;
+  const isGrafica = empresa?.slug === 'grafica-no-tatuquara-curitiba-canecas';
+  const isInformationalListing = isEngeum || isRoofingListing || isGrafica;
   const [formData, setFormData] = useState({ nome: '', telefone: '', problema: '', bairro: '', descricao: '', urgencia: 'normal' });
 
   const bairroSlug = empresa?.bairrosAtendidos[0] || 'centro';
@@ -199,6 +200,8 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
                           ? 'Lavanderia e passadoria'
                           : t === 'refrigeracao'
                           ? 'Refrigeração e assistência técnica'
+                          : t === 'grafica'
+                          ? 'Gráfica e personalizados'
                           : t === 'madeireira' || t === 'construcao'
                           ? (isEngeum ? 'Engenharia e construção a seco' : isRoofingListing ? 'Calhas, telhados e coberturas' : 'Construção & Madeireira')
                           : 'Encanamento'}
