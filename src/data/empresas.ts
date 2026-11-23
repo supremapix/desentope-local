@@ -5,7 +5,7 @@ import { bairrosSaoPauloSlugs, cidadesSaoPauloSlugs, bairrosOsascoSlugs, cidades
 import { bairrosSantaCatarinaSlugs, cidadesSantaCatarinaSlugs } from '@/data/cidades-sc';
 
 // Segmentos que NÃO devem aparecer nas listagens hidráulicas por bairro/cidade
-const SEGMENTOS_NAO_HIDRAULICOS = ['motofrete', 'lavanderia', 'refrigeracao', 'construcao', 'madeireira', 'religiao', 'grafica'] as const;
+const SEGMENTOS_NAO_HIDRAULICOS = ['motofrete', 'lavanderia', 'refrigeracao', 'construcao', 'madeireira', 'religiao', 'grafica', 'beleza'] as const;
 function isSegmentoHidraulico(emp: Empresa): boolean {
   return !emp.tipoServico.some(t => (SEGMENTOS_NAO_HIDRAULICOS as readonly string[]).includes(t));
 }
@@ -1372,6 +1372,54 @@ const empresasReais: Empresa[] = [
       {
         "pergunta": "Como confirmar o formato e o horário de atendimento?",
         "resposta": "Entre em contato com a equipe de Londrina pelo WhatsApp (43) 99141-2500. Confirme as condições e, se desejar atendimento presencial, peça as orientações antes de sair."
+      }
+    ]
+  },
+  {
+    "slug": "imperio-da-beleza-sitio-cercado",
+    "nome": "Império da Beleza",
+    "titleSeo": "Império da Beleza no Sítio Cercado | Cabelos e Cosméticos",
+    "logo": "https://imperiodabeleza.site1.digital/assets/logo-header-transparente.png",
+    "fotoCapa": "https://imperiodabeleza.site1.digital/assets/fachada.jpg",
+    "fotos": [
+      "https://imperiodabeleza.site1.digital/assets/fachada.jpg"
+    ],
+    "descricao": "Loja de cabelos para tranças, crochet braids, apliques e cosméticos capilares no Sítio Cercado, em Curitiba.",
+    "descricaoLonga": "A Império da Beleza fica na Rua Tenente Arailton Vicente Alves, 32, no Sítio Cercado, Curitiba. O catálogo traz cabelos para tranças, crochet braids, apliques e cosméticos capilares. Para consultar um produto, envie à loja o nome, o código da cor e a quantidade de pacotes. Confirme o horário e a disponibilidade antes de visitar.",
+    "whatsapp": "5541995888555",
+    "telefone": "(41) 99588-8555",
+    "endereco": "Rua Tenente Arailton Vicente Alves, 32 — Sítio Cercado — Curitiba/PR",
+    "googleMapsUrl": "https://share.google/5ZaWv90wFgcJU0Ze9",
+    "site": "https://imperiodabeleza.site1.digital/",
+    "cidadeBase": "Curitiba",
+    "estadoBase": "PR",
+    "verificada": false,
+    "destaque": false,
+    "atende24h": false,
+    "atendeEmergencia": false,
+    "tipoServico": [
+      "beleza"
+    ],
+    "servicosOferecidos": [],
+    "bairrosAtendidos": [
+      "sitio-cercado"
+    ],
+    "cidadesAtendidas": [
+      "Curitiba"
+    ],
+    "formasPagamento": [],
+    "horarios": [],
+    "avaliacoes": [],
+    "notaMedia": 0,
+    "totalAvaliacoes": 0,
+    "faq": [
+      {
+        "pergunta": "Onde fica a Império da Beleza?",
+        "resposta": "Na Rua Tenente Arailton Vicente Alves, 32, no Sítio Cercado, em Curitiba. Confira a fachada e a rota no site oficial."
+      },
+      {
+        "pergunta": "Como consultar uma cor de cabelo para tranças ou aplique?",
+        "resposta": "Envie pelo WhatsApp o nome do produto, o código da cor e a quantidade de pacotes. Confirme disponibilidade e horário antes de ir."
       }
     ]
   },
