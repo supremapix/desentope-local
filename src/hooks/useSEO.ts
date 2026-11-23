@@ -213,6 +213,7 @@ const TIPO_LOCALBUSINESS: Record<string, string> = {
   refrigeracao: 'HVACBusiness',
   construcao: 'HomeAndConstructionBusiness',
   madeireira: 'HomeAndConstructionBusiness',
+  beleza: 'Store',
 };
 
 const DIAS_DA_SEMANA = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];

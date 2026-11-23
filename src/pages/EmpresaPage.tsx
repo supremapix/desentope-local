@@ -27,12 +27,13 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
   const isRoofingListing = empresa?.slug === 'alpha-telhados-curitiba' || empresa?.slug === 'acquatec-calhas-telhados-curitiba';
   const isGrafica = empresa?.slug === 'grafica-no-tatuquara-curitiba-canecas';
   const isCentroLondrina = empresa?.slug === 'centro-sagrado-londrina';
-  const isInformationalListing = isEngeum || isRoofingListing || isGrafica || isCentroLondrina;
+  const isBeautyStore = empresa?.tipoServico.includes('beleza') ?? false;
+  const isInformationalListing = isEngeum || isRoofingListing || isGrafica || isCentroLondrina || isBeautyStore;
   const [formData, setFormData] = useState({ nome: '', telefone: '', problema: '', bairro: '', descricao: '', urgencia: 'normal' });
 
   const bairroSlug = empresa?.bairrosAtendidos[0] || 'centro';
   const coords = getCoordenadasBairro(bairroSlug);
-  const bairroNome = isCentroLondrina ? 'Londrina' : bairroSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+  const bairroNome = isBeautyStore ? 'Sítio Cercado' : isCentroLondrina ? 'Londrina' : bairroSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
   const cidadeBase = empresa?.cidadeBase || 'Curitiba';
   const estadoBase = empresa?.estadoBase || 'PR';
 
@@ -148,7 +149,7 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
                 <div className="mt-6 grid gap-2 border-t border-slate-700 pt-5 sm:flex sm:flex-wrap">
                   <WhatsAppButton
                     whatsapp={empresa.whatsapp}
-                    mensagem={`Olá! Vi o perfil da ${empresa.nome} no Serviços no Bairro e gostaria de solicitar um orçamento. [via perfil - servicosnobairro.com.br]`}
+                    mensagem={isBeautyStore ? 'Olá! Vi o perfil da Império da Beleza no Serviços no Bairro e gostaria de consultar um produto.' : `Olá! Vi o perfil da ${empresa.nome} no Serviços no Bairro e gostaria de solicitar um orçamento. [via perfil - servicosnobairro.com.br]`}
                     size="lg"
                     className="justify-center focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                     label="Solicitar orçamento"
@@ -185,7 +186,7 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
                   {empresa.slogan && (
                     <p className="text-sm font-medium text-muted-foreground mt-0.5">{empresa.slogan}</p>
                   )}
-                  {!isRoofingListing && <div className="mt-1">
+                  {!isRoofingListing && !isBeautyStore && <div className="mt-1">
                     <RatingStars nota={empresa.notaMedia} total={empresa.totalAvaliacoes} />
                   </div>}
                   <div className="flex flex-wrap gap-2 mt-2">
@@ -203,6 +204,8 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
                           ? 'Refrigeração e assistência técnica'
                           : t === 'religiao' && isCentroLondrina
                           ? 'Tarô, Búzios e orientação espiritual'
+                          : t === 'beleza'
+                          ? 'Beleza e cosméticos'
                           : t === 'grafica'
                           ? 'Gráfica e personalizados'
                           : t === 'madeireira' || t === 'construcao'
@@ -217,7 +220,7 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
               <div className="flex flex-wrap gap-2 mt-4">
                 <WhatsAppButton
                   whatsapp={empresa.whatsapp}
-                  mensagem={`Olá! Vi o perfil da ${empresa.nome} no Serviços no Bairro e gostaria de solicitar um orçamento. [via perfil - servicosnobairro.com.br]`}
+                  mensagem={isBeautyStore ? 'Olá! Vi o perfil da Império da Beleza no Serviços no Bairro e gostaria de consultar um produto.' : `Olá! Vi o perfil da ${empresa.nome} no Serviços no Bairro e gostaria de solicitar um orçamento. [via perfil - servicosnobairro.com.br]`}
                   size="lg"
                   label="CHAMAR NO WHATSAPP"
                 />
@@ -238,6 +241,13 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
               </div>
             </div>
 
+            )}
+
+            {isBeautyStore && empresa.fotoCapa && (
+              <figure className="overflow-hidden rounded-xl border bg-card">
+                <img src={empresa.fotoCapa} alt="Fachada da Império da Beleza no Sítio Cercado, com letreiro escuro e logomarca dourada" width={1599} height={899} loading="lazy" decoding="async" className="h-auto w-full" />
+                <figcaption className="px-4 py-3 text-sm text-muted-foreground">Fachada da loja na Rua Tenente Arailton Vicente Alves, 32.</figcaption>
+              </figure>
             )}
 
             {/* Vídeo institucional (MP4) */}
@@ -619,7 +629,7 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
             </Card>
 
             {/* Contact Form */}
-            <Card>
+            {!isBeautyStore && <Card>
               <CardContent className="p-5">
                 <h3 className="font-bold mb-4 flex items-center gap-2"><Send className="h-5 w-5 text-primary" /> Solicitar Orçamento</h3>
                 <form onSubmit={handleWhatsApp} className="space-y-3">
@@ -647,7 +657,7 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
                   </button>
                 </form>
               </CardContent>
-            </Card>
+            </Card>}
           </div>
         </div>
 
