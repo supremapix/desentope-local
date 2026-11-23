@@ -243,6 +243,13 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
 
             )}
 
+            {isBeautyStore && empresa.fotoCapa && (
+              <figure className="overflow-hidden rounded-xl border bg-card">
+                <img src={empresa.fotoCapa} alt="Fachada da Império da Beleza no Sítio Cercado, com letreiro escuro e logomarca dourada" width={1599} height={899} loading="lazy" decoding="async" className="h-auto w-full" />
+                <figcaption className="px-4 py-3 text-sm text-muted-foreground">Fachada da loja na Rua Tenente Arailton Vicente Alves, 32.</figcaption>
+              </figure>
+            )}
+
             {/* Vídeo institucional (MP4) */}
             {!empresa.youtubeVideoId && empresa.videoUrl && (
               <Card className="border-secondary border-2 overflow-hidden">
