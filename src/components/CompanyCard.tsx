@@ -13,6 +13,7 @@ const categorias: Record<Empresa['tipoServico'][number], string> = {
   refrigeracao: 'Refrigeração e assistência técnica',
   construcao: 'Construção, toldos e coberturas',
   madeireira: 'Madeireira',
+  beleza: 'Beleza e cosméticos',
   'assistencia-tecnica': 'Assistência técnica',
   'cozinhas-industriais': 'Cozinhas industriais',
 };
@@ -78,9 +79,9 @@ export function CompanyCard({ empresa }: CompanyCardProps) {
               </div>
             </div>
 
-            <div className="mt-1">
+            {(!empresa.tipoServico.includes('beleza') || empresa.totalAvaliacoes > 0) && <div className="mt-1">
               <RatingStars nota={empresa.notaMedia} total={empresa.totalAvaliacoes} />
-            </div>
+            </div>}
 
             <div className="mt-2.5 space-y-1.5 text-xs sm:text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
