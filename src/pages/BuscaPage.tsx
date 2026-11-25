@@ -73,7 +73,13 @@ const BuscaPage = () => {
       filtered = filtered.filter(e => e.verificada);
     }
     if (filtroServico) {
-      filtered = filtered.filter(e => e.servicosOferecidos.includes(filtroServico));
+      if (filtroServico === 'grafica') {
+        filtered = filtered.filter(e => e.tipoServico.includes('grafica'));
+      } else if (filtroServico === 'impressos') {
+        filtered = filtered.filter(e => e.tipoServico.includes('grafica') && /impressos|impressão/i.test([e.nome, e.slogan, e.descricao].filter(Boolean).join(' ')));
+      } else {
+        filtered = filtered.filter(e => e.servicosOferecidos.includes(filtroServico));
+      }
     }
     if (localParam) {
       // "Sé — São Paulo" -> ["se", "sao", "paulo"] ; matches bairro/cidade slugs (inclusive "sp-se")
@@ -101,7 +107,12 @@ const BuscaPage = () => {
         filtered.sort((a, b) => b.totalAvaliacoes - a.totalAvaliacoes);
         break;
       default:
-        filtered.sort((a, b) => (b.destaque ? 1 : 0) - (a.destaque ? 1 : 0));
+        if ((filtroServico === 'grafica' || filtroServico === 'impressos') && /tatuquara/i.test(localParam)) {
+          const prioridade = (e: Empresa) => e.slug === 'impressos-e-grafica-no-tatuquara' ? 2 : e.destaque ? 1 : 0;
+          filtered.sort((a, b) => prioridade(b) - prioridade(a));
+        } else {
+          filtered.sort((a, b) => (b.destaque ? 1 : 0) - (a.destaque ? 1 : 0));
+        }
     }
 
     return filtered;
@@ -206,6 +217,8 @@ const BuscaPage = () => {
                   className="w-full h-9 px-2 rounded-md border bg-background text-sm"
                 >
                   <option value="">Todos os serviços</option>
+                  <option value="impressos">Impressos</option>
+                  <option value="grafica">Gráfica</option>
                   {servicos.map(s => (
                     <option key={s.slug} value={s.slug}>{s.nome}</option>
                   ))}
