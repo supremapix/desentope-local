@@ -264,7 +264,9 @@ export function getEmpresasDestaque(limite = 6): Empresa[] {
   const destaque = empresasRotacionadas.filter(e => e.destaque);
   const verificadas = empresasRotacionadas.filter(e => e.verificada && !e.destaque);
   
-  return [...destaque, ...verificadas].slice(0, limite);
+  const studio = empresasReais.find(e => e.slug === 'imperio-da-beleza-sitio-cercado');
+  const demais = [...destaque, ...verificadas].filter(e => e.slug !== studio?.slug);
+  return (studio ? [studio, ...demais] : demais).slice(0, limite);
 }
 
 export function getUltimasEmpresasCadastradas(limite = 6): Empresa[] {
@@ -1377,20 +1379,20 @@ const empresasReais: Empresa[] = [
   },
   {
     "slug": "imperio-da-beleza-sitio-cercado",
-    "nome": "Império da Beleza",
-    "titleSeo": "Império da Beleza no Sítio Cercado | Cabelos e Cosméticos",
-    "logo": "https://imperiodabeleza.site1.digital/assets/logo-header-transparente.png",
-    "fotoCapa": "https://imperiodabeleza.site1.digital/assets/fachada.jpg",
+    "nome": "Studio Império da Beleza",
+    "titleSeo": "Studio Império da Beleza no Sítio Cercado | Trancista e loja de cabelos",
+    "logo": "https://studioimperiodabeleza.aloanuncio.com.br/logo-header-transparente.png",
+    "fotoCapa": "https://studioimperiodabeleza.aloanuncio.com.br/fachada.jpg",
     "fotos": [
-      "https://imperiodabeleza.site1.digital/assets/fachada.jpg"
+      "https://studioimperiodabeleza.aloanuncio.com.br/fachada.jpg"
     ],
-    "descricao": "Loja de cabelos para tranças, crochet braids, apliques e cosméticos capilares no Sítio Cercado, em Curitiba.",
-    "descricaoLonga": "A Império da Beleza fica na Rua Tenente Arailton Vicente Alves, 32, no Sítio Cercado, Curitiba. O catálogo traz cabelos para tranças, crochet braids, apliques e cosméticos capilares. Para consultar um produto, envie à loja o nome, o código da cor e a quantidade de pacotes. Confirme o horário e a disponibilidade antes de visitar.",
+    "descricao": "Trancista, manicure e pedicure no Sítio Cercado, Curitiba. Loja de cabelos orgânicos, apliques e cosméticos capilares.",
+    "descricaoLonga": "O Studio Império da Beleza fica na Rua Tenente Arailton Vicente Alves, 32, no Sítio Cercado, Curitiba. Para agendar tranças, manicure ou pedicure, consulte horários e valores pelo WhatsApp. Para comprar cabelos orgânicos, apliques ou cosméticos, informe modelo, cor e quantidade e confirme a disponibilidade.",
     "whatsapp": "5541995888555",
     "telefone": "(41) 99588-8555",
     "endereco": "Rua Tenente Arailton Vicente Alves, 32 — Sítio Cercado — Curitiba/PR",
     "googleMapsUrl": "https://share.google/5ZaWv90wFgcJU0Ze9",
-    "site": "https://imperiodabeleza.site1.digital/",
+    "site": "https://studioimperiodabeleza.aloanuncio.com.br/",
     "cidadeBase": "Curitiba",
     "estadoBase": "PR",
     "verificada": false,
@@ -1414,7 +1416,7 @@ const empresasReais: Empresa[] = [
     "totalAvaliacoes": 0,
     "faq": [
       {
-        "pergunta": "Onde fica a Império da Beleza?",
+        "pergunta": "Onde fica o Studio Império da Beleza?",
         "resposta": "Na Rua Tenente Arailton Vicente Alves, 32, no Sítio Cercado, em Curitiba. Confira a fachada e a rota no site oficial."
       },
       {
