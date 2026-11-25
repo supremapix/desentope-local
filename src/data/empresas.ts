@@ -1293,6 +1293,53 @@ const empresasReais: Empresa[] = [
     ]
   },
   {
+    "slug": "impressos-e-grafica-no-tatuquara",
+    "nome": "Impressos e Gráfica no Tatuquara | Curitiba Canecas",
+    "slogan": "Cartões, panfletos e etiquetas sob encomenda",
+    "titleSeo": "Impressos e Gráfica no Tatuquara | Curitiba Canecas",
+    "fotoCapa": "https://curitibacanecas.com/images/grafica-tatuquara-impressos.webp",
+    "fotos": [
+      "https://curitibacanecas.com/images/grafica-tatuquara-impressos.webp",
+      "https://curitibacanecas.com/images/grafica-tatuquara-sinalizacao.webp"
+    ],
+    "descricao": "Gráfica e impressos para o Tatuquara, Curitiba: cartões de visita, panfletos, blocos, etiquetas, adesivos e convites.",
+    "descricaoLonga": "Esta é a ficha de impressos da Curitiba Canecas para atender pedidos no Tatuquara. Se o pedido é para uma loja, evento ou campanha local, informe as medidas, a quantidade, o acabamento e a data de uso. Envie a arte se já tiver o arquivo e confirme diretamente com a equipe como funciona a entrega ou a retirada.",
+    "whatsapp": "5541991031466",
+    "telefone": "(41) 99103-1466",
+    "site": "https://curitibacanecas.com/grafica-no-tatuquara/",
+    "cidadeBase": "Curitiba",
+    "estadoBase": "PR",
+    "verificada": false,
+    "destaque": false,
+    "atende24h": false,
+    "atendeEmergencia": false,
+    "tipoServico": [
+      "grafica"
+    ],
+    "servicosOferecidos": [],
+    "bairrosAtendidos": [
+      "tatuquara"
+    ],
+    "cidadesAtendidas": [
+      "curitiba"
+    ],
+    "formasPagamento": [],
+    "horarios": [],
+    "avaliacoes": [],
+    "notaMedia": 0,
+    "totalAvaliacoes": 0,
+    "faq": [
+      {
+        "pergunta": "Que impressos posso cotar para o Tatuquara?",
+        "resposta": "Cartões de visita, panfletos, etiquetas, adesivos, blocos e convites. Consulte o material e o acabamento antes de fechar."
+      },
+      {
+        "pergunta": "Como pedir o orçamento de impressão?",
+        "resposta": "Passe as medidas, quantidade, prazo e se já tem a arte. A equipe confirma as condições de entrega ou retirada."
+      }
+    ]
+  },
+  {
     "slug": "grafica-no-tatuquara-curitiba-canecas",
     "nome": "Gráfica no Tatuquara | Curitiba Canecas & Personalização",
     "slogan": "Impressos, sinalização e personalizados para o Tatuquara",
