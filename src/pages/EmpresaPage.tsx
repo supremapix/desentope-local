@@ -25,7 +25,7 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
   const isSoares = empresa?.slug === 'toldos-soares-curitiba';
   const isEngeum = empresa?.slug === 'engeum-engenharia';
   const isRoofingListing = empresa?.slug === 'alpha-telhados-curitiba' || empresa?.slug === 'acquatec-calhas-telhados-curitiba';
-  const isGrafica = empresa?.slug === 'grafica-no-tatuquara-curitiba-canecas';
+  const isGrafica = empresa?.slug === 'grafica-no-tatuquara-curitiba-canecas' || empresa?.slug === 'impressos-e-grafica-no-tatuquara';
   const isCentroLondrina = empresa?.slug === 'centro-sagrado-londrina';
   const isBeautyStore = empresa?.tipoServico.includes('beleza') ?? false;
   const isInformationalListing = isEngeum || isRoofingListing || isGrafica || isCentroLondrina || isBeautyStore;
