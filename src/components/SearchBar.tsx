@@ -33,6 +33,8 @@ export function SearchBar() {
             className="w-full h-12 sm:h-14 pl-10 pr-4 bg-transparent text-foreground text-sm appearance-none cursor-pointer focus:outline-none"
           >
             <option value="">Tipo de Serviço</option>
+            <option value="impressos">Impressos</option>
+            <option value="grafica">Gráfica</option>
             {servicos.map(s => (
               <option key={s.slug} value={s.slug}>{s.icone} {s.nome}</option>
             ))}
