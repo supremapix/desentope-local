@@ -487,6 +487,8 @@ const empresasReais: Empresa[] = [
   },
   {
     slug: 'lavanderia-inovata-osasco',
+    cidadeBase: 'Osasco',
+    estadoBase: 'SP',
     nome: 'Lavanderia Inovata — Lavanderia Profissional e Passadoria em Osasco',
     logo: '/logos/logo-lavanderia-inovata.png',
     fotos: ['/logos/logo-lavanderia-inovata.png'],

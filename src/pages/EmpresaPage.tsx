@@ -22,6 +22,7 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
   const pathnameSlug = typeof window !== 'undefined' ? window.location.pathname.replace(/^\//, '').split('/')[0] : '';
   const slug = slugOverride || paramSlug || pathnameSlug;
   const empresa = getEmpresaBySlug(slug || '');
+  const isInovata = empresa?.slug === 'lavanderia-inovata-osasco';
   const isSoares = empresa?.slug === 'toldos-soares-curitiba';
   const isEngeum = empresa?.slug === 'engeum-engenharia';
   const isRoofingListing = empresa?.slug === 'alpha-telhados-curitiba' || empresa?.slug === 'acquatec-calhas-telhados-curitiba';
@@ -36,6 +37,7 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
   const bairroNome = isBeautyStore ? 'Sítio Cercado' : isCentroLondrina ? 'Londrina' : bairroSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
   const cidadeBase = empresa?.cidadeBase || 'Curitiba';
   const estadoBase = empresa?.estadoBase || 'PR';
+  const buscaCidade = `/busca?local=${encodeURIComponent(cidadeBase)}`;
 
   const similares = useMemo(() => empresa ? getEmpresasRelacionadas(empresa, empresas) : [], [empresa]);
   const youtubeVideoId = empresa?.youtubeVideoId?.trim();
@@ -54,14 +56,15 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
     canonical: empresa ? `/empresa/${empresa.slug}` : undefined,
     type: empresa ? 'business.business' : 'website',
     geoPosition: coords,
-    omitGeo: isInformationalListing,
+    // Inovata não tem coordenadas próprias: não publique o fallback de Curitiba.
+    omitGeo: isInformationalListing || isInovata,
     geoPlacename: `${cidadeBase}, ${estadoBase}`,
     jsonLd: empresa ? [
-      { ...buildLocalBusinessSchema(empresa, coords, bairroNome, servicosDetalhes), ...(isInformationalListing ? { geo: undefined, paymentAccepted: undefined } : {}) },
+      { ...buildLocalBusinessSchema(empresa, coords, bairroNome, servicosDetalhes), ...((isInformationalListing || isInovata) ? { geo: undefined } : {}), ...(isInformationalListing ? { paymentAccepted: undefined } : {}) },
       buildBreadcrumbSchema([
         { name: 'Início', url: '/' },
         { name: 'Buscar empresas', url: '/busca' },
-        { name: cidadeBase, url: '/busca' },
+        { name: cidadeBase, url: isInovata ? buscaCidade : '/busca' },
         { name: empresa.nome, url: `/empresa/${empresa.slug}` },
       ]),
       buildFAQSchema(
@@ -112,7 +115,7 @@ const EmpresaPage = ({ slugOverride }: EmpresaPageProps = {}) => {
         <div className="container mx-auto px-4 py-3 text-sm text-muted-foreground">
           <Link to="/" className="hover:text-primary">Início</Link>
           <span className="mx-2">›</span>
-          <Link to={`/busca?local=${encodeURIComponent(cidadeBase)}`} className="hover:text-primary">{cidadeBase}</Link>
+          <Link to={buscaCidade} className="hover:text-primary">{cidadeBase}</Link>
           <span className="mx-2">›</span>
           <span className="text-foreground font-medium">{empresa.nome}</span>
         </div>
